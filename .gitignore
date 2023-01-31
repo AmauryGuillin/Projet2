@@ -9,7 +9,7 @@
 *.user
 *.userosscache
 *.sln.docstates
-
+Projet2/ConnexionSQL.cs
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
