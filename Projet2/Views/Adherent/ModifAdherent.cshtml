@@ -1,0 +1,23 @@
+﻿@model Projet2.Models.Adherent
+@{
+    Layout = "_LayoutDuSite";
+    ViewBag.Title = "Modifier Adherent";
+}
+
+    @using (Html.BeginForm())
+    {
+            <fieldset>
+                <legend>Modifier un adhérent : </legend>
+                    @Html.LabelFor(m => Model.NumAdherent)
+                    @Html.TextBoxFor(m => Model.NumAdherent)
+                    @Html.ValidationMessageFor(m => Model.NumAdherent)
+                <br />
+                    @Html.LabelFor(m => Model.InscriptionDate)
+                    @Html.TextBoxFor(model => Model.InscriptionDate, new { @type = "date", @Value = Model.InscriptionDate.ToString("yyyy-MM-dd") })
+                    @Html.ValidationMessageFor(m => Model.InscriptionDate)
+            
+                <br />
+                <input type="submit" value="Modifier" />
+            </fieldset>
+    }
+

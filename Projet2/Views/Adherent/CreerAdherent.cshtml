@@ -1,0 +1,26 @@
+﻿@model Projet2.Models.Adherent
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CreerAdherent</title>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        <fieldset>
+            <legend>Creer un adhérent : </legend>
+            @{Html.BeginForm("Adherent", "CreateAdherent"); }
+            @Html.LabelFor(m => Model.NumAdherent)
+            @Html.EditorFor(m => Model.NumAdherent)
+            @Html.ValidationMessageFor(m => Model.NumAdherent)
+            <input type="submit" value="Envoyer" action="../CreateAdherent" />
+            @{Html.EndForm(); }
+        </fieldset>
+    }
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+﻿#entete, #menu, #contenu, #footer {
+    padding: 1px 0;
+}
+
+#entete {
+    background: darkblue;
+    text-align: center;
+    background-size: 100px;
+    color: white;
+}
+
+#main {
+    margin: auto;
+}
+
+#menu {
+    float: left;
+    width: 240px;
+    background: darkblue;
+    color: white;
+}
+
+a {
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#contenu {
+    margin-left: 245px;
+    background-color: lightblue;
+}
+
+#footer {
+    background-color: lightgray;
+    text-align: center;
+    clear: both;
+}
+
+.titre {
+    text-align: center;
+}
+
+.selectionne {
+    color: red;
+}
