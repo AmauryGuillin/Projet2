@@ -11,10 +11,10 @@ namespace Projet2.Models
         public string ProfilImage { get; set; }
 
         [MaxLength(50)]
-        [Required]
+        //[Required]
         public string Bio { get; set; }
         [MaxLength(30)]
-        [Required]
+        //[Required]
         public string Games;
         public int? StuffId { get; set; }
         public virtual List<Stuff> Stuff { get; set; }
@@ -23,9 +23,9 @@ namespace Projet2.Models
         public int? ChatId { get; set; }
         public virtual Chat Chat { get; set; }
 
-        public static Profile CreateProfile(int id,string imagePath, string Bio, string games)
+        public static Profile CreateProfile()
         {
-            Profile profil = new Profile { Id=id,ProfilImage = imagePath, Bio = Bio, Games = games };
+            Profile profil = new Profile {};
 
             return profil;
         }

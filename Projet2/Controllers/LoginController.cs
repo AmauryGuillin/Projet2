@@ -66,7 +66,7 @@ namespace Projet2.Controllers
         {
             if (ModelState.IsValid)
             {
-                int id = dal.AddAccount(account.Username, account.Password);
+                int id = dal.AddAccount(account.Username, account.Password, account.ProfileId);
 
                 var userClaims = new List<Claim>()
                 {
