@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Intrinsics.X86;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -104,7 +105,6 @@ namespace Projet2.Models
             return account.Id;
 
         }
-
         /// <summary>
         /// This method returns a list that contains all accounts
         /// </summary>
@@ -172,7 +172,10 @@ namespace Projet2.Models
             Account user = this._bddContext.Account.FirstOrDefault(u => u.Username == username && u.Password == motDePasse);
             return user;
         }
-
+        /// <summary>
+        /// This method adds a user's account in the database while encoding the user's password
+        /// </summary>
+        /// <returns></returns>
         public int AddAccount(string username, string password)
         {
             string wordpass = EncodeMD5(password);
@@ -182,6 +185,10 @@ namespace Projet2.Models
             return account.Id;
         }
 
+        /// <summary>
+        /// This method encodes users passwords
+        /// </summary>
+        /// <returns></returns>
         public static string EncodeMD5(string password)
         {
             string selectedPassword = "UserChoice" + password + "ASP.NET MVC";
@@ -189,6 +196,22 @@ namespace Projet2.Models
         }
 
 
+        /// <summary>
+        /// This method returns a profile id while creating it
+        /// </summary>
+        /// <returns></returns>
+        public int CreateProfile(int id, string imagePath, string Bio, string games)/// Creating a new profile
+        {
+            Profile profile = Profile.CreateProfile(id, imagePath, Bio, games);
+            _bddContext.Profils.Add(profile);
+            _bddContext.SaveChanges();
+            return profile.Id;
+        }
 
+
+
+
+
+        //////////////////TND
     }
 }
