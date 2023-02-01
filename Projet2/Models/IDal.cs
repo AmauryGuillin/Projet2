@@ -13,6 +13,8 @@ namespace Projet2.Models
 
         List<Adhesion> GetAdhesions();
 
+        List<Team> GetTeams();
+
         void EditAdherent(int id, int benevoleId, int numAdherent, DateTime dateInscription, string justifIdentite);
 
         void CreateAdherent(int id, int benevoleId, int numadherent, DateTime inscriptiondate, Double contibution, string idDocuments, int teamId, int adhesionId, int coachingId);
@@ -21,6 +23,7 @@ namespace Projet2.Models
 
         void CreateAdhesion(int id, int contributionId, DateTime Echeance, AdhesionStatus adhesionStatus);
 
+        void CreateTeam(int id, string name, int gameId, DateTime creationDate, int NbAdherent);
     }
 
     

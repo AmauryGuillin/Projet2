@@ -168,6 +168,27 @@ namespace Projet2.Models
             return _bddContext.Adhesions.ToList();
         }
 
+        public void CreateTeam(int id, string name, int gameId, DateTime creationDate, int NbAdherent)
+        {
+            Team team = new Team() { Id= id, Name= name, 
+                GameId= gameId, CreationDate= creationDate, NbAdherent= NbAdherent };
+
+            _bddContext.Teams.Add(team);
+            _bddContext.SaveChanges();
+
+        }
+
+        public void CreateTeam(Team team)
+        {
+            _bddContext.Teams.Add(team);
+            _bddContext.SaveChanges();
+        }
+
+        public List<Team> GetTeams()
+        {
+            return _bddContext.Teams.ToList();
+        }
+
 
         /// <summary>
         /// This method creates a "Benevole" in the SQL database

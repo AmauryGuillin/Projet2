@@ -55,6 +55,7 @@ namespace Projet2.Models
 
         public DbSet<Adhesion> Adhesions { get; set; }// ajout d'un 's' à la fin
 
+        public DbSet<Team> Teams { get; set; }
 
         public void InitializeDb()
         {
