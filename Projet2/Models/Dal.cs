@@ -67,6 +67,11 @@ namespace Projet2.Models
 
         }
 
+        public void CreateContribution(Contribution contribution)
+        {
+            _bddContext.Contributions.Add(contribution);
+            _bddContext.SaveChanges();
+        }
 
 
         /// <summary>
