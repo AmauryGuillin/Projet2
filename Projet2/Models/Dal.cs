@@ -56,8 +56,14 @@ namespace Projet2.Models
             _bddContext.SaveChanges();
         }
 
-        public void CreateContribution()
+        public void CreateContribution(int id, bool paymentStatus, double totalCount, PrelevementDate prelevementDate, ContributionType contributionType)
         {
+            Contribution contribution = new Contribution() { Id = id, 
+                PaymentStatus = paymentStatus, TotalCount = totalCount, 
+                PrelevementDate = prelevementDate, ContributionType = contributionType };
+
+            _bddContext.Contributions.Add(contribution);
+            _bddContext.SaveChanges();
 
         }
 

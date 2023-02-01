@@ -29,7 +29,7 @@ namespace Projet2.Models
 
         public DbSet<Team> Team { get; set; }
 
-        public DbSet<Contribution> Contribution { get; set; }
+        public DbSet<Contribution> Contributions { get; set; }//ajout d'un 's' à la fin
 
         public DbSet<SportAssociation> SportAssociation { get; set; }
 
