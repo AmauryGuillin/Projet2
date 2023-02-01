@@ -23,7 +23,6 @@ namespace Projet2.Models
             _bddContext.Database.EnsureCreated();
         }
 
-
         /// <summary>
         /// This method creates an "Adhérent" in the SQL database with all attributes
         /// </summary>
@@ -36,15 +35,17 @@ namespace Projet2.Models
         /// <param name="teamId"></param>
         /// <param name="adhesionId"></param>
         /// <param name="coachingId"></param>
-        public void CreateAdherent(int id, int benevoleId, int numAdherent, DateTime inscriptiondate, Double contribution, string idDocuments, int teamId, int adhesionId, int coachingId)
+        /// <returns>adherent.Id</returns>
+        public int CreateAdherent(int benevoleId, int numAdherent, DateTime inscriptiondate, Double contribution, string idDocuments, int teamId, int adhesionId, int coachingId)
         {
-            Adherent adherent = new Adherent() { Id = id, BenevoleId= benevoleId,
+            Adherent adherent = new Adherent() { BenevoleId= benevoleId,
                 NumAdherent = numAdherent, InscriptionDate = inscriptiondate, Contribution = contribution,
                 IDDocuments = idDocuments, TeamId= teamId, AdhesionId= adhesionId, CoachingId= coachingId };
 
             _bddContext.Adherents.Add(adherent);
 
             _bddContext.SaveChanges();
+            return adherent.Id;
 
         }
         /// <summary>
@@ -110,7 +111,8 @@ namespace Projet2.Models
         /// <param name="totalCount"></param>
         /// <param name="prelevementDate"></param>
         /// <param name="contributionType"></param>
-        public void CreateContribution(int id, bool paymentStatus, double totalCount, PrelevementDate prelevementDate, ContributionType contributionType)
+        /// <returns>contribution.Id</returns>
+        public int CreateContribution(int id, bool paymentStatus, double totalCount, PrelevementDate prelevementDate, ContributionType contributionType)
         {
             Contribution contribution = new Contribution() { Id = id, 
                 PaymentStatus = paymentStatus, TotalCount = totalCount, 
@@ -118,6 +120,7 @@ namespace Projet2.Models
 
             _bddContext.Contributions.Add(contribution);
             _bddContext.SaveChanges();
+            return contribution.Id;
 
         }
         /// <summary>
@@ -175,7 +178,9 @@ namespace Projet2.Models
         /// <param name="id"></param>
         /// <param name="contributionId"></param>
         /// <param name="Echeance"></param>
-        public void CreateAdhesion(int id, int contributionId, DateTime Echeance, AdhesionStatus adhesionStatus)
+        /// <param name="adhesionStatus"></param>
+        /// <returns>adhesion.Id</returns>
+        public int CreateAdhesion(int id, int contributionId, DateTime Echeance, AdhesionStatus adhesionStatus)
         {
             Adhesion adhesion = new Adhesion() { Id = id, 
                 ContributionId = contributionId, Echeance = Echeance,
@@ -183,6 +188,7 @@ namespace Projet2.Models
 
             _bddContext.Adhesions.Add(adhesion);
             _bddContext.SaveChanges();
+            return adhesion.Id;
         }
 
         /// <summary>
@@ -241,13 +247,15 @@ namespace Projet2.Models
         /// <param name="gameId"></param>
         /// <param name="creationDate"></param>
         /// <param name="NbAdherent"></param>
-        public void CreateTeam(int id, string name, int gameId, DateTime creationDate, int NbAdherent)
+        /// <returns>team.Id</returns>
+        public int CreateTeam(int id, string name, int gameId, DateTime creationDate, int NbAdherent)
         {
             Team team = new Team() { Id= id, Name= name, 
                 GameId= gameId, CreationDate= creationDate, NbAdherent= NbAdherent };
 
             _bddContext.Teams.Add(team);
             _bddContext.SaveChanges();
+            return team.Id;
 
         }
         /// <summary>
@@ -269,6 +277,14 @@ namespace Projet2.Models
             return _bddContext.Teams.ToList();
         }
 
+        /// <summary>
+        /// This method modifies an Team in the SQL database with all attributes
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="gameId"></param>
+        /// <param name="creationDate"></param>
+        /// <param name="NbAdherent"></param>
         public void EditTeam(int id, string name, int gameId, DateTime creationDate, int NbAdherent)
         {
             Team team = _bddContext.Teams.Find(id);
@@ -282,6 +298,10 @@ namespace Projet2.Models
             }
         }
 
+        /// <summary>
+        /// This method modifies an Adhesion in the SQL database with a Team
+        /// </summary>
+        /// <param name="team"></param>
         public void EditTeam(Team team)
         {
             _bddContext.Teams.Update(team);
