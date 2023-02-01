@@ -128,7 +128,7 @@ namespace Projet2.Models
         /// This method returns a list that contains all contribution
         /// </summary>
         /// <returns></returns>
-        public List<Contribution> GetContribution()
+        public List<Contribution> GetContributions()
         {
             return _bddContext.Contributions.ToList();
         }

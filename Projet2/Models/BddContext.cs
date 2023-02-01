@@ -81,6 +81,21 @@ namespace Projet2.Models
                     PrelevementDate = PrelevementDate.VingtCingDuMois,
                     ContributionType = ContributionType.Annuel
                 });
+            this.Adhesions.AddRange(
+                new Adhesion()
+                {
+                    Id = 1,
+                    ContributionId = null,
+                    Echeance = DateTime.Now,
+                },
+                new Adhesion()
+                {
+                    Id = 2,
+                    ContributionId = null,
+                    Echeance = DateTime.Now,
+                }
+                );
+            
 
             this.SaveChanges();
 
