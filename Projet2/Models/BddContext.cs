@@ -62,6 +62,24 @@ namespace Projet2.Models
                 new Adherent() { Id = 1, BenevoleId = null, NumAdherent = 1, InscriptionDate = new DateTime(2000, 12, 25), Contribution=400.80, IDDocuments = "justification-OUI", TeamId = null, AdhesionId = null, CoachingId = null },
                 new Adherent() { Id = 2, BenevoleId = null, NumAdherent = 2, InscriptionDate = new DateTime(2000, 12, 30), Contribution=250.25, IDDocuments = "justification-NON", TeamId= null,AdhesionId= null,CoachingId= null });
 
+            this.Contributions.AddRange(
+                new Contribution()
+                {
+                    Id = 1,
+                    PaymentStatus = true,
+                    TotalCount = 600.25,
+                    PrelevementDate = PrelevementDate.CinqDuMois,
+                    ContributionType = ContributionType.Mensuel
+                },
+                new Contribution()
+                {
+                    Id = 2,
+                    PaymentStatus = false,
+                    TotalCount = 800.33,
+                    PrelevementDate = PrelevementDate.VingtCingDuMois,
+                    ContributionType = ContributionType.Annuel
+                });
+
             this.SaveChanges();
 
         }
