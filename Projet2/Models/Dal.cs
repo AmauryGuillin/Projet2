@@ -35,16 +35,22 @@ namespace Projet2.Models
         /// <param name="idDocuments">Adherent's mandatory documents</param>
         /// <returns>adherent.Id</returns>
 
-        public void CreateAdherent(int id, int benevoleId, int numadherent, DateTime inscriptiondate, string idDocuments)
+        public void CreateAdherent(int id, int benevoleId, int numadherent, DateTime inscriptiondate, Double contibution, string idDocuments, int teamId, int adhesionId, int coachingId)
         {
             Adherent adherent = new Adherent() { Id = id, BenevoleId= benevoleId,
-                NumAdherent = numadherent, InscriptionDate = inscriptiondate,
-                IDDocuments = idDocuments };
+                NumAdherent = numadherent, InscriptionDate = inscriptiondate, Contribution = contibution,
+                IDDocuments = idDocuments, TeamId= teamId, AdhesionId= adhesionId, CoachingId= coachingId };
 
             _bddContext.Adherents.Add(adherent);
 
             _bddContext.SaveChanges();
 
+        }
+
+        public void CreateAdherent(Adherent adherent)
+        {
+            _bddContext.Adherents.Add(adherent);
+            _bddContext.SaveChanges();
         }
 
         /// <summary>
@@ -126,6 +132,10 @@ namespace Projet2.Models
             return _bddContext.Adherents.ToList();
         }
 
+
+
+
+
         public void EditAdherent(int id, int benevoleId, int numAdherent, DateTime inscriptiondate, string idDocuments)
         {
             Adherent adherent = _bddContext.Adherents.Find(id);
@@ -145,11 +155,7 @@ namespace Projet2.Models
             _bddContext.SaveChanges();
         }
 
-        public void CreateAdherent(Adherent adherent)
-        {
-            _bddContext.Adherents.Add(adherent);
-            _bddContext.SaveChanges();
-        }
+        
 
         public Account GetAccount(int id)
         {
