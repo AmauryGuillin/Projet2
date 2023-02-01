@@ -205,6 +205,34 @@ namespace Projet2.Models
         }
 
         /// <summary>
+        /// This method modifies an Adhesion in the SQL database with all attributes
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="contributionId"></param>
+        /// <param name="Echeance"></param>
+        /// <param name="adhesionStatus"></param>
+        public void EditAdhesion(int id, int contributionId, DateTime Echeance, AdhesionStatus adhesionStatus)
+        {
+            Adhesion adhesion = _bddContext.Adhesions.Find(id);
+            if (adhesion != null)
+            {
+                adhesion.ContributionId= contributionId;
+                adhesion.Echeance= Echeance;
+                adhesion.AdhesionStatus= adhesionStatus;
+                _bddContext.SaveChanges();
+            }
+        }
+        /// <summary>
+        /// This method modifies an Adherent in the SQL database with an Adhesion
+        /// </summary>
+        /// <param name="adhesion"></param>
+        public void EditAdhesion(Adhesion adhesion)
+        {
+            _bddContext.Adhesions.Update(adhesion);
+            _bddContext.SaveChanges();
+        }
+
+        /// <summary>
         /// This method creates an Adhesion in the SQL database with all attributes
         /// </summary>
         /// <param name="id"></param>
