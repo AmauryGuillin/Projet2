@@ -27,18 +27,19 @@ namespace Projet2.Models
         /// <summary>
         /// This method creates an "Adhérent" in the SQL database with all attributes
         /// </summary>
-        /// <param name="id">Adherent's id</param>
-        /// <param name="benevoleId">Benevol's id as a foreign key</param>
-        /// <param name="numadherent">Adherent's identification number</param>
-        /// <param name="inscriptiondate"> Adherent's subscription date</param>
-        /// <param name="cotisation">Adherent's contribution</param>
-        /// <param name="idDocuments">Adherent's mandatory documents</param>
-        /// <returns>adherent.Id</returns>
-
-        public void CreateAdherent(int id, int benevoleId, int numadherent, DateTime inscriptiondate, Double contibution, string idDocuments, int teamId, int adhesionId, int coachingId)
+        /// <param name="id"></param>
+        /// <param name="benevoleId"></param>
+        /// <param name="numAdherent"></param>
+        /// <param name="inscriptiondate"></param>
+        /// <param name="contribution"></param>
+        /// <param name="idDocuments"></param>
+        /// <param name="teamId"></param>
+        /// <param name="adhesionId"></param>
+        /// <param name="coachingId"></param>
+        public void CreateAdherent(int id, int benevoleId, int numAdherent, DateTime inscriptiondate, Double contribution, string idDocuments, int teamId, int adhesionId, int coachingId)
         {
             Adherent adherent = new Adherent() { Id = id, BenevoleId= benevoleId,
-                NumAdherent = numadherent, InscriptionDate = inscriptiondate, Contribution = contibution,
+                NumAdherent = numAdherent, InscriptionDate = inscriptiondate, Contribution = contribution,
                 IDDocuments = idDocuments, TeamId= teamId, AdhesionId= adhesionId, CoachingId= coachingId };
 
             _bddContext.Adherents.Add(adherent);
@@ -74,7 +75,7 @@ namespace Projet2.Models
         /// <param name="numAdherent"></param>
         /// <param name="inscriptiondate"></param>
         /// <param name="idDocuments"></param>
-        public void EditAdherent(int id, int benevoleId, int numAdherent, DateTime inscriptiondate, string idDocuments)
+        public void EditAdherent(int id, int benevoleId, int numAdherent, DateTime inscriptiondate, Double contribution, string idDocuments, int teamId, int adhesionId, int coachingId)
         {
             Adherent adherent = _bddContext.Adherents.Find(id);
             if (adherent != null)
@@ -82,7 +83,11 @@ namespace Projet2.Models
                 adherent.BenevoleId = benevoleId;
                 adherent.NumAdherent = numAdherent;
                 adherent.InscriptionDate = inscriptiondate;
+                adherent.Contribution = contribution;
                 adherent.IDDocuments = idDocuments;
+                adherent.TeamId = teamId;
+                adherent.AdhesionId = adhesionId;
+                adherent.CoachingId = coachingId;
                 _bddContext.SaveChanges();
             }
         }
