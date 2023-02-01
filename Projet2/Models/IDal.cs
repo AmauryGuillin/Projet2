@@ -21,7 +21,7 @@ namespace Projet2.Models
         void RemoveAdherent(int id);
         int CreateContribution(int id, bool paymentStatus, double totalCount, PrelevementDate prelevementDate, ContributionType contributionType);
         void EditContribution(int id, bool paymentStatus, double totalCount, PrelevementDate prelevementDate, ContributionType contributionType);
-        void RemoveContribution(Contribution contribution);
+        void RemoveContribution(int id);
         int CreateAdhesion(int id, int contributionId, DateTime Echeance, AdhesionStatus adhesionStatus);
         void EditAdhesion(int id, int contributionId, DateTime Echeance, AdhesionStatus adhesionStatus);
         void RemoveAdhesion(Adhesion adhesion);

@@ -166,7 +166,7 @@ namespace Projet2.Models
         }
 
         /// <summary>
-        /// This method modifies an Adherent in the SQL database with all attributes
+        /// This method modifies a Contribution in the SQL database with all attributes
         /// </summary>
         /// <param name="id"></param>
         /// <param name="paymentStatus"></param>
@@ -186,8 +186,10 @@ namespace Projet2.Models
             }
         }
 
+
+
         /// <summary>
-        /// This method modifies an Adherent in the SQL database with a contribution
+        /// This method modifies a contribution in the SQL database with a contribution
         /// </summary>
         /// <param name="contribution"></param>
         public void EditContribution(Contribution contribution)
@@ -197,7 +199,21 @@ namespace Projet2.Models
         }
 
         /// <summary>
-        /// This method removes an Adherent in the SQL database with a contribution
+        /// This method removes a contribution in the SQL database with the contribution Id
+        /// </summary>
+        /// <param name="id"></param>
+        public void RemoveContribution(int id)
+        {
+            Contribution contribution = _bddContext.Contributions.Find(id);
+            if (contribution != null)
+            {
+                _bddContext.Contributions.Remove(contribution);
+                _bddContext.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// This method removes a contribution in the SQL database with a contribution
         /// </summary>
         /// <param name="contribution"></param>
         public void RemoveContribution(Contribution contribution)

@@ -119,13 +119,15 @@ namespace Projet2.Models
 
             using (Dal dal = new Dal())
             {
-                //Test des Edit
+
                 //dal.EditAdherent(1, 1, 33, new DateTime(2000, 12, 25), 33.33, "OUI", 1, 1, 1);
                 //dal.EditAdhesion(1, 1, DateTime.Now, AdhesionStatus.EnCours);
                 //dal.EditContribution(1, true, 33.33, PrelevementDate.VingtCingDuMois, ContributionType.Annuel);
                 //dal.EditTeam(2, "Les Tartines de Gruillere", 1, new DateTime(2002, 02, 02), 46);
-                //Test des Remove
-                dal.RemoveAdherent(1);
+
+
+                //dal.RemoveAdherent(1);
+                dal.RemoveContribution(1);
 
             }
 
