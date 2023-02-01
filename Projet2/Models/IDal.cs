@@ -13,9 +13,20 @@ namespace Projet2.Models
 
         void CreateAdherent(int id, int benevoleId, int numAdherent, DateTime dateInscription, string justifIdentite);
 
+        int CreateBenevole(int accountId);
+
+        void EditBenevole(int accountId, int id, int nbActionVolunteering);
+
+        void RemoveBenevole(int id);
+
+
+
+
+
+
     }
 
-    
 
-    
+
+
 }
