@@ -91,13 +91,26 @@ namespace Projet2.Models
                     CreationDate = new DateTime(2002, 02, 02),
                     NbAdherent = 15
                 });
-            this.Benevoles.Add(new Benevole() { Id = 1, AccountId = null, NbActionVolunteering = 12 });
+            this.Benevoles.Add(
+                new Benevole() 
+                { 
+                    Id = 1, AccountId = null, 
+                    NbActionVolunteering = 12 
+                });
 
-            this.Training.Add(new Coaching() { Id = 1, Level = Level.Galadriel });
+            this.Training.Add(
+                new Coaching() 
+                { 
+                    Id = 1, 
+                    Level = Level.Galadriel 
+                });
+
                 this.SaveChanges();
+
             using (Dal dal = new Dal())
             {
-                dal.EditAdherent(1, 1, 33, new DateTime(2000, 12, 25), 33.33, "OUI", 1, 1, 1);
+                //dal.EditAdherent(1, 1, 33, new DateTime(2000, 12, 25), 33.33, "OUI", 1, 1, 1);
+                //dal.EditAdhesion(1, 1, DateTime.Now, AdhesionStatus.EnCours);
             }
 
         }
