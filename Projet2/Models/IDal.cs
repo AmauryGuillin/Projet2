@@ -19,7 +19,7 @@ namespace Projet2.Models
 
         void CreateContribution(int id, bool paymentStatus, double totalCount, PrelevementDate prelevementDate, ContributionType contributionType);
 
-        void CreateAdhesion(int id, int contributionId, DateTime Echeance);
+        void CreateAdhesion(int id, int contributionId, DateTime Echeance, AdhesionStatus adhesionStatus);
 
     }
 

@@ -87,12 +87,14 @@ namespace Projet2.Models
                     Id = 1,
                     ContributionId = null,
                     Echeance = DateTime.Now,
+                    AdhesionStatus = AdhesionStatus.Verfie
                 },
                 new Adhesion()
                 {
                     Id = 2,
                     ContributionId = null,
                     Echeance = DateTime.Now,
+                    AdhesionStatus = AdhesionStatus.EnCours
                 }
                 );
             

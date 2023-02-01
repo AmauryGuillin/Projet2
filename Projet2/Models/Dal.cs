@@ -139,10 +139,11 @@ namespace Projet2.Models
         /// <param name="id"></param>
         /// <param name="contributionId"></param>
         /// <param name="Echeance"></param>
-        public void CreateAdhesion(int id, int contributionId, DateTime Echeance)
+        public void CreateAdhesion(int id, int contributionId, DateTime Echeance, AdhesionStatus adhesionStatus)
         {
             Adhesion adhesion = new Adhesion() { Id = id, 
-                ContributionId = contributionId, Echeance = Echeance };
+                ContributionId = contributionId, Echeance = Echeance,
+            AdhesionStatus= adhesionStatus};
 
             _bddContext.Adhesions.Add(adhesion);
             _bddContext.SaveChanges();
