@@ -95,7 +95,7 @@ namespace Projet2.Models
 
         public int CreateAccount(int id, string username, string password)
         {
-            Account account = new Account() { Id=id, Username=username, Password=password };
+            Account account = new Account() { Id=id, Username=username, Password=password};
 
             _bddContext.Account.Add(account);
 
@@ -189,10 +189,6 @@ namespace Projet2.Models
         }
 
 
-        public void CreateEmployee()
-        {
-
-        }
 
 
 
