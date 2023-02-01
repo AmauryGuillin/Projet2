@@ -93,6 +93,7 @@ namespace Projet2.Models
         /// <param name="username">account's username</param>
         /// <param name="password">account's password</param>
         /// <param name="password">account's password</param>
+        /// /// <param name="profileid">account's associated profile Id </param>
         /// <returns>account.Id</returns>
 
         public int CreateAccount(int id, string username, string password, int profileid)/// Dans le create Account, Profile Id= createProfile();
@@ -166,6 +167,10 @@ namespace Projet2.Models
             return null;
         }
 
+        public List<Account> GetAccounts()
+        {
+            return _bddContext.Account.ToList();
+        }
         public Account Authentificate(string username, string password)
         {
             string motDePasse = EncodeMD5(password);
@@ -176,14 +181,14 @@ namespace Projet2.Models
         /// This method adds a user's account in the database while encoding the user's password
         /// </summary>
         /// <returns></returns>
-        public int AddAccount(string username, string password ,int? idProfile)
+        public Account AddAccount(string username, string password)
         {
             string wordpass = EncodeMD5(password);
-            idProfile= CreateProfile();
-            Account account = new Account() { Username = username, Password = wordpass ,ProfileId=idProfile};
+            //idProfile= CreateProfile();
+            Account account = new Account() { Username = username, Password = wordpass, Profile = new Profile() };
             this._bddContext.Account.Add(account);
             this._bddContext.SaveChanges();
-            return account.Id;
+            return account;
         }
 
         /// <summary>
@@ -198,10 +203,10 @@ namespace Projet2.Models
 
 
         /// <summary>
-        /// This method returns a profile id while creating it
+        /// This method creates an empty profile returns a profile id 
         /// </summary>
         /// <returns></returns>
-        public int CreateProfile()/// Creating a new profile
+        public int CreateProfile()
         {
             Profile profile = Profile.CreateProfile();
             _bddContext.Profils.Add(profile);
@@ -213,8 +218,37 @@ namespace Projet2.Models
         {
                 return this._bddContext.Profils.Find(id);
         }
-
-
+        public Profile GetProfile(string idStr)
+        {
+            int id;
+            if (int.TryParse(idStr, out id))
+            {
+                return this.GetProfile(id);
+            }
+            return null;
+        }
+        public List<Profile> GetProfiles()
+        {
+            return _bddContext.Profils.ToList();
+        }
+        public int EditProfile(int id, string imagePath, string Bio, string games)
+        {
+            Profile profile = this._bddContext.Profils.Find(id);
+            if (profile != null)
+            {
+                profile.ProfilImage = imagePath;
+                profile.Bio = Bio;
+                profile.Games = games;
+                _bddContext.SaveChanges();
+            }
+            return profile.Id;
+        }
+        public int EditProfile(Profile profile)
+        {
+            _bddContext.Profils.Update(profile);
+            _bddContext.SaveChanges();
+            return profile.Id;
+        }
 
 
         //////////////////TND

@@ -16,6 +16,12 @@ namespace Projet2.Models
         int CreateAccount(int id, string username, string password, int profileid);
         //int CreateProfile(int id, string imagePath, string Bio, string games);
         int CreateProfile();
+        List<Profile> GetProfiles();
+        int EditProfile(int id, string imagePath, string Bio, string games);
+
+
+
+
     }
 
     

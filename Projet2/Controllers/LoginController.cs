@@ -66,11 +66,11 @@ namespace Projet2.Controllers
         {
             if (ModelState.IsValid)
             {
-                int id = dal.AddAccount(account.Username, account.Password, account.ProfileId);
+                Account accountCreated = dal.AddAccount(account.Username, account.Password);
 
                 var userClaims = new List<Claim>()
                 {
-                    new Claim(ClaimTypes.Name, id.ToString()),
+                    new Claim(ClaimTypes.Name, accountCreated.Id.ToString()),
                 };
 
                 var ClaimIdentity = new ClaimsIdentity(userClaims, "User Identity");
@@ -78,7 +78,7 @@ namespace Projet2.Controllers
                 var userPrincipal = new ClaimsPrincipal(new[] { ClaimIdentity });
                 HttpContext.SignInAsync(userPrincipal);
 
-                return Redirect("/");
+                return RedirectToAction("EditProfile", "Profile", new {id= accountCreated.ProfileId});
             }
             return View(account);
         }
