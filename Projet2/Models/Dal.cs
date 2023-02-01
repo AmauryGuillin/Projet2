@@ -104,6 +104,16 @@ namespace Projet2.Models
         }
 
         /// <summary>
+        /// This method removes an Adherent in the SQL database with an Adherent
+        /// </summary>
+        /// <param name="adherent"></param>
+        public void RemoveAdherent(Adherent adherent)
+        {
+            _bddContext.Adherents.Remove(adherent);
+            _bddContext.SaveChanges();
+        }
+
+        /// <summary>
         /// This method creates an Contribution in the SQL database with all attributes
         /// </summary>
         /// <param name="id"></param>
@@ -173,6 +183,17 @@ namespace Projet2.Models
         }
 
         /// <summary>
+        /// This method removes an Adherent in the SQL database with a contribution
+        /// </summary>
+        /// <param name="contribution"></param>
+        public void RemoveContribution(Contribution contribution)
+        {
+            _bddContext.Contributions.Remove(contribution);
+            _bddContext.SaveChanges();
+        }
+
+
+        /// <summary>
         /// This method creates an Adhesion in the SQL database with all attributes
         /// </summary>
         /// <param name="id"></param>
@@ -236,6 +257,16 @@ namespace Projet2.Models
         public void EditAdhesion(Adhesion adhesion)
         {
             _bddContext.Adhesions.Update(adhesion);
+            _bddContext.SaveChanges();
+        }
+
+        /// <summary>
+        /// This method removes an Adherent in the SQL database with an Adhesion
+        /// </summary>
+        /// <param name="adhesion"></param>
+        public void RemoveAdhesion(Adhesion adhesion)
+        {
+            _bddContext.Adhesions.Remove(adhesion);
             _bddContext.SaveChanges();
         }
 

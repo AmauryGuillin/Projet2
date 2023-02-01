@@ -11,26 +11,26 @@ namespace TestProject1
 
 
 
-        //[Fact]
-        //public void EditAdherent()
-        //{
-        //    using (Dal dal = new Dal())
-        //    {
-        //        dal.DeleteCreateDatabase();
-        //        int id = dal.CreateAdherent(0, 1, new DateTime(2000, 12, 25), 400.80, "justification-OUI", 0, 0, 0);
-        //        dal.EditAdherent(id, 0, 33, new DateTime(2000, 12, 25), 33.33, "OUI", 0, 0, 0); 
-        //    }
+        [Fact]
+        public void EditAdherent()
+        {
+            using (Dal dal = new Dal())
+            {
+                dal.DeleteCreateDatabase();
+                int id = dal.CreateAdherent(0, 1, new DateTime(2000, 12, 25), 400.80, "justification-OUI", 0, 0, 0);
+                dal.EditAdherent(id, 0, 33, new DateTime(2000, 12, 25), 33.33, "OUI", 0, 0, 0);
+            }
 
-        //    using (Dal dal = new Dal())
-        //    {
-        //        List<Adherent> adherents = dal.GetAdherents();
-        //        Assert.NotNull(adherents);
-        //        Assert.Single(adherents);
-        //        Assert.Equal(33, adherents[0].NumAdherent);
-        //        Assert.Equal(33.33, adherents[0].Contribution);
-        //        Assert.Equal("OUI", adherents[0].IDDocuments);
-        //    }
-        //}
+            using (Dal dal = new Dal())
+            {
+                List<Adherent> adherents = dal.GetAdherents();
+                Assert.NotNull(adherents);
+                Assert.Single(adherents);
+                Assert.Equal(33, adherents[0].NumAdherent);
+                Assert.Equal(33.33, adherents[0].Contribution);
+                Assert.Equal("OUI", adherents[0].IDDocuments);
+            }
+        }
 
         /*[Fact]
         public void AA_Creation_Compte()
