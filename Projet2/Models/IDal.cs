@@ -13,6 +13,7 @@ namespace Projet2.Models
 
         void CreateAdherent(int id, int benevoleId, int numadherent, DateTime inscriptiondate, Double contibution, string idDocuments, int teamId, int adhesionId, int coachingId);
 
+        void CreateContribution();
     }
 
     

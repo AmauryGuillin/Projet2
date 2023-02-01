@@ -25,7 +25,7 @@ namespace Projet2.Models
 
 
         /// <summary>
-        /// This method creates an "Adhérent" in the SQL database
+        /// This method creates an "Adhérent" in the SQL database with all attributes
         /// </summary>
         /// <param name="id">Adherent's id</param>
         /// <param name="benevoleId">Benevol's id as a foreign key</param>
@@ -46,12 +46,22 @@ namespace Projet2.Models
             _bddContext.SaveChanges();
 
         }
-
+        /// <summary>
+        /// This method creates an "Adhérent" in the SQL database with an adherent
+        /// </summary>
+        /// <param name="adherent"></param>
         public void CreateAdherent(Adherent adherent)
         {
             _bddContext.Adherents.Add(adherent);
             _bddContext.SaveChanges();
         }
+
+        public void CreateContribution()
+        {
+
+        }
+
+
 
         /// <summary>
         /// This method returns a list that contains all adherents

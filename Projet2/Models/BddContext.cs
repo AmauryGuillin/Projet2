@@ -66,10 +66,6 @@ namespace Projet2.Models
 
         }
 
-
-
-
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseMySql(ConnexionSQL.connexion);
