@@ -111,6 +111,7 @@ namespace Projet2.Models
             {
                 //dal.EditAdherent(1, 1, 33, new DateTime(2000, 12, 25), 33.33, "OUI", 1, 1, 1);
                 //dal.EditAdhesion(1, 1, DateTime.Now, AdhesionStatus.EnCours);
+                dal.EditContribution(1, true, 33.33, PrelevementDate.VingtCingDuMois, ContributionType.Annuel);
             }
 
         }
