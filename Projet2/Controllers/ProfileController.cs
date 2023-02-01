@@ -4,6 +4,8 @@ using Projet2.Models;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Linq;
+using Projet2.Models.Informations;
+using Projet2.ViewModels;
 
 namespace Projet2.Controllers
 {
@@ -17,20 +19,28 @@ namespace Projet2.Controllers
         }
         public IActionResult EditProfile(int id)
         {
-                    Profile profile = dal.GetProfiles().Where(r => r.Id == id).FirstOrDefault();
-                    return View(profile);
+            ProfileViewModel profilevm=new ProfileViewModel();
+            profilevm.profile= dal.GetProfiles().Where(r => r.Id == id).FirstOrDefault();
+            profilevm.account=dal.GetAccounts().Where(r => r.ProfileId==id).FirstOrDefault();
+            Account accountUser = profilevm.account;
+            profilevm.contact = dal.GetContacts().Where(r => r.Id == accountUser.ContactId).FirstOrDefault();
+
+            return View(profilevm);
         }
 
 
 
         [HttpPost]
-        public IActionResult EditProfile(Profile profile)
+        public IActionResult EditProfile(Profile profile, Contact contact)
         {
             if (!ModelState.IsValid)
             {
                 return View("EditProfile");
             }
+
               dal.EditProfile(profile);
+            
+            dal.EditContact(contact);
             return View("ProfileView");
         }
     

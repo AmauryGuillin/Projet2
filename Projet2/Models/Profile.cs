@@ -16,10 +16,10 @@ namespace Projet2.Models
 
         [Display(Name = "Présentez vous en quelques lignes")]
         public string Bio { get; set; }
-        [MaxLength(30)]
+        //[MaxLength(30)]
         //[Required]
         [Display(Name = "Quels sont vos jeux vidéo preférés ?")]
-        public string Games;
+        public string Games { get; set; }
         public int? StuffId { get; set; }
         public virtual List<Stuff> Stuff { get; set; }
         //public int? AccountId { get; set; }

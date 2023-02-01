@@ -1,0 +1,15 @@
+﻿@model Projet2.Models.Informations.Contact
+
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <legend>Entrez vos informations personnelles : </legend>
+        @Html.LabelFor(m=>m.EmailAdress)
+        @Html.TextBoxFor(m=>m.EmailAdress)
+        <br />
+        @Html.LabelFor(m=>m.TelephoneNumber)
+        @Html.TextBoxFor(m=>m.TelephoneNumber)
+        <br />
+        <input type="submit" value="Se Connecter..." />
+    </fieldset>
+}

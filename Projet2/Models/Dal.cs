@@ -250,7 +250,7 @@ namespace Projet2.Models
             _bddContext.SaveChanges();
             return profile.Id;
         }
-        ////////////////////////////////////INFOPERSO
+        ////////////////////////////////////INFOPERSO (CONTACT)
         public int EditContact(int id, string email, string tel)
         {
             Contact contact = this._bddContext.Contact.Find(id);
@@ -268,7 +268,24 @@ namespace Projet2.Models
             _bddContext.SaveChanges();
             return contact.Id;
         }
+        public Contact GetContact(int id)
+        {
+            return this._bddContext.Contact.Find(id);
+        }
+        public Contact GetContact(string idStr)
+        {
+            int id;
+            if (int.TryParse(idStr, out id))
+            {
+                return this.GetContact(id);
+            }
+            return null;
+        }
 
+        public List<Contact> GetContacts()
+        {
+            return _bddContext.Contact.ToList();
+        }
         //////////////////TND
     }
 }
