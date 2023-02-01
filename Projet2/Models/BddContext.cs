@@ -51,7 +51,7 @@ namespace Projet2.Models
 
         public DbSet<Conversation> Conversations { get; set; }
 
-
+        public DbSet<Coaching> Training { get; set; }
 
 
         public void InitializeDb()
