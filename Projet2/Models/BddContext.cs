@@ -127,8 +127,9 @@ namespace Projet2.Models
 
 
                 //dal.RemoveAdherent(1);
-                dal.RemoveContribution(1);
-
+                //dal.RemoveContribution(1);
+                //dal.RemoveAdhesion(1);
+                dal.RemoveTeam(1);
             }
 
         }

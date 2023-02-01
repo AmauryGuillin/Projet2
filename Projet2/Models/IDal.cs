@@ -24,10 +24,10 @@ namespace Projet2.Models
         void RemoveContribution(int id);
         int CreateAdhesion(int id, int contributionId, DateTime Echeance, AdhesionStatus adhesionStatus);
         void EditAdhesion(int id, int contributionId, DateTime Echeance, AdhesionStatus adhesionStatus);
-        void RemoveAdhesion(Adhesion adhesion);
+        void RemoveAdhesion(int id);
         int CreateTeam(int id, string name, int gameId, DateTime creationDate, int NbAdherent);
         void EditTeam(int id, string name, int gameId, DateTime creationDate, int NbAdherent);
-        
+        void RemoveTeam(int id);
     }
 
     

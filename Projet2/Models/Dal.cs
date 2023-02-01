@@ -24,7 +24,7 @@ namespace Projet2.Models
         }
 
         /// <summary>
-        /// This method creates an "Adhérent" in the SQL database with all attributes
+        /// This method creates an Adherent in the SQL database with all attributes
         /// </summary>
         /// <param name="id"></param>
         /// <param name="benevoleId"></param>
@@ -38,9 +38,17 @@ namespace Projet2.Models
         /// <returns>adherent.Id</returns>
         public int CreateAdherent(int benevoleId, int numAdherent, DateTime inscriptiondate, Double contribution, string idDocuments, int teamId, int adhesionId, int coachingId)
         {
-            Adherent adherent = new Adherent() { BenevoleId= benevoleId,
-                NumAdherent = numAdherent, InscriptionDate = inscriptiondate, Contribution = contribution,
-                IDDocuments = idDocuments, TeamId= teamId, AdhesionId= adhesionId, CoachingId= coachingId };
+            Adherent adherent = new Adherent()
+            {
+                BenevoleId = benevoleId,
+                NumAdherent = numAdherent,
+                InscriptionDate = inscriptiondate,
+                Contribution = contribution,
+                IDDocuments = idDocuments,
+                TeamId = teamId,
+                AdhesionId = adhesionId,
+                CoachingId = coachingId
+            };
 
             _bddContext.Adherents.Add(adherent);
 
@@ -138,9 +146,14 @@ namespace Projet2.Models
         /// <returns>contribution.Id</returns>
         public int CreateContribution(int id, bool paymentStatus, double totalCount, PrelevementDate prelevementDate, ContributionType contributionType)
         {
-            Contribution contribution = new Contribution() { Id = id, 
-                PaymentStatus = paymentStatus, TotalCount = totalCount, 
-                PrelevementDate = prelevementDate, ContributionType = contributionType };
+            Contribution contribution = new Contribution()
+            {
+                Id = id,
+                PaymentStatus = paymentStatus,
+                TotalCount = totalCount,
+                PrelevementDate = prelevementDate,
+                ContributionType = contributionType
+            };
 
             _bddContext.Contributions.Add(contribution);
             _bddContext.SaveChanges();
@@ -157,7 +170,7 @@ namespace Projet2.Models
             _bddContext.SaveChanges();
         }
         /// <summary>
-        /// This method returns a list that contains all contribution
+        /// This method returns a list that contains all contributions
         /// </summary>
         /// <returns></returns>
         public List<Contribution> GetContributions()
@@ -178,15 +191,13 @@ namespace Projet2.Models
             Contribution contribution = _bddContext.Contributions.Find(id);
             if (contribution != null)
             {
-                contribution.PaymentStatus= paymentStatus;
-                contribution.TotalCount= totalCount;
-                contribution.PrelevementDate= prelevementDate;
-                contribution.ContributionType= contributionType;
+                contribution.PaymentStatus = paymentStatus;
+                contribution.TotalCount = totalCount;
+                contribution.PrelevementDate = prelevementDate;
+                contribution.ContributionType = contributionType;
                 _bddContext.SaveChanges();
             }
         }
-
-
 
         /// <summary>
         /// This method modifies a contribution in the SQL database with a contribution
@@ -233,9 +244,13 @@ namespace Projet2.Models
         /// <returns>adhesion.Id</returns>
         public int CreateAdhesion(int id, int contributionId, DateTime Echeance, AdhesionStatus adhesionStatus)
         {
-            Adhesion adhesion = new Adhesion() { Id = id, 
-                ContributionId = contributionId, Echeance = Echeance,
-            AdhesionStatus= adhesionStatus};
+            Adhesion adhesion = new Adhesion()
+            {
+                Id = id,
+                ContributionId = contributionId,
+                Echeance = Echeance,
+                AdhesionStatus = adhesionStatus
+            };
 
             _bddContext.Adhesions.Add(adhesion);
             _bddContext.SaveChanges();
@@ -273,15 +288,15 @@ namespace Projet2.Models
             Adhesion adhesion = _bddContext.Adhesions.Find(id);
             if (adhesion != null)
             {
-                adhesion.ContributionId= contributionId;
-                adhesion.Echeance= Echeance;
-                adhesion.AdhesionStatus= adhesionStatus;
+                adhesion.ContributionId = contributionId;
+                adhesion.Echeance = Echeance;
+                adhesion.AdhesionStatus = adhesionStatus;
                 _bddContext.SaveChanges();
             }
         }
 
         /// <summary>
-        /// This method modifies an Adherent in the SQL database with an Adhesion
+        /// This method modifies an Adhesion in the SQL database with an Adhesion
         /// </summary>
         /// <param name="adhesion"></param>
         public void EditAdhesion(Adhesion adhesion)
@@ -291,7 +306,21 @@ namespace Projet2.Models
         }
 
         /// <summary>
-        /// This method removes an Adherent in the SQL database with an Adhesion
+        /// This method removes an Adhesion in the SQL database with the Adhesion id
+        /// </summary>
+        /// <param name="id"></param>
+        public void RemoveAdhesion(int id)
+        {
+            Adhesion adhesion = _bddContext.Adhesions.Find(id);
+            if (adhesion != null)
+            {
+                _bddContext.Adhesions.Remove(adhesion);
+                _bddContext.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// This method removes an Adhesion in the SQL database with an Adhesion
         /// </summary>
         /// <param name="adhesion"></param>
         public void RemoveAdhesion(Adhesion adhesion)
@@ -301,7 +330,7 @@ namespace Projet2.Models
         }
 
         /// <summary>
-        /// This method creates an Adhesion in the SQL database with all attributes
+        /// This method creates a team in the SQL database with all attributes
         /// </summary>
         /// <param name="id"></param>
         /// <param name="name"></param>
@@ -311,8 +340,14 @@ namespace Projet2.Models
         /// <returns>team.Id</returns>
         public int CreateTeam(int id, string name, int gameId, DateTime creationDate, int NbAdherent)
         {
-            Team team = new Team() { Id= id, Name= name, 
-                GameId= gameId, CreationDate= creationDate, NbAdherent= NbAdherent };
+            Team team = new Team()
+            {
+                Id = id,
+                Name = name,
+                GameId = gameId,
+                CreationDate = creationDate,
+                NbAdherent = NbAdherent
+            };
 
             _bddContext.Teams.Add(team);
             _bddContext.SaveChanges();
@@ -320,7 +355,7 @@ namespace Projet2.Models
 
         }
         /// <summary>
-        /// This method creates an Adhesion in the SQL database with a team
+        /// This method creates a team in the SQL database with a team
         /// </summary>
         /// <param name="team"></param>
         public void CreateTeam(Team team)
@@ -339,7 +374,7 @@ namespace Projet2.Models
         }
 
         /// <summary>
-        /// This method modifies an Team in the SQL database with all attributes
+        /// This method modifies a team in the SQL database with all attributes
         /// </summary>
         /// <param name="id"></param>
         /// <param name="name"></param>
@@ -360,7 +395,7 @@ namespace Projet2.Models
         }
 
         /// <summary>
-        /// This method modifies an Adhesion in the SQL database with a Team
+        /// This method modifies a team in the SQL database with a Team
         /// </summary>
         /// <param name="team"></param>
         public void EditTeam(Team team)
@@ -369,15 +404,32 @@ namespace Projet2.Models
             _bddContext.SaveChanges();
         }
 
-        /// <summary>
-        /// This method creates a "Benevole" in the SQL database
-        /// </summary>
-        /// <param name="id"> Id of the "Benevole"</param>
-        /// <param name="compteId">Benevole's account id</param>
-        /// <param name="nbActionVolunteering">Number of volunteering actions</param>
-        /// <returns>benevole.Id</returns>
+        public void RemoveTeam(int id)
+        {
+            Team team = _bddContext.Teams.Find(id);
+            if (team != null)
+            {
+                _bddContext.Teams.Remove(team);
+                _bddContext.SaveChanges();
+            }
+        }
+    
+        public void RemoveTeam(Team team)
+        {
+            _bddContext.Teams.Remove(team);
+            _bddContext.SaveChanges();
+        }
+    
 
-        public void CreateBenevole(int id, int compteId, int nbActionVolunteering)
+    /// <summary>
+    /// This method creates a "Benevole" in the SQL database
+    /// </summary>
+    /// <param name="id"> Id of the "Benevole"</param>
+    /// <param name="compteId">Benevole's account id</param>
+    /// <param name="nbActionVolunteering">Number of volunteering actions</param>
+    /// <returns>benevole.Id</returns>
+
+    public void CreateBenevole(int id, int compteId, int nbActionVolunteering)
         {
             Benevole benevole = new Benevole() { Id = id, AccountId=compteId ,NbActionVolunteering = nbActionVolunteering };
 
