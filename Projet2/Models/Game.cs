@@ -10,7 +10,7 @@ namespace Projet2.Models
         Stf
     }
 
-    public class Games
+    public class Game
     {
 		public int Id { get; set; }
         public string GameType { get; set; }

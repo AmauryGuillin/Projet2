@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Projet2.Models.Informations;
 using System;
+using System.Security.AccessControl;
 using System.Xml.Linq;
 
 namespace Projet2.Models
@@ -20,7 +21,7 @@ namespace Projet2.Models
         public DbSet<Team> Team { get; set; }
         public DbSet<Contribution> Contributions { get; set; }//ajout d'un 's' à la fin
         public DbSet<SportAssociation> SportAssociation { get; set; }
-        public DbSet<Games> Game { get; set; }
+        public DbSet<Game> Game { get; set; }
         public DbSet<Profile> Profils { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<Stuff> Stuff { get; set; }
@@ -32,6 +33,7 @@ namespace Projet2.Models
         public DbSet<Coaching> Training { get; set; }
         public DbSet<Adhesion> Adhesions { get; set; }// ajout d'un 's' à la fin
         public DbSet<Team> Teams { get; set; }
+        public DbSet<Game> Games { get; set; }
 
         public void InitializeDb()
         {
@@ -105,13 +107,22 @@ namespace Projet2.Models
                     Level = Level.Galadriel 
                 });
 
+            this.Games.Add(
+                new Models.Game()
+                {
+                    Id = 1,
+                    GameType = "console",
+                    GameList = GameList.Mk
+                });
+
                 this.SaveChanges();
 
             using (Dal dal = new Dal())
             {
                 //dal.EditAdherent(1, 1, 33, new DateTime(2000, 12, 25), 33.33, "OUI", 1, 1, 1);
                 //dal.EditAdhesion(1, 1, DateTime.Now, AdhesionStatus.EnCours);
-                dal.EditContribution(1, true, 33.33, PrelevementDate.VingtCingDuMois, ContributionType.Annuel);
+                //dal.EditContribution(1, true, 33.33, PrelevementDate.VingtCingDuMois, ContributionType.Annuel);
+                //dal.EditTeam(2, "Les Tartines de Gruillere", 1, new DateTime(2002, 02, 02), 46);
             }
 
         }
