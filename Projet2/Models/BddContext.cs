@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Projet2.Models.Informations;
 using System;
+using System.Xml.Linq;
 
 namespace Projet2.Models
 {
@@ -96,8 +97,25 @@ namespace Projet2.Models
                     ContributionId = null,
                     Echeance = DateTime.Now,
                     AdhesionStatus = AdhesionStatus.EnCours
-                }
-                );
+                });
+
+            this.Teams.AddRange(
+                new Team()
+                {
+                    Id = 1,
+                    Name = "Les BG du 44",
+                    GameId = null,
+                    CreationDate = new DateTime(2001, 01, 01),
+                    NbAdherent = 5
+                },
+                new Team()
+                {
+                    Id = 2,
+                    Name = "Les Tartines de Fromages",
+                    GameId = null,
+                    CreationDate = new DateTime(2002, 02, 02),
+                    NbAdherent = 15
+                });
             
 
             this.SaveChanges();
