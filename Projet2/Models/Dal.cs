@@ -121,7 +121,7 @@ namespace Projet2.Models
 
         }
         /// <summary>
-        /// This method creates an contribution in the SQL database with an contribution
+        /// This method creates an contribution in the SQL database with a contribution
         /// </summary>
         /// <param name="contribution"></param>
         public void CreateContribution(Contribution contribution)
@@ -136,6 +136,37 @@ namespace Projet2.Models
         public List<Contribution> GetContributions()
         {
             return _bddContext.Contributions.ToList();
+        }
+
+        /// <summary>
+        /// This method modifies an Adherent in the SQL database with all attributes
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="paymentStatus"></param>
+        /// <param name="totalCount"></param>
+        /// <param name="prelevementDate"></param>
+        /// <param name="contributionType"></param>
+        public void EditContribution(int id, bool paymentStatus, double totalCount, PrelevementDate prelevementDate, ContributionType contributionType)
+        {
+            Contribution contribution = _bddContext.Contributions.Find(id);
+            if (contribution != null)
+            {
+                contribution.PaymentStatus= paymentStatus;
+                contribution.TotalCount= totalCount;
+                contribution.PrelevementDate= prelevementDate;
+                contribution.ContributionType= contributionType;
+                _bddContext.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// This method modifies an Adherent in the SQL database with a contribution
+        /// </summary>
+        /// <param name="contribution"></param>
+        public void EditContribution(Contribution contribution)
+        {
+            _bddContext.Contributions.Update(contribution);
+            _bddContext.SaveChanges();
         }
 
         /// <summary>
@@ -173,6 +204,14 @@ namespace Projet2.Models
             return _bddContext.Adhesions.ToList();
         }
 
+        /// <summary>
+        /// This method creates an Adhesion in the SQL database with all attributes
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="gameId"></param>
+        /// <param name="creationDate"></param>
+        /// <param name="NbAdherent"></param>
         public void CreateTeam(int id, string name, int gameId, DateTime creationDate, int NbAdherent)
         {
             Team team = new Team() { Id= id, Name= name, 
@@ -182,13 +221,20 @@ namespace Projet2.Models
             _bddContext.SaveChanges();
 
         }
-
+        /// <summary>
+        /// This method creates an Adhesion in the SQL database with a team
+        /// </summary>
+        /// <param name="team"></param>
         public void CreateTeam(Team team)
         {
             _bddContext.Teams.Add(team);
             _bddContext.SaveChanges();
         }
 
+        /// <summary>
+        /// his method returns a list that contains all teams
+        /// </summary>
+        /// <returns></returns>
         public List<Team> GetTeams()
         {
             return _bddContext.Teams.ToList();
