@@ -133,14 +133,30 @@ namespace Projet2.Models
             return _bddContext.Contributions.ToList();
         }
 
+        /// <summary>
+        /// This method creates an Adhesion in the SQL database with all attributes
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="contributionId"></param>
+        /// <param name="Echeance"></param>
         public void CreateAdhesion(int id, int contributionId, DateTime Echeance)
         {
             Adhesion adhesion = new Adhesion() { Id = id, 
                 ContributionId = contributionId, Echeance = Echeance };
 
             _bddContext.Adhesions.Add(adhesion);
+            _bddContext.SaveChanges();
         }
-        
+
+        /// <summary>
+        /// This method creates an Adhesion in the SQL database with an Adhesion
+        /// </summary>
+        /// <param name="adhesion"></param>
+        public void CreateAdhesion(Adhesion adhesion)
+        {
+            _bddContext.Adhesions.Add(adhesion);
+            _bddContext.SaveChanges();
+        }
 
 
         /// <summary>
