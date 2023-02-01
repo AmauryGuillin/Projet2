@@ -189,6 +189,12 @@ namespace Projet2.Models
         }
 
 
+        public void CreateEmployee()
+        {
+
+        }
+
+
 
     }
 }

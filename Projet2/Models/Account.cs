@@ -29,6 +29,9 @@ namespace Projet2.Models
         public int? InventoryId { get; set; }
         public virtual Inventory Inventory { get; set; }
 
+        public int? EmployeeId { get; set; }
+        public virtual Employee Employee { get; set; }
+
 
 
         //public int? ProfilId { get; set; }
