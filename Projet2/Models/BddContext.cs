@@ -53,6 +53,8 @@ namespace Projet2.Models
 
         public DbSet<Coaching> Training { get; set; }
 
+        public DbSet<Adhesion> Adhesions { get; set; }// ajout d'un 's' à la fin
+
 
         public void InitializeDb()
         {

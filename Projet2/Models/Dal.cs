@@ -133,7 +133,13 @@ namespace Projet2.Models
             return _bddContext.Contributions.ToList();
         }
 
+        public void CreateAdhesion(int id, int contributionId, DateTime Echeance)
+        {
+            Adhesion adhesion = new Adhesion() { Id = id, 
+                ContributionId = contributionId, Echeance = Echeance };
 
+            _bddContext.Adhesions.Add(adhesion);
+        }
         
 
 
