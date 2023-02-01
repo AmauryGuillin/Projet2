@@ -158,6 +158,15 @@ namespace Projet2.Models
             _bddContext.SaveChanges();
         }
 
+        /// <summary>
+        /// This method returns a list that contains all adhesions
+        /// </summary>
+        /// <returns></returns>
+        public List<Adhesion> GetAdhesions()
+        {
+            return _bddContext.Adhesions.ToList();
+        }
+
 
         /// <summary>
         /// This method creates a "Benevole" in the SQL database
