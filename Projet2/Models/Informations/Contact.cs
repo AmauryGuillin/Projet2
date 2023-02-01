@@ -7,10 +7,10 @@ namespace Projet2.Models.Informations
     {
         public int Id { get; set; }
 
-        [Required]
+        //[Required]
         public string EmailAdress { get; set; }
 
-        [Required]
+        //[Required]
         public string TelephoneNumber { get; set; }
 
     }

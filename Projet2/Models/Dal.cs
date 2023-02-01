@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projet2.Models.Informations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Intrinsics.X86;
@@ -185,7 +186,7 @@ namespace Projet2.Models
         {
             string wordpass = EncodeMD5(password);
             //idProfile= CreateProfile();
-            Account account = new Account() { Username = username, Password = wordpass, Profile = new Profile() };
+            Account account = new Account() { Username = username, Password = wordpass, Profile = new Profile() , Contact= new Informations.Contact(),infoPerso= new InfoPerso(),Inventory= new Inventory ()};
             this._bddContext.Account.Add(account);
             this._bddContext.SaveChanges();
             return account;
@@ -249,7 +250,24 @@ namespace Projet2.Models
             _bddContext.SaveChanges();
             return profile.Id;
         }
-
+        ////////////////////////////////////INFOPERSO
+        public int EditContact(int id, string email, string tel)
+        {
+            Contact contact = this._bddContext.Contact.Find(id);
+            if (contact != null)
+            {
+               contact.EmailAdress = email;
+                contact.TelephoneNumber = tel;
+                _bddContext.SaveChanges();
+            }
+            return contact.Id;
+        }
+        public int EditContact(Contact contact)
+        {
+            _bddContext.Contact.Update(contact);
+            _bddContext.SaveChanges();
+            return contact.Id;
+        }
 
         //////////////////TND
     }

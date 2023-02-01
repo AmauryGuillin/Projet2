@@ -78,7 +78,7 @@ namespace Projet2.Controllers
                 var userPrincipal = new ClaimsPrincipal(new[] { ClaimIdentity });
                 HttpContext.SignInAsync(userPrincipal);
 
-                return RedirectToAction("EditProfile", "Profile", new {id= accountCreated.ProfileId});
+                return RedirectToAction("EditProfile", "Profile", new {id= accountCreated.ProfileId, accountCreated.ContactId ,accountCreated.infoPerso, accountCreated.InventoryId});
             }
             return View(account);
         }

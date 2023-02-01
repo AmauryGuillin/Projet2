@@ -17,13 +17,8 @@ namespace Projet2.Controllers
         }
         public IActionResult EditProfile(int id)
         {
-               
                     Profile profile = dal.GetProfiles().Where(r => r.Id == id).FirstOrDefault();
-
-                    
                     return View(profile);
-                
-            
         }
 
 
@@ -35,20 +30,10 @@ namespace Projet2.Controllers
             {
                 return View("EditProfile");
             }
-            
-
               dal.EditProfile(profile);
-          
-
             return View("ProfileView");
-
-
         }
     
-    
-
-
-
 
 
         public ActionResult Deconnexion()
