@@ -404,6 +404,10 @@ namespace Projet2.Models
             _bddContext.SaveChanges();
         }
 
+        /// <summary>
+        /// This method removes a team in the SQL database with the Team id
+        /// </summary>
+        /// <param name="id"></param>
         public void RemoveTeam(int id)
         {
             Team team = _bddContext.Teams.Find(id);
@@ -413,7 +417,11 @@ namespace Projet2.Models
                 _bddContext.SaveChanges();
             }
         }
-    
+
+        /// <summary>
+        /// This method removes a team in the SQL database with a team
+        /// </summary>
+        /// <param name="team"></param>
         public void RemoveTeam(Team team)
         {
             _bddContext.Teams.Remove(team);
