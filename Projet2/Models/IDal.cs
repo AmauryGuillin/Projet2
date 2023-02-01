@@ -25,6 +25,8 @@ namespace Projet2.Models
         void EditAdhesion(int id, int contributionId, DateTime Echeance, AdhesionStatus adhesionStatus);
         
         void CreateTeam(int id, string name, int gameId, DateTime creationDate, int NbAdherent);
+        void EditTeam(int id, string name, int gameId, DateTime creationDate, int NbAdherent);
+
     }
 
     

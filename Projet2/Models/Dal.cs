@@ -222,6 +222,7 @@ namespace Projet2.Models
                 _bddContext.SaveChanges();
             }
         }
+
         /// <summary>
         /// This method modifies an Adherent in the SQL database with an Adhesion
         /// </summary>
@@ -268,6 +269,24 @@ namespace Projet2.Models
             return _bddContext.Teams.ToList();
         }
 
+        public void EditTeam(int id, string name, int gameId, DateTime creationDate, int NbAdherent)
+        {
+            Team team = _bddContext.Teams.Find(id);
+            if (team != null)
+            {
+                team.Name = name;
+                team.GameId = gameId;
+                team.CreationDate = creationDate;
+                team.NbAdherent = NbAdherent;
+                _bddContext.SaveChanges();
+            }
+        }
+
+        public void EditTeam(Team team)
+        {
+            _bddContext.Teams.Update(team);
+            _bddContext.SaveChanges();
+        }
 
         /// <summary>
         /// This method creates a "Benevole" in the SQL database
