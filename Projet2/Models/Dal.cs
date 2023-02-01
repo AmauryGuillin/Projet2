@@ -104,6 +104,20 @@ namespace Projet2.Models
         }
 
         /// <summary>
+        /// This method removes an Adherent in the SQL database with the Adherent id
+        /// </summary>
+        /// <param name="id"></param>
+        public void RemoveAdherent(int id)
+        {
+            Adherent adherent = _bddContext.Adherents.Find(id);
+            if (adherent != null)
+            {
+                _bddContext.Adherents.Remove(adherent);
+                _bddContext.SaveChanges();
+            }
+        }
+
+        /// <summary>
         /// This method removes an Adherent in the SQL database with an Adherent
         /// </summary>
         /// <param name="adherent"></param>

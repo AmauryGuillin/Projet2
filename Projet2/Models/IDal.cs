@@ -18,7 +18,7 @@ namespace Projet2.Models
 
         int CreateAdherent(int benevoleId, int numadherent, DateTime inscriptiondate, Double contibution, string idDocuments, int teamId, int adhesionId, int coachingId);
         void EditAdherent(int id, int benevoleId, int numAdherent, DateTime inscriptiondate, Double contribution, string idDocuments, int teamId, int adhesionId, int coachingId);
-        void RemoveAdherent(Adherent adherent);
+        void RemoveAdherent(int id);
         int CreateContribution(int id, bool paymentStatus, double totalCount, PrelevementDate prelevementDate, ContributionType contributionType);
         void EditContribution(int id, bool paymentStatus, double totalCount, PrelevementDate prelevementDate, ContributionType contributionType);
         void RemoveContribution(Contribution contribution);
