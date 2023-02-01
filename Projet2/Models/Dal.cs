@@ -47,7 +47,7 @@ namespace Projet2.Models
 
         }
         /// <summary>
-        /// This method creates an "Adhérent" in the SQL database with an adherent
+        /// This method creates an Adherent in the SQL database with an adherent
         /// </summary>
         /// <param name="adherent"></param>
         public void CreateAdherent(Adherent adherent)
@@ -56,6 +56,55 @@ namespace Projet2.Models
             _bddContext.SaveChanges();
         }
 
+        /// <summary>
+        /// This method returns a list that contains all adherents
+        /// </summary>
+        /// <returns>_bddContext.Adherents.ToList()</returns>
+
+        public List<Adherent> GetAdherents()
+        {
+            return _bddContext.Adherents.ToList();
+        }
+
+        /// <summary>
+        /// This method modifies an Adherent in the SQL database with all attributes
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="benevoleId"></param>
+        /// <param name="numAdherent"></param>
+        /// <param name="inscriptiondate"></param>
+        /// <param name="idDocuments"></param>
+        public void EditAdherent(int id, int benevoleId, int numAdherent, DateTime inscriptiondate, string idDocuments)
+        {
+            Adherent adherent = _bddContext.Adherents.Find(id);
+            if (adherent != null)
+            {
+                adherent.BenevoleId = benevoleId;
+                adherent.NumAdherent = numAdherent;
+                adherent.InscriptionDate = inscriptiondate;
+                adherent.IDDocuments = idDocuments;
+                _bddContext.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// This method modifies an Adherent in the SQL database with an Adherent
+        /// </summary>
+        /// <param name="adherent"></param>
+        public void EditAdherent(Adherent adherent)
+        {
+            _bddContext.Adherents.Update(adherent);
+            _bddContext.SaveChanges();
+        }
+
+        /// <summary>
+        /// This method creates an Contribution in the SQL database with all attributes
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="paymentStatus"></param>
+        /// <param name="totalCount"></param>
+        /// <param name="prelevementDate"></param>
+        /// <param name="contributionType"></param>
         public void CreateContribution(int id, bool paymentStatus, double totalCount, PrelevementDate prelevementDate, ContributionType contributionType)
         {
             Contribution contribution = new Contribution() { Id = id, 
@@ -66,23 +115,26 @@ namespace Projet2.Models
             _bddContext.SaveChanges();
 
         }
-
+        /// <summary>
+        /// This method creates an contribution in the SQL database with an contribution
+        /// </summary>
+        /// <param name="contribution"></param>
         public void CreateContribution(Contribution contribution)
         {
             _bddContext.Contributions.Add(contribution);
             _bddContext.SaveChanges();
         }
-
-
         /// <summary>
-        /// This method returns a list that contains all adherents
+        /// This method returns a list that contains all contribution
         /// </summary>
-        /// <returns>_bddContext.Adherents.ToList()</returns>
-
-        public List<Adherent> GetAdherents() 
+        /// <returns></returns>
+        public List<Contribution> GetContribution()
         {
-            return _bddContext.Adherents.ToList();
+            return _bddContext.Contributions.ToList();
         }
+
+
+        
 
 
         /// <summary>
@@ -148,33 +200,8 @@ namespace Projet2.Models
             _bddContext.Dispose();
         }
 
-        public List<Adherent> GetAdherent()
-        {
-            return _bddContext.Adherents.ToList();
-        }
 
-
-
-
-
-        public void EditAdherent(int id, int benevoleId, int numAdherent, DateTime inscriptiondate, string idDocuments)
-        {
-            Adherent adherent = _bddContext.Adherents.Find(id);
-            if (adherent != null)
-            {
-                adherent.BenevoleId = benevoleId;
-                adherent.NumAdherent = numAdherent;
-                adherent.InscriptionDate = inscriptiondate;
-                adherent.IDDocuments = idDocuments;
-                _bddContext.SaveChanges();
-            }
-        }
-
-        public void EditAdherent(Adherent adherent)
-        {
-            _bddContext.Adherents.Update(adherent);
-            _bddContext.SaveChanges();
-        }
+        
 
         
 

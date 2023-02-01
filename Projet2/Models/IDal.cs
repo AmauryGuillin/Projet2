@@ -7,7 +7,7 @@ namespace Projet2.Models
     {
         void DeleteCreateDatabase();
 
-        List<Adherent> GetAdherent();
+        List<Adherent> GetAdherents();
 
         void EditAdherent(int id, int benevoleId, int numAdherent, DateTime dateInscription, string justifIdentite);
 
