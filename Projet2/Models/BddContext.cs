@@ -62,7 +62,41 @@ namespace Projet2.Models
                 new Adherent() { Id = 1, BenevoleId = null, NumAdherent = 1, InscriptionDate = new DateTime(2000, 12, 25), IDDocuments = "justification-OUI"},
                 new Adherent() { Id = 2, BenevoleId = null, NumAdherent = 2, InscriptionDate = new DateTime(2000, 12, 30), IDDocuments = "justification-NON" });
 
+            this.Benevoles.AddRange(
+                new Benevole() { Id = 1, AccountId = null, NbActionVolunteering = 15 },
+                new Benevole() { Id = 2, AccountId = null, NbActionVolunteering = 3 }
+                );
+            this.Account.Add(
+                new Account()
+                {
+                    Id = 1,
+                    Username = "TOTO",
+                    Password = "111",
+                    InfoPersoId = null,
+                    ContactId = null,
+                    PlanningId = null,
+                    SportAssociationId = null,
+                    InventoryId = null
+                }
+                );
             this.SaveChanges();
+            using (Dal dal = new Dal())
+            {
+
+                //dal.EditAdherent(1, 1, 33, new DateTime(2000, 12, 25), 33.33, "OUI", 1, 1, 1);
+                //dal.EditAdhesion(1, 1, DateTime.Now, AdhesionStatus.EnCours);
+                //dal.EditContribution(1, true, 33.33, PrelevementDate.VingtCingDuMois, ContributionType.Annuel);
+                //dal.EditTeam(2, "Les Tartines de Gruillere", 1, new DateTime(2002, 02, 02), 46);
+
+
+                //dal.RemoveAdherent(1);
+                //dal.RemoveContribution(1);
+                //dal.RemoveAdhesion(1);
+                //dal.RemoveTeam(1);
+
+                // dal.EditBenevole(1, 1, 45);
+                dal.RemoveBenevole(1);
+            }
 
         }
 
