@@ -8,18 +8,21 @@ namespace Projet2.Models
     {
         public int Id { get; set; }
 
-        [MaxLength(30)]
-        [Required]
+        //[MaxLength(30)]
+        //[Required]
         public string LastName { get; set; }
 
-        [MaxLength(30)]
-        [Required]
+        //[MaxLength(30)]
+        //[Required]
         public string FirstName { get; set; }
 
-        [Required]
+        //[Required]
         public string Birthday { get; set; }
 
         //rajouter le genre
+
+
+
 
     }
 }

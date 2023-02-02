@@ -3,10 +3,15 @@ using Projet2.Models.Informations;
 
 namespace Projet2.ViewModels
 {
-    public class ProfileViewModel
+    public class GeneralUserCreation
     {
-        public Account account { get; set; }
+        public Account Account { get; set; }
         public Contact contact { get; set; }
         public Profile profile { get; set; }
+        
+        
+
+
+
     }
 }

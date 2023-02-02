@@ -1,4 +1,4 @@
-﻿@model Projet2.Models.Profile
+﻿@model Projet2.ViewModels.ProfileViewModel
 
 
 <link href="~/css/site.css" rel="stylesheet" />
@@ -7,7 +7,7 @@
 </title>
 
 
-    <h1 class="CreateYourProfile">CREEZ VOTRE PROFIL</h1>
+    <h1 class="CreateYourProfile">EDITEZ VOTRE PROFIL</h1>
     
 
 
@@ -16,36 +16,52 @@
    
 
         <div class="col1-ProfileCreation">
-            @Html.HiddenFor(m=>m.Id)
+        @Html.HiddenFor(m=>m.profile.Id)
+        @Html.HiddenFor(n=>n.contact.Id)
     <div>
-        @Html.LabelFor(m => m.ProfilImage)
+        @Html.LabelFor(m => m.profile.ProfilImage)
 
         <input type="file" id="ProfilImage" name="ProfilImage" >
+            @Html.ValidationMessageFor(m => m.profile.ProfilImage)
     </div>
 
          </div>
 
          <div class= "col2-ProfileCreation">
     <div>
-        @Html.LabelFor(m => m.Bio)
-        @Html.TextAreaFor(m => m.Bio)
-        @Html.ValidationMessageFor(m => m.Bio)
+            @Html.LabelFor(m => m.profile.Bio)
+            @Html.TextAreaFor(m => m.profile.Bio)
+            @Html.ValidationMessageFor(m => m.profile.Bio)
     </div>
         </div>
 
             <div class= "col3-ProfileCreation">
     <div>
-        @Html.LabelFor(m => m.Games)
-        @Html.TextBoxFor(m => m.Games) 
+            @Html.LabelFor(m => m.profile.Games)
+            @Html.TextBoxFor(m => m.profile.Games)
+            @Html.ValidationMessageFor(m => m.profile.Games)
     </div>
     </div>
-   
-     
      <br/>
+ <div>
 
-        <input type="submit" value="Validez votre profil" class="ValidationForm" />
-}
+        @Html.LabelFor(n=>n.contact.EmailAdress)
+        @Html.TextBoxFor(n=>n.contact.EmailAdress)
+        @Html.ValidationMessageFor(m => m.contact.EmailAdress)
+      </div>
+      <br />
+      <div>
+        @Html.LabelFor(n=>n.contact.TelephoneNumber)
+        @Html.TextBoxFor(n=>n.contact.TelephoneNumber)
+        @Html.ValidationMessageFor(m => m.contact.TelephoneNumber)
+        </div>
     
-    @Html.ActionLink("Voulez-vous vous déconnecter ?", "Deconnexion")
+        <input type="submit" value="Validez votre profil" class="ValidationForm" />
+
+   
+} 
+@Html.ActionLink("Voulez-vous vous déconnecter ?", "Deconnexion")
+@*<script src="/_framework/aspnetcore-browser-refresh.js"></script>*@
+ 
 
         
