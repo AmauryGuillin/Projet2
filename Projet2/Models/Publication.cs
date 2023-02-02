@@ -10,7 +10,8 @@ namespace Projet2.Models
         Infographie,
         Podcast,
         Newsletter,
-        FAQ
+        FAQ,
+        Resultat
     }
 
     public class Publication
