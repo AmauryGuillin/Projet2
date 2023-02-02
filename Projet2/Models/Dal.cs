@@ -646,6 +646,7 @@ namespace Projet2.Models
         {
             _bddContext.Employees.Remove(employee);
             _bddContext.SaveChanges();
+        }
 
         /// <summary>
         /// This method creates an empty profile returns a profile id 
