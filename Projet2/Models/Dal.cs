@@ -490,8 +490,7 @@ namespace Projet2.Models
         {
             return _bddContext.Contact.ToList();
         }
-        
-           public List<Contact> GetContacts()
+
 
         public void EditPublication(Publication publication)
         {
@@ -810,7 +809,7 @@ namespace Projet2.Models
 
         /////////////////PROFILE
 
-        }
+        
 
 
         /// <summary>
@@ -910,9 +909,12 @@ namespace Projet2.Models
         public void RemoveStuff(int id)
         {
             Stuff stuff = _bddContext.Stuffs.Find(id);
-            if (stuff != null)
-            {
-                _bddContext.Stuffs.Remove(stuff);
+        if (stuff != null)
+        {
+            _bddContext.Stuffs.Remove(stuff);
+        }
+        
+        }
 
         public void CreateActivity(Activity activity)
         {

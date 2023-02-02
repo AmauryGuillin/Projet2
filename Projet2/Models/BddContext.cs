@@ -32,11 +32,9 @@ namespace Projet2.Models
         public DbSet<SportAssociation> SportAssociation { get; set; }
         public DbSet<Stuff> Stuff { get; set; }
         public DbSet<Team> Teams { get; set; }
-        public DbSet<Coaching> Training { get; set; 
-        public DbSet<Game> Games { get; set; }
+        public DbSet<Coaching> Training { get; set; } 
         public DbSet<Stuff> Stuffs { get; set; }
 
-        public DbSet<Employee> Employees { get; set; }
         public DbSet<Publication> Publications { get; set; }
         public void InitializeDb()
         {
