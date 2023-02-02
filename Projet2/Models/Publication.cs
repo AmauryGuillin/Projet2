@@ -5,7 +5,7 @@ namespace Projet2.Models
 
     public enum PublicationTypes
     {
-        ArticlesInformatifs,
+        ArticleInformatif,
         Video,
         Infographie,
         Podcast,

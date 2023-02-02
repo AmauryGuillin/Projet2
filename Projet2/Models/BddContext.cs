@@ -180,7 +180,7 @@ namespace Projet2.Models
                 {
                     Id = 1,
                     Name = "Règles à respectées sur le Forum",
-                    PublicationType = PublicationTypes.ArticlesInformatifs,
+                    PublicationType = PublicationTypes.ArticleInformatif,
                     Content = "contenu de la publi",
                     Date= DateTime.Now,
                     Author="Amaury",
