@@ -728,11 +728,83 @@ namespace Projet2.Models
             return null;
         }
 
-
         public List<Contact> GetContacts()
         {
             return _bddContext.Contact.ToList();
         }
+
+
+        public int CreateStuff(string name, string type, State state, int profilId, int inventoryId)
+        {
+            Stuff stuff = new Stuff()
+            {
+                Name=name,
+                Type=type,
+                State=state,
+                ProfilId=profilId,
+                InventoryId=inventoryId
+            };
+
+            _bddContext.Stuffs.Add(stuff);
+
+            _bddContext.SaveChanges();
+            return stuff.Id;
+
+        }
+
+        public void CreateStuff(Stuff stuff)
+        {
+            _bddContext.Stuffs.Add(stuff);
+            _bddContext.SaveChanges();
+        }
+
+
+        public List<Stuff> GetStuff()
+        {
+            return _bddContext.Stuffs.ToList();
+        }
+
+
+        public void EditStuff(int id, string name, string type, State state, int profilId, int inventoryId)
+        {
+            Stuff stuff = _bddContext.Stuffs.Find(id);
+            if (stuff != null)
+            {
+                stuff.Name= name;
+                stuff.Type= type;
+                stuff.State= state;
+                stuff.ProfilId= profilId;
+                stuff.InventoryId= inventoryId;
+                _bddContext.SaveChanges();
+            }
+        }
+
+
+        public void EditStuff(Stuff stuff)
+        {
+            _bddContext.Stuffs.Update(stuff);
+            _bddContext.SaveChanges();
+        }
+
+
+        public void RemoveStuff(int id)
+        {
+            Stuff stuff = _bddContext.Stuffs.Find(id);
+            if (stuff != null)
+            {
+                _bddContext.Stuffs.Remove(stuff);
+                _bddContext.SaveChanges();
+            }
+        }
+
+        
+        public void RemoveStuff(Stuff stuff)
+        {
+            _bddContext.Stuffs.Remove(stuff);
+            _bddContext.SaveChanges();
+        }
+
+
 
         //////////////////TND
 

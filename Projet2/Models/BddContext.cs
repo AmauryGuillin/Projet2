@@ -36,7 +36,7 @@ namespace Projet2.Models
         public DbSet<Team> Teams { get; set; }
         public DbSet<Game> Games { get; set; }
 
-
+        public DbSet<Stuff> Stuffs { get; set; }
         public DbSet<Employee> Employees { get; set; }
 
 

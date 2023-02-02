@@ -44,7 +44,10 @@ namespace Projet2.Models
         void RemoveBenevole(int id);
 
 
-
+        int CreateStuff(string name, string type, State state, int profilId, int inventoryId);
+        void EditStuff(int id, string name, string type, State state, int profilId, int inventoryId);
+        void RemoveStuff(int id);
+        List<Stuff> GetStuff();
 
 
 
