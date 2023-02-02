@@ -9,7 +9,7 @@ namespace Projet2.Models
     public class BddContext : DbContext
     {
         public DbSet<Account> Account { get; set; } //ajout d'un 's' à la fin
-        public DbSet<Activity> Activity { get; set; }
+        public DbSet<Activity> Activities { get; set; }   
         public DbSet<Adhesion> Adhesions { get; set; }// ajout d'un 's' à la fin
         public DbSet<Adherent> Adherents { get; set; } //ajout d'un 's' à la fin
         public DbSet<ActiviteAssociation> AssociationActivity { get; set; }
@@ -209,6 +209,32 @@ namespace Projet2.Models
                     Date = DateTime.Now,
                     Author="Michelle",
                     EmployeeId = 3,
+                });
+
+
+            this.Activities.AddRange(
+                new Activity()
+                {
+                    Id = 1,
+                    StartDate= DateTime.Now,
+                    EndDate= DateTime.Now,
+                    SlotID= null,
+                },
+
+                new Activity()
+                {
+                    Id = 2,
+                    StartDate = DateTime.Now,
+                    EndDate= DateTime.Now,
+                    SlotID= null,
+                },
+
+                new Activity()
+                {
+                    Id = 3,
+                    StartDate= DateTime.Now,
+                    EndDate= DateTime.Now,
+                    SlotID= null,
                 });
                 
             this.SaveChanges();

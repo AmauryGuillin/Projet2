@@ -932,7 +932,7 @@ namespace Projet2.Models
 
         public void EditPublication(Publication publication)
         {
-            _bddContext.Publications.Add(publication);
+            _bddContext.Publications.Update(publication);
             _bddContext.SaveChanges();
         }
 
@@ -946,12 +946,58 @@ namespace Projet2.Models
             }
         }
 
-        public void RemovePublication(Publication publication)
+
+        public int CreateActivity(DateTime startDate, DateTime endDate, int slotId)
         {
-            _bddContext.Publications.Remove(publication);
+            Activity activity = new Activity() { StartDate= startDate, EndDate = endDate, SlotID=slotId };
+            _bddContext.Activities.Add(activity);
+            _bddContext.SaveChanges();
+
+            return activity.Id;
+        }
+
+        public void CreateActivity(Activity activity)
+        {
+            _bddContext.Activities.Add(activity);
             _bddContext.SaveChanges();
 
         }
+
+        public void EditActivity(int id, DateTime startDate, DateTime endDate, int slotId) 
+        { 
+            Activity activity = _bddContext.Activities.Find(id);
+            if (activity != null)
+            {
+                activity.StartDate = startDate;
+                activity.EndDate = endDate;
+                activity.SlotID = slotId;
+                _bddContext.SaveChanges();
+            }
+
+        }
+
+        public void EditActivity(Activity activity)
+        {
+            _bddContext.Activities.Update(activity);
+            _bddContext.SaveChanges();
+        }
+
+        public void RemoveActivity(int id) 
+        {
+            Activity activity = _bddContext.Activities.Find(id);
+            if (activity != null)
+            {
+                _bddContext.Activities.Remove(activity);
+                _bddContext.SaveChanges();
+            }
+        }
+
+
+
+
+
+
+
 
         //////////////////TND
 
