@@ -29,8 +29,6 @@ namespace Projet2.Models
         int CreateTeam(int id, string name, int gameId, DateTime creationDate, int NbAdherent);
         void EditTeam(int id, string name, int gameId, DateTime creationDate, int NbAdherent);
         void RemoveTeam(int id);
-
-
         int CreateAccount(int id, string username, string password, int profileid);
         //int CreateProfile(int id, string imagePath, string Bio, string games);
         int CreateProfile();

@@ -24,23 +24,26 @@ namespace Projet2.Controllers
             profilevm.account=dal.GetAccounts().Where(r => r.ProfileId==id).FirstOrDefault();
             Account accountUser = profilevm.account;
             profilevm.contact = dal.GetContacts().Where(r => r.Id == accountUser.ContactId).FirstOrDefault();
-
+            profilevm.infos= dal.GetInformations().Where(r => r.Id == accountUser.InfoPersoId).FirstOrDefault();
+            profilevm.inventory= dal.GetInventories().Where(r => r.Id == accountUser.InventoryId).FirstOrDefault();
+            profilevm.inventory.nbStuff=dal.GetInventoryContent().Count();
             return View(profilevm);
         }
 
 
 
         [HttpPost]
-        public IActionResult EditProfile(Profile profile, Contact contact)
+        public IActionResult EditProfile(Profile profile, Contact contact,InfoPerso infos, Inventory Inventory)
         {
             if (!ModelState.IsValid)
             {
                 return View("EditProfile");
             }
 
-              dal.EditProfile(profile);
-            
+            dal.EditProfile(profile);
             dal.EditContact(contact);
+            dal.EditInfos(infos);
+            dal.EditInventory(Inventory);
             return View("ProfileView");
         }
     
