@@ -1,16 +1,15 @@
 ﻿@model Projet2.ViewModels.AccountViewModel
 
+
+@if (Model.Authentificate==true)
+
 @{
     Layout = "_LayoutGeneral";
 }
 
 
-@if (Model.Authentificate)
 {
-    <h3>
-        Vous êtes déjà authentifié avec le login :
-        @Model.Account.Username
-    </h3>
+    
     @Html.ActionLink("Voulez-vous vous déconnecter ?", "Deconnexion")
 }
 else
@@ -32,6 +31,11 @@ else
         </div>
         <input type="submit" value="Se connecter" />
         <br />
-        @Html.ActionLink("Créer un compte", "CreateAccount")
+        <p>
+            Vous n'etes pas encore inscrit chez nous? 
+            Creez votre compte
+        </p>
+        <br />
+        @Html.ActionLink("Creez votre compte", "CreateAccount")
     }
 }

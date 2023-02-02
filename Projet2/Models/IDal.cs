@@ -30,6 +30,13 @@ namespace Projet2.Models
         void EditTeam(int id, string name, int gameId, DateTime creationDate, int NbAdherent);
         void RemoveTeam(int id);
 
+
+        int CreateAccount(int id, string username, string password, int profileid);
+        //int CreateProfile(int id, string imagePath, string Bio, string games);
+        int CreateProfile();
+        List<Profile> GetProfiles();
+        int EditProfile(int id, string imagePath, string Bio, string games);
+
         int CreateBenevole(int accountId);
 
         void EditBenevole(int accountId, int id, int nbActionVolunteering);

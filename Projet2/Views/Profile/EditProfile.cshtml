@@ -1,0 +1,51 @@
+﻿@model Projet2.Models.Profile
+
+
+<link href="~/css/site.css" rel="stylesheet" />
+<title>
+    Creez votre profil
+</title>
+
+
+    <h1 class="CreateYourProfile">CREEZ VOTRE PROFIL</h1>
+    
+
+
+@using (Html.BeginForm())
+{
+   
+
+        <div class="col1-ProfileCreation">
+            @Html.HiddenFor(m=>m.Id)
+    <div>
+        @Html.LabelFor(m => m.ProfilImage)
+
+        <input type="file" id="ProfilImage" name="ProfilImage" >
+    </div>
+
+         </div>
+
+         <div class= "col2-ProfileCreation">
+    <div>
+        @Html.LabelFor(m => m.Bio)
+        @Html.TextAreaFor(m => m.Bio)
+        @Html.ValidationMessageFor(m => m.Bio)
+    </div>
+        </div>
+
+            <div class= "col3-ProfileCreation">
+    <div>
+        @Html.LabelFor(m => m.Games)
+        @Html.TextBoxFor(m => m.Games) 
+    </div>
+    </div>
+   
+     
+     <br/>
+
+        <input type="submit" value="Validez votre profil" class="ValidationForm" />
+}
+    
+    @Html.ActionLink("Voulez-vous vous déconnecter ?", "Deconnexion")
+
+        
