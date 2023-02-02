@@ -66,12 +66,26 @@ namespace Projet2.Models
         /// <param name="nbActionVolunteering">Number of volunteering actions</param>
         /// <returns>benevole.Id</returns>
 
-        public void CreateBenevole(int id, int compteId, int nbActionVolunteering)
+        public int CreateBenevole( int accountId )
         {
-            Benevole benevole = new Benevole() { Id = id, AccountId=compteId ,NbActionVolunteering = nbActionVolunteering };
+            int nbActionVolunteering = 0;
+            Benevole benevole = new Benevole() { AccountId=accountId ,NbActionVolunteering = nbActionVolunteering };
 
             _bddContext.Benevoles.Add(benevole);
 
+            _bddContext.SaveChanges();
+
+            return benevole.Id;
+        }
+
+        /// <summary>
+        /// This method creates a Benevole in the SQL database with a benevole
+        /// </summary>
+        /// <param name="benevole"></param>
+        
+        public void CreateBenevole(Benevole benevole)
+        {
+            _bddContext.Benevoles.Add(benevole);
             _bddContext.SaveChanges();
         }
 
@@ -84,6 +98,44 @@ namespace Projet2.Models
         {
             return _bddContext.Benevoles.ToList();
         }
+
+      
+        /// <summary>
+        /// This method modifies a Benevole in the SQL database
+        /// </summary>
+        /// <param name="accountId"></param>
+        public void EditBenevole(int accountId,  int id, int nbActionVolunteering)
+        {
+            Benevole benevole = _bddContext.Benevoles.Find(id);
+            if (benevole != null)
+            {
+                benevole.AccountId = accountId;
+                benevole.NbActionVolunteering = nbActionVolunteering;
+                _bddContext.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// This method removes a Benevole int the SQL database with a Benevole
+        /// </summary>
+        /// <param name="benevole"></param>
+        public void RemoveBenevole(Benevole benevole)
+        {
+            _bddContext.Benevoles.Remove(benevole);
+            _bddContext.SaveChanges();
+        }
+
+        public void RemoveBenevole(int id)
+        {
+            Benevole benevole = _bddContext.Benevoles.Find(id);
+            if (benevole != null)
+            {
+                _bddContext.Benevoles.Remove(benevole);
+                _bddContext.SaveChanges();
+            }
+        }
+
+     
 
         /// <summary>
         /// This method creates an account
