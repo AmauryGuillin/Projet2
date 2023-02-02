@@ -17,11 +17,11 @@ namespace Projet2.Models
         public DbSet<ActiviteAssociation> AssociationActivity { get; set; }
         public DbSet<Benevole> Benevoles { get; set; } //ajout d'un 's' à la fin
         public DbSet<Adherent> Adherents { get; set; } //ajout d'un 's' à la fin
-        public DbSet<Adhesion> Adhesion { get; set; }
-        public DbSet<Team> Team { get; set; }
+        
+   
         public DbSet<Contribution> Contributions { get; set; }//ajout d'un 's' à la fin
         public DbSet<SportAssociation> SportAssociation { get; set; }
-        public DbSet<Game> Game { get; set; }
+      
         public DbSet<Profile> Profils { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<Stuff> Stuff { get; set; }
@@ -30,16 +30,25 @@ namespace Projet2.Models
         public DbSet<Chat> Chat { get; set; }
         public DbSet<Forum> Forums { get; set; }
         public DbSet<Conversation> Conversations { get; set; }
+
         public DbSet<Coaching> Training { get; set; }
         public DbSet<Adhesion> Adhesions { get; set; }// ajout d'un 's' à la fin
         public DbSet<Team> Teams { get; set; }
         public DbSet<Game> Games { get; set; }
+
+
+        public DbSet<Employee> Employees { get; set; }
+
+
+
+
 
         public void InitializeDb()
         {
             this.Database.EnsureDeleted();
             this.Database.EnsureCreated();
             this.Adherents.AddRange(
+
 
                 new Adherent() { Id = 1, BenevoleId = null, NumAdherent = 1, InscriptionDate = new DateTime(2000, 12, 25), Contribution=400.80, IDDocuments = "justification-OUI", TeamId = null, AdhesionId = null, CoachingId = null },
                 new Adherent() { Id = 2, BenevoleId = null, NumAdherent = 2, InscriptionDate = new DateTime(2000, 12, 30), Contribution=250.25, IDDocuments = "justification-NON", TeamId= null,AdhesionId= null,CoachingId= null });
@@ -116,6 +125,7 @@ namespace Projet2.Models
 
               
 
+
             this.Benevoles.AddRange(
                 new Benevole() { Id = 1, AccountId = null, NbActionVolunteering = 15 },
                 new Benevole() { Id = 2, AccountId = null, NbActionVolunteering = 3 }
@@ -133,6 +143,7 @@ namespace Projet2.Models
                     InventoryId = null
                 }
                 );
+                
             this.SaveChanges();
 
             using (Dal dal = new Dal())
