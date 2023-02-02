@@ -219,6 +219,32 @@ namespace Projet2.Models
                     Author="Michelle",
                     EmployeeId = 3,
                 });
+
+
+            this.Activities.AddRange(
+                new Activity()
+                {
+                    Id = 1,
+                    StartDate= DateTime.Now,
+                    EndDate= DateTime.Now,
+                    SlotID= null,
+                },
+
+                new Activity()
+                {
+                    Id = 2,
+                    StartDate = DateTime.Now,
+                    EndDate= DateTime.Now,
+                    SlotID= null,
+                },
+
+                new Activity()
+                {
+                    Id = 3,
+                    StartDate= DateTime.Now,
+                    EndDate= DateTime.Now,
+                    SlotID= null,
+                });
                 
             this.SaveChanges();
 
