@@ -49,6 +49,10 @@ namespace Projet2.Models
 
 
 
+        int CreateEmployee(int serialNumber, string jobName, DateTime dateOfEmployement, int accountId);
+        void EditEmployee(int id, int serialNumber, string jobName, DateTime dateOfEmployement, int accountId);
+        void RemoveEmployee(int id);
+
     }
 
 

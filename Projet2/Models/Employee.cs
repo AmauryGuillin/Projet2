@@ -13,6 +13,9 @@ namespace Projet2.Models
         public DateTime DateOfEmployement { get; set; }
 
         public int? AccountId { get; set; }
-        public Account Account { get; set; }
+
+        public virtual Account Account { get; set; }
+
+
     }
 }

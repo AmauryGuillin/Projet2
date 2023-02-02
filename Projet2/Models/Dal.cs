@@ -597,6 +597,55 @@ namespace Projet2.Models
         }
 
 
+
+        public int CreateEmployee(int serialNumber, string jobName, DateTime dateOfEmployement, int accountId)
+        {
+            Employee employee = new Employee() { SerialNumber=serialNumber, JobName=jobName, DateOfEmployement=dateOfEmployement, AccountId=accountId } ;
+            _bddContext.Employees.Add(employee);
+            _bddContext.SaveChanges();
+
+            return employee.Id;
+        }
+
+        public void CreateEmployee(Employee employee)
+        {
+            _bddContext.Employees.Add(employee);
+            _bddContext.SaveChanges();
+        }
+
+        public void EditEmployee(int id, int serialNumber, string jobName, DateTime dateOfEmployement, int accountId)
+        {
+            Employee employee = _bddContext.Employees.Find(id);
+            if (employee != null)
+            {
+                employee.SerialNumber = serialNumber;
+                employee.JobName = jobName;
+                employee.DateOfEmployement = dateOfEmployement;
+                employee.AccountId = accountId;
+                _bddContext.SaveChanges();
+            }
+        }
+        public void EditEmployee(Employee employee)
+        {
+            _bddContext.Employees.Update(employee);
+            _bddContext.SaveChanges();
+        }
+
+        public void RemoveEmployee(int id)
+        {
+            Employee employee = _bddContext.Employees.Find(id);
+            if (employee != null)
+            {
+                _bddContext.Employees.Remove(employee);
+                _bddContext.SaveChanges();
+            }
+        }
+
+        public void RemoveEmployee(Employee employee)
+        {
+            _bddContext.Employees.Remove(employee);
+            _bddContext.SaveChanges();
+
         /// <summary>
         /// This method creates an empty profile returns a profile id 
         /// </summary>
@@ -612,6 +661,7 @@ namespace Projet2.Models
         public Profile GetProfile(int id)
         {
                 return this._bddContext.Profils.Find(id);
+
         }
         public Profile GetProfile(string idStr)
         {
