@@ -13,7 +13,7 @@ namespace Projet2.Models
         public DbSet<Contact> Contact { get; set; }
         public DbSet<Planning> Planning { get; set; }
         public DbSet<Slot> Slot { get; set; }
-        public DbSet<Activity> Activity { get; set; }
+        public DbSet<Activity> Activities { get; set; }
         public DbSet<ActiviteAssociation> AssociationActivity { get; set; }
         public DbSet<Benevole> Benevoles { get; set; } //ajout d'un 's' à la fin
         public DbSet<Adherent> Adherents { get; set; } //ajout d'un 's' à la fin
