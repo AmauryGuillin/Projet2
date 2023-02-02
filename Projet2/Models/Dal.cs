@@ -741,7 +741,7 @@ namespace Projet2.Models
                 Name=name,
                 Type=type,
                 State=state,
-                ProfilId=profilId,
+                ProfileId=profilId,
                 InventoryId=inventoryId
             };
 
@@ -773,7 +773,7 @@ namespace Projet2.Models
                 stuff.Name= name;
                 stuff.Type= type;
                 stuff.State= state;
-                stuff.ProfilId= profilId;
+                stuff.ProfileId= profilId;
                 stuff.InventoryId= inventoryId;
                 _bddContext.SaveChanges();
             }

@@ -24,11 +24,11 @@ namespace Projet2.Models
         public string Type { get; set; }
         public State State { get; set; }
 
-        public int? ProfilId { get; set; }
-        public virtual Profile Profile { get; set; }
+        public int? ProfileId { get; set; }
+        public virtual Profile ProfileOwner { get; set; }
 
         public int? InventoryId { get; set; }
-        public virtual Inventory Inventory { get; set; }
+        public virtual Inventory InventoryBorrower { get; set; }
         
         
         }
