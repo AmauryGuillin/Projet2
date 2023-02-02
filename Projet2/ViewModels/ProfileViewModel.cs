@@ -8,5 +8,7 @@ namespace Projet2.ViewModels
         public Account account { get; set; }
         public Contact contact { get; set; }
         public Profile profile { get; set; }
+        public InfoPerso infos { get; set; }
+        public Inventory inventory { get; set; }
     }
 }

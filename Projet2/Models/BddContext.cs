@@ -9,40 +9,33 @@ namespace Projet2.Models
     public class BddContext : DbContext
     {
         public DbSet<Account> Account { get; set; } //ajout d'un 's' à la fin
-        public DbSet<InfoPerso> PersonnalInfo { get; set; }
-        public DbSet<Contact> Contact { get; set; }
-        public DbSet<Planning> Planning { get; set; }
-        public DbSet<Slot> Slot { get; set; }
         public DbSet<Activity> Activity { get; set; }
+        public DbSet<Adhesion> Adhesions { get; set; }// ajout d'un 's' à la fin
+        public DbSet<Adherent> Adherents { get; set; } //ajout d'un 's' à la fin
         public DbSet<ActiviteAssociation> AssociationActivity { get; set; }
         public DbSet<Benevole> Benevoles { get; set; } //ajout d'un 's' à la fin
-        public DbSet<Adherent> Adherents { get; set; } //ajout d'un 's' à la fin
-        
-   
-        public DbSet<Contribution> Contributions { get; set; }//ajout d'un 's' à la fin
-        public DbSet<SportAssociation> SportAssociation { get; set; }
-      
-        public DbSet<Profile> Profils { get; set; }
-        public DbSet<Post> Posts { get; set; }
-        public DbSet<Stuff> Stuff { get; set; }
-        public DbSet<Comment> Comments { get; set; }
-        public DbSet<Message> Messages { get; set; }
         public DbSet<Chat> Chat { get; set; }
-        public DbSet<Forum> Forums { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<Contact> Contact { get; set; }
+        public DbSet<Contribution> Contributions { get; set; }//ajout d'un 's' à la fin
         public DbSet<Conversation> Conversations { get; set; }
-
-        public DbSet<Coaching> Training { get; set; }
-        public DbSet<Adhesion> Adhesions { get; set; }// ajout d'un 's' à la fin
-        public DbSet<Team> Teams { get; set; }
-        public DbSet<Game> Games { get; set; }
-
-
         public DbSet<Employee> Employees { get; set; }
-
-
-
-
-
+        public DbSet<Forum> Forums { get; set; }
+        public DbSet<Game> Games { get; set; }
+        public DbSet<Inventory> Inventory { get; set; }
+        public DbSet<Message> Messages { get; set; }
+        public DbSet<InfoPerso> PersonnalInfo { get; set; }
+        public DbSet<Planning> Planning { get; set; }
+        public DbSet<Post> Posts { get; set; }
+        public DbSet<Profile> Profils { get; set; }
+        public DbSet<Slot> Slot { get; set; }
+        public DbSet<SportAssociation> SportAssociation { get; set; }
+        public DbSet<Stuff> Stuff { get; set; }
+        public DbSet<Team> Teams { get; set; }
+        public DbSet<Coaching> Training { get; set; }
+      
+      
+     
         public void InitializeDb()
         {
             this.Database.EnsureDeleted();

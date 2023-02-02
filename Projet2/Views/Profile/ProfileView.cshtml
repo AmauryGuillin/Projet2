@@ -1,4 +1,9 @@
-﻿@model Projet2.Models.Profile
+﻿@model Projet2.ViewModels.ProfileViewModel
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+@{
+    Layout = "_LayoutGeneral";
+}
+
 <title>
    Profile @User
 </title>
@@ -9,6 +14,12 @@
         background-position: center;
     }
 </style>*@
+
+@Html.HiddenFor(m=>m.account.Id)
+@Html.HiddenFor(m=>m.profile.Id)
+@Html.HiddenFor(n=>n.contact.Id)
+@Html.HiddenFor(n=>n.infos.Id)
+@Html.HiddenFor(n=>n.inventory.Id)
 
     <body class="body">
 
@@ -32,6 +43,11 @@
         </ul>
     </nav>
     <h1>PROFIL</h1>
+
+  <p> Bienvenue sur votre profil </p>
+
+
+  
 
     @Html.ActionLink("Voulez-vous vous déconnecter ?", "Deconnexion")
 </body>
