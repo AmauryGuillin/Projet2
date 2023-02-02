@@ -1,6 +1,13 @@
 ﻿@model Projet2.ViewModels.AccountViewModel
 
+
 @if (Model.Authentificate==true)
+
+@{
+    Layout = "_LayoutGeneral";
+}
+
+
 {
     
     @Html.ActionLink("Voulez-vous vous déconnecter ?", "Deconnexion")

@@ -5,7 +5,7 @@
         public int Id { get; set; }
 
         public int? GameId { get; set; }
-        public virtual Games Game { get; set; }
+        public virtual Game Game { get; set; }
 
 
         public string Logo { get; set; }

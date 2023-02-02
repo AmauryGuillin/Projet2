@@ -21,7 +21,7 @@ namespace Projet2.Models
         public int Id { get; set; }
         
         [Required]
-        public bool StatutPaiement { get; set; }
+        public bool PaymentStatus { get; set; }
         public double TotalCount { get; set; }
 
         public PrelevementDate PrelevementDate { get; set;}

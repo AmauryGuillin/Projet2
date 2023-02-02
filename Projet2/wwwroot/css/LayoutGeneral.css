@@ -1,0 +1,65 @@
+﻿@font-face {
+    font-family: "Nunito";
+    src: url(./assets/fonts/Nunito-VariableFont_wght.ttf);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 10px;
+    background: linear-gradient(to bottom left,#1D083B, #531760) no-repeat;
+    color: white;
+    min-height: 100vh;
+}
+
+header {
+    background: #0000005b;
+    min-height: 150px;
+    border: 2px solid rgba(255, 0, 0, 0.623);
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+    header h1 {
+        text-align: center;
+    }
+
+.menubar {
+    text-align: center;
+}
+
+.menubar span {
+    margin-right: 7px;
+    border: 2px solid rgba(255, 255, 255, 0.301);
+    border-radius: 20px;
+    padding: 1px;
+}
+
+.menubar span a {
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.menubar span a:hover {
+    color: rgb(221, 221, 33);
+    transition: 0.2s;
+}
+
+#contenu {
+    border: 2px solid rgba(255, 0, 0, 0.623);
+    background: rgba(0, 0, 0, 0.288);
+    border-radius: 20px;
+    min-height: 500px;
+/*    display: flex;
+    justify-content: center;
+    align-items: center;*/
+}
+
+
+footer {
+    margin-top: 10px;
+    background: #0000005b;
+    border: 2px solid rgba(255, 0, 0, 0.623);
+    border-radius: 20px;
+    text-align: center;
+}
