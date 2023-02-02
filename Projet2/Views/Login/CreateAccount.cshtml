@@ -1,4 +1,7 @@
 ﻿@model Projet2.Models.Account
+@{
+    Layout = "_LayoutGeneral";
+}
 <p>
     Veuillez Remplir les champs pour créer voter compte :
 </p>
@@ -15,4 +18,5 @@
         @Html.ValidationMessageFor(m => m.Password)
         </div>
         <input type="submit" value="Créer" />
+        @Html.ActionLink("Créer un compte", "CreateAccount")
 }

@@ -44,3 +44,32 @@ a {
 .selectionne {
     color: red;
 }
+
+/*////////////////////PROFILE CREATION/////////////*/
+.BodyCreateProfile{
+    background-color:blue
+}
+
+/*
+.col1-ProfileCreation {
+    background-position: center;
+    float: left;
+   
+    
+}
+.col2-ProfileCreation {
+    background-position: center;
+   float:left;
+   
+}
+.col3-ProfileCreation {
+    background-position: center;
+    float:left;
+   
+}
+
+.ValidationForm{
+    background-color:whitesmoke;
+    position:center;
+    padding:20px;
+}*/
