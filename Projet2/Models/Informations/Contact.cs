@@ -7,10 +7,12 @@ namespace Projet2.Models.Informations
     {
         public int Id { get; set; }
 
-        //[Required]
+       
+        [Display(Name = "entrez votre adresse mail: ")]
         public string EmailAdress { get; set; }
 
-        //[Required]
+      
+        [Display(Name = "Entrez votre numero de telephone")]
         public string TelephoneNumber { get; set; }
 
     }
