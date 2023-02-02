@@ -43,15 +43,16 @@ namespace Projet2.Models
 
         void RemoveBenevole(int id);
 
-
-
-
-
-
-
-        int CreateEmployee(int serialNumber, string jobName, DateTime dateOfEmployement, int accountId);
-        void EditEmployee(int id, int serialNumber, string jobName, DateTime dateOfEmployement, int accountId);
+        int CreateEmployee(string serialNumber, string jobName, DateTime dateOfEmployement, int accountId);
+        void EditEmployee(int id, string serialNumber, string jobName, DateTime dateOfEmployement, int accountId);
         void RemoveEmployee(int id);
+
+        int CreatePublication(string name, PublicationTypes publicationType, string content, DateTime creationdate, string author, int employeId);
+        public void CreatePublication(Publication publication);
+        public void EditPublication(int id, string name, PublicationTypes publicationType, string content, DateTime creationdate, string author, int employeId);
+        public void EditPublication(Publication publication);
+        public void RemovePublication(int id);
+        public void RemovePublication(Publication publication);
 
     }
 

@@ -6,7 +6,7 @@ namespace Projet2.Models
     {
         public int Id { get; set; }
 
-        public int SerialNumber { get; set; }
+        public string SerialNumber { get; set; }
 
         public string JobName { get; set; }
 

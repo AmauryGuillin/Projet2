@@ -598,8 +598,7 @@ namespace Projet2.Models
         }
 
 
-
-        public int CreateEmployee(int serialNumber, string jobName, DateTime dateOfEmployement, int accountId)
+        public int CreateEmployee(string serialNumber, string jobName, DateTime dateOfEmployement, int accountId)
         {
             Employee employee = new Employee() { SerialNumber=serialNumber, JobName=jobName, DateOfEmployement=dateOfEmployement, AccountId=accountId } ;
             _bddContext.Employees.Add(employee);
@@ -614,7 +613,7 @@ namespace Projet2.Models
             _bddContext.SaveChanges();
         }
 
-        public void EditEmployee(int id, int serialNumber, string jobName, DateTime dateOfEmployement, int accountId)
+        public void EditEmployee(int id, string serialNumber, string jobName, DateTime dateOfEmployement, int accountId)
         {
             Employee employee = _bddContext.Employees.Find(id);
             if (employee != null)
@@ -647,10 +646,14 @@ namespace Projet2.Models
             _bddContext.Employees.Remove(employee);
             _bddContext.SaveChanges();
 
+        }
+
         /// <summary>
         /// This method creates an empty profile returns a profile id 
         /// </summary>
         /// <returns></returns>
+        /// 
+
         public int CreateProfile()
         {
             Profile profile = Profile.CreateProfile();
@@ -731,6 +734,73 @@ namespace Projet2.Models
         public List<Contact> GetContacts()
         {
             return _bddContext.Contact.ToList();
+        }
+
+
+
+        /// <summary>
+        /// This methods is used to create a publication into the SQL database.
+        /// </summary>
+        /// <param name="name">Publication's name</param>
+        /// <param name="publicationType">Publication's type (chosed by the enumeration associated)</param>
+        /// <param name="content">Do I have to precise this ? :D </param>
+        /// <param name="creationdate">Publication's creation date</param>
+        /// <param name="author">Publication's author</param>
+        /// <param name="employeId">Employee who created the publication</param>
+        /// <returns></returns>
+
+        public int CreatePublication(string name, PublicationTypes publicationType, string content, DateTime creationdate, string author, int employeId)
+        {
+            Publication publication = new Publication() { Name = name, PublicationType = publicationType, Date = creationdate, Author = author, EmployeeId = employeId };
+            _bddContext.Publications.Add(publication);
+            _bddContext.SaveChanges();
+
+            return publication.Id;
+
+        }
+
+        public void CreatePublication(Publication publication)
+        {
+            _bddContext.Publications.Add(publication);
+            _bddContext.SaveChanges();
+        }
+
+        public void EditPublication(int id, string name, PublicationTypes publicationType, string content, DateTime creationdate, string author, int employeId)
+        {
+            Publication publication = _bddContext.Publications.Find(id);
+
+            if (publication != null)
+            {
+                publication.Name = name;
+                publication.PublicationType = publicationType;
+                publication.Date = creationdate;
+                publication.Author = author;
+                publication.EmployeeId = employeId;
+                _bddContext.SaveChanges();
+            }
+        }
+
+        public void EditPublication(Publication publication)
+        {
+            _bddContext.Publications.Add(publication);
+            _bddContext.SaveChanges();
+        }
+
+        public void RemovePublication(int id)
+        {
+            Publication publication = _bddContext.Publications.Find(id);
+            if (publication != null)
+            {
+                _bddContext.Publications.Remove(publication);
+                _bddContext.SaveChanges();
+            }
+        }
+
+        public void RemovePublication(Publication publication)
+        {
+            _bddContext.Publications.Remove(publication);
+            _bddContext.SaveChanges();
+
         }
 
         //////////////////TND
