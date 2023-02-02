@@ -40,6 +40,7 @@ namespace Projet2.Models
             this.Database.EnsureDeleted();
             this.Database.EnsureCreated();
             this.Adherents.AddRange(
+
                 new Adherent() { Id = 1, BenevoleId = null, NumAdherent = 1, InscriptionDate = new DateTime(2000, 12, 25), Contribution=400.80, IDDocuments = "justification-OUI", TeamId = null, AdhesionId = null, CoachingId = null },
                 new Adherent() { Id = 2, BenevoleId = null, NumAdherent = 2, InscriptionDate = new DateTime(2000, 12, 30), Contribution=250.25, IDDocuments = "justification-NON", TeamId= null,AdhesionId= null,CoachingId= null });
 
@@ -93,12 +94,7 @@ namespace Projet2.Models
                     CreationDate = new DateTime(2002, 02, 02),
                     NbAdherent = 15
                 });
-            this.Benevoles.Add(
-                new Benevole() 
-                { 
-                    Id = 1, AccountId = null, 
-                    NbActionVolunteering = 12 
-                });
+          
 
             this.Training.Add(
                 new Coaching() 
@@ -115,7 +111,29 @@ namespace Projet2.Models
                     GameList = GameList.Mk
                 });
 
-                this.SaveChanges();
+               
+
+
+              
+
+            this.Benevoles.AddRange(
+                new Benevole() { Id = 1, AccountId = null, NbActionVolunteering = 15 },
+                new Benevole() { Id = 2, AccountId = null, NbActionVolunteering = 3 }
+                );
+            this.Account.Add(
+                new Account()
+                {
+                    Id = 1,
+                    Username = "TOTO",
+                    Password = "111",
+                    InfoPersoId = null,
+                    ContactId = null,
+                    PlanningId = null,
+                    SportAssociationId = null,
+                    InventoryId = null
+                }
+                );
+            this.SaveChanges();
 
             using (Dal dal = new Dal())
             {
@@ -129,7 +147,14 @@ namespace Projet2.Models
                 //dal.RemoveAdherent(1);
                 //dal.RemoveContribution(1);
                 //dal.RemoveAdhesion(1);
+
                 dal.RemoveTeam(1);
+
+                //dal.RemoveTeam(1);
+
+                // dal.EditBenevole(1, 1, 45);
+                dal.RemoveBenevole(1);
+
             }
 
         }
