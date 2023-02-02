@@ -24,9 +24,11 @@ namespace Projet2.Models
          public string Type { get; set; }
          public enum enum_state { Neuf, Tr }
 
+        public int? ProfilId { get; set; }
+        public virtual Profile Profile { get; set; }
 
-         //public int ? prifilID
-         //public virtual profil profil ...
+        public int? InventoryId { get; set; }
+        public virtual Inventory Inventory { get; set; }
         
         
         }
