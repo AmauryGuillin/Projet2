@@ -45,6 +45,12 @@ namespace Projet2.Models
         void EditEmployee(int id, string serialNumber, string jobName, DateTime dateOfEmployement, int accountId);
         void RemoveEmployee(int id);
 
+
+        int CreateStuff(string name, string type, State state, int profilId, int inventoryId);
+        void EditStuff(int id, string name, string type, State state, int profilId, int inventoryId);
+        void RemoveStuff(int id);
+        List<Stuff> GetStuff();
+
         int CreatePublication(string name, PublicationTypes publicationType, string content, DateTime creationdate, string author, int employeId);
         public void CreatePublication(Publication publication);
         public void EditPublication(int id, string name, PublicationTypes publicationType, string content, DateTime creationdate, string author, int employeId);
@@ -56,6 +62,7 @@ namespace Projet2.Models
         public void EditActivity(int id, DateTime startDate, DateTime endDate, int slotId);
         public void EditActivity(Activity activity);
         public void RemoveActivity(int id);
+
 
 
 

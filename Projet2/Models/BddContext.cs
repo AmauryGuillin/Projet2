@@ -34,6 +34,8 @@ namespace Projet2.Models
         public DbSet<Team> Teams { get; set; }
         public DbSet<Coaching> Training { get; set; 
         public DbSet<Game> Games { get; set; }
+        public DbSet<Stuff> Stuffs { get; set; }
+
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Publication> Publications { get; set; }
         public void InitializeDb()
@@ -105,12 +107,38 @@ namespace Projet2.Models
                 });
 
             this.Games.Add(
-                new Models.Game()
+                new Game()
                 {
                     Id = 1,
                     GameType = "console",
                     GameList = GameList.Mk
                 });
+
+
+            this.Stuffs.AddRange(
+                new Stuff()
+                {
+                    Id = 1,
+                    Name = "ordinateur",
+                    Type = "informatique",
+                    State = State.Neuf,
+                    ProfileId = null,
+                    InventoryId = null
+                },
+                new Stuff()
+                {
+                    Id = 2,
+                    Name = "casque PS4",
+                    Type = "Accessoire PS4",
+                    State = State.Acceptable,
+                    ProfileId = null,
+                    InventoryId = null
+                });
+
+
+
+
+
 
             this.Benevoles.AddRange(
                 new Benevole() { Id = 1, AccountId = null, NbActionVolunteering = 15 },

@@ -122,7 +122,44 @@ namespace Projet2.Models
 
 
         /////////////////ACTIVITY
+ public void EditActivity(int id, DateTime startDate, DateTime endDate, int slotId) 
+        { 
+            Activity activity = _bddContext.Activities.Find(id);
+            if (activity != null)
+            {
+                activity.StartDate = startDate;
+                activity.EndDate = endDate;
+                activity.SlotID = slotId;
+                _bddContext.SaveChanges();
+            }
 
+        }
+
+        public void EditActivity(Activity activity)
+        {
+            _bddContext.Activities.Update(activity);
+            _bddContext.SaveChanges();
+        }
+
+        public void RemoveActivity(int id) 
+        {
+            Activity activity = _bddContext.Activities.Find(id);
+            if (activity != null)
+            {
+                _bddContext.Activities.Remove(activity);
+
+                _bddContext.SaveChanges();
+            }
+        }
+        
+        public int CreateActivity(DateTime startDate, DateTime endDate, int slotId)
+        {
+            Activity activity = new Activity() { StartDate= startDate, EndDate = endDate, SlotID=slotId };
+            _bddContext.Activities.Add(activity);
+            _bddContext.SaveChanges();
+
+            return activity.Id;
+        }
 
         /////////////////ADHERENT
         /// <summary>
@@ -453,6 +490,14 @@ namespace Projet2.Models
         {
             return _bddContext.Contact.ToList();
         }
+        
+           public List<Contact> GetContacts()
+
+        public void EditPublication(Publication publication)
+        {
+            _bddContext.Publications.Update(publication);
+            _bddContext.SaveChanges();
+        }
 
         /////////////////CONTRIBUTION
         ///
@@ -607,6 +652,7 @@ namespace Projet2.Models
             _bddContext.SaveChanges();
         }
 
+
         /////////////////FORUM
 
         /////////////////GAMES
@@ -704,10 +750,68 @@ namespace Projet2.Models
 
         /////////////////POST
         ///
+        
+        
+        /////////////////PUBLICATION
+        
+        /// <summary>
+        /// This methods is used to create a publication into the SQL database.
+        /// </summary>
+        /// <param name="name">Publication's name</param>
+        /// <param name="publicationType">Publication's type (chosed by the enumeration associated)</param>
+        /// <param name="content">Do I have to precise this ? :D </param>
+        /// <param name="creationdate">Publication's creation date</param>
+        /// <param name="author">Publication's author</param>
+        /// <param name="employeId">Employee who created the publication</param>
+        /// <returns></returns>
+
+        public int CreatePublication(string name, PublicationTypes publicationType, string content, DateTime creationdate, string author, int employeId)
+        {
+            Publication publication = new Publication() { Name = name, PublicationType = publicationType, Date = creationdate, Author = author, EmployeeId = employeId };
+            _bddContext.Publications.Add(publication);
+            _bddContext.SaveChanges();
+
+            return publication.Id;
+
+        }
+
+        public void CreatePublication(Publication publication)
+        {
+            _bddContext.Publications.Add(publication);
+            _bddContext.SaveChanges();
+        }
+
+        public void EditPublication(int id, string name, PublicationTypes publicationType, string content, DateTime creationdate, string author, int employeId)
+        {
+            Publication publication = _bddContext.Publications.Find(id);
+
+            if (publication != null)
+            {
+                publication.Name = name;
+                publication.PublicationType = publicationType;
+                publication.Date = creationdate;
+                publication.Author = author;
+                publication.EmployeeId = employeId;
+                _bddContext.SaveChanges();
+            }
+        }
+        
+         public void RemovePublication(int id)
+
+        {
+            Publication publication = _bddContext.Publications.Find(id);
+            if (publication != null)
+            {
+                _bddContext.Publications.Remove(publication);
+                _bddContext.SaveChanges();
+            }
+        }
+
 
         /////////////////PROFILE
 
         }
+
 
         /// <summary>
         /// This method creates an empty profile returns a profile id 
@@ -774,6 +878,79 @@ namespace Projet2.Models
         public List<Stuff> GetStuffs()
         {
             return _bddContext.Stuff.ToList();
+        }
+ public List<Stuff> GetStuff()
+        {
+            return _bddContext.Stuffs.ToList();
+        }
+
+
+        public void EditStuff(int id, string name, string type, State state, int profilId, int inventoryId)
+        {
+            Stuff stuff = _bddContext.Stuffs.Find(id);
+            if (stuff != null)
+            {
+                stuff.Name= name;
+                stuff.Type= type;
+                stuff.State= state;
+                stuff.ProfileId= profilId;
+                stuff.InventoryId= inventoryId;
+                _bddContext.SaveChanges();
+            }
+        }
+
+
+        public void EditStuff(Stuff stuff)
+        {
+            _bddContext.Stuffs.Update(stuff);
+            _bddContext.SaveChanges();
+        }
+
+
+        public void RemoveStuff(int id)
+        {
+            Stuff stuff = _bddContext.Stuffs.Find(id);
+            if (stuff != null)
+            {
+                _bddContext.Stuffs.Remove(stuff);
+
+        public void CreateActivity(Activity activity)
+        {
+            _bddContext.Activities.Add(activity);
+            _bddContext.SaveChanges();
+
+        }
+        
+        
+         public int CreateStuff(string name, string type, State state, int profilId, int inventoryId)
+        {
+            Stuff stuff = new Stuff()
+            {
+                Name=name,
+                Type=type,
+                State=state,
+                ProfileId=profilId,
+                InventoryId=inventoryId
+            };
+
+            _bddContext.Stuffs.Add(stuff);
+
+            _bddContext.SaveChanges();
+            return stuff.Id;
+
+        }
+
+        public void CreateStuff(Stuff stuff)
+        {
+            _bddContext.Stuffs.Add(stuff);
+            _bddContext.SaveChanges();
+        }
+
+        
+        public void RemoveStuff(Stuff stuff)
+        {
+            _bddContext.Stuffs.Remove(stuff);
+            _bddContext.SaveChanges();
         }
 
         /////////////////TEAM
@@ -888,114 +1065,16 @@ namespace Projet2.Models
 
 
 
-        /// <summary>
-        /// This methods is used to create a publication into the SQL database.
-        /// </summary>
-        /// <param name="name">Publication's name</param>
-        /// <param name="publicationType">Publication's type (chosed by the enumeration associated)</param>
-        /// <param name="content">Do I have to precise this ? :D </param>
-        /// <param name="creationdate">Publication's creation date</param>
-        /// <param name="author">Publication's author</param>
-        /// <param name="employeId">Employee who created the publication</param>
-        /// <returns></returns>
 
-        public int CreatePublication(string name, PublicationTypes publicationType, string content, DateTime creationdate, string author, int employeId)
-        {
-            Publication publication = new Publication() { Name = name, PublicationType = publicationType, Date = creationdate, Author = author, EmployeeId = employeId };
-            _bddContext.Publications.Add(publication);
-            _bddContext.SaveChanges();
+     
 
-            return publication.Id;
+       
 
-        }
-
-        public void CreatePublication(Publication publication)
-        {
-            _bddContext.Publications.Add(publication);
-            _bddContext.SaveChanges();
-        }
-
-        public void EditPublication(int id, string name, PublicationTypes publicationType, string content, DateTime creationdate, string author, int employeId)
-        {
-            Publication publication = _bddContext.Publications.Find(id);
-
-            if (publication != null)
-            {
-                publication.Name = name;
-                publication.PublicationType = publicationType;
-                publication.Date = creationdate;
-                publication.Author = author;
-                publication.EmployeeId = employeId;
-                _bddContext.SaveChanges();
-            }
-        }
-
-        public void EditPublication(Publication publication)
-        {
-            _bddContext.Publications.Update(publication);
-            _bddContext.SaveChanges();
-        }
-
-        public void RemovePublication(int id)
-        {
-            Publication publication = _bddContext.Publications.Find(id);
-            if (publication != null)
-            {
-                _bddContext.Publications.Remove(publication);
-                _bddContext.SaveChanges();
-            }
-        }
-
-
-        public int CreateActivity(DateTime startDate, DateTime endDate, int slotId)
-        {
-            Activity activity = new Activity() { StartDate= startDate, EndDate = endDate, SlotID=slotId };
-            _bddContext.Activities.Add(activity);
-            _bddContext.SaveChanges();
-
-            return activity.Id;
-        }
-
-        public void CreateActivity(Activity activity)
-        {
-            _bddContext.Activities.Add(activity);
-            _bddContext.SaveChanges();
-
-        }
-
-        public void EditActivity(int id, DateTime startDate, DateTime endDate, int slotId) 
-        { 
-            Activity activity = _bddContext.Activities.Find(id);
-            if (activity != null)
-            {
-                activity.StartDate = startDate;
-                activity.EndDate = endDate;
-                activity.SlotID = slotId;
-                _bddContext.SaveChanges();
-            }
-
-        }
-
-        public void EditActivity(Activity activity)
-        {
-            _bddContext.Activities.Update(activity);
-            _bddContext.SaveChanges();
-        }
-
-        public void RemoveActivity(int id) 
-        {
-            Activity activity = _bddContext.Activities.Find(id);
-            if (activity != null)
-            {
-                _bddContext.Activities.Remove(activity);
-                _bddContext.SaveChanges();
-            }
-        }
+        
 
 
 
-
-
+       
 
 
 
