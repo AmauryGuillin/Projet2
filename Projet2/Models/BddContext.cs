@@ -241,9 +241,9 @@ namespace Projet2.Models
                 // dal.EditBenevole(1, 1, 45);
                 //dal.RemoveBenevole(1);
 
-                dal.CreatePublication("Test creation publi 1", PublicationTypes.Infographie, "contenu de la publi", DateTime.Now, "Auteur 1", 2);
-                dal.EditPublication(5, "Test creation publi 1 MODIF", PublicationTypes.Infographie, "contenu de la publi MODIF", DateTime.Now, "Auteur 1", 2);
-                dal.RemovePublication(5);
+                //dal.CreatePublication("Test creation publi 1", PublicationTypes.Infographie, "contenu de la publi", DateTime.Now, "Auteur 1", 2);
+                //dal.EditPublication(5, "Test creation publi 1 MODIF", PublicationTypes.Infographie, "contenu de la publi MODIF", DateTime.Now, "Auteur 1", 2);
+                //dal.RemovePublication(5);
             }
 
         }
