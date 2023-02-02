@@ -7,7 +7,7 @@ namespace Projet2.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public int? GameId { get; set; }
-        public virtual Games Game { get; set; }
+        public virtual Game Game { get; set; }
         public DateTime CreationDate { get; set; }
         public int NbAdherent { get; set; }
     }

@@ -19,8 +19,10 @@ namespace Projet2.Models
         public virtual Team Team { get; set; }
         public int? AdhesionId { get; set; }
         public virtual Adhesion Adhesion { get; set; }
-        //public int? EntrainementId { get; set; }
-        //public Entrainement Entrainement { get; set; }​
+
+        public int? CoachingId { get; set; }
+        public virtual Coaching Coaching { get;set; }
+
     }
     
 }

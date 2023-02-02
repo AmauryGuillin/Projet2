@@ -19,7 +19,7 @@ namespace Projet2.Controllers
             {
                 using (IDal  dal = new Dal())
                 {
-                    Adherent adherent = dal.GetAdherent().Where(r => r.Id == id).FirstOrDefault();
+                    Adherent adherent = dal.GetAdherents().Where(r => r.Id == id).FirstOrDefault();
                     if (adherent == null) 
                     {
                         return View("Error");

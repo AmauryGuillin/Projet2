@@ -17,7 +17,7 @@ namespace Projet2.Controllers
         public IActionResult Login()
         {
             AccountViewModel viewModel = new AccountViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
-            if (viewModel.Authentificate)
+            if (viewModel.Authentificate == true)
             {
                 viewModel.Account = dal.GetAccount(HttpContext.User.Identity.Name);
                 return View(viewModel);
@@ -49,7 +49,7 @@ namespace Projet2.Controllers
 
                     return Redirect("/");
                 }
-                ModelState.AddModelError("Utilisateur.Prenom", "Prénom et/ou mot de passe incorrect(s)");
+                ModelState.AddModelError("Account.Username", "Nom d'utilisateur et/ou mot de passe incorrect(s)");
             }
             return View(viewModel);
         }

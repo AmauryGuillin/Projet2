@@ -29,7 +29,6 @@ namespace Projet2.Models
         public int? InventoryId { get; set; }
         public virtual Inventory Inventory { get; set; }
 
-
         public int? ProfileId { get; set; }
         public virtual Profile Profile { get; set; }
 
@@ -40,5 +39,7 @@ namespace Projet2.Models
        
 
         ////////////END
+
+
     }
 }

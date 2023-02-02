@@ -2,7 +2,7 @@
 
 namespace Projet2.Models
 {
-    public enum StatutAdhesion
+    public enum AdhesionStatus
     {
         Verfie,
         EnCours
@@ -16,6 +16,8 @@ namespace Projet2.Models
         public virtual Contribution Contribution { get; set; }
 
         public DateTime Echeance { get; set; }
+
+        public AdhesionStatus AdhesionStatus { get; set; }
 
        
 
