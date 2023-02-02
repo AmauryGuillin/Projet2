@@ -736,7 +736,20 @@ namespace Projet2.Models
             return _bddContext.Contact.ToList();
         }
 
-        public int CreatePublication(string name, PublicationTypes publicationType, DateTime creationdate, string author, int employeId)
+
+
+        /// <summary>
+        /// This methods is used to create a publication into the SQL database.
+        /// </summary>
+        /// <param name="name">Publication's name</param>
+        /// <param name="publicationType">Publication's type (chosed by the enumeration associated)</param>
+        /// <param name="content">Do I have to precise this ? :D </param>
+        /// <param name="creationdate">Publication's creation date</param>
+        /// <param name="author">Publication's author</param>
+        /// <param name="employeId">Employee who created the publication</param>
+        /// <returns></returns>
+
+        public int CreatePublication(string name, PublicationTypes publicationType, string content, DateTime creationdate, string author, int employeId)
         {
             Publication publication = new Publication() { Name = name, PublicationType = publicationType, Date = creationdate, Author = author, EmployeeId = employeId };
             _bddContext.Publications.Add(publication);
@@ -752,7 +765,7 @@ namespace Projet2.Models
             _bddContext.SaveChanges();
         }
 
-        public void EditPublication(int id, string name, PublicationTypes publicationType, DateTime creationdate, string author, int employeId)
+        public void EditPublication(int id, string name, PublicationTypes publicationType, string content, DateTime creationdate, string author, int employeId)
         {
             Publication publication = _bddContext.Publications.Find(id);
 

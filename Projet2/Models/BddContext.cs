@@ -181,6 +181,7 @@ namespace Projet2.Models
                     Id = 1,
                     Name = "Règles à respectées sur le Forum",
                     PublicationType = PublicationTypes.ArticlesInformatifs,
+                    Content = "contenu de la publi",
                     Date= DateTime.Now,
                     Author="Amaury",
                     EmployeeId = 1,
@@ -191,7 +192,8 @@ namespace Projet2.Models
                     Id = 2,
                     Name = "Video de la remises des prix du tournois du 15/02/2023",
                     PublicationType = PublicationTypes.Video,
-                    Date= DateTime.Now,
+                    Content = "contenu de la publi",
+                    Date = DateTime.Now,
                     Author="Abigael",
                     EmployeeId = 2,
                 },
@@ -201,7 +203,8 @@ namespace Projet2.Models
                     Id = 3,
                     Name = "Information pour les Bénévoles",
                     PublicationType= PublicationTypes.Newsletter,
-                    Date= DateTime.Now,
+                    Content = "contenu de la publi",
+                    Date = DateTime.Now,
                     Author="Asmma",
                     EmployeeId = 4,
                 },
@@ -211,7 +214,8 @@ namespace Projet2.Models
                     Id = 4,
                     Name = "Les questions les plus posées",
                     PublicationType= PublicationTypes.FAQ,
-                    Date= DateTime.Now,
+                    Content = "contenu de la publi",
+                    Date = DateTime.Now,
                     Author="Michelle",
                     EmployeeId = 3,
                 });
@@ -231,13 +235,15 @@ namespace Projet2.Models
                 //dal.RemoveContribution(1);
                 //dal.RemoveAdhesion(1);
 
-                dal.RemoveTeam(1);
-
                 //dal.RemoveTeam(1);
 
-                // dal.EditBenevole(1, 1, 45);
-                dal.RemoveBenevole(1);
 
+                // dal.EditBenevole(1, 1, 45);
+                //dal.RemoveBenevole(1);
+
+                dal.CreatePublication("Test creation publi 1", PublicationTypes.Infographie, "contenu de la publi", DateTime.Now, "Auteur 1", 2);
+                dal.EditPublication(5, "Test creation publi 1 MODIF", PublicationTypes.Infographie, "contenu de la publi MODIF", DateTime.Now, "Auteur 1", 2);
+                dal.RemovePublication(5);
             }
 
         }
