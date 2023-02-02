@@ -598,7 +598,6 @@ namespace Projet2.Models
         }
 
 
-
         public int CreateEmployee(string serialNumber, string jobName, DateTime dateOfEmployement, int accountId)
         {
             Employee employee = new Employee() { SerialNumber=serialNumber, JobName=jobName, DateOfEmployement=dateOfEmployement, AccountId=accountId } ;
@@ -735,6 +734,60 @@ namespace Projet2.Models
         public List<Contact> GetContacts()
         {
             return _bddContext.Contact.ToList();
+        }
+
+        public int CreatePublication(string name, PublicationTypes publicationType, DateTime creationdate, string author, int employeId)
+        {
+            Publication publication = new Publication() { Name = name, PublicationType = publicationType, Date = creationdate, Author = author, EmployeeId = employeId };
+            _bddContext.Publications.Add(publication);
+            _bddContext.SaveChanges();
+
+            return publication.Id;
+
+        }
+
+        public void CreatePublication(Publication publication)
+        {
+            _bddContext.Publications.Add(publication);
+            _bddContext.SaveChanges();
+        }
+
+        public void EditPublication(int id, string name, PublicationTypes publicationType, DateTime creationdate, string author, int employeId)
+        {
+            Publication publication = _bddContext.Publications.Find(id);
+
+            if (publication != null)
+            {
+                publication.Name = name;
+                publication.PublicationType = publicationType;
+                publication.Date = creationdate;
+                publication.Author = author;
+                publication.EmployeeId = employeId;
+                _bddContext.SaveChanges();
+            }
+        }
+
+        public void EditPublication(Publication publication)
+        {
+            _bddContext.Publications.Add(publication);
+            _bddContext.SaveChanges();
+        }
+
+        public void RemovePublication(int id)
+        {
+            Publication publication = _bddContext.Publications.Find(id);
+            if (publication != null)
+            {
+                _bddContext.Publications.Remove(publication);
+                _bddContext.SaveChanges();
+            }
+        }
+
+        public void RemovePublication(Publication publication)
+        {
+            _bddContext.Publications.Remove(publication);
+            _bddContext.SaveChanges();
+
         }
 
         //////////////////TND

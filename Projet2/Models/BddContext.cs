@@ -105,7 +105,6 @@ namespace Projet2.Models
                     CreationDate = new DateTime(2002, 02, 02),
                     NbAdherent = 15
                 });
-          
 
             this.Training.Add(
                 new Coaching() 
@@ -122,16 +121,11 @@ namespace Projet2.Models
                     GameList = GameList.Mk
                 });
 
-               
-
-
-              
-
-
             this.Benevoles.AddRange(
                 new Benevole() { Id = 1, AccountId = null, NbActionVolunteering = 15 },
                 new Benevole() { Id = 2, AccountId = null, NbActionVolunteering = 3 }
                 );
+
             this.Account.Add(
                 new Account()
                 {
@@ -143,8 +137,7 @@ namespace Projet2.Models
                     PlanningId = null,
                     SportAssociationId = null,
                     InventoryId = null
-                }
-                );
+                });
 
             this.Employees.AddRange(
                 new Employee()
@@ -180,22 +173,48 @@ namespace Projet2.Models
                     DateOfEmployement = DateTime.Now,
                     SerialNumber = "AAEM0002",
                     AccountId = null,
-                }
-
-                );
+                });
 
             this.Publications.AddRange(
                 new Publication()
                 {
                     Id = 1,
-                    name = "Règles à respectées sur le Forum",
+                    Name = "Règles à respectées sur le Forum",
                     PublicationType = PublicationTypes.ArticlesInformatifs,
                     Date= DateTime.Now,
-                    Author="Amaury Guillin",
+                    Author="Amaury",
                     EmployeeId = 1,
-                }
+                },
 
-                );
+                new Publication()
+                {
+                    Id = 2,
+                    Name = "Video de la remises des prix du tournois du 15/02/2023",
+                    PublicationType = PublicationTypes.Video,
+                    Date= DateTime.Now,
+                    Author="Abigael",
+                    EmployeeId = 2,
+                },
+
+                new Publication()
+                {
+                    Id = 3,
+                    Name = "Information pour les Bénévoles",
+                    PublicationType= PublicationTypes.Newsletter,
+                    Date= DateTime.Now,
+                    Author="Asmma",
+                    EmployeeId = 4,
+                },
+
+                new Publication()
+                {
+                    Id = 4,
+                    Name = "Les questions les plus posées",
+                    PublicationType= PublicationTypes.FAQ,
+                    Date= DateTime.Now,
+                    Author="Michelle",
+                    EmployeeId = 3,
+                });
                 
             this.SaveChanges();
 
