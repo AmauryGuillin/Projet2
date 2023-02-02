@@ -39,6 +39,8 @@ namespace Projet2.Models
 
         public DbSet<Employee> Employees { get; set; }
 
+        public DbSet<Publication> Publications { get; set; }
+
 
 
 
@@ -142,6 +144,57 @@ namespace Projet2.Models
                     SportAssociationId = null,
                     InventoryId = null
                 }
+                );
+
+            this.Employees.AddRange(
+                new Employee()
+                {
+                    Id = 1,
+                    JobName = "Administrateur",
+                    DateOfEmployement= DateTime.Now,
+                    SerialNumber = "AAG0001",
+                    AccountId = null,
+                },
+
+                new Employee()
+                {
+                    Id = 2,
+                    JobName = "Coach",
+                    DateOfEmployement= DateTime.Now,
+                    SerialNumber = "CAC0001",
+                    AccountId = null,
+                },
+
+                new Employee()
+                {
+                    Id= 3,
+                    JobName = "Gestionnaire",
+                    DateOfEmployement = DateTime.Now,
+                    SerialNumber = "GMB0001",
+                    AccountId = null,
+                },
+                new Employee()
+                {
+                    Id = 4,
+                    JobName = "Administrateur",
+                    DateOfEmployement = DateTime.Now,
+                    SerialNumber = "AAEM0002",
+                    AccountId = null,
+                }
+
+                );
+
+            this.Publications.AddRange(
+                new Publication()
+                {
+                    Id = 1,
+                    name = "Règles à respectées sur le Forum",
+                    PublicationType = PublicationTypes.ArticlesInformatifs,
+                    Date= DateTime.Now,
+                    Author="Amaury Guillin",
+                    EmployeeId = 1,
+                }
+
                 );
                 
             this.SaveChanges();

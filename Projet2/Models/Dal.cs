@@ -599,7 +599,7 @@ namespace Projet2.Models
 
 
 
-        public int CreateEmployee(int serialNumber, string jobName, DateTime dateOfEmployement, int accountId)
+        public int CreateEmployee(string serialNumber, string jobName, DateTime dateOfEmployement, int accountId)
         {
             Employee employee = new Employee() { SerialNumber=serialNumber, JobName=jobName, DateOfEmployement=dateOfEmployement, AccountId=accountId } ;
             _bddContext.Employees.Add(employee);
@@ -614,7 +614,7 @@ namespace Projet2.Models
             _bddContext.SaveChanges();
         }
 
-        public void EditEmployee(int id, int serialNumber, string jobName, DateTime dateOfEmployement, int accountId)
+        public void EditEmployee(int id, string serialNumber, string jobName, DateTime dateOfEmployement, int accountId)
         {
             Employee employee = _bddContext.Employees.Find(id);
             if (employee != null)
@@ -647,10 +647,14 @@ namespace Projet2.Models
             _bddContext.Employees.Remove(employee);
             _bddContext.SaveChanges();
 
+        }
+
         /// <summary>
         /// This method creates an empty profile returns a profile id 
         /// </summary>
         /// <returns></returns>
+        /// 
+
         public int CreateProfile()
         {
             Profile profile = Profile.CreateProfile();
