@@ -1,7 +1,8 @@
 ﻿@model Projet2.ViewModels.ProfileViewModel
-
-
-<link href="~/css/site.css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+@{
+    Layout = "_LayoutGeneral";
+}
 <title>
     Creez votre profil
 </title>
@@ -16,17 +17,21 @@
    
 
         <div class="col1-ProfileCreation">
+        @Html.HiddenFor(m=>m.account.Id)
         @Html.HiddenFor(m=>m.profile.Id)
         @Html.HiddenFor(n=>n.contact.Id)
+        @Html.HiddenFor(n=>n.infos.Id)
+        @Html.HiddenFor(n=>n.inventory.Id)
+
+
+        @*PROFIL*@
     <div>
         @Html.LabelFor(m => m.profile.ProfilImage)
 
         <input type="file" id="ProfilImage" name="ProfilImage" >
             @Html.ValidationMessageFor(m => m.profile.ProfilImage)
     </div>
-
          </div>
-
          <div class= "col2-ProfileCreation">
     <div>
             @Html.LabelFor(m => m.profile.Bio)
@@ -44,7 +49,7 @@
     </div>
      <br/>
  <div>
-
+     @*CONTACT*@
         @Html.LabelFor(n=>n.contact.EmailAdress)
         @Html.TextBoxFor(n=>n.contact.EmailAdress)
         @Html.ValidationMessageFor(m => m.contact.EmailAdress)
@@ -55,7 +60,28 @@
         @Html.TextBoxFor(n=>n.contact.TelephoneNumber)
         @Html.ValidationMessageFor(m => m.contact.TelephoneNumber)
         </div>
-    
+
+        @*INFOSPERSO*@
+            <div>
+        @Html.LabelFor(n=> n.infos.FirstName)
+        @Html.TextBoxFor(n=>n.infos.FirstName)
+        @Html.ValidationMessageFor(m => m.infos.FirstName)
+            </div>
+
+            <div>
+        @Html.LabelFor(n=>n.infos.LastName)
+        @Html.TextBoxFor(n=>n.infos.LastName)
+        @Html.ValidationMessageFor(m => m.infos.LastName)
+             </div>
+                  
+                <div>
+        @Html.LabelFor(n=>n.infos.Birthday)
+        @Html.TextBoxFor(n=>n.infos.Birthday)
+        @Html.ValidationMessageFor(m => m.infos.Birthday)
+                </div>
+
+
+
         <input type="submit" value="Validez votre profil" class="ValidationForm" />
 
    

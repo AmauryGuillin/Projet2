@@ -26,11 +26,5 @@ namespace Projet2.Models
 
         public int? ProfileId { get; set; }
         public virtual Profile ProfileOwner { get; set; }
-
-        public int? InventoryId { get; set; }
-        public virtual Inventory InventoryBorrower { get; set; }
-        
-        
-        }
     
 }

@@ -29,8 +29,6 @@ namespace Projet2.Models
         int CreateTeam(int id, string name, int gameId, DateTime creationDate, int NbAdherent);
         void EditTeam(int id, string name, int gameId, DateTime creationDate, int NbAdherent);
         void RemoveTeam(int id);
-
-
         int CreateAccount(int id, string username, string password, int profileid);
         //int CreateProfile(int id, string imagePath, string Bio, string games);
         int CreateProfile();
@@ -43,18 +41,30 @@ namespace Projet2.Models
 
         void RemoveBenevole(int id);
 
+        int CreateEmployee(string serialNumber, string jobName, DateTime dateOfEmployement, int accountId);
+        void EditEmployee(int id, string serialNumber, string jobName, DateTime dateOfEmployement, int accountId);
+        void RemoveEmployee(int id);
+
 
         int CreateStuff(string name, string type, State state, int profilId, int inventoryId);
         void EditStuff(int id, string name, string type, State state, int profilId, int inventoryId);
         void RemoveStuff(int id);
         List<Stuff> GetStuff();
 
+        int CreatePublication(string name, PublicationTypes publicationType, string content, DateTime creationdate, string author, int employeId);
+        public void CreatePublication(Publication publication);
+        public void EditPublication(int id, string name, PublicationTypes publicationType, string content, DateTime creationdate, string author, int employeId);
+        public void EditPublication(Publication publication);
+        public void RemovePublication(int id);
+
+        public int CreateActivity(DateTime startDate, DateTime endDate, int slotId);
+        public void CreateActivity(Activity activity);
+        public void EditActivity(int id, DateTime startDate, DateTime endDate, int slotId);
+        public void EditActivity(Activity activity);
+        public void RemoveActivity(int id);
 
 
 
-        int CreateEmployee(int serialNumber, string jobName, DateTime dateOfEmployement, int accountId);
-        void EditEmployee(int id, int serialNumber, string jobName, DateTime dateOfEmployement, int accountId);
-        void RemoveEmployee(int id);
 
     }
 

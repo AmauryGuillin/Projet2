@@ -25,6 +25,143 @@ namespace Projet2.Models
             _bddContext.Database.EnsureCreated();
         }
 
+        public void Dispose()
+        {
+            _bddContext.Dispose();
+        }
+
+
+        /////////////////LOGIN
+        public Account Authentificate(string username, string password)
+        {
+            string motDePasse = EncodeMD5(password);
+            Account user = this._bddContext.Account.FirstOrDefault(u => u.Username == username && u.Password == motDePasse);
+            return user;
+        }
+
+        /// <summary>
+        /// This method encodes users passwords
+        /// </summary>
+        /// <returns></returns>
+        public static string EncodeMD5(string password)
+        {
+            string selectedPassword = "UserChoice" + password + "ASP.NET MVC";
+            return BitConverter.ToString(new MD5CryptoServiceProvider().ComputeHash(ASCIIEncoding.Default.GetBytes(selectedPassword)));
+        }
+
+        /////////////////ACCOUNT
+        ///
+        /// <summary>
+        /// This method creates an account and the profile associated
+        /// </summary>
+        /// <param name="id">account's id</param>
+        /// <param name="username">account's username</param>
+        /// <param name="password">account's password</param>
+        /// <param name="password">account's password</param>
+        /// /// <param name="profileid">account's associated profile Id </param>
+        /// <returns>account.Id</returns>
+
+        public int CreateAccount(int id, string username, string password, int profileid)/// Dans le create Account, Profile Id= createProfile();
+        {
+
+            Account account = new Account() { Id = id, Username = username, Password = password, ProfileId = CreateProfile() };
+
+
+            _bddContext.Account.Add(account);
+            _bddContext.SaveChanges();
+
+            return account.Id;
+
+        }
+        /// <summary>
+        /// This method returns a list that contains all accounts
+        /// </summary>
+        /// <returns></returns>
+
+        public List<Account> GetListAccount()
+        {
+            return _bddContext.Account.ToList();
+        }
+        public Account GetAccount(int id)
+        {
+            return this._bddContext.Account.Find(id);
+        }
+
+        public Account GetAccount(string idStr)
+        {
+            int id;
+            if (int.TryParse(idStr, out id))
+            {
+                return this.GetAccount(id);
+            }
+            return null;
+        }
+
+        public List<Account> GetAccounts()
+        {
+            return _bddContext.Account.ToList();
+        }
+       
+        /// <summary>
+        /// This method adds a user's account in the database while encoding the user's password
+        /// </summary>
+        /// <returns></returns>
+        public Account AddAccount(string username, string password)
+        {
+            string wordpass = EncodeMD5(password);
+            //idProfile= CreateProfile();
+            Account account = new Account() { Username = username, Password = wordpass, Profile = new Profile(), Contact = new Informations.Contact(), infoPerso = new InfoPerso(), Inventory = new Inventory() };
+            this._bddContext.Account.Add(account);
+            this._bddContext.SaveChanges();
+            return account;
+        }
+
+       
+
+        ///////////////// ACTIVITES ASSOCIATION
+
+
+        /////////////////ACTIVITY
+ public void EditActivity(int id, DateTime startDate, DateTime endDate, int slotId) 
+        { 
+            Activity activity = _bddContext.Activities.Find(id);
+            if (activity != null)
+            {
+                activity.StartDate = startDate;
+                activity.EndDate = endDate;
+                activity.SlotID = slotId;
+                _bddContext.SaveChanges();
+            }
+
+        }
+
+        public void EditActivity(Activity activity)
+        {
+            _bddContext.Activities.Update(activity);
+            _bddContext.SaveChanges();
+        }
+
+        public void RemoveActivity(int id) 
+        {
+            Activity activity = _bddContext.Activities.Find(id);
+            if (activity != null)
+            {
+                _bddContext.Activities.Remove(activity);
+
+                _bddContext.SaveChanges();
+            }
+        }
+        
+        public int CreateActivity(DateTime startDate, DateTime endDate, int slotId)
+        {
+            Activity activity = new Activity() { StartDate= startDate, EndDate = endDate, SlotID=slotId };
+            _bddContext.Activities.Add(activity);
+            _bddContext.SaveChanges();
+
+            return activity.Id;
+        }
+
+        /////////////////ADHERENT
         /// <summary>
         /// This method creates an Adherent in the SQL database with all attributes
         /// </summary>
@@ -137,6 +274,235 @@ namespace Projet2.Models
             _bddContext.SaveChanges();
         }
 
+
+        /////////////ADHESION
+        ///
+
+
+        /// <summary>
+        /// This method creates an Adhesion in the SQL database with all attributes
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="contributionId"></param>
+        /// <param name="Echeance"></param>
+        /// <param name="adhesionStatus"></param>
+        /// <returns>adhesion.Id</returns>
+        public int CreateAdhesion(int id, int contributionId, DateTime Echeance, AdhesionStatus adhesionStatus)
+        {
+            Adhesion adhesion = new Adhesion()
+            {
+                Id = id,
+                ContributionId = contributionId,
+                Echeance = Echeance,
+                AdhesionStatus = adhesionStatus
+            };
+
+            _bddContext.Adhesions.Add(adhesion);
+            _bddContext.SaveChanges();
+            return adhesion.Id;
+        }
+
+        /// <summary>
+        /// This method creates an Adhesion in the SQL database with an Adhesion
+        /// </summary>
+        /// <param name="adhesion"></param>
+        public void CreateAdhesion(Adhesion adhesion)
+        {
+            _bddContext.Adhesions.Add(adhesion);
+            _bddContext.SaveChanges();
+        }
+
+        /// <summary>
+        /// This method returns a list that contains all adhesions
+        /// </summary>
+        /// <returns></returns>
+        public List<Adhesion> GetAdhesions()
+        {
+            return _bddContext.Adhesions.ToList();
+        }
+
+        /// <summary>
+        /// This method modifies an Adhesion in the SQL database with all attributes
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="contributionId"></param>
+        /// <param name="Echeance"></param>
+        /// <param name="adhesionStatus"></param>
+        public void EditAdhesion(int id, int contributionId, DateTime Echeance, AdhesionStatus adhesionStatus)
+        {
+            Adhesion adhesion = _bddContext.Adhesions.Find(id);
+            if (adhesion != null)
+            {
+                adhesion.ContributionId = contributionId;
+                adhesion.Echeance = Echeance;
+                adhesion.AdhesionStatus = adhesionStatus;
+                _bddContext.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// This method modifies an Adhesion in the SQL database with an Adhesion
+        /// </summary>
+        /// <param name="adhesion"></param>
+        public void EditAdhesion(Adhesion adhesion)
+        {
+            _bddContext.Adhesions.Update(adhesion);
+            _bddContext.SaveChanges();
+        }
+
+        /// <summary>
+        /// This method removes an Adhesion in the SQL database with the Adhesion id
+        /// </summary>
+        /// <param name="id"></param>
+        public void RemoveAdhesion(int id)
+        {
+            Adhesion adhesion = _bddContext.Adhesions.Find(id);
+            if (adhesion != null)
+            {
+                _bddContext.Adhesions.Remove(adhesion);
+                _bddContext.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// This method removes an Adhesion in the SQL database with an Adhesion
+        /// </summary>
+        /// <param name="adhesion"></param>
+        public void RemoveAdhesion(Adhesion adhesion)
+        {
+            _bddContext.Adhesions.Remove(adhesion);
+            _bddContext.SaveChanges();
+        }
+
+        /////////////////BENEVOLE
+
+        public int CreateBenevole(int accountId)
+
+        {
+            int nbActionVolunteering = 0;
+            Benevole benevole = new Benevole() { AccountId = accountId, NbActionVolunteering = nbActionVolunteering };
+
+            _bddContext.Benevoles.Add(benevole);
+
+            _bddContext.SaveChanges();
+
+            return benevole.Id;
+        }
+
+        /// <summary>
+        /// This method creates a Benevole in the SQL database with a benevole
+        /// </summary>
+        /// <param name="benevole"></param>
+
+        public void CreateBenevole(Benevole benevole)
+        {
+            _bddContext.Benevoles.Add(benevole);
+            _bddContext.SaveChanges();
+        }
+
+        /// <summary>
+        /// This method returns a list that contains all benevoles
+        /// </summary>
+        /// <returns></returns>
+
+        public List<Benevole> GetBenevoles()
+        {
+            return _bddContext.Benevoles.ToList();
+        }
+
+
+        /// <summary>
+        /// This method modifies a Benevole in the SQL database
+        /// </summary>
+        /// <param name="accountId"></param>
+        public void EditBenevole(int accountId, int id, int nbActionVolunteering)
+        {
+            Benevole benevole = _bddContext.Benevoles.Find(id);
+            if (benevole != null)
+            {
+                benevole.AccountId = accountId;
+                benevole.NbActionVolunteering = nbActionVolunteering;
+                _bddContext.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// This method removes a Benevole int the SQL database with a Benevole
+        /// </summary>
+        /// <param name="benevole"></param>
+        public void RemoveBenevole(Benevole benevole)
+        {
+            _bddContext.Benevoles.Remove(benevole);
+            _bddContext.SaveChanges();
+        }
+
+        public void RemoveBenevole(int id)
+        {
+            Benevole benevole = _bddContext.Benevoles.Find(id);
+            if (benevole != null)
+            {
+                _bddContext.Benevoles.Remove(benevole);
+                _bddContext.SaveChanges();
+            }
+        }
+
+        /////////////////CHAT
+
+        /////////////////COACHING
+
+        //////////////COMMENT
+        ///
+
+        ////////////////////////////////////INFOPERSO (CONTACT)
+        public int EditContact(int id, string email, string tel)
+        {
+            Contact contact = this._bddContext.Contact.Find(id);
+            if (contact != null)
+            {
+                contact.EmailAdress = email;
+                contact.TelephoneNumber = tel;
+                _bddContext.SaveChanges();
+            }
+            return contact.Id;
+        }
+        public int EditContact(Contact contact)
+        {
+            _bddContext.Contact.Update(contact);
+            _bddContext.SaveChanges();
+            return contact.Id;
+        }
+        public Contact GetContact(int id)
+        {
+            return this._bddContext.Contact.Find(id);
+        }
+        public Contact GetContact(string idStr)
+        {
+            int id;
+            if (int.TryParse(idStr, out id))
+            {
+                return this.GetContact(id);
+            }
+            return null;
+        }
+
+
+        public List<Contact> GetContacts()
+        {
+            return _bddContext.Contact.ToList();
+        }
+        
+           public List<Contact> GetContacts()
+
+        public void EditPublication(Publication publication)
+        {
+            _bddContext.Publications.Update(publication);
+            _bddContext.SaveChanges();
+        }
+
+        /////////////////CONTRIBUTION
+        ///
+
+
         /// <summary>
         /// This method creates an Contribution in the SQL database with all attributes
         /// </summary>
@@ -236,100 +602,359 @@ namespace Projet2.Models
         }
 
 
-        /// <summary>
-        /// This method creates an Adhesion in the SQL database with all attributes
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="contributionId"></param>
-        /// <param name="Echeance"></param>
-        /// <param name="adhesionStatus"></param>
-        /// <returns>adhesion.Id</returns>
-        public int CreateAdhesion(int id, int contributionId, DateTime Echeance, AdhesionStatus adhesionStatus)
+        public int CreateEmployee(string serialNumber, string jobName, DateTime dateOfEmployement, int accountId)
+
         {
-            Adhesion adhesion = new Adhesion()
+            Employee employee = new Employee() { SerialNumber = serialNumber, JobName = jobName, DateOfEmployement = dateOfEmployement, AccountId = accountId };
+            _bddContext.Employees.Add(employee);
+            _bddContext.SaveChanges();
+
+            return employee.Id;
+        }
+
+        public void CreateEmployee(Employee employee)
+        {
+            _bddContext.Employees.Add(employee);
+            _bddContext.SaveChanges();
+        }
+
+        public void EditEmployee(int id, string serialNumber, string jobName, DateTime dateOfEmployement, int accountId)
+        {
+            Employee employee = _bddContext.Employees.Find(id);
+            if (employee != null)
             {
-                Id = id,
-                ContributionId = contributionId,
-                Echeance = Echeance,
-                AdhesionStatus = adhesionStatus
-            };
-
-            _bddContext.Adhesions.Add(adhesion);
-            _bddContext.SaveChanges();
-            return adhesion.Id;
+                employee.SerialNumber = serialNumber;
+                employee.JobName = jobName;
+                employee.DateOfEmployement = dateOfEmployement;
+                employee.AccountId = accountId;
+                _bddContext.SaveChanges();
+            }
         }
-
-        /// <summary>
-        /// This method creates an Adhesion in the SQL database with an Adhesion
-        /// </summary>
-        /// <param name="adhesion"></param>
-        public void CreateAdhesion(Adhesion adhesion)
+        public void EditEmployee(Employee employee)
         {
-            _bddContext.Adhesions.Add(adhesion);
+            _bddContext.Employees.Update(employee);
             _bddContext.SaveChanges();
         }
 
+        public void RemoveEmployee(int id)
+        {
+            Employee employee = _bddContext.Employees.Find(id);
+            if (employee != null)
+            {
+                _bddContext.Employees.Remove(employee);
+                _bddContext.SaveChanges();
+            }
+        }
+
+        public void RemoveEmployee(Employee employee)
+        {
+            _bddContext.Employees.Remove(employee);
+            _bddContext.SaveChanges();
+        }
+
+
+        /////////////////FORUM
+
+        /////////////////GAMES
+
+        /////////////////INVENTORY
+        ///
+        public int EditInventory(int id, List<Stuff> stuffs)
+        {
+            Inventory inventory = this._bddContext.Inventory.Find(id);
+            if (inventory != null)
+            {
+                inventory.Stuffs = stuffs;
+               
+                _bddContext.SaveChanges();
+            }
+            return inventory.Id;
+        }
+        public int EditInventory(Inventory inventory)
+        {
+            _bddContext.Inventory.Update(inventory);
+            _bddContext.SaveChanges();
+            return inventory.Id;
+        }
+        public Inventory GetInventory(int id)
+        {
+            return this._bddContext.Inventory.Find(id);
+        }
+        public Inventory GetInventory(string idStr)
+        {
+            int id;
+            if (int.TryParse(idStr, out id))
+            {
+                return this.GetInventory(id);
+            }
+            return null;
+        }
+        public List<Inventory> GetInventories()
+        {
+            return _bddContext.Inventory.ToList();
+        }
+        public List<Stuff> GetInventoryContent()
+        {
+            Inventory inventory= new Inventory( );
+            List<Stuff> inventoryContent = new List<Stuff> ( );
+            foreach (Stuff stuffs in _bddContext.Stuff) { 
+             GetStuffs().Where(r => r.InventoryId == inventory.Id).FirstOrDefault();
+                inventoryContent.Add( stuffs );
+            }
+            return inventoryContent;
+        }
+
+
+
+        ///////////////////INFOPERSO
+        public int EditInfos(int id, string firstname, string lastname, string dob)
+        {
+            InfoPerso infos = this._bddContext.PersonnalInfo.Find(id);
+            if (infos != null)
+            {
+                infos.LastName = lastname;
+                infos.FirstName = firstname;
+                infos.Birthday = dob;
+                _bddContext.SaveChanges();
+            }
+            return infos.Id;
+        }
+        public int EditInfos(InfoPerso infos)
+        {
+            _bddContext.PersonnalInfo.Update(infos);
+            _bddContext.SaveChanges();
+            return infos.Id;
+        }
+        public InfoPerso GetInfos(int id)
+        {
+            return this._bddContext.PersonnalInfo.Find(id);
+        }
+        public InfoPerso GetInfos(string idStr)
+        {
+            int id;
+            if (int.TryParse(idStr, out id))
+            {
+                return this.GetInfos(id);
+            }
+            return null;
+        }
+        public List<InfoPerso> GetInformations()
+        {
+            return _bddContext.PersonnalInfo.ToList();
+        }
+
+
+        /////////////////MESSAGE
+
+        /////////////////PLANNING
+
+        /////////////////POST
+        ///
+        
+        
+        /////////////////PUBLICATION
+        
         /// <summary>
-        /// This method returns a list that contains all adhesions
+        /// This methods is used to create a publication into the SQL database.
+        /// </summary>
+        /// <param name="name">Publication's name</param>
+        /// <param name="publicationType">Publication's type (chosed by the enumeration associated)</param>
+        /// <param name="content">Do I have to precise this ? :D </param>
+        /// <param name="creationdate">Publication's creation date</param>
+        /// <param name="author">Publication's author</param>
+        /// <param name="employeId">Employee who created the publication</param>
+        /// <returns></returns>
+
+        public int CreatePublication(string name, PublicationTypes publicationType, string content, DateTime creationdate, string author, int employeId)
+        {
+            Publication publication = new Publication() { Name = name, PublicationType = publicationType, Date = creationdate, Author = author, EmployeeId = employeId };
+            _bddContext.Publications.Add(publication);
+            _bddContext.SaveChanges();
+
+            return publication.Id;
+
+        }
+
+        public void CreatePublication(Publication publication)
+        {
+            _bddContext.Publications.Add(publication);
+            _bddContext.SaveChanges();
+        }
+
+        public void EditPublication(int id, string name, PublicationTypes publicationType, string content, DateTime creationdate, string author, int employeId)
+        {
+            Publication publication = _bddContext.Publications.Find(id);
+
+            if (publication != null)
+            {
+                publication.Name = name;
+                publication.PublicationType = publicationType;
+                publication.Date = creationdate;
+                publication.Author = author;
+                publication.EmployeeId = employeId;
+                _bddContext.SaveChanges();
+            }
+        }
+        
+         public void RemovePublication(int id)
+
+        {
+            Publication publication = _bddContext.Publications.Find(id);
+            if (publication != null)
+            {
+                _bddContext.Publications.Remove(publication);
+                _bddContext.SaveChanges();
+            }
+        }
+
+
+        /////////////////PROFILE
+
+        }
+
+
+        /// <summary>
+        /// This method creates an empty profile returns a profile id 
         /// </summary>
         /// <returns></returns>
-        public List<Adhesion> GetAdhesions()
+        /// 
+
+        public int CreateProfile()
         {
-            return _bddContext.Adhesions.ToList();
+            Profile profile = Profile.CreateProfile();
+            _bddContext.Profils.Add(profile);
+            _bddContext.SaveChanges();
+            return profile.Id;
         }
 
         /// <summary>
-        /// This method modifies an Adhesion in the SQL database with all attributes
+        /// 
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="contributionId"></param>
-        /// <param name="Echeance"></param>
-        /// <param name="adhesionStatus"></param>
-        public void EditAdhesion(int id, int contributionId, DateTime Echeance, AdhesionStatus adhesionStatus)
+        /// <returns></returns>
+        public Profile GetProfile(int id)
         {
-            Adhesion adhesion = _bddContext.Adhesions.Find(id);
-            if (adhesion != null)
+            return this._bddContext.Profils.Find(id);
+
+        }
+        public Profile GetProfile(string idStr)
+        {
+            int id;
+            if (int.TryParse(idStr, out id))
             {
-                adhesion.ContributionId = contributionId;
-                adhesion.Echeance = Echeance;
-                adhesion.AdhesionStatus = adhesionStatus;
+                return this.GetProfile(id);
+            }
+            return null;
+        }
+        public List<Profile> GetProfiles()
+        {
+            return _bddContext.Profils.ToList();
+        }
+        public int EditProfile(int id, string imagePath, string Bio, string games)
+        {
+            Profile profile = this._bddContext.Profils.Find(id);
+            if (profile != null)
+            {
+                profile.ProfilImage = imagePath;
+                profile.Bio = Bio;
+                profile.Games = games;
+                _bddContext.SaveChanges();
+            }
+            return profile.Id;
+        }
+        public int EditProfile(Profile profile)
+        {
+            _bddContext.Profils.Update(profile);
+            _bddContext.SaveChanges();
+            return profile.Id;
+        }
+
+
+        /////////////////SLOT
+
+        /////////////////STUFF
+        ///
+
+        public List<Stuff> GetStuffs()
+        {
+            return _bddContext.Stuff.ToList();
+        }
+ public List<Stuff> GetStuff()
+        {
+            return _bddContext.Stuffs.ToList();
+        }
+
+
+        public void EditStuff(int id, string name, string type, State state, int profilId, int inventoryId)
+        {
+            Stuff stuff = _bddContext.Stuffs.Find(id);
+            if (stuff != null)
+            {
+                stuff.Name= name;
+                stuff.Type= type;
+                stuff.State= state;
+                stuff.ProfileId= profilId;
+                stuff.InventoryId= inventoryId;
                 _bddContext.SaveChanges();
             }
         }
 
-        /// <summary>
-        /// This method modifies an Adhesion in the SQL database with an Adhesion
-        /// </summary>
-        /// <param name="adhesion"></param>
-        public void EditAdhesion(Adhesion adhesion)
+
+        public void EditStuff(Stuff stuff)
         {
-            _bddContext.Adhesions.Update(adhesion);
+            _bddContext.Stuffs.Update(stuff);
             _bddContext.SaveChanges();
         }
 
-        /// <summary>
-        /// This method removes an Adhesion in the SQL database with the Adhesion id
-        /// </summary>
-        /// <param name="id"></param>
-        public void RemoveAdhesion(int id)
+
+        public void RemoveStuff(int id)
         {
-            Adhesion adhesion = _bddContext.Adhesions.Find(id);
-            if (adhesion != null)
+            Stuff stuff = _bddContext.Stuffs.Find(id);
+            if (stuff != null)
             {
-                _bddContext.Adhesions.Remove(adhesion);
-                _bddContext.SaveChanges();
-            }
+                _bddContext.Stuffs.Remove(stuff);
+
+        public void CreateActivity(Activity activity)
+        {
+            _bddContext.Activities.Add(activity);
+            _bddContext.SaveChanges();
+
+        }
+        
+        
+         public int CreateStuff(string name, string type, State state, int profilId, int inventoryId)
+        {
+            Stuff stuff = new Stuff()
+            {
+                Name=name,
+                Type=type,
+                State=state,
+                ProfileId=profilId,
+                InventoryId=inventoryId
+            };
+
+            _bddContext.Stuffs.Add(stuff);
+
+            _bddContext.SaveChanges();
+            return stuff.Id;
+
         }
 
-        /// <summary>
-        /// This method removes an Adhesion in the SQL database with an Adhesion
-        /// </summary>
-        /// <param name="adhesion"></param>
-        public void RemoveAdhesion(Adhesion adhesion)
+        public void CreateStuff(Stuff stuff)
         {
-            _bddContext.Adhesions.Remove(adhesion);
+            _bddContext.Stuffs.Add(stuff);
             _bddContext.SaveChanges();
         }
+
+        
+        public void RemoveStuff(Stuff stuff)
+        {
+            _bddContext.Stuffs.Remove(stuff);
+            _bddContext.SaveChanges();
+        }
+
+        /////////////////TEAM
+
 
         /// <summary>
         /// This method creates a team in the SQL database with all attributes
@@ -433,376 +1058,23 @@ namespace Projet2.Models
     
 
 
-        public int CreateBenevole( int accountId )
+ 
 
-        {
-            int nbActionVolunteering = 0;
-            Benevole benevole = new Benevole() { AccountId=accountId ,NbActionVolunteering = nbActionVolunteering };
 
-            _bddContext.Benevoles.Add(benevole);
+       
 
-            _bddContext.SaveChanges();
 
-            return benevole.Id;
-        }
 
-        /// <summary>
-        /// This method creates a Benevole in the SQL database with a benevole
-        /// </summary>
-        /// <param name="benevole"></param>
-        
-        public void CreateBenevole(Benevole benevole)
-        {
-            _bddContext.Benevoles.Add(benevole);
-            _bddContext.SaveChanges();
-        }
-
-        /// <summary>
-        /// This method returns a list that contains all benevoles
-        /// </summary>
-        /// <returns></returns>
-
-        public List<Benevole> GetBenevoles()
-        {
-            return _bddContext.Benevoles.ToList();
-        }
-
-      
-        /// <summary>
-        /// This method modifies a Benevole in the SQL database
-        /// </summary>
-        /// <param name="accountId"></param>
-        public void EditBenevole(int accountId,  int id, int nbActionVolunteering)
-        {
-            Benevole benevole = _bddContext.Benevoles.Find(id);
-            if (benevole != null)
-            {
-                benevole.AccountId = accountId;
-                benevole.NbActionVolunteering = nbActionVolunteering;
-                _bddContext.SaveChanges();
-            }
-        }
-
-        /// <summary>
-        /// This method removes a Benevole int the SQL database with a Benevole
-        /// </summary>
-        /// <param name="benevole"></param>
-        public void RemoveBenevole(Benevole benevole)
-        {
-            _bddContext.Benevoles.Remove(benevole);
-            _bddContext.SaveChanges();
-        }
-
-        public void RemoveBenevole(int id)
-        {
-            Benevole benevole = _bddContext.Benevoles.Find(id);
-            if (benevole != null)
-            {
-                _bddContext.Benevoles.Remove(benevole);
-                _bddContext.SaveChanges();
-            }
-        }
 
      
 
-        /// <summary>
-        /// This method creates an account and the profile associated
-        /// </summary>
-        /// <param name="id">account's id</param>
-        /// <param name="username">account's username</param>
-        /// <param name="password">account's password</param>
-        /// <param name="password">account's password</param>
-        /// /// <param name="profileid">account's associated profile Id </param>
-        /// <returns>account.Id</returns>
-
-        public int CreateAccount(int id, string username, string password, int profileid)/// Dans le create Account, Profile Id= createProfile();
-        {
-
-            Account account = new Account() { Id = id, Username = username, Password = password , ProfileId = CreateProfile() };
-
-
-            _bddContext.Account.Add(account);
-            _bddContext.SaveChanges();
-
-            return account.Id;
-
-        }
-        /// <summary>
-        /// This method returns a list that contains all accounts
-        /// </summary>
-        /// <returns></returns>
-
-        public List<Account> GetListAccount()
-        {
-            return _bddContext.Account.ToList();
-        }
-
-
-        public void Dispose()
-        {
-            _bddContext.Dispose();
-        }
-
+       
 
         
 
-        
-
-        public Account GetAccount(int id)
-        {
-            return this._bddContext.Account.Find(id);
-        }
-
-        public Account GetAccount(string idStr)
-        {
-            int id;
-            if (int.TryParse(idStr, out id))
-            {
-                return this.GetAccount(id);
-            }
-            return null;
-        }
-
-        public List<Account> GetAccounts()
-        {
-            return _bddContext.Account.ToList();
-        }
-        public Account Authentificate(string username, string password)
-        {
-            string motDePasse = EncodeMD5(password);
-            Account user = this._bddContext.Account.FirstOrDefault(u => u.Username == username && u.Password == motDePasse);
-            return user;
-        }
-        /// <summary>
-        /// This method adds a user's account in the database while encoding the user's password
-        /// </summary>
-        /// <returns></returns>
-        public Account AddAccount(string username, string password)
-        {
-            string wordpass = EncodeMD5(password);
-            //idProfile= CreateProfile();
-            Account account = new Account() { Username = username, Password = wordpass, Profile = new Profile() , Contact= new Informations.Contact(),infoPerso= new InfoPerso(),Inventory= new Inventory ()};
-            this._bddContext.Account.Add(account);
-            this._bddContext.SaveChanges();
-            return account;
-        }
-
-        /// <summary>
-        /// This method encodes users passwords
-        /// </summary>
-        /// <returns></returns>
-        public static string EncodeMD5(string password)
-        {
-            string selectedPassword = "UserChoice" + password + "ASP.NET MVC";
-            return BitConverter.ToString(new MD5CryptoServiceProvider().ComputeHash(ASCIIEncoding.Default.GetBytes(selectedPassword)));
-        }
 
 
-
-        public int CreateEmployee(int serialNumber, string jobName, DateTime dateOfEmployement, int accountId)
-        {
-            Employee employee = new Employee() { SerialNumber=serialNumber, JobName=jobName, DateOfEmployement=dateOfEmployement, AccountId=accountId } ;
-            _bddContext.Employees.Add(employee);
-            _bddContext.SaveChanges();
-
-            return employee.Id;
-        }
-
-        public void CreateEmployee(Employee employee)
-        {
-            _bddContext.Employees.Add(employee);
-            _bddContext.SaveChanges();
-        }
-
-        public void EditEmployee(int id, int serialNumber, string jobName, DateTime dateOfEmployement, int accountId)
-        {
-            Employee employee = _bddContext.Employees.Find(id);
-            if (employee != null)
-            {
-                employee.SerialNumber = serialNumber;
-                employee.JobName = jobName;
-                employee.DateOfEmployement = dateOfEmployement;
-                employee.AccountId = accountId;
-                _bddContext.SaveChanges();
-            }
-        }
-        public void EditEmployee(Employee employee)
-        {
-            _bddContext.Employees.Update(employee);
-            _bddContext.SaveChanges();
-        }
-
-        public void RemoveEmployee(int id)
-        {
-            Employee employee = _bddContext.Employees.Find(id);
-            if (employee != null)
-            {
-                _bddContext.Employees.Remove(employee);
-                _bddContext.SaveChanges();
-            }
-        }
-
-        public void RemoveEmployee(Employee employee)
-        {
-            _bddContext.Employees.Remove(employee);
-            _bddContext.SaveChanges();
-        }
-
-        /// <summary>
-        /// This method creates an empty profile returns a profile id 
-        /// </summary>
-        /// <returns></returns>
-        public int CreateProfile()
-        {
-            Profile profile = Profile.CreateProfile();
-            _bddContext.Profils.Add(profile);
-            _bddContext.SaveChanges();
-            return profile.Id;
-        }
-
-        public Profile GetProfile(int id)
-        {
-                return this._bddContext.Profils.Find(id);
-
-        }
-        public Profile GetProfile(string idStr)
-        {
-            int id;
-            if (int.TryParse(idStr, out id))
-            {
-                return this.GetProfile(id);
-            }
-            return null;
-        }
-        public List<Profile> GetProfiles()
-        {
-            return _bddContext.Profils.ToList();
-        }
-        public int EditProfile(int id, string imagePath, string Bio, string games)
-        {
-            Profile profile = this._bddContext.Profils.Find(id);
-            if (profile != null)
-            {
-                profile.ProfilImage = imagePath;
-                profile.Bio = Bio;
-                profile.Games = games;
-                _bddContext.SaveChanges();
-            }
-            return profile.Id;
-        }
-        public int EditProfile(Profile profile)
-        {
-            _bddContext.Profils.Update(profile);
-            _bddContext.SaveChanges();
-            return profile.Id;
-        }
-        ////////////////////////////////////INFOPERSO (CONTACT)
-        public int EditContact(int id, string email, string tel)
-        {
-            Contact contact = this._bddContext.Contact.Find(id);
-            if (contact != null)
-            {
-               contact.EmailAdress = email;
-                contact.TelephoneNumber = tel;
-                _bddContext.SaveChanges();
-            }
-            return contact.Id;
-        }
-        public int EditContact(Contact contact)
-        {
-            _bddContext.Contact.Update(contact);
-            _bddContext.SaveChanges();
-            return contact.Id;
-        }
-        public Contact GetContact(int id)
-        {
-            return this._bddContext.Contact.Find(id);
-        }
-        public Contact GetContact(string idStr)
-        {
-            int id;
-            if (int.TryParse(idStr, out id))
-            {
-                return this.GetContact(id);
-            }
-            return null;
-        }
-
-        public List<Contact> GetContacts()
-        {
-            return _bddContext.Contact.ToList();
-        }
-
-
-        public int CreateStuff(string name, string type, State state, int profilId, int inventoryId)
-        {
-            Stuff stuff = new Stuff()
-            {
-                Name=name,
-                Type=type,
-                State=state,
-                ProfileId=profilId,
-                InventoryId=inventoryId
-            };
-
-            _bddContext.Stuffs.Add(stuff);
-
-            _bddContext.SaveChanges();
-            return stuff.Id;
-
-        }
-
-        public void CreateStuff(Stuff stuff)
-        {
-            _bddContext.Stuffs.Add(stuff);
-            _bddContext.SaveChanges();
-        }
-
-
-        public List<Stuff> GetStuff()
-        {
-            return _bddContext.Stuffs.ToList();
-        }
-
-
-        public void EditStuff(int id, string name, string type, State state, int profilId, int inventoryId)
-        {
-            Stuff stuff = _bddContext.Stuffs.Find(id);
-            if (stuff != null)
-            {
-                stuff.Name= name;
-                stuff.Type= type;
-                stuff.State= state;
-                stuff.ProfileId= profilId;
-                stuff.InventoryId= inventoryId;
-                _bddContext.SaveChanges();
-            }
-        }
-
-
-        public void EditStuff(Stuff stuff)
-        {
-            _bddContext.Stuffs.Update(stuff);
-            _bddContext.SaveChanges();
-        }
-
-
-        public void RemoveStuff(int id)
-        {
-            Stuff stuff = _bddContext.Stuffs.Find(id);
-            if (stuff != null)
-            {
-                _bddContext.Stuffs.Remove(stuff);
-                _bddContext.SaveChanges();
-            }
-        }
-
-        
-        public void RemoveStuff(Stuff stuff)
-        {
-            _bddContext.Stuffs.Remove(stuff);
-            _bddContext.SaveChanges();
-        }
+       
 
 
 

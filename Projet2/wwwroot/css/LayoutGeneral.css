@@ -63,3 +63,100 @@ footer {
     border-radius: 20px;
     text-align: center;
 }
+
+
+
+/*ghjklkjhgfdfghjkl*/
+
+.column1 {
+    background-position: center;
+    float: left;
+    width: 30%;
+}
+
+.column2 {
+    background-position: center;
+    float: left;
+    width: 70%;
+}
+
+
+.responsive {
+    max-width: 100%;
+    height: auto;
+    align-self: center;
+    border: 5mm;
+    border-color: black;
+}
+
+.leg {
+    color: rgb(255, 255, 255);
+    font-size: larger;
+}
+
+.column1 {
+    background-color: rgb(90, 87, 87);
+    opacity: .80;
+}
+
+.column2 {
+    background-color: rgb(90, 87, 87);
+    opacity: .85;
+}
+
+
+.Text {
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    fill-opacity: 1;
+}
+
+
+
+.titre {
+    font-style: italic;
+    font-size: xx-large;
+    float: inline-start;
+    text-shadow: 5px 2px #323335, 2px 4px #2c2d2e, 3px 5px #202020;
+}
+
+.spec {
+    position: relative;
+    display: flex;
+    background-color: black;
+    background-size: auto;
+    margin: auto;
+    color: white;
+    text-shadow: 5px 2px #222324, 2px 4px #222324, 3px 5px #222324;
+}
+
+li {
+    font-size: x-large;
+    display: inline;
+    /*float: center;*/
+    color: white;
+    padding-right: 20px;
+    border-style: solid;
+}
+
+.navbar {
+    background-color: rgb(82, 61, 61);
+}
+
+.navbar-nav {
+    position: relative;
+    align-self: center;
+}
+
+.navbar-brand {
+    position: inherit;
+    /*size-adjust: inherit;*/
+}
+
+.nav-item {
+    color: white;
+}
+
+a {
+    color: white;
+}

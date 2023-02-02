@@ -1,14 +1,27 @@
-﻿@model Projet2.Models.Profile
+﻿@model Projet2.ViewModels.ProfileViewModel
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href=" ./Css/Profile.css" rel="stylesheet" />
+@{
+    Layout = "_LayoutGeneral";
+}
+<head>
 <title>
-   Profile @User
+   Profile @User.Identity
 </title>
-
+    <link href=" ./Css/cssTD.css" rel="stylesheet" />
+</head>
 @*<style>
     body {
         background-image: url("./T2.jpg");
         background-position: center;
     }
 </style>*@
+
+@Html.HiddenFor(m=>m.account.Id)
+@Html.HiddenFor(m=>m.profile.Id)
+@Html.HiddenFor(n=>n.contact.Id)
+@Html.HiddenFor(n=>n.infos.Id)
+@Html.HiddenFor(n=>n.inventory.Id)
 
     <body class="body">
 
@@ -32,6 +45,52 @@
         </ul>
     </nav>
     <h1>PROFIL</h1>
+
+  <p> Bienvenue sur votre profil </p>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="column1">
+                <section class="SectionDescription">
+                    <div class="Text">
+                        <h1>Profil</h1>
+                        
+                        <h2>Details personnnels</h2>
+                        <h3>Nom: </h3> <h3 class="spec"> </h3>
+                        <h3> Prenom: </h3> <h3 class="spec"> </h3>
+                        <h3>AKA:   </h3><h3 class="spec"> </h3>
+                        <h3>Date de naissance: </h3><h3 class="spec">28 fÃ©vrier 1986</h3>
+                        <h3>Alcolyte: Ryuuk</h3>
+                    </div>
+                </section>
+            </div>
+            <div class="column2">
+                <section class="SectionContenu">
+                    <fieldset id="FS1">
+                        <legend class="leg"> Formation</legend>
+                        <p> lycÃ©en dxamen d'entrÃ©e Ã  l'universitÃ©)</p>
+                    </fieldset>
+                    <fieldset id="FS2">
+                        <legend class="leg"> ExpÃ©rience</legend>
+                        <p>Il devien criminels, pour enfin devenir le Â« Dieu Â» de son monde parfait. </p>
+                    </fieldset>
+                    <fieldset id="FS3">
+                        <legend class="leg"> CompÃ©tences techniques</legend>
+                        <p>
+                            Light
+                            GrÃ¢ce au Death Note, il est capable de tuer n'importe qui (exceptÃ© les shinigami), pour peu qu'il connaisse le nom et le visage de sa victime.
+                        </p>
+                    </fieldset>
+                    <fieldset id="FS4">
+                        <legend class="leg"> Autres compÃ©tences </legend>
+                        <p>Light parvient Ã ler Rem, le Shinigami liÃ© au Death Note de Misa. Il atteindra'elle Ã©crive le nom de L dans son carnet.</p>
+                    </fieldset>
+
+                </section>
+            </div>
+        </div>
+    </div>
+
+  
 
     @Html.ActionLink("Voulez-vous vous déconnecter ?", "Deconnexion")
 </body>
