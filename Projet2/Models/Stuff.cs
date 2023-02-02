@@ -10,12 +10,12 @@ namespace Projet2.Models
             Bon,
             Acceptable
         }
-    
-    
-        public class Stuff
-        {
+
+
+    public class Stuff
+    {
         public int Id { get; set; }
-        
+
         [MaxLength(30)]
         [Required]
         public string Name { get; set; }
@@ -26,5 +26,9 @@ namespace Projet2.Models
 
         public int? ProfileId { get; set; }
         public virtual Profile ProfileOwner { get; set; }
+
+        public int? InventoryId { get; set; }
+        public virtual Inventory InventoryBorrower { get; set; }
+    }
     
 }
