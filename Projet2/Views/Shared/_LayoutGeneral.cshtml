@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+
+	<link rel="stylesheet" href="~/css/LayoutGeneral.css">
+
+</head>
+<body>
+    <header>
+        <h1>Play4Us</h1>
+        <div class="menubar">
+            <span><a href="">Accueil</a></span>
+            <span><a href="">À propos</a></span>
+            <span><a href="">Services</a></span>
+            <span><a href="">Jeux</a></span>
+            <span><a href="">Bénévolat</a></span>
+            <span><a href="">Forum</a></span>
+            <span><a href="">Recrutement</a></span>
+            <span><a href="">Contact</a></span>
+        </div>
+    </header>
+
+    <main>
+        <div id="contenu">
+            @RenderBody()
+        </div>
+    </main>
+
+    <footer>
+        &copy; @DateTime.Now.Year - Play4Us, contactez nous via play4us.asso@play4us.com
+    </footer>
+</body>
+</html>

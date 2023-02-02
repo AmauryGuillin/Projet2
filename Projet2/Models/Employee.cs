@@ -1,0 +1,18 @@
+﻿using System;
+
+namespace Projet2.Models
+{
+    public class Employee
+    {
+        public int Id { get; set; }
+
+        public int SerialNumber { get; set; }
+
+        public string JobName { get; set; }
+
+        public DateTime DateOfEmployement { get; set; }
+
+        public int? AccountId { get; set; }
+        public Account Account { get; set; }
+    }
+}
