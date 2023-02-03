@@ -874,7 +874,7 @@ namespace Projet2.Models
         /////////////////STUFF
         ///
 
-        public int CreateStuff(string name, string type, State state)
+        public Stuff CreateStuff(string name, string type, State state)
         {
             Stuff stuff = new Stuff()
             {
@@ -886,7 +886,7 @@ namespace Projet2.Models
             _bddContext.Stuffs.Add(stuff);
 
             _bddContext.SaveChanges();
-            return stuff.Id;
+            return stuff;
 
         }
 

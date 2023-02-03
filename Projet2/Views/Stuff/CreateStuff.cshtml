@@ -1,0 +1,39 @@
+﻿@model Projet2.ViewModels.ProfileViewModel
+@{
+    Layout = "_LayoutGeneral";
+}
+<h2>CreateStuff</h2>
+
+@using (Html.BeginForm())
+{
+
+        <div>
+        @Html.LabelFor(m => m.stuff.Name)
+        @Html.TextBoxFor(m => m.stuff.Name)
+        @Html.ValidationMessageFor(m => m.stuff.Name)
+        </div>
+        <div>
+        @Html.LabelFor(m => m.stuff.Type)
+        @Html.TextBoxFor(m => m.stuff.Type)
+        @Html.ValidationMessageFor(m => m.stuff.Type)
+        </div>
+        
+        <div>
+        @Html.LabelFor(m => m.stuff.State,"Neuf")
+        @Html.RadioButtonFor(m=>m.stuff.State,"Neuf")
+        @Html.LabelFor(m => m.stuff.State,"Très Bon")
+        @Html.RadioButtonFor(m=>m.stuff.State,"TrèsBon")
+        @Html.LabelFor(m => m.stuff.State,"Bon")
+        @Html.RadioButtonFor(m=>m.stuff.State,"Bon")
+        @Html.LabelFor(m => m.stuff.State,"Acceptable")
+        @Html.RadioButtonFor(m=>m.stuff.State,"Acceptable")
+        </div>
+        
+
+
+
+            <input type="submit" value="Créer" />
+
+}
+
+
