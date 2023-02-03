@@ -696,7 +696,7 @@ namespace Projet2.Models
         {
             Inventory inventory= new Inventory( );
             List<Stuff> inventoryContent = new List<Stuff> ( );
-            foreach (Stuff stuffs in _bddContext.Stuff) { 
+            foreach (Stuff stuffs in _bddContext.Stuffs) { 
              GetStuffs().Where(r => r.InventoryId == inventory.Id).FirstOrDefault();
                 inventoryContent.Add( stuffs );
             }

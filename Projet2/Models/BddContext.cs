@@ -132,11 +132,6 @@ namespace Projet2.Models
                     InventoryId = null
                 });
 
-
-
-
-
-
             this.Benevoles.AddRange(
                 new Benevole() { Id = 1, AccountId = null, NbActionVolunteering = 15 },
                 new Benevole() { Id = 2, AccountId = null, NbActionVolunteering = 3 }

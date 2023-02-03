@@ -46,10 +46,10 @@ namespace Projet2.Models
         void RemoveEmployee(int id);
 
 
-        int CreateStuff(string name, string type, State state, int profilId, int inventoryId);
+        int CreateStuff(string name, string type, State state);
         void EditStuff(int id, string name, string type, State state, int profilId, int inventoryId);
         void RemoveStuff(int id);
-        List<Stuff> GetStuff();
+        List<Stuff> GetStuffs();
 
         int CreatePublication(string name, PublicationTypes publicationType, string content, DateTime creationdate, string author, int employeId);
         public void CreatePublication(Publication publication);
