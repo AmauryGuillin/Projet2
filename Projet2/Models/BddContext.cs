@@ -12,7 +12,7 @@ namespace Projet2.Models
         public DbSet<Activity> Activities { get; set; }   
         public DbSet<Adhesion> Adhesions { get; set; }// ajout d'un 's' à la fin
         public DbSet<Adherent> Adherents { get; set; } //ajout d'un 's' à la fin
-        public DbSet<ActiviteAssociation> AssociationActivity { get; set; }
+        public DbSet<AssociationActivity> AssociationActivities { get; set; }
         public DbSet<Benevole> Benevoles { get; set; } //ajout d'un 's' à la fin
         public DbSet<Chat> Chat { get; set; }
         public DbSet<Comment> Comments { get; set; }
@@ -334,6 +334,89 @@ namespace Projet2.Models
                     StartHour = DateTime.Now,
                     EndHour = DateTime.Now
                 }
+                );
+
+            this.AssociationActivities.AddRange(
+                new AssociationActivity()
+                {
+                    Id = 1,
+                    Description="Description 1",
+                    Place="Paris",
+                    ActivityId= null,
+                },
+
+                new AssociationActivity()
+                {
+                    Id = 2,
+                    Description = "Description 1",
+                    Place = "Paris",
+                    ActivityId = null,
+                },
+
+                new AssociationActivity()
+                {
+                    Id = 3,
+                    Description = "Description 1",
+                    Place = "Paris",
+                    ActivityId = null,
+                },
+
+                new AssociationActivity()
+                {
+                    Id = 4,
+                    Description = "Description 1",
+                    Place = "Paris",
+                    ActivityId = 1,
+                },
+
+                new AssociationActivity()
+                {
+                    Id = 5,
+                    Description = "Description 1",
+                    Place = "Paris",
+                    ActivityId = null,
+                },
+
+                new AssociationActivity()
+                {
+                    Id = 6,
+                    Description = "Description 1",
+                    Place = "Paris",
+                    ActivityId = 2,
+                },
+
+                new AssociationActivity()
+                {
+                    Id = 7,
+                    Description = "Description 1",
+                    Place = "Paris",
+                    ActivityId = null,
+                },
+
+                new AssociationActivity()
+                {
+                    Id = 8,
+                    Description = "Description 1",
+                    Place = "Paris",
+                    ActivityId = null,
+                },
+
+                new AssociationActivity()
+                {
+                    Id = 9,
+                    Description = "Description 1",
+                    Place = "Paris",
+                    ActivityId = 3,
+                },
+
+                new AssociationActivity()
+                {
+                    Id = 10,
+                    Description = "Description 1",
+                    Place = "Paris",
+                    ActivityId = null,
+                }
+
                 );
                 
             this.SaveChanges();
