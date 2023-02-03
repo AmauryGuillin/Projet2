@@ -72,6 +72,13 @@ namespace Projet2.Models
         List<Slot> GetSlots();
 
 
+        int CreateAssoActivity(string description, string place, int activityId);
+        int CreateAssoActivity(AssociationActivity associationActivity);
+        void EditAssoActivity(int id, string description, string place, int activityId);
+        void EditAssoActivity(AssociationActivity associationActivity);
+        void RemoveAssoActivity(int id);
+        List<AssociationActivity> GetAssoActivity();
+
 
     }
 

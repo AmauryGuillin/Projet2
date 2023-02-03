@@ -1107,7 +1107,7 @@ namespace Projet2.Models
 
             if (slot != null)
             {
-                _bddContext.Remove(slot);
+                _bddContext.Slots.Remove(slot);
                 _bddContext.SaveChanges();
             }
         }
@@ -1119,6 +1119,67 @@ namespace Projet2.Models
 
 
         /////////////
+
+        /////////////////ASSOCIATION ACTIVITIES
+        
+        public int CreateAssoActivity(string description, string place, int activityId)
+        {
+            AssociationActivity associationActivity = new AssociationActivity()
+            {
+                Description= description,
+                Place= place,
+                ActivityId=activityId,
+            };
+
+            _bddContext.AssociationActivities.Add(associationActivity);
+            _bddContext.SaveChanges();
+            return associationActivity.Id;
+        }
+
+        public int CreateAssoActivity(AssociationActivity associationActivity)
+        {
+            _bddContext.AssociationActivities.Add(associationActivity);
+            _bddContext.SaveChanges();
+            return associationActivity.Id;
+        }
+
+        public void EditAssoActivity(int id, string description, string place, int activityId)
+        {
+            AssociationActivity associationActivity = _bddContext.AssociationActivities.Find(id);
+            if (associationActivity != null)
+            {
+                associationActivity.Description = description;
+                associationActivity.Place = place;
+                associationActivity.ActivityId = activityId;
+                _bddContext.SaveChanges();
+            }
+        }
+
+        public void EditAssoActivity(AssociationActivity associationActivity)
+        {
+            _bddContext.AssociationActivities.Update(associationActivity);
+            _bddContext.SaveChanges();
+        }
+
+        public void RemoveAssoActivity(int id)
+        {
+            AssociationActivity associationActivity = _bddContext.AssociationActivities.Find(id);
+
+            if (associationActivity != null)
+            {
+                _bddContext.AssociationActivities.Remove(associationActivity);
+                _bddContext.SaveChanges();
+            }
+        }
+
+        public List<AssociationActivity> GetAssoActivity()
+        {
+            return _bddContext.AssociationActivities.ToList();
+        }
+
+
+        /////////////
+
 
 
 
