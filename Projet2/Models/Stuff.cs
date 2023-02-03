@@ -31,7 +31,6 @@ namespace Projet2.Models
         //public ?? Image { get; set; }
         // a faire ! 
         public string Description { get; set; }
-
         public Type Type { get; set; }
         public State State { get; set; }
 

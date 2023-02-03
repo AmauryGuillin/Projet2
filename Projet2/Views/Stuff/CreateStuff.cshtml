@@ -7,6 +7,9 @@
 @using (Html.BeginForm())
 {
 
+        @Html.HiddenFor(m=>m.account.Id)  
+        @Html.HiddenFor(n=>n.inventory.Id)
+
         <div>
         @Html.LabelFor(m => m.stuff.Name)
         @Html.TextBoxFor(m => m.stuff.Name)
@@ -19,7 +22,6 @@
     </div>
         
         <div>
-        
         @Html.LabelFor(m => m.stuff.Type)
         @Html.DropDownListFor(m => m.stuff.Type, Html.GetEnumSelectList<Projet2.Models.Type>(), "Selectionner un Type")
         @Html.ValidationMessageFor(m => m.stuff.Type)   

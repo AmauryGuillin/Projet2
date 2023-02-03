@@ -874,27 +874,29 @@ namespace Projet2.Models
         /////////////////STUFF
         ///
 
-        public Stuff CreateStuff(string name, string descritption, Type type, State state)
+        //JE PENSE QU'ON PEUX LA SUPPRIMER
+        //public Stuff CreateStuff(string name, string descritption, Type type, State state)
+        //{
+        //    Stuff stuff = new Stuff()
+        //    {
+        //        Name = name,
+        //        Description = descritption,
+        //        Type = type,
+        //        State = state
+        //    };
+
+        //    _bddContext.Stuffs.Add(stuff);
+
+        //    _bddContext.SaveChanges();
+        //    return stuff;
+
+        //}
+
+        public Stuff CreateStuff(Stuff stuff)
         {
-            Stuff stuff = new Stuff()
-            {
-                Name = name,
-                Description = descritption,
-                Type = type,
-                State = state
-            };
-
             _bddContext.Stuffs.Add(stuff);
-
             _bddContext.SaveChanges();
             return stuff;
-
-        }
-
-        public void CreateStuff(Stuff stuff)
-        {
-            _bddContext.Stuffs.Add(stuff);
-            _bddContext.SaveChanges();
         }
         public List<Stuff> GetStuffs()
         {
