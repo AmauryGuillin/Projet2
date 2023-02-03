@@ -28,7 +28,7 @@ namespace Projet2.Models
         public DbSet<Planning> Planning { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<Profile> Profils { get; set; }
-        public DbSet<Slot> Slot { get; set; }
+        public DbSet<Slot> Slots { get; set; }
         public DbSet<SportAssociation> SportAssociation { get; set; }
         public DbSet<Stuff> Stuff { get; set; }
         public DbSet<Team> Teams { get; set; }
@@ -244,15 +244,15 @@ namespace Projet2.Models
                     Id = 1,
                     StartDate= DateTime.Now,
                     EndDate= DateTime.Now,
-                    SlotID= null,
+                    SlotID= 1,
                 },
 
                 new Activity()
                 {
                     Id = 2,
-                    StartDate = DateTime.Now,
+                    StartDate = new DateTime(1998,02,10),
                     EndDate= DateTime.Now,
-                    SlotID= null,
+                    SlotID= 5,
                 },
 
                 new Activity()
@@ -260,8 +260,81 @@ namespace Projet2.Models
                     Id = 3,
                     StartDate= DateTime.Now,
                     EndDate= DateTime.Now,
-                    SlotID= null,
+                    SlotID= 10,
                 });
+
+            this.Slots.AddRange(
+                new Slot()
+                {
+                    Id = 1,
+                    Date= DateTime.Now,
+                    StartHour= DateTime.Now,
+                    EndHour = DateTime.Now
+                },
+                new Slot()
+                {
+                    Id = 2,
+                    Date = DateTime.Now,
+                    StartHour = DateTime.Now,
+                    EndHour = DateTime.Now
+                },
+                new Slot()
+                {
+                    Id = 3,
+                    Date = DateTime.Now,
+                    StartHour = DateTime.Now,
+                    EndHour = DateTime.Now
+                },
+                new Slot()
+                {
+                    Id = 4,
+                    Date = DateTime.Now,
+                    StartHour = DateTime.Now,
+                    EndHour = DateTime.Now
+                },
+                new Slot()
+                {
+                    Id = 5,
+                    Date = new DateTime(1998, 02, 10),
+                    StartHour = DateTime.Now,
+                    EndHour = DateTime.Now
+                },
+                new Slot()
+                {
+                    Id = 6,
+                    Date = DateTime.Now,
+                    StartHour = DateTime.Now,
+                    EndHour = DateTime.Now
+                },
+                new Slot()
+                {
+                    Id = 7,
+                    Date = DateTime.Now,
+                    StartHour = DateTime.Now,
+                    EndHour = DateTime.Now
+                },
+                new Slot()
+                {
+                    Id = 8,
+                    Date = DateTime.Now,
+                    StartHour = DateTime.Now,
+                    EndHour = DateTime.Now
+                },
+                new Slot()
+                {
+                    Id = 9,
+                    Date = DateTime.Now,
+                    StartHour = DateTime.Now,
+                    EndHour = DateTime.Now
+                },
+                new Slot()
+                {
+                    Id = 10,
+                    Date = DateTime.Now,
+                    StartHour = DateTime.Now,
+                    EndHour = DateTime.Now
+                }
+                );
                 
             this.SaveChanges();
 
@@ -287,6 +360,10 @@ namespace Projet2.Models
                 //dal.CreatePublication("Test creation publi 1", PublicationTypes.Infographie, "contenu de la publi", DateTime.Now, "Auteur 1", 2);
                 //dal.EditPublication(5, "Test creation publi 1 MODIF", PublicationTypes.Infographie, "contenu de la publi MODIF", DateTime.Now, "Auteur 1", 2);
                 //dal.RemovePublication(5);
+
+                //dal.CreateSlot(DateTime.Now, DateTime.Now, DateTime.Now);
+                //dal.EditSlot(11, new DateTime(1998,02,10), DateTime.Now, DateTime.Now);
+                //dal.RemoveSlot(11);
             }
 
         }

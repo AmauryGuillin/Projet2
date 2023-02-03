@@ -12,8 +12,10 @@ namespace Projet2.Models
         [Column(TypeName = "date")]
         public DateTime Date { get; set; } //a régler que sur la date
 
+        [Column(TypeName = "DateTime")]
         public DateTime StartHour { get; set; } //a régler que sur l'heure
 
+        [Column(TypeName = "DateTime")]
         public DateTime EndHour { get; set; } //a régler que sur l'heure
 
 

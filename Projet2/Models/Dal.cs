@@ -1057,26 +1057,89 @@ namespace Projet2.Models
             _bddContext.Teams.Remove(team);
             _bddContext.SaveChanges();
         }
-    
+
+        //////////////
+
+        /////////////////SLOTS
+      
+        public int CreateSlot(DateTime date, DateTime startHour, DateTime endHour)
+        {
+            Slot slot = new Slot() { 
+                Date = date, 
+                StartHour=startHour, 
+                EndHour=endHour 
+            };
+
+            _bddContext.Slots.Add(slot);
+            _bddContext.SaveChanges();
+            return slot.Id;
+        }
+
+        public int CreateSlot(Slot slot)
+        {
+            _bddContext.Slots.Add(slot);
+            _bddContext.SaveChanges();
+            return slot.Id;
+        }
+
+        public void EditSlot(int id, DateTime date, DateTime startHour, DateTime endHour) 
+        {
+            Slot slot = _bddContext.Slots.Find(id);
+            if (slot != null)
+            {
+                slot.Id= id;
+                slot.Date= date;
+                slot.StartHour= startHour;
+                slot.EndHour= endHour;
+                _bddContext.SaveChanges();
+            }
+        }
+
+        public void EditSlot(Slot slot)
+        {
+            _bddContext.Slots.Update(slot);
+            _bddContext.SaveChanges();
+        }
+
+        public void RemoveSlot(int id) 
+        {   
+            Slot slot = _bddContext.Slots.Find(id);
+
+            if (slot != null)
+            {
+                _bddContext.Remove(slot);
+                _bddContext.SaveChanges();
+            }
+        }
+
+        public List<Slot> GetSlots()
+        {
+            return _bddContext.Slots.ToList();
+        }
 
 
- 
-
-
-       
+        /////////////
 
 
 
 
-     
-
-       
-
-        
 
 
 
-       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

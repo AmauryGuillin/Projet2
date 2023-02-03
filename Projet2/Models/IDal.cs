@@ -63,6 +63,13 @@ namespace Projet2.Models
         public void EditActivity(Activity activity);
         public void RemoveActivity(int id);
 
+        int CreateSlot(DateTime date, DateTime startHour, DateTime endHour);
+        int CreateSlot(Slot slot);
+        void EditSlot(int id, DateTime date, DateTime startHour, DateTime endHour);
+        void EditSlot(Slot slot);
+        void RemoveSlot(int id);
+
+        List<Slot> GetSlots();
 
 
 
