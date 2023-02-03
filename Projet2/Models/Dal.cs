@@ -874,11 +874,28 @@ namespace Projet2.Models
         /////////////////STUFF
         ///
 
-        public List<Stuff> GetStuffs()
+        public int CreateStuff(string name, string type, State state)
         {
-            return _bddContext.Stuff.ToList();
+            Stuff stuff = new Stuff()
+            {
+                Name = name,
+                Type = type,
+                State = state
+            };
+
+            _bddContext.Stuffs.Add(stuff);
+
+            _bddContext.SaveChanges();
+            return stuff.Id;
+
         }
- public List<Stuff> GetStuff()
+
+        public void CreateStuff(Stuff stuff)
+        {
+            _bddContext.Stuffs.Add(stuff);
+            _bddContext.SaveChanges();
+        }
+        public List<Stuff> GetStuffs()
         {
             return _bddContext.Stuffs.ToList();
         }
@@ -924,29 +941,7 @@ namespace Projet2.Models
         }
         
         
-         public int CreateStuff(string name, string type, State state, int profilId, int inventoryId)
-        {
-            Stuff stuff = new Stuff()
-            {
-                Name=name,
-                Type=type,
-                State=state,
-                ProfileId=profilId,
-                InventoryId=inventoryId
-            };
 
-            _bddContext.Stuffs.Add(stuff);
-
-            _bddContext.SaveChanges();
-            return stuff.Id;
-
-        }
-
-        public void CreateStuff(Stuff stuff)
-        {
-            _bddContext.Stuffs.Add(stuff);
-            _bddContext.SaveChanges();
-        }
 
         
         public void RemoveStuff(Stuff stuff)
