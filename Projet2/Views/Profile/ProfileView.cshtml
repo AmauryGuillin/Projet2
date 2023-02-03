@@ -22,44 +22,44 @@
 @Html.HiddenFor(n=>n.contact.Id)
 @Html.HiddenFor(n=>n.infos.Id)
 @Html.HiddenFor(n=>n.inventory.Id)
+@Html.HiddenFor(n=>n.stuff.Id)
 
     <body class="body">
 
- <nav class="navbar navbar-expand-sm  justify-content-center">
+ 
                @* <a class="navbar-brand" href="#">
                     <img src="./YagamiPIC.jpg" alt="Logo" style="width:50px;">
                   </a> *@
-        <ul class=" navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">En savoir plus</a>
+                  <div class=" profileMenu">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Messagerie</a>
               </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Emprunter mon Death Note</a>
+              <li class="nav-item ">
+                <a class="nav-link active" href="#">Paramètres du compte</a>
               </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Anecdotes</a>
+              <li class="nav-item ">
+                @Html.ActionLink("Se deconnecter", "Deconnexion")
               </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Me contacter</a>
-              </li>
-        </ul>
-    </nav>
-    <h1>PROFIL</h1>
 
-  <p> Bienvenue sur votre profil </p>
+        </ul>
+    </div>
+    <h1>@Model.account.Username</h1>
+
+    <p> Bienvenue sur votre profil @Model.account.Username </p>
     <div class="container-fluid">
         <div class="row">
             <div class="column1">
                 <section class="SectionDescription">
                     <div class="Text">
-                        <h1>Profil</h1>
+                        
                         
                         <h2>Details personnnels</h2>
-                        <h3>Nom: </h3> <h3 class="spec"> </h3>
-                        <h3> Prenom: </h3> <h3 class="spec"> </h3>
-                        <h3>AKA:   </h3><h3 class="spec"> </h3>
-                        <h3>Date de naissance: </h3><h3 class="spec">28 fÃ©vrier 1986</h3>
-                        <h3>Alcolyte: Ryuuk</h3>
+                        <h3>Nom: @Model.infos.LastName</h3> <h3 class="spec"> </h3>
+                        <h3> Prenom: @Model.infos.FirstName </h3> <h3 class="spec"> </h3>
+                        
+                        <h3>Date de naissance:@Model.infos.Birthday </h3><h3 class="spec">28 fÃ©vrier 1986</h3>
+                        <h3>Adresse mail : @Model.contact.EmailAdress</h3>
                     </div>
                 </section>
             </div>

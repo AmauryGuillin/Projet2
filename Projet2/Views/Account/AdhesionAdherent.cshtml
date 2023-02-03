@@ -1,0 +1,54 @@
+﻿@model Projet2.ViewModels.AccountViewModel
+@{
+    Layout = "_LayoutGeneral";
+}
+<p>
+    Veuillez Remplir les champs pour completer votre adhesion :
+</p>
+@using (Html.BeginForm())
+{
+
+    <div>
+        @Html.LabelFor(m => m.Account.Username)
+        @Html.TextBoxFor(m => m.Account.Username)
+        @Html.ValidationMessageFor(m =>  m.Account.Username)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Account.Password)
+        @Html.PasswordFor(m =>m.Account.Password)
+        @Html.ValidationMessageFor(m =>m.Account.Password)
+    </div>
+    <tr>
+        <!--Adherent : JustifIdentite-->
+        <td> @Html.LabelFor(m=>m.Adherent.IDDocuments) Justif d'identité : </td>
+        <td><input type="file" />   </td>
+    </tr>
+         @* <!--Adherent : Cotisation-->
+           <tr> <td> @Html.LabelFor(m=>m.Adherent.Contribution ): </td>
+              <td><input type="text" /></td>
+             </tr>    
+           <tr>*@
+              <!--Cotisation : TypeCotisation-->
+             @*<tr>  <td>@Html.LabelFor(m=>m.Contribution.ContributionType)   type de cotisation : </td>
+           <td> @Html.DropDownListFor(m=>m.contributionTypes)  </td>
+          </tr> *@  
+              <tr>
+           <!--Cotisation : DatePrelevement-->
+             <td> @Html.LabelFor(m=>m.Contribution.PrelevementDate)   date de prélevement : </td>
+                <td><input type="text" /></td>
+             </tr>
+                        
+    
+
+
+
+
+
+
+
+
+
+
+    <input type="submit" value="Créer" />
+    @Html.ActionLink("Créer un compte Bénevole", "CreateAccount")
+}

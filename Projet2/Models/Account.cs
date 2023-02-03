@@ -1,5 +1,6 @@
 ﻿
 using Projet2.Models.Informations;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Projet2.Models
@@ -26,6 +27,7 @@ namespace Projet2.Models
         public int? SportAssociationId { get; set; }
         public virtual SportAssociation SportAssociation { get; set; }
 
+        //public List<Stuff> Stuff { get; set; }
         public int? InventoryId { get; set; }
         public virtual Inventory Inventory { get; set; }
 

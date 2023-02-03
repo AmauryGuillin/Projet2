@@ -20,13 +20,14 @@ namespace Projet2.Models
         //[Required]
         [Display(Name = "Quels sont vos jeux vidéo preférés ?")]
         public string Games { get; set; }
-        public int? StuffId { get; set; }
-        public virtual List<Stuff> Stuff { get; set; }
+      
+        
         //public int? AccountId { get; set; }
         //public virtual Account AccountUser { get; set; }
         public int? ChatId { get; set; }
         public virtual Chat Chat { get; set; }
 
+        
         public static Profile CreateProfile()
         {
             Profile profil = new Profile {};

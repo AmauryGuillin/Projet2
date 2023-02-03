@@ -26,25 +26,22 @@ namespace Projet2.Controllers
             profilevm.contact = dal.GetContacts().Where(r => r.Id == accountUser.ContactId).FirstOrDefault();
             profilevm.infos= dal.GetInformations().Where(r => r.Id == accountUser.InfoPersoId).FirstOrDefault();
             profilevm.inventory= dal.GetInventories().Where(r => r.Id == accountUser.InventoryId).FirstOrDefault();
-            profilevm.inventory.nbStuff=dal.GetInventoryContent().Count();
+            //profilevm.inventory.nbStuff=dal.GetInventoryContent().Count();
             return View(profilevm);
         }
 
 
 
         [HttpPost]
-        public IActionResult EditProfile(Profile profile, Contact contact,InfoPerso infos, Inventory Inventory)
+        public IActionResult EditProfile(ProfileViewModel profilevm)
         {
-            if (!ModelState.IsValid)
-            {
-                return View("EditProfile");
-            }
-
-            dal.EditProfile(profile);
-            dal.EditContact(contact);
-            dal.EditInfos(infos);
-            dal.EditInventory(Inventory);
-            return View("ProfileView");
+            
+            profilevm.account= dal.GetAccounts().Where(r => r.Id == profilevm.account.Id).FirstOrDefault();
+            dal.EditProfile(profilevm.profile);
+            dal.EditContact(profilevm.contact);
+            dal.EditInfos(profilevm.infos);
+            dal.EditInventory(profilevm.inventory);
+            return View("ProfileView",profilevm);
         }
     
 

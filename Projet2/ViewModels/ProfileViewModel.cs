@@ -10,5 +10,6 @@ namespace Projet2.ViewModels
         public Profile profile { get; set; }
         public InfoPerso infos { get; set; }
         public Inventory inventory { get; set; }
+        public Stuff stuff { get; set; }
     }
 }

@@ -120,7 +120,7 @@ footer {
     text-shadow: 5px 2px #323335, 2px 4px #2c2d2e, 3px 5px #202020;
 }
 
-.spec {
+/*.spec {
     position: relative;
     display: flex;
     background-color: black;
@@ -128,29 +128,34 @@ footer {
     margin: auto;
     color: white;
     text-shadow: 5px 2px #222324, 2px 4px #222324, 3px 5px #222324;
-}
+}*/
 
-li {
-    font-size: x-large;
-    display: inline;
-    /*float: center;*/
-    color: white;
-    padding-right: 20px;
-    border-style: solid;
-}
-
-.navbar {
-    background-color: rgb(82, 61, 61);
-}
-
-.navbar-nav {
+.profileMenu {
     position: relative;
-    align-self: center;
+    text-align: justify;
+    list-style-position: inside;
+    width: fit-content;
+    border: 1px solid #555;
+    float: right;
+    display: inline;
+    border-radius: 40px;
+    background: rgb(143 141 147 / 50%);
 }
 
-.navbar-brand {
-    position: inherit;
-    /*size-adjust: inherit;*/
+.nav flex-column {
+    
+    list-style-type: circle;
+    
+}
+
+.li a {
+    display: block;
+    /*font-size: x-large;
+    display: inline;*/
+    /*float: center;*/
+    /*color: white;
+    padding-right: 20px;*/
+    border-style:solid ;
 }
 
 .nav-item {
