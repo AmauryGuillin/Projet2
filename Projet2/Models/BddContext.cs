@@ -252,7 +252,7 @@ namespace Projet2.Models
                     Id = 2,
                     StartDate = new DateTime(1998,02,10),
                     EndDate= DateTime.Now,
-                    SlotID= 5,
+                    SlotID= 3,
                 },
 
                 new Activity()
@@ -260,7 +260,63 @@ namespace Projet2.Models
                     Id = 3,
                     StartDate= DateTime.Now,
                     EndDate= DateTime.Now,
-                    SlotID= 10,
+                    SlotID= 2,
+                },
+
+                new Activity()
+                {
+                    Id = 4,
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now,
+                    SlotID = 5,
+                },
+
+                new Activity()
+                {
+                    Id = 5,
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now,
+                    SlotID = 4,
+                },
+
+                new Activity()
+                {
+                    Id = 6,
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now,
+                    SlotID = 8,
+                },
+
+                new Activity()
+                {
+                    Id = 7,
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now,
+                    SlotID = 7,
+                },
+
+                new Activity()
+                {
+                    Id = 8,
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now,
+                    SlotID = 6,
+                },
+
+                new Activity()
+                {
+                    Id = 9,
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now,
+                    SlotID = 9,
+                },
+
+                new Activity()
+                {
+                    Id = 10,
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now,
+                    SlotID = 10,
                 });
 
             this.Slots.AddRange(
@@ -447,6 +503,10 @@ namespace Projet2.Models
                 //dal.CreateSlot(DateTime.Now, DateTime.Now, DateTime.Now);
                 //dal.EditSlot(11, new DateTime(1998,02,10), DateTime.Now, DateTime.Now);
                 //dal.RemoveSlot(11);
+
+                dal.CreateAssoActivity("Description test", "Chez moi ! :)", 9);
+                dal.EditAssoActivity(11, "Description test MOFID", "Chez moi ! :) MODIF", 5);
+                dal.RemoveAssoActivity(11);
             }
 
         }
