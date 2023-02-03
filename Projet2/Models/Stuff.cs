@@ -28,8 +28,10 @@ namespace Projet2.Models
 
         [MaxLength(30)]
         public string Name { get; set; }
-        public string Image { get; set; }// a faire ! 
-        [Required]
+        //public ?? Image { get; set; }
+        // a faire ! 
+        public string Description { get; set; }
+
         public Type Type { get; set; }
         public State State { get; set; }
 

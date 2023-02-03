@@ -12,6 +12,12 @@
         @Html.TextBoxFor(m => m.stuff.Name)
         @Html.ValidationMessageFor(m => m.stuff.Name)
         </div>
+    <div>
+        @Html.LabelFor(m => m.stuff.Description)
+        @Html.TextBoxFor(m => m.stuff.Description)
+        @Html.ValidationMessageFor(m => m.stuff.Description)
+    </div>
+        
         <div>
         
         @Html.LabelFor(m => m.stuff.Type)

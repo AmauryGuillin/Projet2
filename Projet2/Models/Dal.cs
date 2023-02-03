@@ -874,11 +874,12 @@ namespace Projet2.Models
         /////////////////STUFF
         ///
 
-        public Stuff CreateStuff(string name, Type type, State state)
+        public Stuff CreateStuff(string name, string descritption, Type type, State state)
         {
             Stuff stuff = new Stuff()
             {
                 Name = name,
+                Description = descritption,
                 Type = type,
                 State = state
             };
