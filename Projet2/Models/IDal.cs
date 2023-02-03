@@ -77,7 +77,16 @@ namespace Projet2.Models
         void EditAssoActivity(int id, string description, string place, int activityId);
         void EditAssoActivity(AssociationActivity associationActivity);
         void RemoveAssoActivity(int id);
+        public void RemoveAssoActivity(AssociationActivity associationActivity);
         List<AssociationActivity> GetAssoActivity();
+
+        int CreateVolunteeringActivity(string type, string name, DateTime startDate, DateTime endDate, int associationActivity);
+        int CreateVolunteeringActivity(VolunteeringActivity volunteeringActivity);
+        void EditVolunteeringActivity(int id, string type, string name, DateTime startDate, DateTime endDate, int associationActivity);
+        void EditVolunteeringActivity(VolunteeringActivity volunteeringActivity);
+        void RemoveVolunteeringActivity(int id);
+        void RemoveVolunteeringActivity(VolunteeringActivity volunteeringActivity);
+        List<VolunteeringActivity> GetVolunteeringActivities();
 
 
     }

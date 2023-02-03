@@ -34,8 +34,12 @@ namespace Projet2.Models
         public DbSet<Team> Teams { get; set; }
         public DbSet<Coaching> Training { get; set; } 
         public DbSet<Stuff> Stuffs { get; set; }
-
         public DbSet<Publication> Publications { get; set; }
+        public DbSet<VolunteeringActivity> VolunteeringActivities { get; set; }
+
+
+
+
         public void InitializeDb()
         {
             this.Database.EnsureDeleted();
@@ -474,6 +478,107 @@ namespace Projet2.Models
                 }
 
                 );
+
+            this.VolunteeringActivities.AddRange(
+                new VolunteeringActivity()
+                {
+                    Id = 1,
+                    Name="Name 1",
+                    Type="Type 1",
+                    StartDate=DateTime.Now,
+                    EndDate=DateTime.Now,
+                    AssociationActivityId=1,
+                },
+
+                new VolunteeringActivity()
+                {
+                    Id = 2,
+                    Name = "Name 2",
+                    Type = "Type 2",
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now,
+                    AssociationActivityId = 2,
+                },
+
+                new VolunteeringActivity()
+                {
+                    Id = 3,
+                    Name = "Name 3",
+                    Type = "Type 3",
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now,
+                    AssociationActivityId = 3,
+                },
+
+                new VolunteeringActivity()
+                {
+                    Id = 4,
+                    Name = "Name 4",
+                    Type = "Type 4",
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now,
+                    AssociationActivityId = 4,
+                },
+
+                new VolunteeringActivity()
+                {
+                    Id = 5,
+                    Name = "Name 5",
+                    Type = "Type 5",
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now,
+                    AssociationActivityId= 5,
+                },
+
+                new VolunteeringActivity()
+                {
+                    Id = 6,
+                    Name = "Name 6",
+                    Type = "Type 6",
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now,
+                    AssociationActivityId = 6,
+                },
+
+                new VolunteeringActivity()
+                {
+                    Id = 7,
+                    Name = "Name 7",
+                    Type = "Type 7",
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now,
+                    AssociationActivityId = 7,
+                },
+
+                new VolunteeringActivity()
+                {
+                    Id = 8,
+                    Name = "Name 8",
+                    Type = "Type 8",
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now,
+                    AssociationActivityId = 8,
+                },
+
+                new VolunteeringActivity()
+                {
+                    Id = 9,
+                    Name = "Name 9",
+                    Type = "Type 9",
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now,
+                    AssociationActivityId = 9,
+                },
+
+                new VolunteeringActivity()
+                {
+                    Id = 10,
+                    Name = "Name 10",
+                    Type = "Type 10",
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now,
+                    AssociationActivityId = 10,
+                });
                 
             this.SaveChanges();
 
@@ -507,6 +612,10 @@ namespace Projet2.Models
                 //dal.CreateAssoActivity("Description test", "Chez moi ! :)", 9);
                 //dal.EditAssoActivity(11, "Description test MOFID", "Chez moi ! :) MODIF", 5);
                 //dal.RemoveAssoActivity(11);
+
+                //dal.CreateVolunteeringActivity("Type 11", "Name 11", DateTime.Now, DateTime.Now, 11);
+                //dal.EditVolunteeringActivity(11, "Type 11 MODIF", "Name 11 MODIF", DateTime.Now, DateTime.Now, 11);
+                //dal.RemoveVolunteeringActivity(11);
             }
 
         }
