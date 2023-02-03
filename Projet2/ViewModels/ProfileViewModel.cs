@@ -12,7 +12,6 @@ namespace Projet2.ViewModels
         public InfoPerso infos { get; set; }
         public Inventory inventory { get; set; }
         public Stuff stuff { get; set; }
-        //public State SelectedRadioState { get; set; }
-        //public List<Stuff> RadioButtonOptionState { get; set; }
+       
     }
 }

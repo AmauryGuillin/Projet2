@@ -13,9 +13,10 @@
         @Html.ValidationMessageFor(m => m.stuff.Name)
         </div>
         <div>
+        
         @Html.LabelFor(m => m.stuff.Type)
-        @Html.TextBoxFor(m => m.stuff.Type)
-        @Html.ValidationMessageFor(m => m.stuff.Type)
+        @Html.DropDownListFor(m => m.stuff.Type, Html.GetEnumSelectList<Projet2.Models.Type>(), "Selectionner un Type")
+        @Html.ValidationMessageFor(m => m.stuff.Type)   
         </div>
         
         <div>

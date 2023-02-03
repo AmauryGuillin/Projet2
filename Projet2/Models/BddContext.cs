@@ -117,7 +117,7 @@ namespace Projet2.Models
                 {
                     Id = 1,
                     Name = "ordinateur",
-                    Type = "informatique",
+                    Type = Type.Ordinateur,
                     State = State.Neuf,
                     ProfileId = null,
                     InventoryId = null
@@ -126,7 +126,7 @@ namespace Projet2.Models
                 {
                     Id = 2,
                     Name = "casque PS4",
-                    Type = "Accessoire PS4",
+                    Type = Type.PeripheriqueConsole,
                     State = State.Acceptable,
                     ProfileId = null,
                     InventoryId = null

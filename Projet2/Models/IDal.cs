@@ -46,8 +46,8 @@ namespace Projet2.Models
         void RemoveEmployee(int id);
 
 
-        Stuff CreateStuff(string name, string type, State state);
-        void EditStuff(int id, string name, string type, State state, int profilId, int inventoryId);
+        Stuff CreateStuff(string name, Type type, State state);
+        void EditStuff(int id, string name, Type type, State state, int profilId, int inventoryId);
         void RemoveStuff(int id);
         List<Stuff> GetStuffs();
 

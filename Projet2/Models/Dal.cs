@@ -874,7 +874,7 @@ namespace Projet2.Models
         /////////////////STUFF
         ///
 
-        public Stuff CreateStuff(string name, string type, State state)
+        public Stuff CreateStuff(string name, Type type, State state)
         {
             Stuff stuff = new Stuff()
             {
@@ -901,7 +901,7 @@ namespace Projet2.Models
         }
 
 
-        public void EditStuff(int id, string name, string type, State state, int profilId, int inventoryId)
+        public void EditStuff(int id, string name, Type type, State state, int profilId, int inventoryId)
         {
             Stuff stuff = _bddContext.Stuffs.Find(id);
             if (stuff != null)

@@ -11,17 +11,26 @@ namespace Projet2.Models
             Acceptable
         }
 
+        public enum Type
+        {
+            Ordinateur,
+            Console,
+            PeripheriquePC,
+            PeripheriqueConsole,
+            AccessoireBureau,
+            Salle
+        }
+
 
     public class Stuff
     {
         public int Id { get; set; }
 
         [MaxLength(30)]
-        [Required]
         public string Name { get; set; }
-        [MaxLength(30)]
+        public string Image { get; set; }// a faire ! 
         [Required]
-        public string Type { get; set; }
+        public Type Type { get; set; }
         public State State { get; set; }
 
         public int? ProfileId { get; set; }
