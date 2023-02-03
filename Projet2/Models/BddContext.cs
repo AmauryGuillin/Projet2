@@ -504,9 +504,9 @@ namespace Projet2.Models
                 //dal.EditSlot(11, new DateTime(1998,02,10), DateTime.Now, DateTime.Now);
                 //dal.RemoveSlot(11);
 
-                dal.CreateAssoActivity("Description test", "Chez moi ! :)", 9);
-                dal.EditAssoActivity(11, "Description test MOFID", "Chez moi ! :) MODIF", 5);
-                dal.RemoveAssoActivity(11);
+                //dal.CreateAssoActivity("Description test", "Chez moi ! :)", 9);
+                //dal.EditAssoActivity(11, "Description test MOFID", "Chez moi ! :) MODIF", 5);
+                //dal.RemoveAssoActivity(11);
             }
 
         }
