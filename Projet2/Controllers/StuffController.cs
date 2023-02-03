@@ -16,7 +16,7 @@ namespace Projet2.Controllers
         }
         public IActionResult CreateStuff()
         {
-            return View("CreateStuff");
+            return View();
         }
 
         [HttpPost]
@@ -29,6 +29,12 @@ namespace Projet2.Controllers
                 return View("Index");
             }
             return View(stuff);
+        }
+
+        public IActionResult StuffCatalog()
+        {
+            List<Stuff> listStuff = dal.GetStuffs();
+            return View(listStuff);
         }
 
     }
