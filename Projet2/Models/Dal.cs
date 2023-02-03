@@ -184,6 +184,23 @@ namespace Projet2.Models
 
 
         /////////////////ACTIVITY
+
+        public int CreateActivity(DateTime startDate, DateTime endDate, int slotId)
+        {
+            Activity activity = new Activity() { StartDate = startDate, EndDate = endDate, SlotID = slotId };
+            _bddContext.Activities.Add(activity);
+            _bddContext.SaveChanges();
+
+            return activity.Id;
+        }
+
+        public int CreateActivity(Activity activity)
+        {
+            _bddContext.Activities.Add(activity);
+            _bddContext.SaveChanges();
+            return activity.Id;
+        }
+
         public void EditActivity(int id, DateTime startDate, DateTime endDate, int slotId) 
         { 
             Activity activity = _bddContext.Activities.Find(id);
@@ -213,15 +230,7 @@ namespace Projet2.Models
                 _bddContext.SaveChanges();
             }
         }
-        
-        public int CreateActivity(DateTime startDate, DateTime endDate, int slotId)
-        {
-            Activity activity = new Activity() { StartDate= startDate, EndDate = endDate, SlotID=slotId };
-            _bddContext.Activities.Add(activity);
-            _bddContext.SaveChanges();
 
-            return activity.Id;
-        }
 
         /////////////////ADHERENT
         /// <summary>
@@ -866,6 +875,17 @@ namespace Projet2.Models
             }
         }
 
+        public void RemovePublication(Publication publication)
+        {
+            _bddContext.Publications.Remove(publication);
+            _bddContext.SaveChanges();
+        }
+
+        public List<Publication> GetPublications()
+        {
+            return _bddContext.Publications.ToList();
+        }
+
 
         /////////////////PROFILE
 
@@ -1031,15 +1051,7 @@ namespace Projet2.Models
             _bddContext.Stuffs.Remove(stuff);
         }
         
-        }
-
-        public void CreateActivity(Activity activity)
-        {
-            _bddContext.Activities.Add(activity);
-            _bddContext.SaveChanges();
-
-        }
-        
+        }     
         
          public int CreateStuff(string name, string type, State state, int profilId, int inventoryId)
         {
@@ -1239,6 +1251,7 @@ namespace Projet2.Models
         {
             return _bddContext.VolunteeringActivities.ToList();
         }
+
 
 
 
