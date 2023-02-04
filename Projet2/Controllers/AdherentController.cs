@@ -115,10 +115,10 @@ namespace Projet2.Controllers
                 adherentvm.Adherent.Id,
                 adherentvm.Account.ProfileId,
                 adherentvm.Adherent.AdhesionId,
-                //adherentvm.Adhesion.ContributionId,
-                //adherentvm.Account.ContactId,
-                //adherentvm.Account.infoPerso,
-                //adherentvm.Account.InventoryId
+                //adherentvm.Adhesion.ContributionId, il y a un souci avec cela
+                adherentvm.Account.ContactId,
+                adherentvm.Account.InfoPersoId,
+                adherentvm.Account.InventoryId
 
 
             });
@@ -131,10 +131,10 @@ namespace Projet2.Controllers
             AdherentViewModel adherentVM = new AdherentViewModel();
             adherentVM.Account = dal.GetAccounts().Where(r => r.Id == id).FirstOrDefault();
             adherentVM.Adherent = dal.GetAdherents().Where(r => r.AccountId == id).FirstOrDefault();
-            //Account account = adherentvm.Account;
-            //adherentvm.Adhesion = dal.GetAdhesions().Where(r => r.Id == adherent.AdhesionId).FirstOrDefault();
-            //Adhesion adhesionUser = adherentvm.Adhesion;
-            //adherentvm.Contribution = dal.GetContributions().Where(x => x.Id == adhesionUser.ContributionId).FirstOrDefault();
+            Account account = adherentVM.Account;
+            adherentVM.Adhesion = dal.GetAdhesions().Where(r => r.Id == adherentVM.Adherent.AdhesionId).FirstOrDefault();
+            Adhesion adhesionUser = adherentVM.Adhesion;
+            //adherentVM.Contribution = dal.GetContributions().Where(x => x.Id == adhesionUser.ContributionId).FirstOrDefault();
 
             return View(adherentVM);
         }
@@ -146,14 +146,19 @@ namespace Projet2.Controllers
             adherentVM.Account = dal.GetAccounts().Where(r => r.Id == adherentVM.Account.Id).FirstOrDefault();
             dal.EditAdherent(adherentVM.Adherent);
             dal.EditAdhesion(adherentVM.Adhesion);
-            dal.EditContribution(adherentVM.Contribution);
+            //dal.EditContribution(adherentVM.Contribution);
 
             return RedirectToAction("EditProfile", "Profile", new
             {
                 id =
-                adherentVM.Account.Id,
                 adherentVM.Adherent.Id,
                 adherentVM.Account.ProfileId,
+                adherentVM.Adherent.AdhesionId,
+                //adherentvm.Adhesion.ContributionId, il y a un souci avec cela
+                adherentVM.Account.ContactId,
+                adherentVM.Account.InfoPersoId,
+                adherentVM.Account.InventoryId
+
 
             });
 
