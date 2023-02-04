@@ -111,7 +111,14 @@ namespace Projet2.Models
         {
             string wordpass = EncodeMD5(password);
             //idProfile= CreateProfile();
-            Account account = new Account() { Username = username, Password = wordpass, Profile = new Profile(), Contact = new Informations.Contact(), infoPerso = new InfoPerso(), Inventory = new Inventory() };
+            Account account = new Account() { 
+                Username = username,
+                Password = wordpass, 
+                Profile = new Profile(),
+                Contact = new Informations.Contact(),
+                infoPerso = new InfoPerso(), 
+                Inventory = new Inventory()
+            };
             this._bddContext.Account.Add(account);
             this._bddContext.SaveChanges();
             return account;
@@ -198,13 +205,13 @@ namespace Projet2.Models
         }
         public Adherent CreateNewAdherent(int accountid)
         {
-            Adherent adherent = new Adherent()
+            Adherent adherent = new Adherent() 
             {
-                BenevoleId = CreateNewBenevole(accountid).Id,
-              
+             AccountId = accountid,
+             BenevoleId = CreateNewBenevole(accountid).Id,
+             AdhesionId= CreateNewAdhesion().Id
             };
-            CreateNewAdhesion();
-
+            
             _bddContext.Adherents.Add(adherent);
 
             _bddContext.SaveChanges();
@@ -319,7 +326,10 @@ namespace Projet2.Models
         }
         public Adhesion CreateNewAdhesion()
         {
-            Adhesion adhesion = new Adhesion();
+            Adhesion adhesion = new Adhesion()
+            {
+                ContributionId= CreateNewContribution().Id
+            };
             _bddContext.Adhesions.Add(adhesion);
             _bddContext.SaveChanges();
             return adhesion;
@@ -416,7 +426,10 @@ namespace Projet2.Models
 
         {
             int nbActionVolunteering = 0;
-            Benevole benevole = new Benevole() { AccountId = accountId, NbActionVolunteering = nbActionVolunteering };
+            Benevole benevole = new Benevole() { 
+                AccountId = accountId, 
+                NbActionVolunteering = nbActionVolunteering 
+            };
 
             _bddContext.Benevoles.Add(benevole);
 
@@ -536,7 +549,15 @@ namespace Projet2.Models
 
         /////////////////CONTRIBUTION
         ///
+        public Contribution CreateNewContribution()
+        {
+            Contribution contribution = new Contribution();
+            _bddContext.Contributions.Add(contribution);
+            _bddContext.SaveChanges();
+            return contribution;
 
+        }
+    
 
         /// <summary>
         /// This method creates an Contribution in the SQL database with all attributes

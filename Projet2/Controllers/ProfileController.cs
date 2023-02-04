@@ -25,7 +25,8 @@ namespace Projet2.Controllers
             Account accountUser = profilevm.account;
             profilevm.contact = dal.GetContacts().Where(r => r.Id == accountUser.ContactId).FirstOrDefault();
             profilevm.infos= dal.GetInformations().Where(r => r.Id == accountUser.InfoPersoId).FirstOrDefault();
-            profilevm.inventory= dal.GetInventories().Where(r => r.Id == accountUser.InventoryId).FirstOrDefault();
+            Inventory inventory = profilevm.inventory;
+            profilevm.inventory = dal.GetInventories().Where(r => r.Id == accountUser.InventoryId).FirstOrDefault();
             //profilevm.inventory.nbStuff=dal.GetInventoryContent().Count();
             return View(profilevm);
         }
