@@ -205,11 +205,11 @@ namespace Projet2.Models
         }
         public Adherent CreateNewAdherent(int accountid)
         {
-            Adherent adherent = new Adherent() 
+            Adherent adherent = new Adherent()
             {
-             AccountId = accountid,
-             BenevoleId = CreateNewBenevole(accountid).Id,
-             AdhesionId= CreateNewAdhesion().Id
+                AccountId = accountid,
+                Benevole = new Benevole() { AccountId= accountid},
+                Adhesion = new Adhesion() { Contribution = new Contribution() },
             };
             
             _bddContext.Adherents.Add(adherent);

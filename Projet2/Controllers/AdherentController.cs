@@ -112,7 +112,8 @@ namespace Projet2.Controllers
             return RedirectToAction("AdhesionAdherent", new
             {
                 id =
-                adherentvm.Adherent.Id,
+               
+                //adherentvm.Adherent.Id,
                 adherentvm.Account.ProfileId,
                 adherentvm.Adherent.AdhesionId,
                 //adherentvm.Adhesion.ContributionId, il y a un souci avec cela
@@ -151,6 +152,7 @@ namespace Projet2.Controllers
             return RedirectToAction("EditProfile", "Profile", new
             {
                 id =
+               
                 adherentVM.Adherent.Id,
                 adherentVM.Account.ProfileId,
                 adherentVM.Adherent.AdhesionId,
