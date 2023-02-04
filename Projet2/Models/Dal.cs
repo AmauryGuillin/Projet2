@@ -766,17 +766,28 @@ namespace Projet2.Models
         }
         public List<Stuff> GetBorrowerStuff(int accountid)
         {
+
             int inventoryid = _bddContext.Account.Where(a => a.Id == accountid).FirstOrDefault().InventoryId.Value;
             List<Stuff> stuffContent = _bddContext.Stuffs.Where(s => s.InventoryBorrowerId == inventoryid).ToList();
             
             return stuffContent;
         }
+        
         public List<Stuff> GetOwnedStuff(int accountid)
         {
             
             List<Stuff> stuffOwned = _bddContext.Stuffs.Where(s => s.AccountOwnerId== accountid).ToList();
 
             return stuffOwned;
+
+            Inventory inventory= new Inventory( );
+            List<Stuff> inventoryContent = new List<Stuff> ( );
+            foreach (Stuff stuffs in _bddContext.Stuffs) { 
+             GetStuffs().Where(r => r.InventoryId == inventory.Id).FirstOrDefault();
+                inventoryContent.Add( stuffs );
+            }
+            return inventoryContent;
+
         }
 
 
@@ -950,17 +961,24 @@ namespace Projet2.Models
         /////////////////STUFF
         ///
 
-        //public List<Stuff> GetStuffs()
-        //{
-        //    return _bddContext.Stuff.ToList();
-        //}
- public List<Stuff> GetStuff()
+
+        public Stuff CreateStuff(Stuff stuff)
+        {
+            _bddContext.Stuffs.Add(stuff);
+            _bddContext.SaveChanges();
+            return stuff;
+        }
+        
+        public List<Stuff> GetStuffs()
+
         {
             return _bddContext.Stuffs.ToList();
         }
 
 
+
         public void EditStuff(int id, string name, string type, State state, int accountid, int inventoryId)
+
         {
             Stuff stuff = _bddContext.Stuffs.Find(id);
             if (stuff != null)
@@ -999,7 +1017,7 @@ namespace Projet2.Models
 
         }
         
-        
+
          public int CreateStuff(string name, string type, State state, int accountId, int inventoryId)
         {
             Stuff stuff = new Stuff()
@@ -1011,18 +1029,7 @@ namespace Projet2.Models
                 InventoryBorrowerId =inventoryId
             };
 
-            _bddContext.Stuffs.Add(stuff);
 
-            _bddContext.SaveChanges();
-            return stuff.Id;
-
-        }
-
-        public void CreateStuff(Stuff stuff)
-        {
-            _bddContext.Stuffs.Add(stuff);
-            _bddContext.SaveChanges();
-        }
 
         
         public void RemoveStuff(Stuff stuff)

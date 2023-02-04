@@ -30,10 +30,11 @@ namespace Projet2.Models
         public DbSet<Profile> Profils { get; set; }
         public DbSet<Slot> Slot { get; set; }
         public DbSet<SportAssociation> SportAssociation { get; set; }
-        //public DbSet<Stuff> Stuff { get; set; }
+
         public DbSet<Team> Teams { get; set; }
         public DbSet<Coaching> Training { get; set; } 
         public DbSet<Stuff> Stuffs { get; set; }
+        public DbSet<ReservationStuff> reservationsStuffs { get; set; }
 
         public DbSet<Publication> Publications { get; set; }
         public void InitializeDb()
@@ -118,7 +119,7 @@ namespace Projet2.Models
                 {
                     Id = 1,
                     Name = "ordinateur",
-                    Type = "informatique",
+                    Type = Type.Ordinateur,
                     State = State.Neuf,
                     AccountOwnerId = 1,
                     InventoryBorrowerId = 2
@@ -127,11 +128,12 @@ namespace Projet2.Models
                 {
                     Id = 2,
                     Name = "casque PS4",
-                    Type = "Accessoire PS4",
+                    Type = Type.PeripheriqueConsole,
                     State = State.Acceptable,
                     AccountOwnerId = 2,
                     InventoryBorrowerId = 1
                 });
+
 
             this.Profils.AddRange(
                 new Profile()
@@ -149,6 +151,7 @@ namespace Projet2.Models
                     Bio = "Je ne suis pas",
                     Games = "Call of Duty",
                 });
+
 
 
 
