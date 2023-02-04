@@ -696,7 +696,7 @@ namespace Projet2.Models
         {
             Inventory inventory= new Inventory( );
             List<Stuff> inventoryContent = new List<Stuff> ( );
-            foreach (Stuff stuffs in _bddContext.Stuff) { 
+            foreach (Stuff stuffs in _bddContext.Stuffs) { 
              GetStuffs().Where(r => r.InventoryId == inventory.Id).FirstOrDefault();
                 inventoryContent.Add( stuffs );
             }
@@ -874,17 +874,37 @@ namespace Projet2.Models
         /////////////////STUFF
         ///
 
-        public List<Stuff> GetStuffs()
+        //JE PENSE QU'ON PEUX LA SUPPRIMER
+        //public Stuff CreateStuff(string name, string descritption, Type type, State state)
+        //{
+        //    Stuff stuff = new Stuff()
+        //    {
+        //        Name = name,
+        //        Description = descritption,
+        //        Type = type,
+        //        State = state
+        //    };
+
+        //    _bddContext.Stuffs.Add(stuff);
+
+        //    _bddContext.SaveChanges();
+        //    return stuff;
+
+        //}
+
+        public Stuff CreateStuff(Stuff stuff)
         {
-            return _bddContext.Stuff.ToList();
+            _bddContext.Stuffs.Add(stuff);
+            _bddContext.SaveChanges();
+            return stuff;
         }
- public List<Stuff> GetStuff()
+        public List<Stuff> GetStuffs()
         {
             return _bddContext.Stuffs.ToList();
         }
 
 
-        public void EditStuff(int id, string name, string type, State state, int profilId, int inventoryId)
+        public void EditStuff(int id, string name, Type type, State state, int profilId, int inventoryId)
         {
             Stuff stuff = _bddContext.Stuffs.Find(id);
             if (stuff != null)
@@ -924,29 +944,7 @@ namespace Projet2.Models
         }
         
         
-         public int CreateStuff(string name, string type, State state, int profilId, int inventoryId)
-        {
-            Stuff stuff = new Stuff()
-            {
-                Name=name,
-                Type=type,
-                State=state,
-                ProfileId=profilId,
-                InventoryId=inventoryId
-            };
 
-            _bddContext.Stuffs.Add(stuff);
-
-            _bddContext.SaveChanges();
-            return stuff.Id;
-
-        }
-
-        public void CreateStuff(Stuff stuff)
-        {
-            _bddContext.Stuffs.Add(stuff);
-            _bddContext.SaveChanges();
-        }
 
         
         public void RemoveStuff(Stuff stuff)

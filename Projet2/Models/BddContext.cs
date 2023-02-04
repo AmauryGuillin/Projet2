@@ -30,10 +30,10 @@ namespace Projet2.Models
         public DbSet<Profile> Profils { get; set; }
         public DbSet<Slot> Slot { get; set; }
         public DbSet<SportAssociation> SportAssociation { get; set; }
-        public DbSet<Stuff> Stuff { get; set; }
         public DbSet<Team> Teams { get; set; }
         public DbSet<Coaching> Training { get; set; } 
         public DbSet<Stuff> Stuffs { get; set; }
+        public DbSet<ReservationStuff> reservationsStuffs { get; set; }
 
         public DbSet<Publication> Publications { get; set; }
         public void InitializeDb()
@@ -118,7 +118,7 @@ namespace Projet2.Models
                 {
                     Id = 1,
                     Name = "ordinateur",
-                    Type = "informatique",
+                    Type = Type.Ordinateur,
                     State = State.Neuf,
                     ProfileId = null,
                     InventoryId = null
@@ -127,16 +127,11 @@ namespace Projet2.Models
                 {
                     Id = 2,
                     Name = "casque PS4",
-                    Type = "Accessoire PS4",
+                    Type = Type.PeripheriqueConsole,
                     State = State.Acceptable,
                     ProfileId = null,
                     InventoryId = null
                 });
-
-
-
-
-
 
             this.Benevoles.AddRange(
                 new Benevole() { Id = 1, AccountId = null, NbActionVolunteering = 15 },
