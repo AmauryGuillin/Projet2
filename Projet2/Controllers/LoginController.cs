@@ -16,7 +16,7 @@ namespace Projet2.Controllers
         }
         public IActionResult Login()
         {
-            AccountViewModel viewModel = new AccountViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
+            LoginViewModel viewModel = new LoginViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
             if (viewModel.Authentificate == true)
             {
                 viewModel.Account = dal.GetAccount(HttpContext.User.Identity.Name);
@@ -26,7 +26,7 @@ namespace Projet2.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(AccountViewModel viewModel, string returnUrl)
+        public IActionResult Login(LoginViewModel viewModel, string returnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -55,33 +55,41 @@ namespace Projet2.Controllers
         }
 
 
-        public IActionResult CreateAccount()
-        {
-            return View();
-        }
+        //public IActionResult CreateAccount()
+        //{
+        //    LoginViewModel accountViewModel = new LoginViewModel();
+        //    return View(accountViewModel);
+        //}
 
 
-        [HttpPost]
-        public IActionResult CreateAccount(Account account)
-        {
-            if (ModelState.IsValid)
-            {
-                Account accountCreated = dal.AddAccount(account.Username, account.Password);
+        //[HttpPost]
+        //public IActionResult CreateAccount(LoginViewModel accountViewModel)
+        //{
+        //    accountViewModel= new LoginViewModel();
+        //    if (accountViewModel.Authentificate==true)
+        //    {
+        //        Account accountCreated = dal.AddAccount(accountViewModel.Account.Username, accountViewModel.Account.Password);
+                
+                
+        //        Benevole benevole= dal.CreateNewBenevole(accountCreated.Id);
 
-                var userClaims = new List<Claim>()
-                {
-                    new Claim(ClaimTypes.Name, accountCreated.Id.ToString()),
-                };
+        //        var userClaims = new List<Claim>()
+        //        {
+        //            new Claim(ClaimTypes.Name, accountCreated.Id.ToString()),
+        //        };
 
-                var ClaimIdentity = new ClaimsIdentity(userClaims, "User Identity");
+        //        var ClaimIdentity = new ClaimsIdentity(userClaims, "User Identity");
 
-                var userPrincipal = new ClaimsPrincipal(new[] { ClaimIdentity });
-                HttpContext.SignInAsync(userPrincipal);
+        //        var userPrincipal = new ClaimsPrincipal(new[] { ClaimIdentity });
+        //        HttpContext.SignInAsync(userPrincipal);
 
-                return RedirectToAction("EditProfile", "Profile", new {id= accountCreated.ProfileId, accountCreated.ContactId ,accountCreated.infoPerso, accountCreated.InventoryId});
-            }
-            return View(account);
-        }
+        //        return RedirectToAction("EditProfile", "Profile", new {id= accountCreated.ProfileId, accountCreated.ContactId ,accountCreated.infoPerso, accountCreated.InventoryId,benevole.Id});
+        //    }
+        //    return View(accountViewModel);
+        //}
+
+
+
 
         public ActionResult Deconnexion()
         {

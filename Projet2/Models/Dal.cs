@@ -1,4 +1,5 @@
-﻿using Projet2.Models.Informations;
+﻿using MySql.Data.MySqlClient;
+using Projet2.Models.Informations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,10 +62,10 @@ namespace Projet2.Models
         /// /// <param name="profileid">account's associated profile Id </param>
         /// <returns>account.Id</returns>
 
-        public int CreateAccount(int id, string username, string password, int profileid)/// Dans le create Account, Profile Id= createProfile();
+        public int CreateAccount(int id, string username, string password)/// Dans le create Account, Profile Id= createProfile();
         {
 
-            Account account = new Account() { Id = id, Username = username, Password = password, ProfileId = CreateProfile() };
+            Account account = new Account() { Id = id, Username = username, Password = password, ProfileId = CreateProfile(), InventoryId =  CreateInventory()};
 
 
             _bddContext.Account.Add(account);
@@ -110,7 +111,14 @@ namespace Projet2.Models
         {
             string wordpass = EncodeMD5(password);
             //idProfile= CreateProfile();
-            Account account = new Account() { Username = username, Password = wordpass, Profile = new Profile(), Contact = new Informations.Contact(), infoPerso = new InfoPerso(), Inventory = new Inventory() };
+            Account account = new Account() { 
+                Username = username,
+                Password = wordpass, 
+                Profile = new Profile(),
+                Contact = new Informations.Contact(),
+                infoPerso = new InfoPerso(), 
+                Inventory = new Inventory()
+            };
             this._bddContext.Account.Add(account);
             this._bddContext.SaveChanges();
             return account;
@@ -175,7 +183,7 @@ namespace Projet2.Models
         /// <param name="adhesionId"></param>
         /// <param name="coachingId"></param>
         /// <returns>adherent.Id</returns>
-        public int CreateAdherent(int benevoleId, int numAdherent, DateTime inscriptiondate, Double contribution, string idDocuments, int teamId, int adhesionId, int coachingId)
+        public int CreateAdherent( int benevoleId, int numAdherent, DateTime inscriptiondate, Double contribution, string idDocuments, int teamId, int adhesionId, int coachingId)
         {
             Adherent adherent = new Adherent()
             {
@@ -193,6 +201,21 @@ namespace Projet2.Models
 
             _bddContext.SaveChanges();
             return adherent.Id;
+
+        }
+        public Adherent CreateNewAdherent(int accountid)
+        {
+            Adherent adherent = new Adherent()
+            {
+                AccountId = accountid,
+                Benevole = new Benevole() { AccountId= accountid},
+                Adhesion = new Adhesion() { Contribution = new Contribution() },
+            };
+            
+            _bddContext.Adherents.Add(adherent);
+
+            _bddContext.SaveChanges();
+            return adherent;
 
         }
         /// <summary>
@@ -301,6 +324,16 @@ namespace Projet2.Models
             _bddContext.SaveChanges();
             return adhesion.Id;
         }
+        public Adhesion CreateNewAdhesion()
+        {
+            Adhesion adhesion = new Adhesion()
+            {
+                ContributionId= CreateNewContribution().Id
+            };
+            _bddContext.Adhesions.Add(adhesion);
+            _bddContext.SaveChanges();
+            return adhesion;
+        }
 
         /// <summary>
         /// This method creates an Adhesion in the SQL database with an Adhesion
@@ -387,6 +420,22 @@ namespace Projet2.Models
             _bddContext.SaveChanges();
 
             return benevole.Id;
+        }
+
+        public Benevole CreateNewBenevole(int accountId)
+
+        {
+            int nbActionVolunteering = 0;
+            Benevole benevole = new Benevole() { 
+                AccountId = accountId, 
+                NbActionVolunteering = nbActionVolunteering 
+            };
+
+            _bddContext.Benevoles.Add(benevole);
+
+            _bddContext.SaveChanges();
+
+            return benevole;
         }
 
         /// <summary>
@@ -500,7 +549,15 @@ namespace Projet2.Models
 
         /////////////////CONTRIBUTION
         ///
+        public Contribution CreateNewContribution()
+        {
+            Contribution contribution = new Contribution();
+            _bddContext.Contributions.Add(contribution);
+            _bddContext.SaveChanges();
+            return contribution;
 
+        }
+    
 
         /// <summary>
         /// This method creates an Contribution in the SQL database with all attributes
@@ -511,13 +568,13 @@ namespace Projet2.Models
         /// <param name="prelevementDate"></param>
         /// <param name="contributionType"></param>
         /// <returns>contribution.Id</returns>
-        public int CreateContribution(int id, bool paymentStatus, double totalCount, PrelevementDate prelevementDate, ContributionType contributionType)
+        public int CreateContribution(int id, bool paymentStatus, PrelevementDate prelevementDate, ContributionType contributionType)
         {
             Contribution contribution = new Contribution()
             {
                 Id = id,
                 PaymentStatus = paymentStatus,
-                TotalCount = totalCount,
+               
                 PrelevementDate = prelevementDate,
                 ContributionType = contributionType
             };
@@ -553,13 +610,13 @@ namespace Projet2.Models
         /// <param name="totalCount"></param>
         /// <param name="prelevementDate"></param>
         /// <param name="contributionType"></param>
-        public void EditContribution(int id, bool paymentStatus, double totalCount, PrelevementDate prelevementDate, ContributionType contributionType)
+        public void EditContribution(int id, bool paymentStatus,  PrelevementDate prelevementDate, ContributionType contributionType)
         {
             Contribution contribution = _bddContext.Contributions.Find(id);
             if (contribution != null)
             {
                 contribution.PaymentStatus = paymentStatus;
-                contribution.TotalCount = totalCount;
+              
                 contribution.PrelevementDate = prelevementDate;
                 contribution.ContributionType = contributionType;
                 _bddContext.SaveChanges();
@@ -600,6 +657,8 @@ namespace Projet2.Models
             _bddContext.SaveChanges();
         }
 
+        /////////////////EMPLOYEE
+        ///
 
         public int CreateEmployee(string serialNumber, string jobName, DateTime dateOfEmployement, int accountId)
 
@@ -657,7 +716,12 @@ namespace Projet2.Models
         /////////////////GAMES
 
         /////////////////INVENTORY
-        ///
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="stuffs"></param>
+        /// <returns></returns>
         public int EditInventory(int id, List<Stuff> stuffs)
         {
             Inventory inventory = this._bddContext.Inventory.Find(id);
@@ -667,6 +731,14 @@ namespace Projet2.Models
                
                 _bddContext.SaveChanges();
             }
+            return inventory.Id;
+        }
+        public int CreateInventory()
+        {
+
+            Inventory inventory = Inventory.CreateInventory();
+            _bddContext.Inventory.Add(inventory);
+            _bddContext.SaveChanges();
             return inventory.Id;
         }
         public int EditInventory(Inventory inventory)
@@ -692,8 +764,22 @@ namespace Projet2.Models
         {
             return _bddContext.Inventory.ToList();
         }
-        public List<Stuff> GetInventoryContent()
+        public List<Stuff> GetBorrowerStuff(int accountid)
         {
+
+            int inventoryid = _bddContext.Account.Where(a => a.Id == accountid).FirstOrDefault().InventoryId.Value;
+            List<Stuff> stuffContent = _bddContext.Stuffs.Where(s => s.InventoryBorrowerId == inventoryid).ToList();
+            
+            return stuffContent;
+        }
+        
+        public List<Stuff> GetOwnedStuff(int accountid)
+        {
+            
+            List<Stuff> stuffOwned = _bddContext.Stuffs.Where(s => s.AccountOwnerId== accountid).ToList();
+
+            return stuffOwned;
+
             Inventory inventory= new Inventory( );
             List<Stuff> inventoryContent = new List<Stuff> ( );
             foreach (Stuff stuffs in _bddContext.Stuffs) { 
@@ -701,6 +787,7 @@ namespace Projet2.Models
                 inventoryContent.Add( stuffs );
             }
             return inventoryContent;
+
         }
 
 
@@ -874,23 +961,6 @@ namespace Projet2.Models
         /////////////////STUFF
         ///
 
-        //JE PENSE QU'ON PEUX LA SUPPRIMER
-        //public Stuff CreateStuff(string name, string descritption, Type type, State state)
-        //{
-        //    Stuff stuff = new Stuff()
-        //    {
-        //        Name = name,
-        //        Description = descritption,
-        //        Type = type,
-        //        State = state
-        //    };
-
-        //    _bddContext.Stuffs.Add(stuff);
-
-        //    _bddContext.SaveChanges();
-        //    return stuff;
-
-        //}
 
         public Stuff CreateStuff(Stuff stuff)
         {
@@ -898,13 +968,17 @@ namespace Projet2.Models
             _bddContext.SaveChanges();
             return stuff;
         }
+        
         public List<Stuff> GetStuffs()
+
         {
             return _bddContext.Stuffs.ToList();
         }
 
 
-        public void EditStuff(int id, string name, Type type, State state, int profilId, int inventoryId)
+
+        public void EditStuff(int id, string name, string type, State state, int accountid, int inventoryId)
+
         {
             Stuff stuff = _bddContext.Stuffs.Find(id);
             if (stuff != null)
@@ -912,8 +986,8 @@ namespace Projet2.Models
                 stuff.Name= name;
                 stuff.Type= type;
                 stuff.State= state;
-                stuff.ProfileId= profilId;
-                stuff.InventoryId= inventoryId;
+                stuff.AccountOwnerId= accountid;
+                stuff.InventoryBorrowerId= inventoryId;
                 _bddContext.SaveChanges();
             }
         }
@@ -943,7 +1017,18 @@ namespace Projet2.Models
 
         }
         
-        
+
+         public int CreateStuff(string name, string type, State state, int accountId, int inventoryId)
+        {
+            Stuff stuff = new Stuff()
+            {
+                Name=name,
+                Type=type,
+                State=state,
+                AccountOwnerId=accountId,
+                InventoryBorrowerId =inventoryId
+            };
+
 
 
         

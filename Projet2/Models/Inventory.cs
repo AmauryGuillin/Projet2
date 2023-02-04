@@ -11,5 +11,12 @@ namespace Projet2.Models
         //rajouter dans compte inventaire en Fk
         public int nbStuff { get; set; }
 
+
+        public static Inventory CreateInventory()
+        {
+            Inventory inventory = new Inventory { };
+
+            return inventory;
+        }
     }
 }

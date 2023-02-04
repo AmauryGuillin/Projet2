@@ -30,6 +30,7 @@ namespace Projet2.Models
         public DbSet<Profile> Profils { get; set; }
         public DbSet<Slot> Slot { get; set; }
         public DbSet<SportAssociation> SportAssociation { get; set; }
+
         public DbSet<Team> Teams { get; set; }
         public DbSet<Coaching> Training { get; set; } 
         public DbSet<Stuff> Stuffs { get; set; }
@@ -51,7 +52,7 @@ namespace Projet2.Models
                 {
                     Id = 1,
                     PaymentStatus = true,
-                    TotalCount = 600.25,
+                   
                     PrelevementDate = PrelevementDate.CinqDuMois,
                     ContributionType = ContributionType.Mensuel
                 },
@@ -59,7 +60,7 @@ namespace Projet2.Models
                 {
                     Id = 2,
                     PaymentStatus = false,
-                    TotalCount = 800.33,
+                   
                     PrelevementDate = PrelevementDate.VingtCingDuMois,
                     ContributionType = ContributionType.Annuel
                 });
@@ -120,8 +121,8 @@ namespace Projet2.Models
                     Name = "ordinateur",
                     Type = Type.Ordinateur,
                     State = State.Neuf,
-                    ProfileId = null,
-                    InventoryId = null
+                    AccountOwnerId = 1,
+                    InventoryBorrowerId = 2
                 },
                 new Stuff()
                 {
@@ -129,16 +130,38 @@ namespace Projet2.Models
                     Name = "casque PS4",
                     Type = Type.PeripheriqueConsole,
                     State = State.Acceptable,
-                    ProfileId = null,
-                    InventoryId = null
+                    AccountOwnerId = 2,
+                    InventoryBorrowerId = 1
                 });
+
+
+            this.Profils.AddRange(
+                new Profile()
+                {
+                    Id = 1,
+                    ProfilImage="ser",
+                    Bio="Je pense donc je suis",
+                    Games ="Final Fantasy",
+                   
+                },
+                new Profile()
+                {
+                    Id = 2,
+                    ProfilImage = "erty",
+                    Bio = "Je ne suis pas",
+                    Games = "Call of Duty",
+                });
+
+
+
+
 
             this.Benevoles.AddRange(
                 new Benevole() { Id = 1, AccountId = null, NbActionVolunteering = 15 },
                 new Benevole() { Id = 2, AccountId = null, NbActionVolunteering = 3 }
                 );
 
-            this.Account.Add(
+            this.Account.AddRange(
                 new Account()
                 {
                     Id = 1,
@@ -148,7 +171,31 @@ namespace Projet2.Models
                     ContactId = null,
                     PlanningId = null,
                     SportAssociationId = null,
-                    InventoryId = null
+                    ProfileId=1,
+                    InventoryId = 1
+                },
+                new Account()
+                {
+                    Id = 2,
+                    Username = "TATA",
+                    Password = "12345",
+                    InfoPersoId = null,
+                    ContactId = null,
+                    PlanningId = null,
+                    SportAssociationId = null,
+                    ProfileId=2,
+                    InventoryId = 2
+                } );
+            this.Inventory.AddRange(
+                new Inventory()
+                {
+                    Id = 1,
+                    nbStuff = 0
+                },
+                new Inventory()
+                {
+                    Id = 2,
+                    nbStuff = 0
                 });
 
             this.Employees.AddRange(
@@ -257,6 +304,9 @@ namespace Projet2.Models
                     EndDate= DateTime.Now,
                     SlotID= null,
                 });
+
+
+            
                 
             this.SaveChanges();
 

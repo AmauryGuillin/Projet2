@@ -12,6 +12,6 @@ namespace Projet2.ViewModels
         public InfoPerso infos { get; set; }
         public Inventory inventory { get; set; }
         public Stuff stuff { get; set; }
-       
+
     }
 }

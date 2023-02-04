@@ -8,9 +8,9 @@ namespace Projet2.Models
         public int Id { get; set; }
         public int? BenevoleId { get; set; }
         public virtual Benevole Benevole { get; set; }
-        [Required]
+        //[Required]
         public int NumAdherent { get; set; }
-        [Required]
+        //[Required]
         public DateTime InscriptionDate { get; set; }
         public Double Contribution { get; set; }
 
@@ -22,6 +22,9 @@ namespace Projet2.Models
 
         public int? CoachingId { get; set; }
         public virtual Coaching Coaching { get;set; }
+
+        public int? AccountId { get; set; }
+        public virtual Account Account { get; set; }
 
     }
     
