@@ -109,13 +109,28 @@ namespace Projet2.Models
                     Level = Level.Galadriel 
                 });
 
-            this.Games.Add(
+            this.Games.AddRange(
                 new Game()
                 {
                     Id = 1,
                     GameType = "console",
                     GameList = GameList.Mk
-                });
+                },
+                
+                new Game()
+                {
+                    Id = 2,
+                    GameType = "PC",
+                    GameList = GameList.Lol
+                },
+
+                new Game()
+                {
+                    Id = 3,
+                    GameType = "PC/Console",
+                    GameList = GameList.Stf
+                }
+                );
 
 
             this.Stuffs.AddRange(
@@ -580,6 +595,17 @@ namespace Projet2.Models
                     EndDate = DateTime.Now,
                     AssociationActivityId = 10,
                 });
+
+            this.Tournaments.AddRange(
+                new Tournament()
+                {
+                    Id = 1,
+                    FinalScore= "1 - 3",
+                    Reward="100€",
+                    GameId= 1,
+                    AssociationActivityId= 1,
+                }
+                );
                 
             this.SaveChanges();
 
