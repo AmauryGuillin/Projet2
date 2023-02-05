@@ -697,6 +697,10 @@ namespace Projet2.Models
                 //dal.CreateTournament("1 - 2", 1, "0€", 3, 9);
                 //dal.EditTournament(5, "1 - 2", 1, "50€", 3, 9);
                 //dal.RemoveTournament(5);
+
+                //dal.CreateEvent("thème 3", 6, 10);
+                //dal.EditEvent(3, "thème 3 MODIF", 6, 10);
+                //dal.RemoveEvent(3);
             }
 
         }
