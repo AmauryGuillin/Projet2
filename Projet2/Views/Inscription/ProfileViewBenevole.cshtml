@@ -1,0 +1,104 @@
+﻿@model Projet2.ViewModels.InscriptionViewModel
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href=" ./Css/Profile.css" rel="stylesheet" />
+@{
+    Layout ="_LayoutGeneral";
+}
+<head>
+<title>
+@*   Profile @User.Identity*@
+</title>
+  
+</head>
+@*<style>
+    body {
+        background-image: url("./T2.jpg");
+        background-position: center;
+    }
+</style>*@
+
+
+@*@Html.HiddenFor(n=>n.stuff.Id)*@
+
+    <body class="body">
+
+  @Html.HiddenFor(m=>m.Account.Id)
+    @Html.HiddenFor(m=>m.Account.ProfileId)
+    @Html.HiddenFor(m=>m.Account.ContactId)
+    @Html.HiddenFor(m=>m.Account.InfoPersoId)
+    @Html.HiddenFor(n=>n.Inventory.Id)
+               @* <a class="navbar-brand" href="#">
+                    <img src="./YagamiPIC.jpg" alt="Logo" style="width:50px;">
+                  </a> *@
+                  <div class=" profileMenu">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Messagerie</a>
+              </li>
+
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Forum</a>
+            </li>
+              <li class="nav-item ">
+                <a class="nav-link active" href="#">Paramètres du compte</a>
+             
+            <li class="nav-item ">
+                <a class="nav-link active" href="#">Ajouter du materiel</a>
+            </li>
+           
+            <li class="nav-item ">
+                @Html.ActionLink("Se deconnecter", "Deconnexion")
+            </li>
+        </ul>
+    </div>
+    
+
+    <h1> Bienvenue sur votre profil @Model.Account.Username </h1>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="column1">
+                <section class="SectionDescription">
+                    <div class="Text">
+                        
+                        
+                        <h2>Details personnnels</h2>
+                        <h3>Nom: @Model.Infos.LastName</h3> <h3 class="spec"> </h3>
+                        <h3> Prenom: @Model.Infos.FirstName </h3> <h3 class="spec"> </h3>
+                        
+                        <h3>Date de naissance:@Model.Infos.Birthday </h3><h3 class="spec">28 fÃ©vrier 1986</h3>
+                        <h3>Adresse mail : @Model.Contact.EmailAdress</h3>
+                    </div>
+                </section>
+            </div>
+            <div class="column2">
+                <section class="SectionContenu">
+                    <fieldset id="FS1">
+                        <legend class="leg"> Bio</legend>
+                        <p> @Model.Profile.Bio</p>
+                    </fieldset>
+                    <fieldset id="FS2">
+                        <legend class="leg"> Mes Jeux preferés: </legend>
+                        <p>@Model.Profile.Games </p>
+                    </fieldset>
+                    <fieldset id="FS3">
+                        <legend class="leg"> CompÃ©tences techniques</legend>
+                        <p>
+                            Light
+                            GrÃ¢ce au Death Note, il est capable de tuer n'importe qui (exceptÃ© les shinigami), pour peu qu'il connaisse le nom et le visage de sa victime.
+                        </p>
+                    </fieldset>
+                    <fieldset id="FS4">
+                        <legend class="leg"> Autres compÃ©tences </legend>
+                        <p>Light parvient Ã ler Rem, le Shinigami liÃ© au Death Note de Misa. Il atteindra'elle Ã©crive le nom de L dans son carnet.</p>
+                    </fieldset>
+
+                </section>
+            </div>
+        </div>
+    </div>
+
+  
+
+    @Html.ActionLink("Voulez-vous vous déconnecter ?", "Deconnexion")
+</body>
+

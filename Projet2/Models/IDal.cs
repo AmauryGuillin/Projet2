@@ -23,7 +23,7 @@ namespace Projet2.Models
         int CreateContribution(int id, bool paymentStatus, PrelevementDate prelevementDate, ContributionType contributionType);
         void EditContribution(int id, bool paymentStatus, PrelevementDate prelevementDate, ContributionType contributionType);
         void RemoveContribution(int id);
-        int CreateAdhesion(int id, int contributionId, DateTime Echeance, AdhesionStatus adhesionStatus);
+        //int CreateAdhesion(int contributionId, DateTime Echeance, AdhesionStatus adhesionStatus);
         void EditAdhesion(int id, int contributionId, DateTime Echeance, AdhesionStatus adhesionStatus);
         void RemoveAdhesion(int id);
         int CreateTeam(int id, string name, int gameId, DateTime creationDate, int NbAdherent);
@@ -63,7 +63,7 @@ namespace Projet2.Models
         public void EditActivity(Activity activity);
         public void RemoveActivity(int id);
 
-
+        public Account AddAccount(string username, string password, int contactId, int infopersoId, int profileId);
 
 
     }

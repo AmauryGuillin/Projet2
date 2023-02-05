@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.IO;
 
 namespace Projet2.Models
@@ -9,7 +11,9 @@ namespace Projet2.Models
         public int Id { get; set; }
 
         [Display(Name = "Choisissez une image de profil")]
-        public string ProfilImage { get; set; }
+        public string ImagePath { get; set; }
+        [NotMapped]
+        public IFormFile ProfilImage { get; set; }
 
         [MaxLength(50)]
         //[Required]

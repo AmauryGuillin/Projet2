@@ -1,10 +1,24 @@
-﻿using Projet2.Models;
-using Projet2.Models.Informations;
+﻿using Projet2.Models.Informations;
+using Projet2.Models;
 using System.Collections.Generic;
 
 namespace Projet2.ViewModels
 {
-    public class ProfileViewModel
+
+    public enum ContributionType
+    {
+        Annuel,
+        Trimestriel,
+        Mensuel
+    }
+
+    public enum PrelevementDate
+    {
+        CinqDuMois,
+        QuinzeDuMoi,
+        VingtCingDuMois
+    }
+    public class InscriptionViewModel
     {
         public Account Account { get; set; }
         public bool Authentificate { get; set; }
@@ -14,10 +28,14 @@ namespace Projet2.ViewModels
         public Adhesion Adhesion { get; set; }
 
         public Contribution Contribution { get; set; }
-        public List<ContributionType> contributionTypes { get; set; }
+      
         public Contact Contact { get; set; }
         public Profile Profile { get; set; }
         public InfoPerso Infos { get; set; }
         public Inventory Inventory { get; set; }
+
+        public PrelevementDate PrelevementDate { get; set;}
+        public ContributionType ContributionType { get; set; }
+
     }
 }
