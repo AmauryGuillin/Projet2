@@ -27,6 +27,7 @@
     @Html.HiddenFor(m=>m.Account.ContactId)
     @Html.HiddenFor(m=>m.Account.InfoPersoId)
     @Html.HiddenFor(n=>n.Inventory.Id)
+    @Html.HiddenFor(model=>model.Profile.ImagePath)
     @* <a class="navbar-brand" href="#">
     <img src="./YagamiPIC.jpg" alt="Logo" style="width:50px;">
     </a> *@
@@ -60,6 +61,27 @@
         <div class="row">
             <div class="column1">
                 <section class="SectionDescription">
+@*@using (Html.BeginForm("EditProfilePic", "Inscription", FormMethod.Post, new { enctype = "multipart/form-data" }))*@
+{
+
+                        @Html.HiddenFor(m=>m.Account.Id)
+                        @Html.HiddenFor(m=>m.Profile.Id)
+                        @Html.HiddenFor(n=>n.Contact.Id)
+                        @Html.HiddenFor(n=>n.Infos.Id)
+                        @Html.HiddenFor(n=>n.Inventory.Id)
+                        @Html.HiddenFor(m=> m.Profile.ImagePath)
+
+                    <div class="form-floating mb-3">
+                        <div>
+                                @Html.LabelFor(model => model.Profile.ProfilImage, new { id = "imageLabel", @style = "text-align:center;" })
+                                @Html.TextBoxFor(model => model.Profile.ProfilImage, new { placeholder = "Description", @type = "file" })
+                        </div>
+                    </div>
+                    <div class="text-center">
+                            <img src="@Model.Profile.ImagePath" height="400" width="400" />
+                        </div>
+
+}
                     <div class="Text">
 
 

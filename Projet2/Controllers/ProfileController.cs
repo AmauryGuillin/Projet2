@@ -6,6 +6,9 @@ using System.Security.Claims;
 using System.Linq;
 using Projet2.Models.Informations;
 using Projet2.ViewModels;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
+using System;
 
 namespace Projet2.Controllers
 {
@@ -13,9 +16,11 @@ namespace Projet2.Controllers
     {
 
         private Dal dal;
-        public ProfileController()
+        private IWebHostEnvironment _webEnv;
+        public ProfileController(IWebHostEnvironment environment)
         {
-            dal = new Dal();
+            _webEnv = environment;
+            this.dal = new Dal();
         }
         public IActionResult EditProfile(int id)
         {
@@ -44,7 +49,29 @@ namespace Projet2.Controllers
             dal.EditInventory(profilevm.Inventory);
             return View("ProfileView",profilevm);
         }
-    
+
+        public IActionResult EditProfilePIC()
+        {
+            ProfileViewModel profilevm = new ProfileViewModel();
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult EditProfilePIC(ProfileViewModel profilevm)
+        {
+            
+                    string uploads = Path.Combine(_webEnv.WebRootPath, "images");
+                    string filePath = Path.Combine(uploads, profilevm.Profile.ProfilImage.FileName);
+                    using (Stream fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        profilevm.Profile.ProfilImage.CopyTo(fileStream);
+                    }
+                    dal.EditProfilePIC("/images/" + profilevm.Profile.ProfilImage.FileName,profilevm.Profile.Id);
+              
+            return View();
+        }
+
+
 
 
         public ActionResult Deconnexion()

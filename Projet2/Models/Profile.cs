@@ -15,6 +15,9 @@ namespace Projet2.Models
         [NotMapped]
         public IFormFile ProfilImage { get; set; }
 
+
+        public byte[] UserPhoto { get; set; }
+
         [MaxLength(50)]
         //[Required]
 

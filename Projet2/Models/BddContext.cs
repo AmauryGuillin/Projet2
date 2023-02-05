@@ -137,7 +137,7 @@ namespace Projet2.Models
                 new Profile()
                 {
                     Id = 1,
-                    ProfilImage="ser",
+                    ImagePath="ser",
                     Bio="Je pense donc je suis",
                     Games ="Final Fantasy",
                    
@@ -145,7 +145,7 @@ namespace Projet2.Models
                 new Profile()
                 {
                     Id = 2,
-                    ProfilImage = "erty",
+                    ImagePath = "erty",
                     Bio = "Je ne suis pas",
                     Games = "Call of Duty",
                 });

@@ -3,6 +3,7 @@ using Projet2.Models.Informations;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Runtime.Intrinsics.X86;
 using System.Security.Cryptography;
@@ -931,14 +932,19 @@ namespace Projet2.Models
 
         /////////////////PROFILE
 
+        public void UploadProfileImage()
+        {
+           
+        }
         public Profile AddProfile(string profilImage, string Bio, string games)
         {
             Profile profile = new Profile()
             {
-                ProfilImage = profilImage,
+                ImagePath = profilImage,
                 Bio = Bio,
                 Games = games,
-                Chat=new Chat()
+                Chat=new Chat(),
+                
             };
             this._bddContext.Profils.Add(profile);
             this._bddContext.SaveChanges();
@@ -988,7 +994,7 @@ namespace Projet2.Models
             Profile profile = this._bddContext.Profils.Find(id);
             if (profile != null)
             {
-                profile.ProfilImage = imagePath;
+                profile.ImagePath = imagePath;
                 profile.Bio = Bio;
                 profile.Games = games;
                 _bddContext.SaveChanges();
@@ -1191,26 +1197,37 @@ namespace Projet2.Models
             _bddContext.Teams.Remove(team);
             _bddContext.SaveChanges();
         }
-    
 
-
- 
-
-
-       
-
-
-
-
-     
-
-       
-
-        
+        internal void EditProfilePIC(string imagePath,int id)
+        {
+            Profile profilToUpdate = this._bddContext.Profils.Find(id);
+            if (profilToUpdate != null)
+            {
+                profilToUpdate.ImagePath= imagePath;
+                this._bddContext.SaveChanges();
+            }
+            
+        }
 
 
 
-       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

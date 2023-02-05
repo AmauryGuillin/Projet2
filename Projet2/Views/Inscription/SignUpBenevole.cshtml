@@ -12,7 +12,7 @@
     Veuillez Remplir les champs pour créer voter compte Benevole :
     InscritptionBenevole
 </p>
-@using (Html.BeginForm())
+@using (Html.BeginForm("SignUpBenevole", "Inscription", FormMethod.Post, new { enctype = "multipart/form-data"  }))
 {
     @Html.HiddenFor(m=>m.Account.Id)
     @Html.HiddenFor(m=>m.Profile.Id)
@@ -101,13 +101,22 @@
             Remplissez votre profil :
         </legend>
         <section>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Profile.ProfilImage, new { id = "imageLabel", @style = "text-align:center;" })
+                @Html.TextBoxFor(model => model.Profile.ProfilImage, new { placeholder = "Description", @type = "file" })
+                <div class="col-md-10">
+                 
+                    
+
+                </div>
+            </div>
+
+
             <table>
                 <tbody>
-                    <tr>
-                        <td>@Html.LabelFor(m => m.Profile.ProfilImage)</td>
-                        <td> @Html.TextBoxFor(m => m.Profile.ProfilImage)</td>
-                        <td> @Html.ValidationMessageFor(m =>  m.Profile.ProfilImage)</td>
-                    </tr>
+                  
+                        
                     <tr>
                         <td>@Html.LabelFor(m => m.Profile.Bio)</td>
                         <td> @Html.TextAreaFor(m => m.Profile.Bio)</td>
@@ -130,5 +139,5 @@
 
 
     <input type="submit" value="Créer" class="BoutonValidationFormulaire" />
-   @* @Html.ActionLink("Créer un compte Bénevole", "CreateAccount")*@
+
 }

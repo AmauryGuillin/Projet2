@@ -1,20 +1,26 @@
 ﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
 using Projet2.Models;
 using Projet2.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace Projet2.Controllers
 {
     public class InscriptionController : Controller
     {
         private Dal dal;
-        public InscriptionController()
+        private IWebHostEnvironment _webEnv;
+        public InscriptionController(IWebHostEnvironment environment)
         {
-            dal = new Dal();
+            _webEnv = environment;
+            this.dal = new Dal();
         }
         public IActionResult SignUpBenevole()
         {
@@ -26,7 +32,14 @@ namespace Projet2.Controllers
 
         [HttpPost]
         public IActionResult SignUpBenevole(InscriptionViewModel inscriptionViewModel)
-        {
+        { 
+
+            string uploads = Path.Combine(_webEnv.WebRootPath, "images");
+            string filePath = Path.Combine(uploads, inscriptionViewModel.Profile.ProfilImage.FileName);
+            using (Stream fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                inscriptionViewModel.Profile.ProfilImage.CopyTo(fileStream);
+            }
             inscriptionViewModel.Contact =
                  dal.AddContact(
                      inscriptionViewModel.Contact.EmailAdress,
@@ -38,11 +51,13 @@ namespace Projet2.Controllers
                      inscriptionViewModel.Infos.LastName,
                      inscriptionViewModel.Infos.Birthday
                      );
+           
             inscriptionViewModel.Profile =
                 dal.AddProfile(
-                    inscriptionViewModel.Profile.ProfilImage,
+                    "/images/" + inscriptionViewModel.Profile.ProfilImage.FileName,
                     inscriptionViewModel.Profile.Bio,
                     inscriptionViewModel.Profile.Games
+                    
                     );
 
             inscriptionViewModel.Account =
@@ -63,7 +78,6 @@ namespace Projet2.Controllers
             var ClaimIdentity = new ClaimsIdentity(userClaims, "User Identity");
             var userPrincipal = new ClaimsPrincipal(new[] { ClaimIdentity });
             HttpContext.SignInAsync(userPrincipal);
-            //inscriptionViewModel.Account = dal.GetAccounts().Where(r => r.Id == inscriptionViewModel.Account.Id).FirstOrDefault();
 
             return View("ProfileViewBenevole", inscriptionViewModel);
            
@@ -92,6 +106,12 @@ namespace Projet2.Controllers
         [HttpPost]
         public IActionResult SignUpAdherent(InscriptionViewModel inscriptionViewModel)
         {
+            string uploads = Path.Combine(_webEnv.WebRootPath, "images");
+            string filePath = Path.Combine(uploads, inscriptionViewModel.Profile.ProfilImage.FileName);
+            using (Stream fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                inscriptionViewModel.Profile.ProfilImage.CopyTo(fileStream);
+            }
             inscriptionViewModel.Contact =
                  dal.AddContact(
                      inscriptionViewModel.Contact.EmailAdress,
@@ -103,9 +123,10 @@ namespace Projet2.Controllers
                      inscriptionViewModel.Infos.LastName,
                      inscriptionViewModel.Infos.Birthday
                      );
-            inscriptionViewModel.Profile =
+
+                inscriptionViewModel.Profile =
                 dal.AddProfile(
-                    inscriptionViewModel.Profile.ProfilImage,
+                    "/images/" + inscriptionViewModel.Profile.ProfilImage.FileName,
                     inscriptionViewModel.Profile.Bio,
                     inscriptionViewModel.Profile.Games
                     );
@@ -153,13 +174,7 @@ namespace Projet2.Controllers
 
             return View("ProfileViewAdherent", inscriptionViewModel);
 
-
-
         }
-
-
-
-
 
 
 
@@ -177,7 +192,26 @@ namespace Projet2.Controllers
 
         }
 
+        public IActionResult EditProfilePIC()
+        {
+            InscriptionViewModel ivm = new InscriptionViewModel();
+            return View();
+        }
 
+        [HttpPost]
+        public IActionResult EditProfilePIC(InscriptionViewModel ivm)
+        {
+             
+            string uploads = Path.Combine(_webEnv.WebRootPath, "images");
+            string filePath = Path.Combine(uploads, ivm.Profile.ProfilImage.FileName);
+            using (Stream fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                ivm.Profile.ProfilImage.CopyTo(fileStream);
+            }
+            dal.EditProfilePIC("/images/" + ivm.Profile.ProfilImage.FileName, ivm.Profile.Id);
+
+            return View();
+        }
         public ActionResult Deconnexion()
         {
             HttpContext.SignOutAsync();
