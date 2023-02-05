@@ -2,9 +2,11 @@
 {
     public class Tournament
     {
-        int Id { get; set; }
+        public int Id { get; set; }
         public string FinalScore { get; set; }
         public string Reward { get; set; }
+
+        public int? GameId { get; set; }
         public Game Game { get; set; }
 
         public int? AssociationActivityId { get; set; }

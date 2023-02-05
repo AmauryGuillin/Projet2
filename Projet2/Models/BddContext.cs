@@ -36,6 +36,7 @@ namespace Projet2.Models
         public DbSet<Stuff> Stuffs { get; set; }
         public DbSet<Publication> Publications { get; set; }
         public DbSet<VolunteeringActivity> VolunteeringActivities { get; set; }
+        public DbSet<Tournament> Tournaments { get; set; }
 
 
 
