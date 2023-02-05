@@ -674,6 +674,10 @@ namespace Projet2.Models
                 //dal.CreateVolunteeringActivity("Type 11", "Name 11", DateTime.Now, DateTime.Now, 11);
                 //dal.EditVolunteeringActivity(11, "Type 11 MODIF", "Name 11 MODIF", DateTime.Now, DateTime.Now, 11);
                 //dal.RemoveVolunteeringActivity(11);
+
+                dal.CreateTournament("1 - 2", 1, "0€", 3, 9);
+                dal.EditTournament(4, "1 - 2", 1, "50€", 3, 9);
+                dal.RemoveTournament(4);
             }
 
         }
