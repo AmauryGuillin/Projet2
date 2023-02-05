@@ -638,6 +638,24 @@ namespace Projet2.Models
                     AssociationActivityId = 4,
                 }
                 );
+
+            this.Events.AddRange(
+                new Event()
+                {
+                    Id = 1,
+                    Theme="thème 1",
+                    NumberOfParticipants=10,
+                    AssociationActivityId= 6,
+                },
+
+                new Event()
+                {
+                    Id = 2,
+                    Theme = "thème 2",
+                    NumberOfParticipants = 5,
+                    AssociationActivityId = 7,
+                }
+                );
                 
             this.SaveChanges();
 
