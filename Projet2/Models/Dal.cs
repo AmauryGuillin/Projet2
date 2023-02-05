@@ -1187,8 +1187,71 @@ namespace Projet2.Models
             _bddContext.SaveChanges();
         }
 
-        /////////////////VOLUNTEERING ACTIVITY
+        /////////////////TOURNAMENT
         
+        public int CreateTournament(string finalScore, int numberOfParticipants, string reward, int gameId, int associationActivityId)
+        {
+            Tournament tournament = new Tournament() 
+            {
+                FinalScore= finalScore,
+                NumberOfParticipants= numberOfParticipants,
+                Reward= reward,
+                GameId= gameId,
+                AssociationActivityId= associationActivityId
+            };
+            _bddContext.Tournaments.Add(tournament);
+            _bddContext.SaveChanges();
+            return tournament.Id;
+        }
+
+        public int CreateTournament(Tournament tournament)
+        {
+            _bddContext.Tournaments.Add(tournament);
+            _bddContext.SaveChanges();
+            return tournament.Id;
+        }
+
+        public void EditTournament(int id, string finalScore, int numberOfParticipants, string reward, int gameId, int associationActivityId)
+        {
+            Tournament tournament = _bddContext.Tournaments.Find(id);
+            if (tournament != null)
+            {
+                tournament.FinalScore = finalScore;
+                tournament.NumberOfParticipants = numberOfParticipants;
+                tournament.Reward = reward;
+                tournament.GameId = gameId;
+                tournament.AssociationActivityId = associationActivityId;
+                _bddContext.Tournaments.Update(tournament);
+                _bddContext.SaveChanges();
+            }
+        }
+
+        public void EditTournament(Tournament tournament)
+        {
+            _bddContext.Tournaments.Update(tournament);
+            _bddContext.SaveChanges();
+            
+        }
+
+        public void RemoveTournament(int id)
+        {
+            Tournament tournament = _bddContext.Tournaments.Find(id);
+            if (tournament != null)
+            {
+                _bddContext.Tournaments.Remove(tournament);
+                _bddContext.SaveChanges();
+            }
+        }
+
+        public void RemoveTournament(Tournament tournament)
+        {
+            _bddContext.Tournaments.Remove(tournament);
+            _bddContext.SaveChanges();
+        }
+
+
+        /////////////////VOLUNTEERING ACTIVITY
+
         public int CreateVolunteeringActivity(string type, string name, DateTime startDate, DateTime endDate, int associationActivity)
         {
             VolunteeringActivity volunteeringActivity = new VolunteeringActivity() 

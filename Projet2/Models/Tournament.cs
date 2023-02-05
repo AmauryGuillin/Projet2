@@ -4,6 +4,7 @@
     {
         public int Id { get; set; }
         public string FinalScore { get; set; }
+        public int NumberOfParticipants { get; set; }
         public string Reward { get; set; }
 
         public int? GameId { get; set; }

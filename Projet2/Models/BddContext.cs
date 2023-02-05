@@ -600,10 +600,41 @@ namespace Projet2.Models
                 new Tournament()
                 {
                     Id = 1,
-                    FinalScore= "1 - 3",
+                    FinalScore= "3 - 1",
+                    NumberOfParticipants = 1,
                     Reward="100€",
                     GameId= 1,
                     AssociationActivityId= 1,
+                },
+
+                new Tournament()
+                {
+                    Id = 2,
+                    FinalScore = "1 - 2",
+                    NumberOfParticipants = 5,
+                    Reward = "0€",
+                    GameId = 2,
+                    AssociationActivityId = 2,
+                },
+
+                new Tournament()
+                {
+                    Id = 3,
+                    FinalScore = "2 - 0",
+                    NumberOfParticipants = 5,
+                    Reward = "1000€",
+                    GameId = 2,
+                    AssociationActivityId = 2,
+                },
+
+                new Tournament()
+                {
+                    Id = 4,
+                    FinalScore = "2 - 1",
+                    NumberOfParticipants = 1,
+                    Reward = "200€",
+                    GameId = 3,
+                    AssociationActivityId = 4,
                 }
                 );
                 
