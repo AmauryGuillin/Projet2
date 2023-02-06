@@ -2,7 +2,7 @@
 
 namespace Projet2.Models
 {
-    public class ActiviteAssociation
+    public class AssociationActivity
     {
         public int Id { get; set; }
         public string Description { get; set; }
