@@ -777,10 +777,17 @@ namespace Projet2.Models
             return employee.Id;
         }
 
-        public void CreateEmployee(Employee employee)
+        public Employee CreateEmployee(int accountId)
         {
+            Employee employee = new Employee()
+            {
+                AccountId= accountId,
+                DateOfEmployement= DateTime.Now,
+            };
+
             _bddContext.Employees.Add(employee);
             _bddContext.SaveChanges();
+            return employee;
         }
 
         public void EditEmployee(int id, string serialNumber, string jobName, DateTime dateOfEmployement, int accountId)
@@ -942,13 +949,13 @@ namespace Projet2.Models
 
             return stuffOwned;
 
-            Inventory inventory= new Inventory( );
+            /*Inventory inventory= new Inventory( );
             List<Stuff> inventoryContent = new List<Stuff> ( );
             foreach (Stuff stuffs in _bddContext.Stuffs) { 
              GetStuffs().Where(r => r.InventoryBorrowerId == inventory.Id).FirstOrDefault();
                 inventoryContent.Add( stuffs );
             }
-            return inventoryContent;
+            return inventoryContent;*/
 
         }
 
