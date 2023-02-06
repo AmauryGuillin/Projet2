@@ -1,0 +1,79 @@
+﻿@model Projet2.ViewModels.AdherentViewModel
+@{
+    Layout = "_LayoutGeneral";
+    ViewBag.Title = "CreateAccountAdherent";
+}
+<p>
+    Veuillez Remplir les champs pour completer votre adhesion :
+</p>
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(m=>m.Account.Id)
+    @Html.HiddenFor(m=>m.Adherent.Id)
+    @Html.HiddenFor(m=>m.Adhesion.Id)
+    @Html.HiddenFor(m=>m.Contribution.Id)
+    @Html.HiddenFor(m=>m.Profile.Id)
+    @Html.HiddenFor(n=>n.Contact.Id)
+    @Html.HiddenFor(n=>n.Infos.Id)
+    @Html.HiddenFor(n=>n.Inventory.Id)
+
+@*
+    <div>
+        @Html.LabelFor(m => m.Account.Username)
+        @Html.TextBoxFor(m => m.Account.Username)
+        @Html.ValidationMessageFor(m =>  m.Account.Username)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Account.Password)
+        @Html.PasswordFor(m =>m.Account.Password)
+        @Html.ValidationMessageFor(m =>m.Account.Password)
+    </div>*@
+    <table>
+        <tbody>
+
+       
+    <tr>
+        <!--Adherent : JustifIdentite-->
+        <td> @Html.LabelFor(m=>m.Adherent.IDDocuments)  </td>
+        <td><input type="file" />   </td>
+                @Html.ValidationMessageFor(m =>m.Adherent.IDDocuments)
+    </tr>
+         @* <!--Adherent : Cotisation-->
+           <tr> <td> @Html.LabelFor(m=>m.Adherent.Contribution ): </td>
+              <td><input type="text" /></td>
+             </tr>    
+           <tr>*@
+              <!--Cotisation : TypeCotisation-->
+    <tr>
+       @* <td>@Html.LabelFor(m=>m.ContributionType)    </td></tr>*@
+    
+                @*@Html.DropDownListFor(m=>m.ContributionTypes ,(IEnumerable<SelectListItem>)ViewBag.ContributionTypesList,"choisissez votre type de paiement",new { @class ="form-control"})
+        
+            @Html.ValidationMessageFor(m =>m.ContributionType)*@
+        <tr>
+           <!--Cotisation : DatePrelevement-->
+          @*   <td> @Html.LabelFor(m=>m.Contribution.PrelevementDate)   </td>*@
+                @*<td><input type="text" /></td>*@
+             </tr>
+
+
+        </tbody>
+    </table>
+    <input type="submit" value="Créer" />
+       
+ 
+}
+<script>
+
+    //To get selected value an text of dropdownlist
+    function SelectedValue(ddlObject)
+    {
+        //Selected value of dropdownlist
+        var selectedValue = ddlObject.value;
+        //Selected text of dropdownlist
+        var selectedText = ddlObject.options[ddlObject.selectedIndex].innerHTML;
+
+        //alert popup with detail of seleceted value and text
+        alert(" Selected Value: " + selectedValue+" -- "+"Selected Text: " + selectedText ) ;
+    }
+</script>  

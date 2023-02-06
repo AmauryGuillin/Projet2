@@ -17,67 +17,67 @@
    
 
         <div class="col1-ProfileCreation">
-        @Html.HiddenFor(m=>m.account.Id)
-        @Html.HiddenFor(m=>m.profile.Id)
-        @Html.HiddenFor(n=>n.contact.Id)
-        @Html.HiddenFor(n=>n.infos.Id)
-        @Html.HiddenFor(n=>n.inventory.Id)
+        @Html.HiddenFor(m=>m.Account.Id)
+        @Html.HiddenFor(m=>m.Profile.Id)
+        @Html.HiddenFor(n=>n.Contact.Id)
+        @Html.HiddenFor(n=>n.Infos.Id)
+        @Html.HiddenFor(n=>n.Inventory.Id)
 
 
         @*PROFIL*@
     <div>
-        @Html.LabelFor(m => m.profile.ProfilImage)
+            @Html.LabelFor(m => m.Profile.ProfilImage)
 
         <input type="file" id="ProfilImage" name="ProfilImage" >
-            @Html.ValidationMessageFor(m => m.profile.ProfilImage)
+            @Html.ValidationMessageFor(m => m.Profile.ProfilImage)
     </div>
          </div>
          <div class= "col2-ProfileCreation">
     <div>
-            @Html.LabelFor(m => m.profile.Bio)
-            @Html.TextAreaFor(m => m.profile.Bio)
-            @Html.ValidationMessageFor(m => m.profile.Bio)
+            @Html.LabelFor(m => m.Profile.Bio)
+            @Html.TextAreaFor(m => m.Profile.Bio)
+            @Html.ValidationMessageFor(m => m.Profile.Bio)
     </div>
         </div>
 
             <div class= "col3-ProfileCreation">
     <div>
-            @Html.LabelFor(m => m.profile.Games)
-            @Html.TextBoxFor(m => m.profile.Games)
-            @Html.ValidationMessageFor(m => m.profile.Games)
+            @Html.LabelFor(m => m.Profile.Games)
+            @Html.TextBoxFor(m => m.Profile.Games)
+            @Html.ValidationMessageFor(m => m.Profile.Games)
     </div>
     </div>
      <br/>
  <div>
      @*CONTACT*@
-        @Html.LabelFor(n=>n.contact.EmailAdress)
-        @Html.TextBoxFor(n=>n.contact.EmailAdress)
-        @Html.ValidationMessageFor(m => m.contact.EmailAdress)
+        @Html.LabelFor(n=>n.Contact.EmailAdress)
+        @Html.TextBoxFor(n=>n.Contact.EmailAdress)
+        @Html.ValidationMessageFor(m => m.Contact.EmailAdress)
       </div>
       <br />
       <div>
-        @Html.LabelFor(n=>n.contact.TelephoneNumber)
-        @Html.TextBoxFor(n=>n.contact.TelephoneNumber)
-        @Html.ValidationMessageFor(m => m.contact.TelephoneNumber)
+        @Html.LabelFor(n=>n.Contact.TelephoneNumber)
+        @Html.TextBoxFor(n=>n.Contact.TelephoneNumber)
+        @Html.ValidationMessageFor(m => m.Contact.TelephoneNumber)
         </div>
 
         @*INFOSPERSO*@
             <div>
-        @Html.LabelFor(n=> n.infos.FirstName)
-        @Html.TextBoxFor(n=>n.infos.FirstName)
-        @Html.ValidationMessageFor(m => m.infos.FirstName)
+        @Html.LabelFor(n=> n.Infos.FirstName)
+        @Html.TextBoxFor(n=>n.Infos.FirstName)
+        @Html.ValidationMessageFor(m => m.Infos.FirstName)
             </div>
 
             <div>
-        @Html.LabelFor(n=>n.infos.LastName)
-        @Html.TextBoxFor(n=>n.infos.LastName)
-        @Html.ValidationMessageFor(m => m.infos.LastName)
+        @Html.LabelFor(n=>n.Infos.LastName)
+        @Html.TextBoxFor(n=>n.Infos.LastName)
+        @Html.ValidationMessageFor(m => m.Infos.LastName)
              </div>
                   
                 <div>
-        @Html.LabelFor(n=>n.infos.Birthday)
-        @Html.TextBoxFor(n=>n.infos.Birthday)
-        @Html.ValidationMessageFor(m => m.infos.Birthday)
+        @Html.LabelFor(n=>n.Infos.Birthday)
+        @Html.TextBoxFor(n=>n.Infos.Birthday)
+        @Html.ValidationMessageFor(m => m.Infos.Birthday)
                 </div>
 
 
