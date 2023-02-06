@@ -41,6 +41,7 @@ namespace Projet2.Models
         public DbSet<Publication> Publications { get; set; }
         public DbSet<VolunteeringActivity> VolunteeringActivities { get; set; }
         public DbSet<Tournament> Tournaments { get; set; }
+        public DbSet<Event> Events { get; set; }
 
 
 
@@ -684,6 +685,25 @@ namespace Projet2.Models
                 }
                 );
 
+
+            this.Events.AddRange(
+                new Event()
+                {
+                    Id = 1,
+                    Theme="thème 1",
+                    NumberOfParticipants=10,
+                    AssociationActivityId= 6,
+                },
+
+                new Event()
+                {
+                    Id = 2,
+                    Theme = "thème 2",
+                    NumberOfParticipants = 5,
+                    AssociationActivityId = 7,
+                }
+                );
+
                 
             this.SaveChanges();
 
@@ -722,9 +742,13 @@ namespace Projet2.Models
                 //dal.EditVolunteeringActivity(11, "Type 11 MODIF", "Name 11 MODIF", DateTime.Now, DateTime.Now, 11);
                 //dal.RemoveVolunteeringActivity(11);
 
-                dal.CreateTournament("1 - 2", 1, "0€", 3, 9);
-                dal.EditTournament(4, "1 - 2", 1, "50€", 3, 9);
-                dal.RemoveTournament(4);
+                //dal.CreateTournament("1 - 2", 1, "0€", 3, 9);
+                //dal.EditTournament(5, "1 - 2", 1, "50€", 3, 9);
+                //dal.RemoveTournament(5);
+
+                //dal.CreateEvent("thème 3", 6, 10);
+                //dal.EditEvent(3, "thème 3 MODIF", 6, 10);
+                //dal.RemoveEvent(3);
             }
 
         }

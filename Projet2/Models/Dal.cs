@@ -104,7 +104,7 @@ namespace Projet2.Models
         {
             return _bddContext.Account.ToList();
         }
-       
+
         /// <summary>
         /// This method adds a user's account in the database while encoding the user's password
         /// </summary>
@@ -181,7 +181,7 @@ namespace Projet2.Models
         }
         public void RemoveAssoActivity(AssociationActivity associationActivity)
         {
-  
+
             _bddContext.AssociationActivities.Remove(associationActivity);
             _bddContext.SaveChanges();
 
@@ -211,8 +211,8 @@ namespace Projet2.Models
             return activity.Id;
         }
 
-        public void EditActivity(int id, DateTime startDate, DateTime endDate, int slotId) 
-        { 
+        public void EditActivity(int id, DateTime startDate, DateTime endDate, int slotId)
+        {
             Activity activity = _bddContext.Activities.Find(id);
             if (activity != null)
             {
@@ -230,7 +230,7 @@ namespace Projet2.Models
             _bddContext.SaveChanges();
         }
 
-        public void RemoveActivity(int id) 
+        public void RemoveActivity(int id)
         {
             Activity activity = _bddContext.Activities.Find(id);
             if (activity != null)
@@ -817,6 +817,61 @@ namespace Projet2.Models
             _bddContext.SaveChanges();
         }
 
+        /////////////////EVENT
+
+        public int CreateEvent(string theme, int numberOfParticipants, int associationActivityId)
+        {
+            Event ev = new Event() { Theme = theme, NumberOfParticipants = numberOfParticipants, AssociationActivityId = associationActivityId };
+            _bddContext.Events.Add(ev);
+            _bddContext.SaveChanges();
+            return ev.Id;
+        }
+
+        public int CreateEvent(Event ev)
+        {
+            _bddContext.Events.Add(ev);
+            _bddContext.SaveChanges();
+            return ev.Id;
+        }
+
+        public void EditEvent(int id, string theme, int numberOfParticipants, int associationActivityId)
+        {
+            Event ev = _bddContext.Events.Find(id);
+            if (ev != null)
+            {
+                ev.Theme = theme;
+                ev.NumberOfParticipants = numberOfParticipants;
+                ev.AssociationActivityId = associationActivityId;
+                _bddContext.SaveChanges();
+            }
+        }
+
+        public void EditEvent(Event ev)
+        {
+            _bddContext.Events.Update(ev);
+            _bddContext.SaveChanges();
+        }
+
+        public void RemoveEvent(int id)
+        {
+            Event ev = _bddContext.Events.Find(id);
+            if (ev != null)
+            {
+                _bddContext.Events.Remove(ev);
+                _bddContext.SaveChanges();
+            }
+        }
+
+        public void RemoveEvent(Event ev)
+        {
+            _bddContext.Events.Remove(ev);
+            _bddContext.SaveChanges();
+        }
+
+        public List<Event> GetEvents()
+        {
+            return _bddContext.Events.ToList();
+        }
 
         /////////////////FORUM
 
@@ -1433,6 +1488,11 @@ namespace Projet2.Models
         {
             _bddContext.Tournaments.Remove(tournament);
             _bddContext.SaveChanges();
+        }
+
+        public List<Tournament> GetTournaments()
+        {
+            return _bddContext.Tournaments.ToList();
         }
 
 

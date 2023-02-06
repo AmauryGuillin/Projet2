@@ -99,6 +99,15 @@ namespace Projet2.Models
         void EditTournament(Tournament tournament);
         void RemoveTournament(int id);
         void RemoveTournament(Tournament tournament);
+        List<Tournament> GetTournaments();
+
+        int CreateEvent(string theme, int numberOfParticipants, int associationActivityId);
+        void EditEvent(int id, string theme, int numberOfParticipants, int associationActivityId);
+        void EditEvent(Event ev);
+        void RemoveEvent(int id);
+        void RemoveEvent(Event ev);
+        List<Event> GetEvents();
+
 
 
 
