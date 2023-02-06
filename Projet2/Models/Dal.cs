@@ -126,13 +126,92 @@ namespace Projet2.Models
             return account;
         }
 
-       
 
-        ///////////////// ACTIVITES ASSOCIATION
+
+        /////////////////ASSOCIATION ACTIVITIES
+
+        public int CreateAssoActivity(string description, string place, int activityId)
+        {
+            AssociationActivity associationActivity = new AssociationActivity()
+            {
+                Description = description,
+                Place = place,
+                ActivityId = activityId,
+            };
+
+            _bddContext.AssociationActivities.Add(associationActivity);
+            _bddContext.SaveChanges();
+            return associationActivity.Id;
+        }
+
+        public int CreateAssoActivity(AssociationActivity associationActivity)
+        {
+            _bddContext.AssociationActivities.Add(associationActivity);
+            _bddContext.SaveChanges();
+            return associationActivity.Id;
+        }
+
+        public void EditAssoActivity(int id, string description, string place, int activityId)
+        {
+            AssociationActivity associationActivity = _bddContext.AssociationActivities.Find(id);
+            if (associationActivity != null)
+            {
+                associationActivity.Description = description;
+                associationActivity.Place = place;
+                associationActivity.ActivityId = activityId;
+                _bddContext.SaveChanges();
+            }
+        }
+
+        public void EditAssoActivity(AssociationActivity associationActivity)
+        {
+            _bddContext.AssociationActivities.Update(associationActivity);
+            _bddContext.SaveChanges();
+        }
+
+        public void RemoveAssoActivity(int id)
+        {
+            AssociationActivity associationActivity = _bddContext.AssociationActivities.Find(id);
+
+            if (associationActivity != null)
+            {
+                _bddContext.AssociationActivities.Remove(associationActivity);
+                _bddContext.SaveChanges();
+            }
+        }
+        public void RemoveAssoActivity(AssociationActivity associationActivity)
+        {
+  
+            _bddContext.AssociationActivities.Remove(associationActivity);
+            _bddContext.SaveChanges();
+
+        }
+
+        public List<AssociationActivity> GetAssoActivity()
+        {
+            return _bddContext.AssociationActivities.ToList();
+        }
 
 
         /////////////////ACTIVITY
- public void EditActivity(int id, DateTime startDate, DateTime endDate, int slotId) 
+
+        public int CreateActivity(DateTime startDate, DateTime endDate, int slotId)
+        {
+            Activity activity = new Activity() { StartDate = startDate, EndDate = endDate, SlotID = slotId };
+            _bddContext.Activities.Add(activity);
+            _bddContext.SaveChanges();
+
+            return activity.Id;
+        }
+
+        public int CreateActivity(Activity activity)
+        {
+            _bddContext.Activities.Add(activity);
+            _bddContext.SaveChanges();
+            return activity.Id;
+        }
+
+        public void EditActivity(int id, DateTime startDate, DateTime endDate, int slotId) 
         { 
             Activity activity = _bddContext.Activities.Find(id);
             if (activity != null)
@@ -161,15 +240,7 @@ namespace Projet2.Models
                 _bddContext.SaveChanges();
             }
         }
-        
-        public int CreateActivity(DateTime startDate, DateTime endDate, int slotId)
-        {
-            Activity activity = new Activity() { StartDate= startDate, EndDate = endDate, SlotID=slotId };
-            _bddContext.Activities.Add(activity);
-            _bddContext.SaveChanges();
 
-            return activity.Id;
-        }
 
         /////////////////ADHERENT
        
@@ -520,7 +591,6 @@ namespace Projet2.Models
         /////////////////COACHING
 
         //////////////COMMENT
-        ///
 
         ////////////////////////////////////INFOPERSO (CONTACT)
 
@@ -580,6 +650,7 @@ namespace Projet2.Models
         }
 
         /////////////////CONTRIBUTION
+
         ///
         public Contribution CreateNewContribution(string rib)
         {
@@ -590,6 +661,7 @@ namespace Projet2.Models
             _bddContext.Contributions.Add(contribution);
             _bddContext.SaveChanges();
             return contribution;
+
 
         }
     
@@ -801,17 +873,28 @@ namespace Projet2.Models
         }
         public List<Stuff> GetBorrowerStuff(int accountid)
         {
+
             int inventoryid = _bddContext.Account.Where(a => a.Id == accountid).FirstOrDefault().InventoryId.Value;
             List<Stuff> stuffContent = _bddContext.Stuffs.Where(s => s.InventoryBorrowerId == inventoryid).ToList();
             
             return stuffContent;
         }
+        
         public List<Stuff> GetOwnedStuff(int accountid)
         {
             
             List<Stuff> stuffOwned = _bddContext.Stuffs.Where(s => s.AccountOwnerId== accountid).ToList();
 
             return stuffOwned;
+
+            Inventory inventory= new Inventory( );
+            List<Stuff> inventoryContent = new List<Stuff> ( );
+            foreach (Stuff stuffs in _bddContext.Stuffs) { 
+             GetStuffs().Where(r => r.InventoryBorrowerId == inventory.Id).FirstOrDefault();
+                inventoryContent.Add( stuffs );
+            }
+            return inventoryContent;
+
         }
 
 
@@ -929,6 +1012,17 @@ namespace Projet2.Models
             }
         }
 
+        public void RemovePublication(Publication publication)
+        {
+            _bddContext.Publications.Remove(publication);
+            _bddContext.SaveChanges();
+        }
+
+        public List<Publication> GetPublications()
+        {
+            return _bddContext.Publications.ToList();
+        }
+
 
         /////////////////PROFILE
 
@@ -1009,22 +1103,88 @@ namespace Projet2.Models
         }
 
 
-        /////////////////SLOT
+        /////////////////SLOTS
+
+        public int CreateSlot(DateTime date, DateTime startHour, DateTime endHour)
+        {
+            Slot slot = new Slot()
+            {
+                Date = date,
+                StartHour = startHour,
+                EndHour = endHour
+            };
+
+            _bddContext.Slots.Add(slot);
+            _bddContext.SaveChanges();
+            return slot.Id;
+        }
+
+        public int CreateSlot(Slot slot)
+        {
+            _bddContext.Slots.Add(slot);
+            _bddContext.SaveChanges();
+            return slot.Id;
+        }
+
+        public void EditSlot(int id, DateTime date, DateTime startHour, DateTime endHour)
+        {
+            Slot slot = _bddContext.Slots.Find(id);
+            if (slot != null)
+            {
+                slot.Id = id;
+                slot.Date = date;
+                slot.StartHour = startHour;
+                slot.EndHour = endHour;
+                _bddContext.SaveChanges();
+            }
+        }
+
+        public void EditSlot(Slot slot)
+        {
+            _bddContext.Slots.Update(slot);
+            _bddContext.SaveChanges();
+        }
+
+        public void RemoveSlot(int id)
+        {
+            Slot slot = _bddContext.Slots.Find(id);
+
+            if (slot != null)
+            {
+                _bddContext.Slots.Remove(slot);
+                _bddContext.SaveChanges();
+            }
+        }
+
+        public List<Slot> GetSlots()
+        {
+            return _bddContext.Slots.ToList();
+        }
+
 
         /////////////////STUFF
-        ///
 
-        //public List<Stuff> GetStuffs()
-        //{
-        //    return _bddContext.Stuff.ToList();
-        //}
- public List<Stuff> GetStuff()
+
+
+        public Stuff CreateStuff(Stuff stuff)
+        {
+            _bddContext.Stuffs.Add(stuff);
+            _bddContext.SaveChanges();
+            return stuff;
+        }
+
+        
+        public List<Stuff> GetStuffs()
+
+
         {
             return _bddContext.Stuffs.ToList();
         }
 
 
-        public void EditStuff(int id, string name, string type, State state, int accountid, int inventoryId)
+
+        public void EditStuff(int id, string name, Type type, State state, int accountid, int inventoryId)
+
         {
             Stuff stuff = _bddContext.Stuffs.Find(id);
             if (stuff != null)
@@ -1050,11 +1210,13 @@ namespace Projet2.Models
         {
             Stuff stuff = _bddContext.Stuffs.Find(id);
         if (stuff != null)
-        {
+          {
             _bddContext.Stuffs.Remove(stuff);
-        }
+           }
         
-        }
+        }   
+        
+    
 
         public void CreateActivity(Activity activity)
         {
@@ -1062,31 +1224,24 @@ namespace Projet2.Models
             _bddContext.SaveChanges();
 
         }
-        
-        
-         public int CreateStuff(string name, string type, State state, int accountId, int inventoryId)
-        {
-            Stuff stuff = new Stuff()
-            {
-                Name=name,
-                Type=type,
-                State=state,
-                AccountOwnerId=accountId,
-                InventoryBorrowerId =inventoryId
-            };
 
-            _bddContext.Stuffs.Add(stuff);
 
-            _bddContext.SaveChanges();
-            return stuff.Id;
+        //public int CreateStuff(string name, Type type, State state, int accountId, int inventoryId)
+        //{
+        //    Stuff stuff = new Stuff()
+        //    {
+        //        Name = name,
+        //        Type = type,
+        //        State = state,
+        //        AccountOwnerId = accountId,
+        //        InventoryBorrowerId = inventoryId
+        //    };
+        //}
 
-        }
 
-        public void CreateStuff(Stuff stuff)
-        {
-            _bddContext.Stuffs.Add(stuff);
-            _bddContext.SaveChanges();
-        }
+    
+
+
 
         
         public void RemoveStuff(Stuff stuff)
@@ -1198,6 +1353,7 @@ namespace Projet2.Models
             _bddContext.SaveChanges();
         }
 
+
         internal void EditProfilePIC(string imagePath,int id)
         {
             Profile profilToUpdate = this._bddContext.Profils.Find(id);
@@ -1213,16 +1369,73 @@ namespace Projet2.Models
 
 
 
+        /////////////////VOLUNTEERING ACTIVITY
+        
+        public int CreateVolunteeringActivity(string type, string name, DateTime startDate, DateTime endDate, int associationActivity)
+        {
+            VolunteeringActivity volunteeringActivity = new VolunteeringActivity() 
+            {
+                Type= type,
+                Name= name,
+                StartDate= startDate,
+                EndDate= endDate,
+                AssociationActivityId = associationActivity,  
+            };
+            _bddContext.VolunteeringActivities.Add(volunteeringActivity);
+            _bddContext.SaveChanges();
+            return volunteeringActivity.Id;
+        }
 
 
+        public int CreateVolunteeringActivity(VolunteeringActivity volunteeringActivity)
+        {
+            _bddContext.VolunteeringActivities.Add(volunteeringActivity);
+            _bddContext.SaveChanges();
+            return volunteeringActivity.Id;
+        }
 
 
+        public void EditVolunteeringActivity(int id, string type, string name, DateTime startDate, DateTime endDate, int associationActivity)
+        {
+            VolunteeringActivity volunteeringActivity = _bddContext.VolunteeringActivities.Find(id);
+            if (volunteeringActivity != null)
+            {
+                volunteeringActivity.Type = type;
+                volunteeringActivity.Name = name;
+                volunteeringActivity.StartDate = startDate;
+                volunteeringActivity.EndDate = endDate;
+                volunteeringActivity.AssociationActivityId = associationActivity;
+                _bddContext.SaveChanges();
+            }
+        }
+
+        public void EditVolunteeringActivity(VolunteeringActivity volunteeringActivity)
+        {
+            _bddContext.VolunteeringActivities.Update(volunteeringActivity);
+            _bddContext.SaveChanges();
+        }
+
+        public void RemoveVolunteeringActivity(int id)
+        {
+            VolunteeringActivity volunteeringActivity = _bddContext.VolunteeringActivities.Find(id);
+            if (volunteeringActivity != null )
+            {
+                _bddContext.VolunteeringActivities.Remove(volunteeringActivity);
+                _bddContext.SaveChanges();
+            }
+        }
 
 
+        public void RemoveVolunteeringActivity(VolunteeringActivity volunteeringActivity)
+        {
+            _bddContext.VolunteeringActivities.Remove(volunteeringActivity);
+            _bddContext.SaveChanges();
+        }
 
-
-
-
+        public List<VolunteeringActivity> GetVolunteeringActivities() 
+        {
+            return _bddContext.VolunteeringActivities.ToList();
+        }
 
 
 
