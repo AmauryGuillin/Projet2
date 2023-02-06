@@ -10,16 +10,16 @@ namespace Projet2.Models
 
         [MaxLength(30)]
       
-        [Display(Name = "Nom")]
+        [Display(Name = "Nom :")]
         public string LastName { get; set; }
 
         [MaxLength(30)]
        
-        [Display(Name = "Prenom")]
+        [Display(Name = "Prenom : ")]
         public string FirstName { get; set; }
 
         
-        [Display(Name = "Date de naissance")]
+        [Display(Name = "Date de naissance :")]
         public string Birthday { get; set; }
 
         //rajouter le genre

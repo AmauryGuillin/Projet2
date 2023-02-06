@@ -20,16 +20,16 @@ namespace Projet2.Models
         int CreateAdherent(int benevoleId, int numadherent, DateTime inscriptiondate, Double contibution, string idDocuments, int teamId, int adhesionId, int coachingId);
         void EditAdherent(int id, int benevoleId, int numAdherent, DateTime inscriptiondate, Double contribution, string idDocuments, int teamId, int adhesionId, int coachingId);
         void RemoveAdherent(int id);
-        int CreateContribution(int id, bool paymentStatus, double totalCount, PrelevementDate prelevementDate, ContributionType contributionType);
-        void EditContribution(int id, bool paymentStatus, double totalCount, PrelevementDate prelevementDate, ContributionType contributionType);
+        int CreateContribution(int id, bool paymentStatus, PrelevementDate prelevementDate, ContributionType contributionType);
+        void EditContribution(int id, bool paymentStatus, PrelevementDate prelevementDate, ContributionType contributionType);
         void RemoveContribution(int id);
-        int CreateAdhesion(int id, int contributionId, DateTime Echeance, AdhesionStatus adhesionStatus);
+        //int CreateAdhesion(int contributionId, DateTime Echeance, AdhesionStatus adhesionStatus);
         void EditAdhesion(int id, int contributionId, DateTime Echeance, AdhesionStatus adhesionStatus);
         void RemoveAdhesion(int id);
         int CreateTeam(int id, string name, int gameId, DateTime creationDate, int NbAdherent);
         void EditTeam(int id, string name, int gameId, DateTime creationDate, int NbAdherent);
         void RemoveTeam(int id);
-        int CreateAccount(int id, string username, string password, int profileid);
+        int CreateAccount(int id, string username, string password);
         //int CreateProfile(int id, string imagePath, string Bio, string games);
         int CreateProfile();
         List<Profile> GetProfiles();
@@ -46,10 +46,10 @@ namespace Projet2.Models
         void RemoveEmployee(int id);
 
 
-        int CreateStuff(string name, string type, State state, int profilId, int inventoryId);
-        void EditStuff(int id, string name, string type, State state, int profilId, int inventoryId);
+        Stuff CreateStuff(Stuff stuff);
+        void EditStuff(int id, string name, Type type, State state, int profilId, int inventoryId);
         void RemoveStuff(int id);
-        List<Stuff> GetStuff();
+        List<Stuff> GetStuffs();
 
         int CreatePublication(string name, PublicationTypes publicationType, string content, DateTime creationdate, string author, int employeId);
         public void CreatePublication(Publication publication);
@@ -64,6 +64,9 @@ namespace Projet2.Models
         public void EditActivity(int id, DateTime startDate, DateTime endDate, int slotId);
         public void EditActivity(Activity activity);
         public void RemoveActivity(int id);
+
+
+        public Account AddAccount(string username, string password, int contactId, int infopersoId, int profileId);
 
         int CreateSlot(DateTime date, DateTime startHour, DateTime endHour);
         int CreateSlot(Slot slot);
@@ -104,6 +107,7 @@ namespace Projet2.Models
         void RemoveEvent(int id);
         void RemoveEvent(Event ev);
         List<Event> GetEvents();
+
 
 
 
