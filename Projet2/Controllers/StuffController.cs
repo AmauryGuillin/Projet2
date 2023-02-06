@@ -64,5 +64,10 @@ namespace Projet2.Controllers
             return View(listStuff);
         }
 
+        public IActionResult CreateBookStuff()
+        {
+            return View();
+        }
+
     }
 }
