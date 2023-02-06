@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Projet2.Models
 {
@@ -28,8 +30,10 @@ namespace Projet2.Models
 
         [MaxLength(30)]
         public string Name { get; set; }
-        //public ?? Image { get; set; }
-        // a faire ! 
+        //public string ImagePath { get; set; }
+        //[NotMapped]
+        //public IFormFile StuffImage { get; set; }
+
         public string Description { get; set; }
         public Type Type { get; set; }
         public State State { get; set; }

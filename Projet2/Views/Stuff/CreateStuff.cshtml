@@ -19,12 +19,17 @@
         @Html.TextBoxFor(m => m.Description)
         @Html.ValidationMessageFor(m => m.Description)
     </div>
+
+    @*<div>
+        @Html.LabelFor(m => m.StuffImage)
+        @Html.TextBoxFor(m => m.StuffImage, new {@type = "file"})
+    </div>*@
         
-        <div>
+    <div>
         @Html.LabelFor(m => m.Type)
         @Html.DropDownListFor(m => m.Type, Html.GetEnumSelectList<Projet2.Models.Type>(), "Selectionner un Type")
         @Html.ValidationMessageFor(m => m.Type)
-    </div>
+     </div>
         
         <div>
         @Html.LabelFor(m => m.State,"Neuf")

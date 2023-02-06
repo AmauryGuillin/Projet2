@@ -13,7 +13,6 @@ namespace Projet2.ViewModels
 
         public Adherent Adherent { get; set; }
         public Adhesion Adhesion { get; set; }
-
         public Contribution Contribution { get; set; }
         public List<ContributionType> contributionTypes { get; set; }
         public Contact Contact { get; set; }

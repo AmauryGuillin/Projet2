@@ -17,11 +17,11 @@
         @foreach (var stuff in Model)
         {
             <tr>
-
                 <td style="text-align : center">@stuff.Name</td>
                 <td style="text-align : center">@stuff.Description</td>
                 <td style="text-align : center">@stuff.Type</td>
                 <td style="text-align : center">@stuff.State</td>
+                @*<td><img src="@stuff.ImagePath" height="400" width="400" /></td>*@
             </tr>
         }
     </table>

@@ -942,13 +942,13 @@ namespace Projet2.Models
 
             return stuffOwned;
 
-            Inventory inventory= new Inventory( );
-            List<Stuff> inventoryContent = new List<Stuff> ( );
-            foreach (Stuff stuffs in _bddContext.Stuffs) { 
-             GetStuffs().Where(r => r.InventoryBorrowerId == inventory.Id).FirstOrDefault();
-                inventoryContent.Add( stuffs );
-            }
-            return inventoryContent;
+            //Inventory inventory= new Inventory( );
+            //List<Stuff> inventoryContent = new List<Stuff> ( );
+            //foreach (Stuff stuffs in _bddContext.Stuffs) { 
+            // GetStuffs().Where(r => r.InventoryBorrowerId == inventory.Id).FirstOrDefault();
+            //    inventoryContent.Add( stuffs );
+            //}
+            //return inventoryContent;
 
         }
 
@@ -1225,13 +1225,12 @@ namespace Projet2.Models
         {
             _bddContext.Stuffs.Add(stuff);
             _bddContext.SaveChanges();
+            _bddContext.SaveChanges();
             return stuff;
         }
 
-        
+
         public List<Stuff> GetStuffs()
-
-
         {
             return _bddContext.Stuffs.ToList();
         }
@@ -1268,29 +1267,38 @@ namespace Projet2.Models
           {
             _bddContext.Stuffs.Remove(stuff);
            }
-        
         }   
 
+        public string GetOwnerStuff(int AccountOwnerId, string owner)
+        {
+            Account account = _bddContext.Account.Find(AccountOwnerId);
+            if (account != null)
+            {
+                owner = account.Username;
+            }
+        return owner;
+        }
 
 
-        //public int CreateStuff(string name, Type type, State state, int accountId, int inventoryId)
+
+        //public Stuff CreateStuff(string name, string imagePath, Type type, State state)
         //{
         //    Stuff stuff = new Stuff()
         //    {
         //        Name = name,
         //        Type = type,
-        //        State = state,
-        //        AccountOwnerId = accountId,
-        //        InventoryBorrowerId = inventoryId
+        //        ImagePath= imagePath,
+        //        State = state
         //    };
+        //    return stuff;
         //}
 
 
-    
 
 
 
-        
+
+
         public void RemoveStuff(Stuff stuff)
         {
             _bddContext.Stuffs.Remove(stuff);
