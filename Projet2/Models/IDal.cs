@@ -93,6 +93,13 @@ namespace Projet2.Models
         void RemoveVolunteeringActivity(VolunteeringActivity volunteeringActivity);
         List<VolunteeringActivity> GetVolunteeringActivities();
 
+        int CreateTournament(string finalScore, int numberOfParticipants, string reward, int gameId, int associationActivityId);
+        int CreateTournament(Tournament tournament);
+        void EditTournament(int id, string finalScore, int numberOfParticipants, string reward, int gameId, int associationActivityId);
+        void EditTournament(Tournament tournament);
+        void RemoveTournament(int id);
+        void RemoveTournament(Tournament tournament);
+
 
 
     }

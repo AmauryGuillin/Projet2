@@ -40,6 +40,7 @@ namespace Projet2.Models
 
         public DbSet<Publication> Publications { get; set; }
         public DbSet<VolunteeringActivity> VolunteeringActivities { get; set; }
+        public DbSet<Tournament> Tournaments { get; set; }
 
 
 
@@ -112,13 +113,28 @@ namespace Projet2.Models
                     Level = Level.Galadriel 
                 });
 
-            this.Games.Add(
+            this.Games.AddRange(
                 new Game()
                 {
                     Id = 1,
                     GameType = "console",
                     GameList = GameList.Mk
-                });
+                },
+                
+                new Game()
+                {
+                    Id = 2,
+                    GameType = "PC",
+                    GameList = GameList.Lol
+                },
+
+                new Game()
+                {
+                    Id = 3,
+                    GameType = "PC/Console",
+                    GameList = GameList.Stf
+                }
+                );
 
 
             this.Stuffs.AddRange(
@@ -626,7 +642,48 @@ namespace Projet2.Models
                 });
 
 
-            
+            this.Tournaments.AddRange(
+                new Tournament()
+                {
+                    Id = 1,
+                    FinalScore= "3 - 1",
+                    NumberOfParticipants = 1,
+                    Reward="100€",
+                    GameId= 1,
+                    AssociationActivityId= 1,
+                },
+
+                new Tournament()
+                {
+                    Id = 2,
+                    FinalScore = "1 - 2",
+                    NumberOfParticipants = 5,
+                    Reward = "0€",
+                    GameId = 2,
+                    AssociationActivityId = 2,
+                },
+
+                new Tournament()
+                {
+                    Id = 3,
+                    FinalScore = "2 - 0",
+                    NumberOfParticipants = 5,
+                    Reward = "1000€",
+                    GameId = 2,
+                    AssociationActivityId = 2,
+                },
+
+                new Tournament()
+                {
+                    Id = 4,
+                    FinalScore = "2 - 1",
+                    NumberOfParticipants = 1,
+                    Reward = "200€",
+                    GameId = 3,
+                    AssociationActivityId = 4,
+                }
+                );
+
                 
             this.SaveChanges();
 
@@ -664,6 +721,10 @@ namespace Projet2.Models
                 //dal.CreateVolunteeringActivity("Type 11", "Name 11", DateTime.Now, DateTime.Now, 11);
                 //dal.EditVolunteeringActivity(11, "Type 11 MODIF", "Name 11 MODIF", DateTime.Now, DateTime.Now, 11);
                 //dal.RemoveVolunteeringActivity(11);
+
+                dal.CreateTournament("1 - 2", 1, "0€", 3, 9);
+                dal.EditTournament(4, "1 - 2", 1, "50€", 3, 9);
+                dal.RemoveTournament(4);
             }
 
         }
