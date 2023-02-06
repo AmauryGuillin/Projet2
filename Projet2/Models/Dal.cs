@@ -855,7 +855,7 @@ namespace Projet2.Models
             Inventory inventory= new Inventory( );
             List<Stuff> inventoryContent = new List<Stuff> ( );
             foreach (Stuff stuffs in _bddContext.Stuffs) { 
-             GetStuffs().Where(r => r.InventoryId == inventory.Id).FirstOrDefault();
+             GetStuffs().Where(r => r.InventoryBorrowerId == inventory.Id).FirstOrDefault();
                 inventoryContent.Add( stuffs );
             }
             return inventoryContent;
@@ -1119,7 +1119,7 @@ namespace Projet2.Models
 
 
 
-        public void EditStuff(int id, string name, string type, State state, int accountid, int inventoryId)
+        public void EditStuff(int id, string name, Type type, State state, int accountid, int inventoryId)
 
         {
             Stuff stuff = _bddContext.Stuffs.Find(id);
@@ -1160,20 +1160,23 @@ namespace Projet2.Models
             _bddContext.SaveChanges();
 
         }
-        
 
-         public int CreateStuff(string name, string type, State state, int accountId, int inventoryId)
 
-        {
-            Stuff stuff = new Stuff()
-            {
-                Name=name,
-                Type=type,
-                State=state,
-                AccountOwnerId=accountId,
-                InventoryBorrowerId =inventoryId
-            };
-        }
+        //public int CreateStuff(string name, Type type, State state, int accountId, int inventoryId)
+        //{
+        //    Stuff stuff = new Stuff()
+        //    {
+        //        Name = name,
+        //        Type = type,
+        //        State = state,
+        //        AccountOwnerId = accountId,
+        //        InventoryBorrowerId = inventoryId
+        //    };
+        //}
+
+
+    
+
 
 
         
