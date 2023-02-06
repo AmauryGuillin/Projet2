@@ -1270,15 +1270,7 @@ namespace Projet2.Models
            }
         
         }   
-        
-    
 
-        public void CreateActivity(Activity activity)
-        {
-            _bddContext.Activities.Add(activity);
-            _bddContext.SaveChanges();
-
-        }
 
 
         //public int CreateStuff(string name, Type type, State state, int accountId, int inventoryId)
