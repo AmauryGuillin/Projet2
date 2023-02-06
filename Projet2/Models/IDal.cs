@@ -56,14 +56,39 @@ namespace Projet2.Models
         public void EditPublication(int id, string name, PublicationTypes publicationType, string content, DateTime creationdate, string author, int employeId);
         public void EditPublication(Publication publication);
         public void RemovePublication(int id);
+        public void RemovePublication(Publication publication);
+        List<Publication> GetPublications();
 
         public int CreateActivity(DateTime startDate, DateTime endDate, int slotId);
-        public void CreateActivity(Activity activity);
+        public int CreateActivity(Activity activity);
         public void EditActivity(int id, DateTime startDate, DateTime endDate, int slotId);
         public void EditActivity(Activity activity);
         public void RemoveActivity(int id);
 
+        int CreateSlot(DateTime date, DateTime startHour, DateTime endHour);
+        int CreateSlot(Slot slot);
+        void EditSlot(int id, DateTime date, DateTime startHour, DateTime endHour);
+        void EditSlot(Slot slot);
+        void RemoveSlot(int id);
 
+        List<Slot> GetSlots();
+
+
+        int CreateAssoActivity(string description, string place, int activityId);
+        int CreateAssoActivity(AssociationActivity associationActivity);
+        void EditAssoActivity(int id, string description, string place, int activityId);
+        void EditAssoActivity(AssociationActivity associationActivity);
+        void RemoveAssoActivity(int id);
+        public void RemoveAssoActivity(AssociationActivity associationActivity);
+        List<AssociationActivity> GetAssoActivity();
+
+        int CreateVolunteeringActivity(string type, string name, DateTime startDate, DateTime endDate, int associationActivity);
+        int CreateVolunteeringActivity(VolunteeringActivity volunteeringActivity);
+        void EditVolunteeringActivity(int id, string type, string name, DateTime startDate, DateTime endDate, int associationActivity);
+        void EditVolunteeringActivity(VolunteeringActivity volunteeringActivity);
+        void RemoveVolunteeringActivity(int id);
+        void RemoveVolunteeringActivity(VolunteeringActivity volunteeringActivity);
+        List<VolunteeringActivity> GetVolunteeringActivities();
 
 
     }

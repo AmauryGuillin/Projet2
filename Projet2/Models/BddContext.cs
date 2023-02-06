@@ -12,7 +12,7 @@ namespace Projet2.Models
         public DbSet<Activity> Activities { get; set; }   
         public DbSet<Adhesion> Adhesions { get; set; }// ajout d'un 's' à la fin
         public DbSet<Adherent> Adherents { get; set; } //ajout d'un 's' à la fin
-        public DbSet<ActiviteAssociation> AssociationActivity { get; set; }
+        public DbSet<AssociationActivity> AssociationActivities { get; set; }
         public DbSet<Benevole> Benevoles { get; set; } //ajout d'un 's' à la fin
         public DbSet<Chat> Chat { get; set; }
         public DbSet<Comment> Comments { get; set; }
@@ -28,15 +28,22 @@ namespace Projet2.Models
         public DbSet<Planning> Planning { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<Profile> Profils { get; set; }
-        public DbSet<Slot> Slot { get; set; }
+        public DbSet<Slot> Slots { get; set; }
         public DbSet<SportAssociation> SportAssociation { get; set; }
 
         public DbSet<Team> Teams { get; set; }
         public DbSet<Coaching> Training { get; set; } 
         public DbSet<Stuff> Stuffs { get; set; }
+
         public DbSet<ReservationStuff> reservationsStuffs { get; set; }
 
+
         public DbSet<Publication> Publications { get; set; }
+        public DbSet<VolunteeringActivity> VolunteeringActivities { get; set; }
+
+
+
+
         public void InitializeDb()
         {
             this.Database.EnsureDeleted();
@@ -286,15 +293,15 @@ namespace Projet2.Models
                     Id = 1,
                     StartDate= DateTime.Now,
                     EndDate= DateTime.Now,
-                    SlotID= null,
+                    SlotID= 1,
                 },
 
                 new Activity()
                 {
                     Id = 2,
-                    StartDate = DateTime.Now,
+                    StartDate = new DateTime(1998,02,10),
                     EndDate= DateTime.Now,
-                    SlotID= null,
+                    SlotID= 3,
                 },
 
                 new Activity()
@@ -302,7 +309,320 @@ namespace Projet2.Models
                     Id = 3,
                     StartDate= DateTime.Now,
                     EndDate= DateTime.Now,
-                    SlotID= null,
+                    SlotID= 2,
+                },
+
+                new Activity()
+                {
+                    Id = 4,
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now,
+                    SlotID = 5,
+                },
+
+                new Activity()
+                {
+                    Id = 5,
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now,
+                    SlotID = 4,
+                },
+
+                new Activity()
+                {
+                    Id = 6,
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now,
+                    SlotID = 8,
+                },
+
+                new Activity()
+                {
+                    Id = 7,
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now,
+                    SlotID = 7,
+                },
+
+                new Activity()
+                {
+                    Id = 8,
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now,
+                    SlotID = 6,
+                },
+
+                new Activity()
+                {
+                    Id = 9,
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now,
+                    SlotID = 9,
+                },
+
+                new Activity()
+                {
+                    Id = 10,
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now,
+                    SlotID = 10,
+                });
+
+            this.Slots.AddRange(
+                new Slot()
+                {
+                    Id = 1,
+                    Date= DateTime.Now,
+                    StartHour= DateTime.Now,
+                    EndHour = DateTime.Now
+                },
+                new Slot()
+                {
+                    Id = 2,
+                    Date = DateTime.Now,
+                    StartHour = DateTime.Now,
+                    EndHour = DateTime.Now
+                },
+                new Slot()
+                {
+                    Id = 3,
+                    Date = DateTime.Now,
+                    StartHour = DateTime.Now,
+                    EndHour = DateTime.Now
+                },
+                new Slot()
+                {
+                    Id = 4,
+                    Date = DateTime.Now,
+                    StartHour = DateTime.Now,
+                    EndHour = DateTime.Now
+                },
+                new Slot()
+                {
+                    Id = 5,
+                    Date = new DateTime(1998, 02, 10),
+                    StartHour = DateTime.Now,
+                    EndHour = DateTime.Now
+                },
+                new Slot()
+                {
+                    Id = 6,
+                    Date = DateTime.Now,
+                    StartHour = DateTime.Now,
+                    EndHour = DateTime.Now
+                },
+                new Slot()
+                {
+                    Id = 7,
+                    Date = DateTime.Now,
+                    StartHour = DateTime.Now,
+                    EndHour = DateTime.Now
+                },
+                new Slot()
+                {
+                    Id = 8,
+                    Date = DateTime.Now,
+                    StartHour = DateTime.Now,
+                    EndHour = DateTime.Now
+                },
+                new Slot()
+                {
+                    Id = 9,
+                    Date = DateTime.Now,
+                    StartHour = DateTime.Now,
+                    EndHour = DateTime.Now
+                },
+                new Slot()
+                {
+                    Id = 10,
+                    Date = DateTime.Now,
+                    StartHour = DateTime.Now,
+                    EndHour = DateTime.Now
+                }
+                );
+
+            this.AssociationActivities.AddRange(
+                new AssociationActivity()
+                {
+                    Id = 1,
+                    Description="Description 1",
+                    Place="Paris",
+                    ActivityId= null,
+                },
+
+                new AssociationActivity()
+                {
+                    Id = 2,
+                    Description = "Description 1",
+                    Place = "Paris",
+                    ActivityId = null,
+                },
+
+                new AssociationActivity()
+                {
+                    Id = 3,
+                    Description = "Description 1",
+                    Place = "Paris",
+                    ActivityId = null,
+                },
+
+                new AssociationActivity()
+                {
+                    Id = 4,
+                    Description = "Description 1",
+                    Place = "Paris",
+                    ActivityId = 1,
+                },
+
+                new AssociationActivity()
+                {
+                    Id = 5,
+                    Description = "Description 1",
+                    Place = "Paris",
+                    ActivityId = null,
+                },
+
+                new AssociationActivity()
+                {
+                    Id = 6,
+                    Description = "Description 1",
+                    Place = "Paris",
+                    ActivityId = 2,
+                },
+
+                new AssociationActivity()
+                {
+                    Id = 7,
+                    Description = "Description 1",
+                    Place = "Paris",
+                    ActivityId = null,
+                },
+
+                new AssociationActivity()
+                {
+                    Id = 8,
+                    Description = "Description 1",
+                    Place = "Paris",
+                    ActivityId = null,
+                },
+
+                new AssociationActivity()
+                {
+                    Id = 9,
+                    Description = "Description 1",
+                    Place = "Paris",
+                    ActivityId = 3,
+                },
+
+                new AssociationActivity()
+                {
+                    Id = 10,
+                    Description = "Description 1",
+                    Place = "Paris",
+                    ActivityId = null,
+                }
+
+                );
+
+            this.VolunteeringActivities.AddRange(
+                new VolunteeringActivity()
+                {
+                    Id = 1,
+                    Name="Name 1",
+                    Type="Type 1",
+                    StartDate=DateTime.Now,
+                    EndDate=DateTime.Now,
+                    AssociationActivityId=1,
+                },
+
+                new VolunteeringActivity()
+                {
+                    Id = 2,
+                    Name = "Name 2",
+                    Type = "Type 2",
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now,
+                    AssociationActivityId = 2,
+                },
+
+                new VolunteeringActivity()
+                {
+                    Id = 3,
+                    Name = "Name 3",
+                    Type = "Type 3",
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now,
+                    AssociationActivityId = 3,
+                },
+
+                new VolunteeringActivity()
+                {
+                    Id = 4,
+                    Name = "Name 4",
+                    Type = "Type 4",
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now,
+                    AssociationActivityId = 4,
+                },
+
+                new VolunteeringActivity()
+                {
+                    Id = 5,
+                    Name = "Name 5",
+                    Type = "Type 5",
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now,
+                    AssociationActivityId= 5,
+                },
+
+                new VolunteeringActivity()
+                {
+                    Id = 6,
+                    Name = "Name 6",
+                    Type = "Type 6",
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now,
+                    AssociationActivityId = 6,
+                },
+
+                new VolunteeringActivity()
+                {
+                    Id = 7,
+                    Name = "Name 7",
+                    Type = "Type 7",
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now,
+                    AssociationActivityId = 7,
+                },
+
+                new VolunteeringActivity()
+                {
+                    Id = 8,
+                    Name = "Name 8",
+                    Type = "Type 8",
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now,
+                    AssociationActivityId = 8,
+                },
+
+                new VolunteeringActivity()
+                {
+                    Id = 9,
+                    Name = "Name 9",
+                    Type = "Type 9",
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now,
+                    AssociationActivityId = 9,
+                },
+
+                new VolunteeringActivity()
+                {
+                    Id = 10,
+                    Name = "Name 10",
+                    Type = "Type 10",
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now,
+                    AssociationActivityId = 10,
                 });
 
 
@@ -332,6 +652,18 @@ namespace Projet2.Models
                 //dal.CreatePublication("Test creation publi 1", PublicationTypes.Infographie, "contenu de la publi", DateTime.Now, "Auteur 1", 2);
                 //dal.EditPublication(5, "Test creation publi 1 MODIF", PublicationTypes.Infographie, "contenu de la publi MODIF", DateTime.Now, "Auteur 1", 2);
                 //dal.RemovePublication(5);
+
+                //dal.CreateSlot(DateTime.Now, DateTime.Now, DateTime.Now);
+                //dal.EditSlot(11, new DateTime(1998,02,10), DateTime.Now, DateTime.Now);
+                //dal.RemoveSlot(11);
+
+                //dal.CreateAssoActivity("Description test", "Chez moi ! :)", 9);
+                //dal.EditAssoActivity(11, "Description test MOFID", "Chez moi ! :) MODIF", 5);
+                //dal.RemoveAssoActivity(11);
+
+                //dal.CreateVolunteeringActivity("Type 11", "Name 11", DateTime.Now, DateTime.Now, 11);
+                //dal.EditVolunteeringActivity(11, "Type 11 MODIF", "Name 11 MODIF", DateTime.Now, DateTime.Now, 11);
+                //dal.RemoveVolunteeringActivity(11);
             }
 
         }
