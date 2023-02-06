@@ -44,7 +44,7 @@
             </li>
            
             <li class="nav-item ">
-                <a class="nav-link active" href="#">Ajouter du materiel</a>
+                @Html.ActionLink("Ajouter du materiel", "CreateStuff", "Stuff", new {accountId = Model.Account.Id, inventoryId = Model.Account.InventoryId })
                 
             </li>
             <li class="nav-item ">

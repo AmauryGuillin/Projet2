@@ -36,7 +36,6 @@ namespace Projet2.Models
 
         public int? AccountOwnerId { get; set; }
         public virtual Account AccountOwner { get; set; }
-
         public int? InventoryBorrowerId { get; set; }
         public virtual Inventory InventoryBorrower { get; set; }
     }
