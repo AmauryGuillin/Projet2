@@ -34,10 +34,12 @@ namespace Projet2.Controllers
 
             string uploads = Path.Combine(_webEnv.WebRootPath, "images");
             string filePath = Path.Combine(uploads, model.Profile.ProfilImage.FileName);
-            using (Stream fileStream = new FileStream(filePath, FileMode.Create))
-            {
-                model.Profile.ProfilImage.CopyTo(fileStream);
-            }
+
+                using (Stream fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    model.Profile.ProfilImage.CopyTo(fileStream);
+                }
+
 
             model.Contact =
                  dal.AddContact(
