@@ -7,35 +7,35 @@
 @using (Html.BeginForm())
 {
 
-        @Html.HiddenFor(m=>m.account.Id)  
-        @Html.HiddenFor(n=>n.inventory.Id)
+        @Html.HiddenFor(m=>m.Account.Id)  
+        @Html.HiddenFor(n=>n.Inventory.Id)
 
         <div>
-        @Html.LabelFor(m => m.stuff.Name)
-        @Html.TextBoxFor(m => m.stuff.Name)
-        @Html.ValidationMessageFor(m => m.stuff.Name)
+        @Html.LabelFor(m => m.Stuff.Name)
+        @Html.TextBoxFor(m => m.Stuff.Name)
+        @Html.ValidationMessageFor(m => m.Stuff.Name)
         </div>
     <div>
-        @Html.LabelFor(m => m.stuff.Description)
-        @Html.TextBoxFor(m => m.stuff.Description)
-        @Html.ValidationMessageFor(m => m.stuff.Description)
+        @Html.LabelFor(m => m.Stuff.Description)
+        @Html.TextBoxFor(m => m.Stuff.Description)
+        @Html.ValidationMessageFor(m => m.Stuff.Description)
     </div>
         
         <div>
-        @Html.LabelFor(m => m.stuff.Type)
-        @Html.DropDownListFor(m => m.stuff.Type, Html.GetEnumSelectList<Projet2.Models.Type>(), "Selectionner un Type")
-        @Html.ValidationMessageFor(m => m.stuff.Type)   
-        </div>
+        @Html.LabelFor(m => m.Stuff.Type)
+        @Html.DropDownListFor(m => m.Stuff.Type, Html.GetEnumSelectList<Projet2.Models.Type>(), "Selectionner un Type")
+        @Html.ValidationMessageFor(m => m.Stuff.Type)
+    </div>
         
         <div>
-        @Html.LabelFor(m => m.stuff.State,"Neuf")
-        @Html.RadioButtonFor(m=>m.stuff.State,"Neuf")
-        @Html.LabelFor(m => m.stuff.State,"Très Bon")
-        @Html.RadioButtonFor(m=>m.stuff.State,"TrèsBon")
-        @Html.LabelFor(m => m.stuff.State,"Bon")
-        @Html.RadioButtonFor(m=>m.stuff.State,"Bon")
-        @Html.LabelFor(m => m.stuff.State,"Acceptable")
-        @Html.RadioButtonFor(m=>m.stuff.State,"Acceptable")
+        @Html.LabelFor(m => m.Stuff.State,"Neuf")
+        @Html.RadioButtonFor(m=>m.Stuff.State,"Neuf")
+        @Html.LabelFor(m => m.Stuff.State,"Très Bon")
+        @Html.RadioButtonFor(m=>m.Stuff.State,"TrèsBon")
+        @Html.LabelFor(m => m.Stuff.State,"Bon")
+        @Html.RadioButtonFor(m=>m.Stuff.State,"Bon")
+        @Html.LabelFor(m => m.Stuff.State,"Acceptable")
+        @Html.RadioButtonFor(m=>m.Stuff.State,"Acceptable")
         </div>
         
 
