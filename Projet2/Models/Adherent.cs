@@ -13,7 +13,7 @@ namespace Projet2.Models
         //[Required]
         public DateTime InscriptionDate { get; set; }
         public Double Contribution { get; set; }
-
+        [Display(Name = " Veuillez Fournir un document d'identité")]
         public string IDDocuments { get; set; }// ?????
         public int? TeamId { get; set; }
         public virtual Team Team { get; set; }

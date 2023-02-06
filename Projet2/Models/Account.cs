@@ -11,8 +11,10 @@ namespace Projet2.Models
         public int Id { get; set; }
 
         [Required]
+        [Display(Name = "Pseudo: ")]
         public string Username { get; set; }
         [Required]
+        [Display(Name = "Mot de passe: ")]
         public string Password { get; set; }
 
         public int? InfoPersoId { get; set; }

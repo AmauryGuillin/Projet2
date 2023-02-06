@@ -2,6 +2,8 @@
 using Projet2.Models.Informations;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Runtime.Intrinsics.X86;
 using System.Security.Cryptography;
@@ -107,16 +109,16 @@ namespace Projet2.Models
         /// This method adds a user's account in the database while encoding the user's password
         /// </summary>
         /// <returns></returns>
-        public Account AddAccount(string username, string password)
+        public Account AddAccount(string username, string password,int contactId,int infopersoId,int profileId)
         {
             string wordpass = EncodeMD5(password);
             //idProfile= CreateProfile();
             Account account = new Account() { 
                 Username = username,
                 Password = wordpass, 
-                Profile = new Profile(),
-                Contact = new Informations.Contact(),
-                infoPerso = new InfoPerso(), 
+                ProfileId = profileId,
+                ContactId =contactId,
+                InfoPersoId = infopersoId, 
                 Inventory = new Inventory()
             };
             this._bddContext.Account.Add(account);
@@ -241,6 +243,23 @@ namespace Projet2.Models
 
 
         /////////////////ADHERENT
+       
+        public Adherent AddAdherent(int accountid,int benevoleid,int adhesion,int contributionId,string docs)
+        {
+            
+            Adherent adherent = new Adherent()
+            {
+                AccountId = accountid,
+                BenevoleId = benevoleid,
+                AdhesionId= adhesion,
+                Contribution = contributionId,
+                IDDocuments = docs
+            };
+            this._bddContext.Adherents.Add(adherent);
+            this._bddContext.SaveChanges();
+            return adherent;
+        }
+
         /// <summary>
         /// This method creates an Adherent in the SQL database with all attributes
         /// </summary>
@@ -381,7 +400,7 @@ namespace Projet2.Models
         /// <param name="Echeance"></param>
         /// <param name="adhesionStatus"></param>
         /// <returns>adhesion.Id</returns>
-        public int CreateAdhesion(int id, int contributionId, DateTime Echeance, AdhesionStatus adhesionStatus)
+        public int CreateAdhesion(int id,int contributionId, DateTime Echeance, AdhesionStatus adhesionStatus)
         {
             Adhesion adhesion = new Adhesion()
             {
@@ -395,12 +414,13 @@ namespace Projet2.Models
             _bddContext.SaveChanges();
             return adhesion.Id;
         }
-        public Adhesion CreateNewAdhesion()
+        public Adhesion CreateNewAdhesion(int contributionId, DateTime Echeance, AdhesionStatus adhesionStatus)
         {
             Adhesion adhesion = new Adhesion()
             {
-                ContributionId= CreateNewContribution().Id
-            };
+             ContributionId= contributionId,
+             Echeance= DateTime.Now,
+             AdhesionStatus= AdhesionStatus.EnCours };
             _bddContext.Adhesions.Add(adhesion);
             _bddContext.SaveChanges();
             return adhesion;
@@ -573,6 +593,18 @@ namespace Projet2.Models
         //////////////COMMENT
 
         ////////////////////////////////////INFOPERSO (CONTACT)
+
+        public Contact AddContact(string email, string Tel)
+
+        {
+            Contact contact = new Contact() {EmailAdress = email, TelephoneNumber = Tel };
+
+            _bddContext.Contact.Add(contact);
+
+            _bddContext.SaveChanges();
+
+            return contact;
+        }
         public int EditContact(int id, string email, string tel)
         {
             Contact contact = this._bddContext.Contact.Find(id);
@@ -620,9 +652,12 @@ namespace Projet2.Models
         /////////////////CONTRIBUTION
 
         ///
-        public Contribution CreateNewContribution()
+        public Contribution CreateNewContribution(string rib)
         {
-            Contribution contribution = new Contribution();
+            Contribution contribution = new Contribution()
+            {
+                RIB= rib,
+            };
             _bddContext.Contributions.Add(contribution);
             _bddContext.SaveChanges();
             return contribution;
@@ -865,6 +900,18 @@ namespace Projet2.Models
 
 
         ///////////////////INFOPERSO
+        ///
+        
+        public InfoPerso AddInfoPerso(string firstname,string lastame,string dob)
+        {
+            InfoPerso infoPerso = new InfoPerso() { FirstName = firstname, LastName = lastame,Birthday =dob};
+
+            _bddContext.PersonnalInfo.Add(infoPerso);
+
+            _bddContext.SaveChanges();
+
+            return infoPerso;
+        }
         public int EditInfos(int id, string firstname, string lastname, string dob)
         {
             InfoPerso infos = this._bddContext.PersonnalInfo.Find(id);
@@ -979,7 +1026,24 @@ namespace Projet2.Models
 
         /////////////////PROFILE
 
-        
+        public void UploadProfileImage()
+        {
+           
+        }
+        public Profile AddProfile(string profilImage, string Bio, string games)
+        {
+            Profile profile = new Profile()
+            {
+                ImagePath = profilImage,
+                Bio = Bio,
+                Games = games,
+                Chat=new Chat(),
+                
+            };
+            this._bddContext.Profils.Add(profile);
+            this._bddContext.SaveChanges();
+            return profile;
+        }
 
 
         /// <summary>
@@ -1024,7 +1088,7 @@ namespace Projet2.Models
             Profile profile = this._bddContext.Profils.Find(id);
             if (profile != null)
             {
-                profile.ProfilImage = imagePath;
+                profile.ImagePath = imagePath;
                 profile.Bio = Bio;
                 profile.Games = games;
                 _bddContext.SaveChanges();
@@ -1289,6 +1353,22 @@ namespace Projet2.Models
             _bddContext.SaveChanges();
         }
 
+
+        internal void EditProfilePIC(string imagePath,int id)
+        {
+            Profile profilToUpdate = this._bddContext.Profils.Find(id);
+            if (profilToUpdate != null)
+            {
+                profilToUpdate.ImagePath= imagePath;
+                this._bddContext.SaveChanges();
+            }
+            
+        }
+
+
+
+
+
         /////////////////VOLUNTEERING ACTIVITY
         
         public int CreateVolunteeringActivity(string type, string name, DateTime startDate, DateTime endDate, int associationActivity)
@@ -1306,12 +1386,14 @@ namespace Projet2.Models
             return volunteeringActivity.Id;
         }
 
+
         public int CreateVolunteeringActivity(VolunteeringActivity volunteeringActivity)
         {
             _bddContext.VolunteeringActivities.Add(volunteeringActivity);
             _bddContext.SaveChanges();
             return volunteeringActivity.Id;
         }
+
 
         public void EditVolunteeringActivity(int id, string type, string name, DateTime startDate, DateTime endDate, int associationActivity)
         {
@@ -1343,6 +1425,7 @@ namespace Projet2.Models
             }
         }
 
+
         public void RemoveVolunteeringActivity(VolunteeringActivity volunteeringActivity)
         {
             _bddContext.VolunteeringActivities.Remove(volunteeringActivity);
@@ -1353,6 +1436,7 @@ namespace Projet2.Models
         {
             return _bddContext.VolunteeringActivities.ToList();
         }
+
 
 
 

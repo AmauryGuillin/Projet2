@@ -83,48 +83,48 @@ namespace Projet2.Controllers
        
 
 
-        public IActionResult CreateAccountAdherent()
-        {
+        //public IActionResult CreateAccountAdherent()
+        //{
            
-            return View();
-        }
+        //    return View();
+        //}
 
 
-        [HttpPost]
-        public IActionResult CreateAccountAdherent(AdherentViewModel adherentvm)
-        {
+        //[HttpPost]
+        //public IActionResult CreateAccountAdherent(AdherentViewModel adherentvm)
+        //{
 
-            //accountViewModel = new AccountViewModel();
-            adherentvm.Account =
-             dal.AddAccount(adherentvm.Account.Username, adherentvm.Account.Password);
-            adherentvm.Adherent = 
-             dal.CreateNewAdherent(adherentvm.Account.Id);
-            var userClaims = new List<Claim>()
-                {
-                    new Claim(ClaimTypes.Name, adherentvm.Account.Id.ToString()),
-                };
+        //    //accountViewModel = new AccountViewModel();
+        //    adherentvm.Account =
+        //     dal.AddAccount(adherentvm.Account.Username, adherentvm.Account.Password);
+        //    adherentvm.Adherent = 
+        //     dal.CreateNewAdherent(adherentvm.Account.Id);
+        //    var userClaims = new List<Claim>()
+        //        {
+        //            new Claim(ClaimTypes.Name, adherentvm.Account.Id.ToString()),
+        //        };
 
-            var ClaimIdentity = new ClaimsIdentity(userClaims, "User Identity");
+        //    var ClaimIdentity = new ClaimsIdentity(userClaims, "User Identity");
 
-            var userPrincipal = new ClaimsPrincipal(new[] { ClaimIdentity });
-            HttpContext.SignInAsync(userPrincipal);
+        //    var userPrincipal = new ClaimsPrincipal(new[] { ClaimIdentity });
+        //    HttpContext.SignInAsync(userPrincipal);
 
-            return RedirectToAction("AdhesionAdherent", new
-            {
-                id =
+        //    return RedirectToAction("AdhesionAdherent", new
+        //    {
+        //        id =
                
-                //adherentvm.Adherent.Id,
-                adherentvm.Account.ProfileId,
-                adherentvm.Adherent.AdhesionId,
-                //adherentvm.Adhesion.ContributionId, il y a un souci avec cela
-                adherentvm.Account.ContactId,
-                adherentvm.Account.InfoPersoId,
-                adherentvm.Account.InventoryId
+        //        //adherentvm.Adherent.Id,
+        //        adherentvm.Account.ProfileId,
+        //        adherentvm.Adherent.AdhesionId,
+        //        //adherentvm.Adhesion.ContributionId, il y a un souci avec cela
+        //        adherentvm.Account.ContactId,
+        //        adherentvm.Account.InfoPersoId,
+        //        adherentvm.Account.InventoryId
 
 
-            });
+        //    });
 
-        }
+        //}
         //    
 
         public IActionResult AdhesionAdherent(int id)

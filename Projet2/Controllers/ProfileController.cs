@@ -6,6 +6,9 @@ using System.Security.Claims;
 using System.Linq;
 using Projet2.Models.Informations;
 using Projet2.ViewModels;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
+using System;
 
 namespace Projet2.Controllers
 {
@@ -13,20 +16,22 @@ namespace Projet2.Controllers
     {
 
         private Dal dal;
-        public ProfileController()
+        private IWebHostEnvironment _webEnv;
+        public ProfileController(IWebHostEnvironment environment)
         {
-            dal = new Dal();
+            _webEnv = environment;
+            this.dal = new Dal();
         }
         public IActionResult EditProfile(int id)
         {
             ProfileViewModel profilevm=new ProfileViewModel();
-            profilevm.profile= dal.GetProfiles().Where(r => r.Id == id).FirstOrDefault();
-            profilevm.account=dal.GetAccounts().Where(r => r.ProfileId==id).FirstOrDefault();
-            Account accountUser = profilevm.account;
-            profilevm.contact = dal.GetContacts().Where(r => r.Id == accountUser.ContactId).FirstOrDefault();
-            profilevm.infos= dal.GetInformations().Where(r => r.Id == accountUser.InfoPersoId).FirstOrDefault();
-            Inventory inventory = profilevm.inventory;
-            profilevm.inventory = dal.GetInventories().Where(r => r.Id == accountUser.InventoryId).FirstOrDefault();
+            profilevm.Profile= dal.GetProfiles().Where(r => r.Id == id).FirstOrDefault();
+            profilevm.Account=dal.GetAccounts().Where(r => r.ProfileId==id).FirstOrDefault();
+            Account accountUser = profilevm.Account;
+            profilevm.Contact = dal.GetContacts().Where(r => r.Id == accountUser.ContactId).FirstOrDefault();
+            profilevm.Infos= dal.GetInformations().Where(r => r.Id == accountUser.InfoPersoId).FirstOrDefault();
+            Inventory inventory = profilevm.Inventory;
+            profilevm.Inventory = dal.GetInventories().Where(r => r.Id == accountUser.InventoryId).FirstOrDefault();
             //profilevm.inventory.nbStuff=dal.GetInventoryContent().Count();
             return View(profilevm);
         }
@@ -37,14 +42,36 @@ namespace Projet2.Controllers
         public IActionResult EditProfile(ProfileViewModel profilevm)
         {
             
-            profilevm.account= dal.GetAccounts().Where(r => r.Id == profilevm.account.Id).FirstOrDefault();
-            dal.EditProfile(profilevm.profile);
-            dal.EditContact(profilevm.contact);
-            dal.EditInfos(profilevm.infos);
-            dal.EditInventory(profilevm.inventory);
+            profilevm.Account = dal.GetAccounts().Where(r => r.Id == profilevm.Account.Id).FirstOrDefault();
+            dal.EditProfile(profilevm.Profile);
+            dal.EditContact(profilevm.Contact);
+            dal.EditInfos(profilevm.Infos);
+            dal.EditInventory(profilevm.Inventory);
             return View("ProfileView",profilevm);
         }
-    
+
+        public IActionResult EditProfilePIC()
+        {
+            ProfileViewModel profilevm = new ProfileViewModel();
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult EditProfilePIC(ProfileViewModel profilevm)
+        {
+            
+                    string uploads = Path.Combine(_webEnv.WebRootPath, "images");
+                    string filePath = Path.Combine(uploads, profilevm.Profile.ProfilImage.FileName);
+                    using (Stream fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        profilevm.Profile.ProfilImage.CopyTo(fileStream);
+                    }
+                    dal.EditProfilePIC("/images/" + profilevm.Profile.ProfilImage.FileName,profilevm.Profile.Id);
+              
+            return View();
+        }
+
+
 
 
         public ActionResult Deconnexion()
@@ -53,6 +80,13 @@ namespace Projet2.Controllers
             return RedirectToAction("LOgin","Login");
         }
 
+        public IActionResult ProfileView()
+        {
+            //    ProfileViewModel pvm= new ProfileViewModel();
+            //    pvm.Account = dal.GetAccounts().Where(r => r.Id == pvm.Account.Id).FirstOrDefault();
+            return View();
+
+        }
 
        
 

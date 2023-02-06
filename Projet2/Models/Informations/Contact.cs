@@ -13,6 +13,7 @@ namespace Projet2.Models.Informations
 
       
         [Display(Name = "Entrez votre numero de telephone")]
+        [RegularExpression(@"^\d{10}$", ErrorMessage = "Le numéro de téléphone doit contenir 10 chiffres !")]
         public string TelephoneNumber { get; set; }
 
     }
