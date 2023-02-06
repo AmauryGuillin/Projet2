@@ -34,10 +34,7 @@ namespace Projet2.Controllers
         { 
             if (ModelState.IsValid)
             {
-               
                 Stuff stuffCreated = dal.CreateStuff(model);
-                    
-
                 return View("Index");
             }
             return View();

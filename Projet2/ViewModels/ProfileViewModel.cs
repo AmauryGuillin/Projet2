@@ -7,8 +7,7 @@ namespace Projet2.ViewModels
     public class ProfileViewModel
     {
 
-        public Account Account { get; set; }
-        
+        public Account Account { get; set; }  
         public bool Authentificate { get; set; }
         public Benevole Benevole { get; set; }
 
