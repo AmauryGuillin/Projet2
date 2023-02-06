@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Projet2.Models;
 using Projet2.ViewModels;
 using System.Collections.Generic;
@@ -14,21 +15,32 @@ namespace Projet2.Controllers
         {
             dal = new Dal();
         }
-        public IActionResult CreateStuff()
+        public IActionResult CreateStuff(int accountId, int inventoryId)
         {
-            return View();
+            //StuffViewModel model = new StuffViewModel();
+            //model.InventoryId = inventoryId;
+            //model.AccountId = accountId;
+
+            Stuff Stuff = new Stuff();
+            Stuff.InventoryBorrowerId = inventoryId;
+            Stuff.AccountOwnerId = accountId ;
+
+            
+            return View(Stuff);
         }
 
         [HttpPost]
-        public IActionResult CreateStuff(Stuff stuff)
-        {
+        public IActionResult CreateStuff(Stuff model)
+        { 
             if (ModelState.IsValid)
             {
-                Stuff stuffCreated = dal.CreateStuff(stuff);
+               
+                Stuff stuffCreated = dal.CreateStuff(model);
+                    
 
                 return View("Index");
             }
-            return View(stuff);
+            return View();
         }
 
         public IActionResult StuffCatalog()
