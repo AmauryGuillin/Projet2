@@ -77,7 +77,7 @@ namespace Projet2.Controllers
             var userPrincipal = new ClaimsPrincipal(new[] { ClaimIdentity });
             HttpContext.SignInAsync(userPrincipal);
 
-            return RedirectToAction("Index", "Home", new
+            return RedirectToAction("ViewDashboard", "Admin", new
             {
                 @id =
                 model.Account.ProfileId,

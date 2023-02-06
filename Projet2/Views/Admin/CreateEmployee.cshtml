@@ -8,8 +8,10 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>CreerEmployé</title>
+    <link href="~/css/EmployeeInscription.css" rel="stylesheet"/>
 </head>
 <body>
+
     @using (Html.BeginForm(FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
 
@@ -27,15 +29,15 @@
                 <legend>Creer un adhérent : </legend>
 
             @Html.LabelFor(m => Model.Account.Username)
-            @Html.EditorFor(m => Model.Account.Username)
+            @Html.TextBoxFor(m => Model.Account.Username)
             @Html.ValidationMessageFor(m => Model.Account.Username)
 
             @Html.LabelFor(m => m.Account.Password)
-            @Html.EditorFor(m => Model.Account.Password)
+            @Html.TextBoxFor(m => Model.Account.Password)
             @Html.ValidationMessageFor(m => Model.Account.Password)
 
             @Html.LabelFor(m => m.Employee.JobName)
-            @Html.EditorFor(m => Model.Employee.JobName)
+            @Html.TextBoxFor(m => Model.Employee.JobName)
             @Html.ValidationMessageFor(m => Model.Employee.JobName)
 
             @*@Html.LabelFor(m => m.Employee.DateOfEmployement)
@@ -43,7 +45,7 @@
             @Html.ValidationMessageFor(m => Model.Employee.DateOfEmployement)*@
 
             @Html.LabelFor(m => m.Profile.Bio)
-            @Html.EditorFor(m => Model.Profile.Bio)
+            @Html.TextBoxFor(m => Model.Profile.Bio)
             @Html.ValidationMessageFor(m => Model.Profile.Bio)
             @Html.LabelFor(m => m.Profile.Games)
             @Html.TextBoxFor(m => m.Profile.Games)
