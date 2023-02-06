@@ -1,4 +1,4 @@
-﻿@model Projet2.ViewModels.AccountViewModel
+﻿@model Projet2.ViewModels.LoginViewModel
 
 @{
     Layout = "_LayoutGeneral";
@@ -36,6 +36,8 @@ else
             Creez votre compte
         </p>
         <br />
-        @Html.ActionLink("Creez votre compte", "CreateAccount")
+        @Html.ActionLink("Creez votre compte Benevole", "CreateAccount","Account")
+        <br/>
+        @Html.ActionLink("Creez votre compte Adherent", "CreateAccountAdherent","Adherent")
     }
 }
