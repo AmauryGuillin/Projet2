@@ -77,17 +77,14 @@ namespace Projet2.Controllers
             var userPrincipal = new ClaimsPrincipal(new[] { ClaimIdentity });
             HttpContext.SignInAsync(userPrincipal);
 
-            return RedirectToAction("ViewDashboard", "Admin", new
-            {
-                @id =
-                model.Account.ProfileId,
-                model.Account.ContactId,
-                model.Account.InfoPersoId,
-                model.Account.InventoryId,
-                model.Employee.Id,
-            });
+            return RedirectToAction("ViewDashboard", model);
 
             //redirect au dashboard avec la liste des employés
+        }
+
+        public IActionResult ViewDashboard()
+        {
+            return View();
         }
     }
 }

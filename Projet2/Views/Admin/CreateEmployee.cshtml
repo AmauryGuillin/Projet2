@@ -11,6 +11,7 @@
     <link href="~/css/EmployeeInscription.css" rel="stylesheet"/>
 </head>
 <body>
+    <div class="content">
 
     @using (Html.BeginForm(FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
@@ -21,75 +22,108 @@
         @Html.HiddenFor(n=>n.Infos.Id)
         @Html.HiddenFor(n=>n.Inventory.Id)
         @Html.HiddenFor(n=>n.Employee.Id)
+        @Html.HiddenFor(n => n.Profile.Games)
+        @Html.HiddenFor(model => model.Profile.ProfilImage)
+        @Html.HiddenFor(m => Model.Profile.Bio)
 
-
-            <fieldset>
-
-
-                <legend>Creer un adhérent : </legend>
-
-            @Html.LabelFor(m => Model.Account.Username)
+           <div class="part1">
+            <div class="username">
+            <label
+              ><b>Nom d'utilisateur <sup>*</sup></b></label
+            >
+          </div>
             @Html.TextBoxFor(m => Model.Account.Username)
             @Html.ValidationMessageFor(m => Model.Account.Username)
 
-            @Html.LabelFor(m => m.Account.Password)
+        <div class="password">
+            <label><b>Mot de passe <sup>*</sup></b></label>
+        </div>
             @Html.TextBoxFor(m => Model.Account.Password)
             @Html.ValidationMessageFor(m => Model.Account.Password)
 
-            @Html.LabelFor(m => m.Employee.JobName)
+            <div class="firstname">
+            <label
+              ><b>Prenom <sup>*</sup></b></label
+            >
+          </div>
+            @Html.TextBoxFor(m =>m.Infos.FirstName)
+            @Html.ValidationMessageFor(m =>m.Infos.FirstName)
+
+            <div class="lastname">
+            <label
+              ><b>Nom <sup>*</sup></b></label
+            >
+          </div>
+            @Html.TextBoxFor(m =>m.Infos.LastName)
+            @Html.ValidationMessageFor(m =>m.Infos.LastName)
+
+
+        <div class="birthdate">
+            <label><b>Date de naissance <sup>*</sup></b></label>
+        </div>
+            @Html.TextBoxFor(m =>m.Infos.Birthday)
+            @Html.ValidationMessageFor(m =>m.Infos.Birthday)
+
+                </div>
+
+                <div class="part2">
+
+
+            <div class="job">
+            <label
+              ><b>Type de poste <sup>*</sup></b></label
+            >
+          </div>
             @Html.TextBoxFor(m => Model.Employee.JobName)
             @Html.ValidationMessageFor(m => Model.Employee.JobName)
+
+            <div class="matricule">
+            <label
+              ><b>Matricule <sup>*</sup></b></label
+            >
+          </div>
+            @Html.TextBoxFor(m => Model.Employee.SerialNumber)
+            @Html.ValidationMessageFor(m => Model.Employee.SerialNumber)
+
+            <div class="email">
+            <label
+              ><b>Email <sup>*</sup></b></label
+            >
+          </div>
+            @Html.TextBoxFor(m =>m.Contact.EmailAdress)
+            @Html.ValidationMessageFor(m =>m.Contact.EmailAdress)
+
+            <div class="telephone">
+            <label
+              ><b>Telephone <sup>*</sup></b></label
+            >
+          </div>
+            @Html.TextBoxFor(m =>m.Contact.TelephoneNumber)
+            @Html.ValidationMessageFor(m =>m.Contact.TelephoneNumber)
+
+
+                </div>
+
+
+
+            
+
 
             @*@Html.LabelFor(m => m.Employee.DateOfEmployement)
             @Html.EditorFor(m => Model.Employee.DateOfEmployement)
             @Html.ValidationMessageFor(m => Model.Employee.DateOfEmployement)*@
 
-            @Html.LabelFor(m => m.Profile.Bio)
-            @Html.TextBoxFor(m => Model.Profile.Bio)
-            @Html.ValidationMessageFor(m => Model.Profile.Bio)
-            @Html.LabelFor(m => m.Profile.Games)
-            @Html.TextBoxFor(m => m.Profile.Games)
-            @Html.ValidationMessageFor(m =>  m.Profile.Games)
-
-
-            @Html.LabelFor(m => m.Infos.FirstName)
-            @Html.TextBoxFor(m =>m.Infos.FirstName)
-            @Html.ValidationMessageFor(m =>m.Infos.FirstName)
-          
-            @Html.LabelFor(m => m.Infos.LastName)
-            @Html.TextBoxFor(m =>m.Infos.LastName)
-            @Html.ValidationMessageFor(m =>m.Infos.LastName)
-    
-            @Html.LabelFor(m => m.Infos.Birthday)
-            @Html.TextBoxFor(m =>m.Infos.Birthday)
-            @Html.ValidationMessageFor(m =>m.Infos.Birthday)
-
-
-            @Html.LabelFor(m => m.Contact.EmailAdress)
-            @Html.TextBoxFor(m =>m.Contact.EmailAdress)
-            @Html.ValidationMessageFor(m =>m.Contact.EmailAdress)
-            
-            
-            @Html.LabelFor(m => m.Contact.TelephoneNumber)
-            @Html.TextBoxFor(m =>m.Contact.TelephoneNumber)
-            @Html.ValidationMessageFor(m =>m.Contact.TelephoneNumber)
-
-
-            @Html.LabelFor(model => model.Profile.ProfilImage, new { id = "imageLabel", @style = "text-align:center;" })
-            @Html.TextBoxFor(model => model.Profile.ProfilImage, new { placeholder = "Description", @type = "file" })
-
-
-
-
             
 
                 <input type="submit" value="Envoyer"/>
-    @{
-        Html.EndForm();
-    }
-            </fieldset>
+
+                  
+
+
     }
 
+   
+    </div>
 </body>
 </html>
 
