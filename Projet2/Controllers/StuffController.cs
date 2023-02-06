@@ -14,12 +14,17 @@ namespace Projet2.Controllers
     public class StuffController : Controller
     {
         private Dal dal;
-        private IWebHostEnvironment _webEnv;
-        public StuffController(IWebHostEnvironment environment)
+
+        public StuffController()
         {
-            _webEnv = environment;
-            this.dal = new Dal();
+            dal = new Dal();
         }
+        //private IWebHostEnvironment _webEnv;
+        //public StuffController(IWebHostEnvironment environment)
+        //{
+        //    _webEnv = environment;
+        //    this.dal = new Dal();
+        //}
 
         public IActionResult CreateStuff(int accountId, int inventoryId)
         {
@@ -64,8 +69,16 @@ namespace Projet2.Controllers
             return View(listStuff);
         }
 
-        public IActionResult CreateBookStuff()
+        public IActionResult CreateBookStuff(int id)
         {
+            Stuff stuff = dal.GetOneStuff(id);
+            return View(stuff);
+        }
+
+        [HttpPost]
+        public IActionResult CreateBookStuff(Stuff stuff)
+        {
+
             return View();
         }
 

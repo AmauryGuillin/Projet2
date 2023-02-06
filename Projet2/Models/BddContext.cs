@@ -143,6 +143,7 @@ namespace Projet2.Models
                 {
                     Id = 1,
                     Name = "ordinateur",
+                    Description = "un très bo ordi",
                     Type = Type.Ordinateur,
                     State = State.Neuf,
                     AccountOwnerId = 1,
@@ -152,6 +153,7 @@ namespace Projet2.Models
                 {
                     Id = 2,
                     Name = "casque PS4",
+                    Description = "chut",
                     Type = Type.PeripheriqueConsole,
                     State = State.Acceptable,
                     AccountOwnerId = 2,

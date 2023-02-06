@@ -1254,12 +1254,16 @@ namespace Projet2.Models
             return stuff;
         }
 
+        public Stuff GetOneStuff(int id)
+        {
+            Stuff stuff = _bddContext.Stuffs.Find(id);
+            return stuff;
+        }
 
         public List<Stuff> GetStuffs()
         {
             return _bddContext.Stuffs.ToList();
         }
-
 
 
         public void EditStuff(int id, string name, Type type, State state, int accountid, int inventoryId)
