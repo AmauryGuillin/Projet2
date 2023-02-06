@@ -1157,6 +1157,31 @@ namespace Projet2.Models
             return profile.Id;
         }
 
+        /////////////////RESERVATION STUFF
+
+        public void CreateReservationStuff(DateTime start, DateTime end)
+        {
+            ReservationStuff reservation = new ReservationStuff()
+            {
+                StartDate = start,
+                EndDate = end,
+            };
+
+            _bddContext.reservationsStuffs.Add(reservation);
+            _bddContext.SaveChanges();
+        }
+
+        public void RemoveReservationStuff(int id)
+        {
+            ReservationStuff reservation = _bddContext.reservationsStuffs.Find(id);
+
+            if (reservation != null)
+            {
+                _bddContext.reservationsStuffs.Remove(reservation);
+                _bddContext.SaveChanges();
+            }
+        }
+
 
         /////////////////SLOTS
 
@@ -1278,6 +1303,27 @@ namespace Projet2.Models
             }
         return owner;
         }
+
+        public void BookStuff(int idStuff, int idAccount)
+        {
+
+            //while(reservation.EndDate != DateTime.Today)
+            //{
+            //    int idBorrow = 0;
+            //    Account account = _bddContext.Account.Find(idAccount);
+            //    if (account != null)
+            //    {
+            //        idBorrow = (int)account.InventoryId;
+            //    }
+
+            //    Stuff stuff = _bddContext.Stuffs.Find(idStuff);
+            //    if (stuff != null)
+            //    {
+            //        stuff.InventoryBorrowerId = idBorrow;
+            //    }
+            //}   
+        }
+
 
 
 
