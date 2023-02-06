@@ -71,8 +71,13 @@ namespace Projet2.Controllers
 
         public IActionResult CreateBookStuff(int id)
         {
+            ProfileViewModel model = new ProfileViewModel();
             Stuff stuff = dal.GetOneStuff(id);
-            return View(stuff);
+            model.Stuff = stuff;
+            
+            
+
+            return View(model);
         }
 
         [HttpPost]
