@@ -14,11 +14,13 @@
 <p>Type : @Model.Stuff.State</p>
 <p>Auteur : @Model.Stuff.AccountOwnerId</p>
 
-@Html.LabelFor(m=>m.reservationStuff.StartDate)
-@Html.TextBoxFor(m=>m.reservationStuff.StartDate)
+@Html.LabelFor(m => m.reservationStuff.StartDate)
+@Html.EditorFor(m => m.reservationStuff.StartDate, new { htmlAttributes = new { @class = "form-control" } })
 
-@Html.LabelFor(m=>m.reservationStuff.EndDate)
-@Html.TextBoxFor(m=>m.reservationStuff.EndDate)
+@Html.LabelFor(m => m.reservationStuff.EndDate)
+@Html.EditorFor(m => m.reservationStuff.EndDate, new { htmlAttributes = new { @class = "datepicker" } })
+
+<input type="submit" value="Réserver" />
 
 
 
