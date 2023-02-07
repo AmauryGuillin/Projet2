@@ -156,6 +156,17 @@ namespace Projet2.Models
                     Type = Type.PeripheriqueConsole,
                     State = State.Acceptable,
                     AccountOwnerId = 2,
+                }, 
+                new Stuff()
+                {
+                    Id = 3,
+                    Name = "souris moche",
+                    Description = "fournis sans chat",
+                    Type = Type.PeripheriqueConsole,
+                    State = State.Neuf,
+                    AccountOwnerId = 1,
+                    AccountBorrowerId= 2,
+
                 });
 
 

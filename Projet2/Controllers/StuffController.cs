@@ -27,25 +27,32 @@ namespace Projet2.Controllers
         //    this.dal = new Dal();
         //}
 
-        public IActionResult CreateStuff(int accountId)
+        public IActionResult CreateStuff()
         {
-            //StuffViewModel model = new StuffViewModel();
-            //model.InventoryId = inventoryId;
-            //model.AccountId = accountId;
+            ProfileViewModel model = new ProfileViewModel();
+            if (HttpContext.User.Identity.IsAuthenticated == true)
+            {
+                string accountId = (HttpContext.User.Identity.Name);
+                model.Account = dal.GetAccount(accountId);
+                
+                //StuffViewModel model = new StuffViewModel();
+                //model.InventoryId = inventoryId;
+                //model.AccountId = accountId;
 
-            Stuff stuff = new Stuff();
-            stuff.AccountOwnerId = accountId;
-
-
-            return View(stuff);
+                
+                return View(model);
+            }
+            return View(model);
         }
 
         [HttpPost]
-        public IActionResult CreateStuff(Stuff stuff)
-        { 
+        public IActionResult CreateStuff(ProfileViewModel model)
+        {
 
-            if (ModelState.IsValid)
+                if (ModelState.IsValid)
             {
+                string accountId = (HttpContext.User.Identity.Name);
+
                 //string uploads = Path.Combine(_webEnv.WebRootPath, "images");
                 //string filePath = Path.Combine(uploads, model.StuffImage.FileName);
                 //using (Stream fileStream = new FileStream(filePath, FileMode.Create))
@@ -54,8 +61,10 @@ namespace Projet2.Controllers
                 //}
                 //dal.CreateStuff(
                 //    model.Name, "/images/" + model.StuffImage.FileName, model.Type, model.State);
-
-                Stuff stuffCreated = dal.CreateStuff(stuff);
+                model.Account = dal.GetAccount(accountId);
+                Account userAccount = model.Account;
+                Stuff stuffCreated = dal.CreateStuff(model.Stuff);
+                dal.EditStuff(model.Stuff.Id, model.Account.Id);
 
          
                 return View("Index");
@@ -115,10 +124,7 @@ namespace Projet2.Controllers
                 string accountId = (HttpContext.User.Identity.Name);
                 model.Account = dal.GetAccount(accountId);
                 Account userAccount = model.Account;
-                //int idStuff = model.Stuff.Id;
-                //int idAccount = model.Account.Id;
-                //dal.EditStuffReservation(idStuff, idAccount);
-                //model.Stuff.AccountBorrowerId = userAccount.Id;
+
                 dal.EditStuffReservation(model.Stuff.Id, model.Account.Id);
                 ReservationStuff reservationCreated = dal.CreateReservationStuff(model.ReservationStuff);
 

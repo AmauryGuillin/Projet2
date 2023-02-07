@@ -1288,6 +1288,15 @@ namespace Projet2.Models
             return _bddContext.Stuffs.ToList();
         }
 
+        public void EditStuff(int id, int accountOwnerId)
+        {
+            Stuff stuff = _bddContext.Stuffs.Find(id);
+            if (stuff != null)
+            {
+                stuff.AccountOwnerId = accountOwnerId;
+                _bddContext.SaveChanges();
+            }
+        }
 
         public void EditStuffReservation(int id, int accountBorrowerId)
         {
