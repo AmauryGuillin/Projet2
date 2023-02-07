@@ -8,7 +8,10 @@ namespace Projet2.Models
         public string Description { get; set; }
         public string Place { get; set; }
 
-        public int? ActivityId { get; set; }
-        public Activity Activity { get; set; }
+        //public int? ActivityId { get; set; }
+        //public Activity Activity { get; set; }
+
+
+        /////////////////CLASSE INUTILE A SUPPRIMER
     }
 }

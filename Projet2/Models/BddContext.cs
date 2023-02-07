@@ -310,7 +310,7 @@ namespace Projet2.Models
                     Id = 1,
                     StartDate= DateTime.Now,
                     EndDate= DateTime.Now,
-                    SlotID= 1,
+                    //SlotID= 1,
                 },
 
                 new Activity()
@@ -318,7 +318,7 @@ namespace Projet2.Models
                     Id = 2,
                     StartDate = new DateTime(1998,02,10),
                     EndDate= DateTime.Now,
-                    SlotID= 3,
+                    //SlotID= 3,
                 },
 
                 new Activity()
@@ -326,7 +326,7 @@ namespace Projet2.Models
                     Id = 3,
                     StartDate= DateTime.Now,
                     EndDate= DateTime.Now,
-                    SlotID= 2,
+                    //SlotID= 2,
                 },
 
                 new Activity()
@@ -334,7 +334,7 @@ namespace Projet2.Models
                     Id = 4,
                     StartDate = DateTime.Now,
                     EndDate = DateTime.Now,
-                    SlotID = 5,
+                    //SlotID = 5,
                 },
 
                 new Activity()
@@ -342,7 +342,7 @@ namespace Projet2.Models
                     Id = 5,
                     StartDate = DateTime.Now,
                     EndDate = DateTime.Now,
-                    SlotID = 4,
+                    //SlotID = 4,
                 },
 
                 new Activity()
@@ -350,7 +350,7 @@ namespace Projet2.Models
                     Id = 6,
                     StartDate = DateTime.Now,
                     EndDate = DateTime.Now,
-                    SlotID = 8,
+                    //SlotID = 8,
                 },
 
                 new Activity()
@@ -358,7 +358,7 @@ namespace Projet2.Models
                     Id = 7,
                     StartDate = DateTime.Now,
                     EndDate = DateTime.Now,
-                    SlotID = 7,
+                    //SlotID = 7,
                 },
 
                 new Activity()
@@ -366,7 +366,7 @@ namespace Projet2.Models
                     Id = 8,
                     StartDate = DateTime.Now,
                     EndDate = DateTime.Now,
-                    SlotID = 6,
+                    //SlotID = 6,
                 },
 
                 new Activity()
@@ -374,7 +374,7 @@ namespace Projet2.Models
                     Id = 9,
                     StartDate = DateTime.Now,
                     EndDate = DateTime.Now,
-                    SlotID = 9,
+                    //SlotID = 9,
                 },
 
                 new Activity()
@@ -382,7 +382,7 @@ namespace Projet2.Models
                     Id = 10,
                     StartDate = DateTime.Now,
                     EndDate = DateTime.Now,
-                    SlotID = 10,
+                    //SlotID = 10,
                 });
 
             this.Slots.AddRange(
@@ -458,232 +458,232 @@ namespace Projet2.Models
                 }
                 );
 
-            this.AssociationActivities.AddRange(
-                new AssociationActivity()
-                {
-                    Id = 1,
-                    Description="Description 1",
-                    Place="Paris",
-                    ActivityId= null,
-                },
+            //this.AssociationActivities.AddRange(
+            //    new AssociationActivity()
+            //    {
+            //        Id = 1,
+            //        Description="Description 1",
+            //        Place="Paris",
+            //        ActivityId= null,
+            //    },
 
-                new AssociationActivity()
-                {
-                    Id = 2,
-                    Description = "Description 1",
-                    Place = "Paris",
-                    ActivityId = null,
-                },
+            //    new AssociationActivity()
+            //    {
+            //        Id = 2,
+            //        Description = "Description 1",
+            //        Place = "Paris",
+            //        ActivityId = null,
+            //    },
 
-                new AssociationActivity()
-                {
-                    Id = 3,
-                    Description = "Description 1",
-                    Place = "Paris",
-                    ActivityId = null,
-                },
+            //    new AssociationActivity()
+            //    {
+            //        Id = 3,
+            //        Description = "Description 1",
+            //        Place = "Paris",
+            //        ActivityId = null,
+            //    },
 
-                new AssociationActivity()
-                {
-                    Id = 4,
-                    Description = "Description 1",
-                    Place = "Paris",
-                    ActivityId = 1,
-                },
+            //    new AssociationActivity()
+            //    {
+            //        Id = 4,
+            //        Description = "Description 1",
+            //        Place = "Paris",
+            //        ActivityId = 1,
+            //    },
 
-                new AssociationActivity()
-                {
-                    Id = 5,
-                    Description = "Description 1",
-                    Place = "Paris",
-                    ActivityId = null,
-                },
+            //    new AssociationActivity()
+            //    {
+            //        Id = 5,
+            //        Description = "Description 1",
+            //        Place = "Paris",
+            //        ActivityId = null,
+            //    },
 
-                new AssociationActivity()
-                {
-                    Id = 6,
-                    Description = "Description 1",
-                    Place = "Paris",
-                    ActivityId = 2,
-                },
+            //    new AssociationActivity()
+            //    {
+            //        Id = 6,
+            //        Description = "Description 1",
+            //        Place = "Paris",
+            //        ActivityId = 2,
+            //    },
 
-                new AssociationActivity()
-                {
-                    Id = 7,
-                    Description = "Description 1",
-                    Place = "Paris",
-                    ActivityId = null,
-                },
+            //    new AssociationActivity()
+            //    {
+            //        Id = 7,
+            //        Description = "Description 1",
+            //        Place = "Paris",
+            //        ActivityId = null,
+            //    },
 
-                new AssociationActivity()
-                {
-                    Id = 8,
-                    Description = "Description 1",
-                    Place = "Paris",
-                    ActivityId = null,
-                },
+            //    new AssociationActivity()
+            //    {
+            //        Id = 8,
+            //        Description = "Description 1",
+            //        Place = "Paris",
+            //        ActivityId = null,
+            //    },
 
-                new AssociationActivity()
-                {
-                    Id = 9,
-                    Description = "Description 1",
-                    Place = "Paris",
-                    ActivityId = 3,
-                },
+            //    new AssociationActivity()
+            //    {
+            //        Id = 9,
+            //        Description = "Description 1",
+            //        Place = "Paris",
+            //        ActivityId = 3,
+            //    },
 
-                new AssociationActivity()
-                {
-                    Id = 10,
-                    Description = "Description 1",
-                    Place = "Paris",
-                    ActivityId = null,
-                }
+            //    new AssociationActivity()
+            //    {
+            //        Id = 10,
+            //        Description = "Description 1",
+            //        Place = "Paris",
+            //        ActivityId = null,
+            //    }
 
-                );
+            //    );
 
-            this.VolunteeringActivities.AddRange(
-                new VolunteeringActivity()
-                {
-                    Id = 1,
-                    Name="Name 1",
-                    Type="Type 1",
-                    StartDate=DateTime.Now,
-                    EndDate=DateTime.Now,
-                    AssociationActivityId=1,
-                },
+            //this.VolunteeringActivities.AddRange(
+            //    new VolunteeringActivity()
+            //    {
+            //        Id = 1,
+            //        Name="Name 1",
+            //        Type="Type 1",
+            //        StartDate=DateTime.Now,
+            //        EndDate=DateTime.Now,
+            //        AssociationActivityId=1,
+            //    },
 
-                new VolunteeringActivity()
-                {
-                    Id = 2,
-                    Name = "Name 2",
-                    Type = "Type 2",
-                    StartDate = DateTime.Now,
-                    EndDate = DateTime.Now,
-                    AssociationActivityId = 2,
-                },
+            //    new VolunteeringActivity()
+            //    {
+            //        Id = 2,
+            //        Name = "Name 2",
+            //        Type = "Type 2",
+            //        StartDate = DateTime.Now,
+            //        EndDate = DateTime.Now,
+            //        AssociationActivityId = 2,
+            //    },
 
-                new VolunteeringActivity()
-                {
-                    Id = 3,
-                    Name = "Name 3",
-                    Type = "Type 3",
-                    StartDate = DateTime.Now,
-                    EndDate = DateTime.Now,
-                    AssociationActivityId = 3,
-                },
+            //    new VolunteeringActivity()
+            //    {
+            //        Id = 3,
+            //        Name = "Name 3",
+            //        Type = "Type 3",
+            //        StartDate = DateTime.Now,
+            //        EndDate = DateTime.Now,
+            //        AssociationActivityId = 3,
+            //    },
 
-                new VolunteeringActivity()
-                {
-                    Id = 4,
-                    Name = "Name 4",
-                    Type = "Type 4",
-                    StartDate = DateTime.Now,
-                    EndDate = DateTime.Now,
-                    AssociationActivityId = 4,
-                },
+            //    new VolunteeringActivity()
+            //    {
+            //        Id = 4,
+            //        Name = "Name 4",
+            //        Type = "Type 4",
+            //        StartDate = DateTime.Now,
+            //        EndDate = DateTime.Now,
+            //        AssociationActivityId = 4,
+            //    },
 
-                new VolunteeringActivity()
-                {
-                    Id = 5,
-                    Name = "Name 5",
-                    Type = "Type 5",
-                    StartDate = DateTime.Now,
-                    EndDate = DateTime.Now,
-                    AssociationActivityId= 5,
-                },
+            //    new VolunteeringActivity()
+            //    {
+            //        Id = 5,
+            //        Name = "Name 5",
+            //        Type = "Type 5",
+            //        StartDate = DateTime.Now,
+            //        EndDate = DateTime.Now,
+            //        AssociationActivityId= 5,
+            //    },
 
-                new VolunteeringActivity()
-                {
-                    Id = 6,
-                    Name = "Name 6",
-                    Type = "Type 6",
-                    StartDate = DateTime.Now,
-                    EndDate = DateTime.Now,
-                    AssociationActivityId = 6,
-                },
+            //    new VolunteeringActivity()
+            //    {
+            //        Id = 6,
+            //        Name = "Name 6",
+            //        Type = "Type 6",
+            //        StartDate = DateTime.Now,
+            //        EndDate = DateTime.Now,
+            //        AssociationActivityId = 6,
+            //    },
 
-                new VolunteeringActivity()
-                {
-                    Id = 7,
-                    Name = "Name 7",
-                    Type = "Type 7",
-                    StartDate = DateTime.Now,
-                    EndDate = DateTime.Now,
-                    AssociationActivityId = 7,
-                },
+            //    new VolunteeringActivity()
+            //    {
+            //        Id = 7,
+            //        Name = "Name 7",
+            //        Type = "Type 7",
+            //        StartDate = DateTime.Now,
+            //        EndDate = DateTime.Now,
+            //        AssociationActivityId = 7,
+            //    },
 
-                new VolunteeringActivity()
-                {
-                    Id = 8,
-                    Name = "Name 8",
-                    Type = "Type 8",
-                    StartDate = DateTime.Now,
-                    EndDate = DateTime.Now,
-                    AssociationActivityId = 8,
-                },
+            //    new VolunteeringActivity()
+            //    {
+            //        Id = 8,
+            //        Name = "Name 8",
+            //        Type = "Type 8",
+            //        StartDate = DateTime.Now,
+            //        EndDate = DateTime.Now,
+            //        AssociationActivityId = 8,
+            //    },
 
-                new VolunteeringActivity()
-                {
-                    Id = 9,
-                    Name = "Name 9",
-                    Type = "Type 9",
-                    StartDate = DateTime.Now,
-                    EndDate = DateTime.Now,
-                    AssociationActivityId = 9,
-                },
+            //    new VolunteeringActivity()
+            //    {
+            //        Id = 9,
+            //        Name = "Name 9",
+            //        Type = "Type 9",
+            //        StartDate = DateTime.Now,
+            //        EndDate = DateTime.Now,
+            //        AssociationActivityId = 9,
+            //    },
 
-                new VolunteeringActivity()
-                {
-                    Id = 10,
-                    Name = "Name 10",
-                    Type = "Type 10",
-                    StartDate = DateTime.Now,
-                    EndDate = DateTime.Now,
-                    AssociationActivityId = 10,
-                });
+            //    new VolunteeringActivity()
+            //    {
+            //        Id = 10,
+            //        Name = "Name 10",
+            //        Type = "Type 10",
+            //        StartDate = DateTime.Now,
+            //        EndDate = DateTime.Now,
+            //        AssociationActivityId = 10,
+            //    });
 
 
-            this.Tournaments.AddRange(
-                new Tournament()
-                {
-                    Id = 1,
-                    FinalScore= "3 - 1",
-                    NumberOfParticipants = 1,
-                    Reward="100€",
-                    GameId= 1,
-                    AssociationActivityId= 1,
-                },
+            //this.Tournaments.AddRange(
+            //    new Tournament()
+            //    {
+            //        Id = 1,
+            //        FinalScore= "3 - 1",
+            //        NumberOfParticipants = 1,
+            //        Reward="100€",
+            //        GameId= 1,
+            //        AssociationActivityId= 1,
+            //    },
 
-                new Tournament()
-                {
-                    Id = 2,
-                    FinalScore = "1 - 2",
-                    NumberOfParticipants = 5,
-                    Reward = "0€",
-                    GameId = 2,
-                    AssociationActivityId = 2,
-                },
+            //    new Tournament()
+            //    {
+            //        Id = 2,
+            //        FinalScore = "1 - 2",
+            //        NumberOfParticipants = 5,
+            //        Reward = "0€",
+            //        GameId = 2,
+            //        AssociationActivityId = 2,
+            //    },
 
-                new Tournament()
-                {
-                    Id = 3,
-                    FinalScore = "2 - 0",
-                    NumberOfParticipants = 5,
-                    Reward = "1000€",
-                    GameId = 2,
-                    AssociationActivityId = 2,
-                },
+            //    new Tournament()
+            //    {
+            //        Id = 3,
+            //        FinalScore = "2 - 0",
+            //        NumberOfParticipants = 5,
+            //        Reward = "1000€",
+            //        GameId = 2,
+            //        AssociationActivityId = 2,
+            //    },
 
-                new Tournament()
-                {
-                    Id = 4,
-                    FinalScore = "2 - 1",
-                    NumberOfParticipants = 1,
-                    Reward = "200€",
-                    GameId = 3,
-                    AssociationActivityId = 4,
-                }
-                );
+            //    new Tournament()
+            //    {
+            //        Id = 4,
+            //        FinalScore = "2 - 1",
+            //        NumberOfParticipants = 1,
+            //        Reward = "200€",
+            //        GameId = 3,
+            //        AssociationActivityId = 4,
+            //    }
+            //    );
 
 
             this.Events.AddRange(
@@ -692,7 +692,7 @@ namespace Projet2.Models
                     Id = 1,
                     Theme="thème 1",
                     NumberOfParticipants=10,
-                    AssociationActivityId= 6,
+                    ActivityId= 2,
                 },
 
                 new Event()
@@ -700,7 +700,7 @@ namespace Projet2.Models
                     Id = 2,
                     Theme = "thème 2",
                     NumberOfParticipants = 5,
-                    AssociationActivityId = 7,
+                   ActivityId = 1,
                 }
                 );
 

@@ -182,23 +182,13 @@ namespace Projet2.Controllers
 
         public ActionResult ProfileViewBenevole()// NOOOPE
         {
-            //if (HttpContext.User.Identity.IsAuthenticated == true)
-            //{
-            //    //var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-
-            //    string accountId = (HttpContext.User.Identity.Name);
-            //    viewModel.Account = dal.GetAccount(accountId);
-
-            //    return View(viewModel);
-            //}
+           
             InscriptionViewModel inscriptionViewModel= new InscriptionViewModel() { Authentificate = HttpContext.User.Identity.IsAuthenticated };
             
             if (HttpContext.User.Identity.IsAuthenticated == true)
             {
                 string accountId = (HttpContext.User.Identity.Name);
-
                 inscriptionViewModel.Account = dal.GetAccount(accountId);
-                //inscriptionViewModel.Account = dal.GetAccounts().Where(r => r.Id == (int)accountId).FirstOrDefault();
                 Account accountUser = inscriptionViewModel.Account;
                 inscriptionViewModel.Profile = dal.GetProfiles().Where(r => r.Id == accountUser.ProfileId).FirstOrDefault();
                 inscriptionViewModel.Infos = dal.GetInformations().Where(r => r.Id == accountUser.InfoPersoId).FirstOrDefault();
@@ -206,7 +196,6 @@ namespace Projet2.Controllers
                 return View(inscriptionViewModel);
             }
            
-
             return View(inscriptionViewModel);
 
         }
