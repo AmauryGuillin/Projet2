@@ -926,15 +926,23 @@ namespace Projet2.Models
         {
             return _bddContext.Inventory.ToList();
         }
+        //public List<Stuff> GetBorrowerStuff(int accountid)
+        //{
+
+        //    int inventoryid = _bddContext.Account.Where(a => a.Id == accountid).FirstOrDefault().InventoryId.Value;
+        //    List<Stuff> stuffContent = _bddContext.Stuffs.Where(s => s.InventoryBorrowerId == inventoryid).ToList();
+            
+        //    return stuffContent;
+        //}
         public List<Stuff> GetBorrowerStuff(int accountid)
         {
 
             int inventoryid = _bddContext.Account.Where(a => a.Id == accountid).FirstOrDefault().InventoryId.Value;
-            List<Stuff> stuffContent = _bddContext.Stuffs.Where(s => s.InventoryBorrowerId == inventoryid).ToList();
-            
+            List<Stuff> stuffContent = _bddContext.Stuffs.Where(s => s.AccountBorrowerId == accountid).ToList();
+
             return stuffContent;
         }
-        
+
         public List<Stuff> GetOwnedStuff(int accountid)
         {
             
@@ -1274,8 +1282,15 @@ namespace Projet2.Models
             return _bddContext.Stuffs.ToList();
         }
 
+        public List<Stuff> GetStuffsCatalog()
+        {
 
-        public void EditStuff(int id, string name, Type type, State state, int accountid, int inventoryId)
+
+            return _bddContext.Stuffs.ToList();
+        }
+
+
+        public void EditStuff(int id, string name, Type type, State state, int accountOid, int accountBid)
 
         {
             Stuff stuff = _bddContext.Stuffs.Find(id);
@@ -1284,8 +1299,8 @@ namespace Projet2.Models
                 stuff.Name= name;
                 stuff.Type= type;
                 stuff.State= state;
-                stuff.AccountOwnerId= accountid;
-                stuff.InventoryBorrowerId= inventoryId;
+                stuff.AccountOwnerId= accountOid;
+                stuff.AccountBorrowerId = accountBid;
                 _bddContext.SaveChanges();
             }
         }

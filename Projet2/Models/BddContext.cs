@@ -147,7 +147,6 @@ namespace Projet2.Models
                     Type = Type.Ordinateur,
                     State = State.Neuf,
                     AccountOwnerId = 1,
-                    InventoryBorrowerId = 2
                 },
                 new Stuff()
                 {
@@ -157,7 +156,6 @@ namespace Projet2.Models
                     Type = Type.PeripheriqueConsole,
                     State = State.Acceptable,
                     AccountOwnerId = 2,
-                    InventoryBorrowerId = 1
                 });
 
 
@@ -182,7 +180,7 @@ namespace Projet2.Models
                 new ReservationStuff()
                 {
                     Id = 1,
-                    StartDate = DateTime.Now,
+                    StartDate = new DateTime(2022, 12, 25),
                     EndDate = new DateTime(2023, 12, 25),
                     StuffId= 2,
                 });

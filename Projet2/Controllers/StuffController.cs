@@ -27,14 +27,13 @@ namespace Projet2.Controllers
         //    this.dal = new Dal();
         //}
 
-        public IActionResult CreateStuff(int accountId, int inventoryId)
+        public IActionResult CreateStuff(int accountId)
         {
             //StuffViewModel model = new StuffViewModel();
             //model.InventoryId = inventoryId;
             //model.AccountId = accountId;
 
             Stuff stuff = new Stuff();
-            stuff.InventoryBorrowerId = inventoryId;
             stuff.AccountOwnerId = accountId;
 
 
@@ -73,25 +72,52 @@ namespace Projet2.Controllers
         public IActionResult CreateBookStuff(int id)
         {
             ProfileViewModel model = new ProfileViewModel();
-            Stuff stuff = dal.GetOneStuff(id);
-            model.Stuff = stuff;
-            model.Account = dal.GetAccounts().Where(r => r.Id == stuff.AccountOwnerId).FirstOrDefault();
-            //model.ReservationStuff = new ReservationStuff();
-            //model.ReservationStuff.StuffId= id;
+            if (HttpContext.User.Identity.IsAuthenticated == true)
+            {
+
+                
+
+                string accountId = (HttpContext.User.Identity.Name);
+                Stuff stuff = dal.GetOneStuff(id);
+                model.Stuff = stuff;
+                model.Account = dal.GetAccount(accountId);
+                Account userAccount = model.Account;
+                model.Stuff.AccountBorrowerId = userAccount.Id;
+                model.Account = dal.GetAccounts().Where(r => r.Id == stuff.AccountOwnerId).FirstOrDefault();
+
+
+                //inscriptionViewModel.Account = dal.GetAccount(accountId);
+                //Account accountUser = inscriptionViewModel.Account;
+                //inscriptionViewModel.Profile = dal.GetProfiles().Where(r => r.Id == accountUser.ProfileId).FirstOrDefault();
+                //inscriptionViewModel.Infos = dal.GetInformations().Where(r => r.Id == accountUser.InfoPersoId).FirstOrDefault();
+                //inscriptionViewModel.Contact = dal.GetContacts().Where(r => r.Id == accountUser.ContactId).FirstOrDefault();
+                //return View(inscriptionViewModel);
+
+
+
+                //model.Stuff.AccountBorrowerId = dal.GetAccount(accountId);
+
+             return View(model);
+            }
             
-
-
             return View(model);
+
         }
 
         [HttpPost]
         public IActionResult CreateBookStuff(ProfileViewModel model)
         {
-
             if (ModelState.IsValid)
             {
                 model.ReservationStuff.StuffId = model.Stuff.Id;
+
+
+                string accountId = (HttpContext.User.Identity.Name);
+                model.Account = dal.GetAccount(accountId);
+                Account userAccount = model.Account;
+                model.Stuff.AccountBorrowerId = userAccount.Id;
                 ReservationStuff reservationCreated = dal.CreateReservationStuff(model.ReservationStuff);
+
 
                 return View("Index");
             }
