@@ -1282,25 +1282,19 @@ namespace Projet2.Models
             return _bddContext.Stuffs.ToList();
         }
 
+        //A FAIRE
         public List<Stuff> GetStuffsCatalog()
         {
-
-
             return _bddContext.Stuffs.ToList();
         }
 
 
-        public void EditStuff(int id, string name, Type type, State state, int accountOid, int accountBid)
-
+        public void EditStuffReservation(int id, int accountBorrowerId)
         {
             Stuff stuff = _bddContext.Stuffs.Find(id);
             if (stuff != null)
             {
-                stuff.Name= name;
-                stuff.Type= type;
-                stuff.State= state;
-                stuff.AccountOwnerId= accountOid;
-                stuff.AccountBorrowerId = accountBid;
+                stuff.AccountBorrowerId = accountBorrowerId;
                 _bddContext.SaveChanges();
             }
         }

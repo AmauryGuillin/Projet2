@@ -111,11 +111,15 @@ namespace Projet2.Controllers
             {
                 model.ReservationStuff.StuffId = model.Stuff.Id;
 
-
+                
                 string accountId = (HttpContext.User.Identity.Name);
                 model.Account = dal.GetAccount(accountId);
                 Account userAccount = model.Account;
-                model.Stuff.AccountBorrowerId = userAccount.Id;
+                //int idStuff = model.Stuff.Id;
+                //int idAccount = model.Account.Id;
+                //dal.EditStuffReservation(idStuff, idAccount);
+                //model.Stuff.AccountBorrowerId = userAccount.Id;
+                dal.EditStuffReservation(model.Stuff.Id, model.Account.Id);
                 ReservationStuff reservationCreated = dal.CreateReservationStuff(model.ReservationStuff);
 
 
