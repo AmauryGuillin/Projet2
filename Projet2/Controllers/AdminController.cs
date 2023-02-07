@@ -6,6 +6,7 @@ using Projet2.ViewModels;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Claims;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Projet2.Controllers
 {
@@ -33,7 +34,8 @@ namespace Projet2.Controllers
         {
 
             string uploads = Path.Combine(_webEnv.WebRootPath, "images");
-            string filePath = Path.Combine(uploads, model.Profile.ProfilImage.FileName);
+            //string filePath = Path.Combine(uploads, model.Profile.ProfilImage.FileName);
+            string filePath = "D:/Formation Ingé informatique/répertoire VS/Projet2/Projet2/wwwroot/images/a1wdD6zl_700w_0.jpg";
 
                 using (Stream fileStream = new FileStream(filePath, FileMode.Create))
                 {
