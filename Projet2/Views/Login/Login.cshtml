@@ -4,6 +4,7 @@
     Layout = "_LayoutGeneral";
 }
 
+
 @if (Model.Authentificate==true)
 
 
@@ -19,6 +20,10 @@ else
     </p>
     using (Html.BeginForm())
     {
+        @*@Html.HiddenFor(m=>m.Account.Id)
+        @Html.HiddenFor(m=>m.Account.role)*@
+      @*  @Html.HiddenFor(m=>m.Profile.Id)*@
+
         <div>
             @Html.LabelFor(m => m.Account.Username)
             @Html.TextBoxFor(m => m.Account.Username)

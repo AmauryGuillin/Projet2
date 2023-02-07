@@ -100,6 +100,23 @@ namespace Projet2.Models
             return null;
         }
 
+        public Role GetAccountRole(int id)
+        {
+            Account account= this._bddContext.Account.Find(id);
+            Role role=account.role;
+
+            return role;
+        }
+        public Role GetAccountRole(string idStr)
+        {
+            int id;
+            if (int.TryParse(idStr, out id))
+            {
+                return this.GetAccountRole(id);
+            }
+            return 0;
+        }
+
         public List<Account> GetAccounts()
         {
             return _bddContext.Account.ToList();
@@ -109,17 +126,19 @@ namespace Projet2.Models
         /// This method adds a user's account in the database while encoding the user's password
         /// </summary>
         /// <returns></returns>
-        public Account AddAccount(string username, string password,int contactId,int infopersoId,int profileId)
+        public Account AddAccount(string username, string password,int contactId,int infopersoId,int profileId,Role role)
         {
             string wordpass = EncodeMD5(password);
             //idProfile= CreateProfile();
-            Account account = new Account() { 
+            Account account = new Account() {
                 Username = username,
-                Password = wordpass, 
+                Password = wordpass,
                 ProfileId = profileId,
-                ContactId =contactId,
-                InfoPersoId = infopersoId, 
-                Inventory = new Inventory()
+                ContactId = contactId,
+                InfoPersoId = infopersoId,
+                Inventory = new Inventory(),
+                role = role
+               
             };
             this._bddContext.Account.Add(account);
             this._bddContext.SaveChanges();
@@ -942,13 +961,13 @@ namespace Projet2.Models
 
             return stuffOwned;
 
-            Inventory inventory= new Inventory( );
-            List<Stuff> inventoryContent = new List<Stuff> ( );
-            foreach (Stuff stuffs in _bddContext.Stuffs) { 
-             GetStuffs().Where(r => r.InventoryBorrowerId == inventory.Id).FirstOrDefault();
-                inventoryContent.Add( stuffs );
-            }
-            return inventoryContent;
+            //Inventory inventory= new Inventory( );
+            //List<Stuff> inventoryContent = new List<Stuff> ( );
+            //foreach (Stuff stuffs in _bddContext.Stuffs) { 
+            // GetStuffs().Where(r => r.InventoryBorrowerId == inventory.Id).FirstOrDefault();
+            //    inventoryContent.Add( stuffs );
+            //}
+            //return inventoryContent;
 
         }
 

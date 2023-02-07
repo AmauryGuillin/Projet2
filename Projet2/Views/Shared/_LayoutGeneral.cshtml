@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,18 +11,54 @@
 
 </head>
 <body>
+    @*@Html.HiddenFor(m=>m.Account.Id)
+    @Html.HiddenFor(m=>m.Account.role)*@
     <header>
         <h1>Play4Us</h1>
         <div class="menubar">
+@*
+            @{
+                if (User.Identity.IsAuthenticated)
+                {
+                    
+                        <a class="navbar-brand" href="#page-top">Bonjour @User.Identity.Name</a>
+                        <span><a href="">Accueil</a></span>
+                        <span><a href="">À propos</a></span>
+                        <span><a href="">Services</a></span>
+                        <span><a href="">Jeux</a></span>
+                        <span><a href="">Bénévolat</a></span>
+                          <span><a href="">Forum</a></span>
+                       <span><a href="">Recrutement</a></span>
+                          <span><a href="">Contact</a></span>
+                          if(Model.Account.role==Projet2.Models.Role.Benevole){
+                        <span>@Html.ActionLink("Mon Profil","ProfileViewBenevole",new {id= Model.Account.Id,Model.Account.role}) </span>
+                    }
+                    else if (Model.Account.role == Projet2.Models.Role.Adherent)
+                    {
+                        <span>@Html.ActionLink("Mon Profil","ProfileViewAdherent", new {id= Model.Account.Id,Model.Account.role}) </span>
+                    }
+                    else if (Model.Account.role == Projet2.Models.Role.Salarié)
+                    {
+                        <span>@Html.ActionLink("Mon Profil","ProfileViewBenevole",new {id= Model.Account.Id,Model.Account.role}) </span>
+                    }
+   
+                }*@
+
+
+               
+
+
             <span><a href="">Accueil</a></span>
             <span><a href="">À propos</a></span>
             <span><a href="">Services</a></span>
             <span><a href="">Jeux</a></span>
             <span><a href="">Bénévolat</a></span>
-            <span><a href="">Forum</a></span>
+           @* <span><a href="">Forum</a></span>*@
             <span><a href="">Recrutement</a></span>
             <span><a href="">Contact</a></span>
+             
         </div>
+       
     </header>
 
     <main>
