@@ -38,7 +38,7 @@
         <div class="password">
             <label><b>Mot de passe <sup>*</sup></b></label>
         </div>
-            @Html.TextBoxFor(m => Model.Account.Password)
+            @Html.PasswordFor(m => Model.Account.Password)
             @Html.ValidationMessageFor(m => Model.Account.Password)
 
             <div class="firstname">
@@ -61,7 +61,7 @@
         <div class="birthdate">
             <label><b>Date de naissance <sup>*</sup></b></label>
         </div>
-            @Html.TextBoxFor(m =>m.Infos.Birthday)
+            @Html.TextBoxFor(m =>m.Infos.Birthday, new { @type = "date"})
             @Html.ValidationMessageFor(m =>m.Infos.Birthday)
 
                 </div>

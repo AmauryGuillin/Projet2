@@ -83,7 +83,6 @@ namespace Projet2.Controllers
 
             return RedirectToAction("ViewDashboard", model);
 
-            //redirect au dashboard avec la liste des employés
         }
 
         public IActionResult ViewDashboard()
