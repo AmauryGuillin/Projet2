@@ -1159,25 +1159,35 @@ namespace Projet2.Models
 
         /////////////////RESERVATION STUFF
 
-        public void CreateReservationStuff(DateTime start, DateTime end)
-        {
-            ReservationStuff reservation = new ReservationStuff()
-            {
-                StartDate = start,
-                EndDate = end,
-            };
+        //public void CreateReservationStuff(DateTime start, DateTime end)
+        //{
+        //    ReservationStuff reservation = new ReservationStuff()
+        //    {
+        //        StartDate = start,
+        //        EndDate = end,
+        //    };
 
-            _bddContext.reservationsStuffs.Add(reservation);
+        //    _bddContext.reservationsStuffs.Add(reservation);
+        //    _bddContext.SaveChanges();
+        //}
+
+        public ReservationStuff CreateReservationStuff(ReservationStuff reservation)
+        {
+
+            _bddContext.ReservationsStuffs.Add(reservation);
             _bddContext.SaveChanges();
+            return reservation;
         }
+
+
 
         public void RemoveReservationStuff(int id)
         {
-            ReservationStuff reservation = _bddContext.reservationsStuffs.Find(id);
+            ReservationStuff reservation = _bddContext.ReservationsStuffs.Find(id);
 
             if (reservation != null)
             {
-                _bddContext.reservationsStuffs.Remove(reservation);
+                _bddContext.ReservationsStuffs.Remove(reservation);
                 _bddContext.SaveChanges();
             }
         }
@@ -1249,7 +1259,6 @@ namespace Projet2.Models
         public Stuff CreateStuff(Stuff stuff)
         {
             _bddContext.Stuffs.Add(stuff);
-            _bddContext.SaveChanges();
             _bddContext.SaveChanges();
             return stuff;
         }

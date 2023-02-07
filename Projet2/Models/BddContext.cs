@@ -35,7 +35,7 @@ namespace Projet2.Models
         public DbSet<Coaching> Training { get; set; } 
         public DbSet<Stuff> Stuffs { get; set; }
 
-        public DbSet<ReservationStuff> reservationsStuffs { get; set; }
+        public DbSet<ReservationStuff> ReservationsStuffs { get; set; }
 
 
         public DbSet<Publication> Publications { get; set; }
@@ -176,6 +176,15 @@ namespace Projet2.Models
                     ImagePath = "erty",
                     Bio = "Je ne suis pas",
                     Games = "Call of Duty",
+                });
+
+            this.ReservationsStuffs.Add(
+                new ReservationStuff()
+                {
+                    Id = 1,
+                    StartDate = DateTime.Now,
+                    EndDate = new DateTime(2023, 12, 25),
+                    StuffId= 2,
                 });
 
 

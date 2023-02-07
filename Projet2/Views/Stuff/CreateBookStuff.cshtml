@@ -6,21 +6,25 @@
 
 
 <h2>Reservation Stuff</h2>
+
+@using (Html.BeginForm())
+{
 @Html.HiddenFor(m=>m.Stuff.Id)
 
 <p>Nom : @Model.Stuff.Name</p>
 <p>Description : @Model.Stuff.Description</p>
 <p>Type : @Model.Stuff.Type</p>
 <p>Type : @Model.Stuff.State</p>
-<p>Auteur : @Model.Stuff.AccountOwnerId</p>
+<p>Proprio : @Model.Account.Username</p>
 
-@Html.LabelFor(m => m.reservationStuff.StartDate)
-@Html.EditorFor(m => m.reservationStuff.StartDate, new { htmlAttributes = new { @class = "form-control" } })
+@Html.LabelFor(m => m.ReservationStuff.StartDate)
+@Html.TextBoxFor(m => m.ReservationStuff.StartDate, new { @type = "datetime-local"})
+@Html.ValidationMessageFor(m => m.ReservationStuff.StartDate)
 
-@Html.LabelFor(m => m.reservationStuff.EndDate)
-@Html.EditorFor(m => m.reservationStuff.EndDate, new { htmlAttributes = new { @class = "datepicker" } })
+@Html.LabelFor(m => m.ReservationStuff.EndDate)
+@Html.TextBoxFor(m => m.ReservationStuff.EndDate, new { @type = "datetime-local"})
+@Html.ValidationMessageFor(m => m.ReservationStuff.EndDate)
 
 <input type="submit" value="Réserver" />
-
-
+}
 

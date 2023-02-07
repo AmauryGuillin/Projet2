@@ -6,6 +6,7 @@ using Projet2.Models;
 using Projet2.ViewModels;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Security.Claims;
 using System.Xml.Linq;
 
@@ -74,15 +75,26 @@ namespace Projet2.Controllers
             ProfileViewModel model = new ProfileViewModel();
             Stuff stuff = dal.GetOneStuff(id);
             model.Stuff = stuff;
+            model.Account = dal.GetAccounts().Where(r => r.Id == stuff.AccountOwnerId).FirstOrDefault();
+            //model.ReservationStuff = new ReservationStuff();
+            //model.ReservationStuff.StuffId= id;
             
-            
+
 
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult CreateBookStuff(Stuff stuff)
+        public IActionResult CreateBookStuff(ProfileViewModel model)
         {
+
+            if (ModelState.IsValid)
+            {
+                model.ReservationStuff.StuffId = model.Stuff.Id;
+                ReservationStuff reservationCreated = dal.CreateReservationStuff(model.ReservationStuff);
+
+                return View("Index");
+            }
 
             return View();
         }

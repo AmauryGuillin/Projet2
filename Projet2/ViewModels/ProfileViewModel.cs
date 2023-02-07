@@ -20,7 +20,7 @@ namespace Projet2.ViewModels
         public InfoPerso Infos { get; set; }
         public Inventory Inventory { get; set; }
         public Stuff Stuff { get; set; }
-        public ReservationStuff reservationStuff { get; set; }
+        public ReservationStuff ReservationStuff { get; set; }
 
 
     }
