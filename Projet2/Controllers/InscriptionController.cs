@@ -60,6 +60,7 @@ namespace Projet2.Controllers
                     
                     );
 
+
             inscriptionViewModel.Account =
             dal.AddAccount(
                  inscriptionViewModel.Account.Username,

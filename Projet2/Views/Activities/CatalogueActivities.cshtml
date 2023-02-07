@@ -1,10 +1,16 @@
-﻿@model Projet2.ViewModels.ActivitiesViewModel
+﻿@using Projet2.Models;
+@model Projet2.ViewModels.ActivitiesViewModel
 @{
     Layout = "_LayoutGeneral";
+
 }
 <h2>Catalogue d'activités</h2>
 <div>
 
+    @Html.HiddenFor(m=>m.Account.Id)
+    @Html.HiddenFor(m=>m.Account.role)
+    @Html.HiddenFor(m=>m.Account.PlanningId)
+    @Html.HiddenFor(m=>m.Slot.Id)
 
 <table >
         <tr>
@@ -25,7 +31,14 @@
                 <td>@Html.DisplayFor(mActivity=>Activity.StartDate)</td>
                 <td>@Html.DisplayFor(mActivity=>Activity.EndDate)</td>
 @if(Model.Account!=null){
-                <td> <button> S'inscrire'</button></td>}
+                <td> 
+                    @*@Html.BeginForm("Book","Activities",FormMethod.Post, new {id= Activity.Id})
+                        {     
+                            <input type="submit" value="S'inscrire'" class="BoutonValidationFormulaire" onclick="Selection" />     
+                        }*@
+                        @Html.ActionLink("S'inscrire","Book","Activities",new {id= Activity.Id});
+                </td>
+                 }
     </tr>
 }
 

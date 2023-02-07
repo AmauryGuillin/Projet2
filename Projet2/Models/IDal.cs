@@ -68,7 +68,7 @@ namespace Projet2.Models
 
         public Account AddAccount(string username, string password, int contactId, int infopersoId, int profileId,Role role);
 
-        int CreateSlot(DateTime date, DateTime startHour, DateTime endHour);
+        //int CreateSlot(DateTime date, DateTime startHour, DateTime endHour);
         int CreateSlot(Slot slot);
         void EditSlot(int id, DateTime date, DateTime startHour, DateTime endHour);
         void EditSlot(Slot slot);

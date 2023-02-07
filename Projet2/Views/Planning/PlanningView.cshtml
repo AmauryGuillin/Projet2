@@ -1,0 +1,27 @@
+﻿@model Projet2.ViewModels.PlanningViewModel
+@{
+    Layout = "_LayoutGeneral";
+
+}
+@Html.HiddenFor(m=>m.Account.Id)
+@Html.HiddenFor(m=>m.Account.role)
+@Html.HiddenFor(m=>m.Account.PlanningId)
+@Html.HiddenFor(m=>m.Slot.Id)
+@*@Html.HiddenFor(m=>m.Account.Id)*@
+@*@Html.HiddenFor(m=>m.Account.role)
+@Html.HiddenFor(m=>m.Account.ProfileId)*@
+
+<h1 style="text-align: center">Accueil :)</h1>
+@*
+@if (Model.Account.role==Projet2.Models.Role.Benevole){*@
+
+@* <img src="@Model.Profile.ImagePath" height="400" width="400" />*@
+<p>
+  @*  @Model.Account.role 
+    @Model.Account.Username @Model.Account.ProfileId
+    @Html.ActionLink("Profil","ProfileViewBenevole","Inscription",new{
+    accountId=Model.Account.Id
+    },null
+    )*@
+    Tu es passée de booking a Planning 
+</p>
