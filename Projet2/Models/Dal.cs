@@ -777,12 +777,22 @@ namespace Projet2.Models
             return employee.Id;
         }
 
-        public Employee CreateEmployee(int accountId)
+        public Profile CreateProfileEmployee(string bio, string games)
+        {
+            Profile profile = new Profile() { Bio= bio, Games = games };
+            _bddContext.Profils.Add(profile);
+            _bddContext.SaveChanges();
+            return profile;
+        }
+
+        public Employee CreateEmployee(int accountId, string jobname, string matricule)
         {
             Employee employee = new Employee()
             {
                 AccountId= accountId,
                 DateOfEmployement= DateTime.Now,
+                JobName=jobname,
+                SerialNumber=matricule
             };
 
             _bddContext.Employees.Add(employee);

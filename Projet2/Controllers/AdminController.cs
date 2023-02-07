@@ -33,14 +33,13 @@ namespace Projet2.Controllers
         public IActionResult CreateEmployee(AdminViewModel model)
         {
 
-            string uploads = Path.Combine(_webEnv.WebRootPath, "images");
+            //string uploads = Path.Combine(_webEnv.WebRootPath, "images");
             //string filePath = Path.Combine(uploads, model.Profile.ProfilImage.FileName);
-            string filePath = "D:/Formation Ingé informatique/répertoire VS/Projet2/Projet2/wwwroot/images/a1wdD6zl_700w_0.jpg";
 
-                using (Stream fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    model.Profile.ProfilImage.CopyTo(fileStream);
-                }
+            //using (Stream fileStream = new FileStream(filePath, FileMode.Create))
+            //    {
+            //        model.Profile.ProfilImage.CopyTo(fileStream);
+            //    }
 
 
             model.Contact =
@@ -56,8 +55,7 @@ namespace Projet2.Controllers
                      );
 
             model.Profile =
-                dal.AddProfile(
-                    "/images/" + model.Profile.ProfilImage.FileName,
+                dal.CreateProfileEmployee(
                     model.Profile.Bio,
                     model.Profile.Games
                     );
@@ -71,7 +69,7 @@ namespace Projet2.Controllers
                  model.Profile.Id
                  );
 
-            model.Employee = dal.CreateEmployee(model.Account.Id);
+            model.Employee = dal.CreateEmployee(model.Account.Id, model.Employee.JobName, model.Employee.SerialNumber);
 
             var userClaims = new List<Claim>()
                 {
