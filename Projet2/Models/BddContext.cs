@@ -308,14 +308,18 @@ namespace Projet2.Models
                 new Activity()
                 {
                     Id = 1,
-                    StartDate= DateTime.Now,
-                    EndDate= DateTime.Now,
+                    Description="Fin du monde",
+                    Place= "Locaux",
+                    StartDate= DateTime.UtcNow,
+                    EndDate= new DateTime(2023, 02, 10),
                     //SlotID= 1,
                 },
 
                 new Activity()
                 {
                     Id = 2,
+                    Description = "Fin du monde",
+                    Place = "Locaux",
                     StartDate = new DateTime(1998,02,10),
                     EndDate= DateTime.Now,
                     //SlotID= 3,
@@ -324,7 +328,9 @@ namespace Projet2.Models
                 new Activity()
                 {
                     Id = 3,
-                    StartDate= DateTime.Now,
+                    Description = "Fin du monde",
+                    Place = "Locaux",
+                    StartDate = DateTime.Now,
                     EndDate= DateTime.Now,
                     //SlotID= 2,
                 },
@@ -332,6 +338,8 @@ namespace Projet2.Models
                 new Activity()
                 {
                     Id = 4,
+                    Description = "Fin du monde",
+                    Place = "Locaux",
                     StartDate = DateTime.Now,
                     EndDate = DateTime.Now,
                     //SlotID = 5,
@@ -340,6 +348,8 @@ namespace Projet2.Models
                 new Activity()
                 {
                     Id = 5,
+                    Description = "Fin du monde",
+                    Place = "Locaux",
                     StartDate = DateTime.Now,
                     EndDate = DateTime.Now,
                     //SlotID = 4,
@@ -348,6 +358,8 @@ namespace Projet2.Models
                 new Activity()
                 {
                     Id = 6,
+                    Description = "Fin du monde",
+                    Place = "Locaux",
                     StartDate = DateTime.Now,
                     EndDate = DateTime.Now,
                     //SlotID = 8,

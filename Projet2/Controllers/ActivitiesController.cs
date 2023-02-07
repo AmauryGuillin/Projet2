@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Projet2.Models;
 using Projet2.ViewModels;
+using System.Collections.Generic;
 
 namespace Projet2.Controllers
 {
@@ -40,9 +41,13 @@ namespace Projet2.Controllers
         {
             ActivitiesViewModel activitiesVM = new ActivitiesViewModel();
             activitiesVM.Account = dal.GetAccount(HttpContext.User.Identity.Name);
-            dal.GetActivities();
+           
+          activitiesVM.activities=dal.GetActivities();
+           
             return View(activitiesVM);
         }
+
+
 
 
         ////////////////////////END

@@ -3,25 +3,34 @@
     Layout = "_LayoutGeneral";
 }
 <h2>Catalogue d'activités</h2>
+<div>
+
 
 <table >
         <tr>
-            <th><h2>Title</h2></th>
-            <th><h2>Description</h2></th>
-            <th><h2>Place</h2></th>
+            <th name="Description"><h2>Description</h2></th>
+            <th name="Place"><h2>Place</h2></th>
             <th><h2>Organizer</h2></th>
-        <th><h2>Debut</h2></th>
-        <th><h2>Fin</h2></th>
+            <th><h2>StartDate</h2></th>
+            <th><h2>EndDate</h2></th>
+        @*<th><h2>Debut</h2></th>
+        <th><h2>Fin</h2></th>*@
         </tr>
-
-@*@foreach (var Activity in Model)
-{
+        @foreach (var Activity in Model.activities)
+ {
     <tr>
-
-
+        <td>@Html.DisplayFor(mActivity=>Activity.Description)</td>
+                <td>@Html.DisplayFor(mActivity=>Activity.Place)</td>
+                <td>@Html.DisplayFor(mActivity=>Activity.Organizer)</td>
+                <td>@Html.DisplayFor(mActivity=>Activity.StartDate)</td>
+                <td>@Html.DisplayFor(mActivity=>Activity.EndDate)</td>
+@if(Model.Account!=null){
+                <td> <button> S'inscrire'</button></td>}
     </tr>
+}
 
-
-}*@
 
 </table>
+</div>
+
+       @* && Model.Account.role!=Projet2.Models.Role.Benevole*@

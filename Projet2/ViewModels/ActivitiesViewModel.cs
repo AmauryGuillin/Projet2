@@ -18,5 +18,7 @@ namespace Projet2.ViewModels
 
         [Display(Name = "Choisissez le type d'evenement")]
         public EventType activityEventType { get; set; }
+
+        public List<Activity> activities { get; set;}
     }
 }
