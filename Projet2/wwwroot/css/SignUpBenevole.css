@@ -1,0 +1,139 @@
+﻿.content {
+    min-height: 100vh;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    margin-top: 4%;
+    width: 70%;
+    padding: 30px;
+    border: 1px solid #0000001e;
+    background: #0000001e;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "h1 h1"
+        "part1 part2"
+        "button button";
+}
+
+    form h1 {
+        width: 100%;
+        margin: 0 auto 10px auto;
+        padding-bottom: 10px;
+        color: white;
+        text-align: center;
+        justify-self: center;
+        grid-area: h1;
+    }
+
+sup {
+    color: red;
+    font-weight: bold;
+}
+
+form .part1 {
+    grid-area: part1;
+    justify-self: center;
+    width: 90%;
+}
+
+form .part2 {
+    grid-area: part2;
+    justify-self: center;
+    width: 90%;
+}
+
+.pseudo {
+    color: white;
+    margin-bottom: 10px;
+    margin-top: 10px
+}
+
+.profilePic {
+    color: white;
+    margin-bottom: 10px;
+    margin-top: 10px
+}
+
+.password, .firstname, .lastname, .email, .telnumber, .birthday, .bio, .games {
+    color: white;
+    margin-bottom: 10px;
+}
+
+
+form input[type=text],
+form input[type=password],
+form input[type=email],
+form input[type=date] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    margin-bottom: 12px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 20px;
+}
+
+
+
+.biographie {
+    margin-top: 10px;
+}
+
+form textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    margin-bottom: 12px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 20px;
+    resize: none;
+}
+
+input::file-selector-button {
+    font-weight: bold;
+    padding: 5px 5px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+form input[type=text]:hover,
+form input[type=password]:hover,
+form input[type=email]:hover,
+form input[type=date]:hover,
+form textarea:hover {
+    border: 2px solid #4b2df1;
+}
+
+form input[type=submit] {
+    grid-area: button;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #d33bfd;
+    border-radius: 5px;
+    color: black;
+    padding: 14px 20px;
+    margin: 50px 0 auto auto;
+    border: none;
+    cursor: pointer;
+    width: 25%;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+    form input[type=submit]:hover {
+        color: white;
+        background-color: #4b2df1;
+        transition: 0.2s;
+    }
