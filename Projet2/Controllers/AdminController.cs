@@ -66,7 +66,8 @@ namespace Projet2.Controllers
                  model.Account.Password,
                  model.Contact.Id,
                  model.Infos.Id,
-                 model.Profile.Id
+                 model.Profile.Id,
+                 model.Account.role
                  );
 
             model.Employee = dal.CreateEmployee(model.Account.Id, model.Employee.JobName, model.Employee.SerialNumber);
