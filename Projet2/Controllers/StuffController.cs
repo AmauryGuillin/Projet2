@@ -61,8 +61,13 @@ namespace Projet2.Controllers
                 Stuff stuffCreated = dal.CreateStuff(model.Stuff);
                 dal.EditStuff(model.Stuff.Id, model.Account.Id);
 
-
-                return View("Index");
+                if (model.Account.role == Role.Adherent)
+                {
+                    return RedirectToAction("ProfileViewAdherent", "Inscription");
+                }else if (model.Account.role == Role.Benevole)
+                {
+                    return RedirectToAction("ProfileViewBenevole", "Inscription");
+                }    
             }
             return View();
         }
@@ -80,8 +85,9 @@ namespace Projet2.Controllers
             {
 
                 string accountId = (HttpContext.User.Identity.Name);
-                Stuff stuff = dal.GetOneStuff(id);
-                model.Stuff = stuff;
+                model.Stuff = dal.GetOneStuff(id);
+                Stuff stuff = model.Stuff;
+                
                 model.Account = dal.GetAccount(accountId);
                 Account userAccount = model.Account;
                 model.Stuff.AccountBorrowerId = userAccount.Id;
@@ -95,11 +101,14 @@ namespace Projet2.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateBookStuff(ProfileViewModel model)
+        public IActionResult CreateBookStuff(ProfileViewModel model, int id)
         {
             if (ModelState.IsValid)
             {
+
                 model.ReservationStuff.StuffId = model.Stuff.Id;
+                model.Stuff = dal.GetOneStuff(id);
+                Stuff stuff = model.Stuff;
 
                 string accountId = (HttpContext.User.Identity.Name);
                 model.Account = dal.GetAccount(accountId);
@@ -109,7 +118,14 @@ namespace Projet2.Controllers
                 dal.EditStuffReservation(model.Stuff.Id, model.Account.Id);
                 ReservationStuff reservationCreated = dal.CreateReservationStuff(model.ReservationStuff);
 
-                return View("Index");
+                if (model.Account.role == Role.Adherent)
+                {
+                    return RedirectToAction("ProfileViewAdherent", "Inscription");
+                }
+                else if (model.Account.role == Role.Benevole)
+                {
+                    return RedirectToAction("ProfileViewBenevole", "Inscription");
+                }
             }
 
             return View();
