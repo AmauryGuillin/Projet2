@@ -16,7 +16,7 @@ namespace Projet2.Models
         public IFormFile ProfilImage { get; set; }
 
 
-        public byte[] UserPhoto { get; set; }
+        //public byte[] UserPhoto { get; set; }
 
         [MaxLength(50)]
         //[Required]

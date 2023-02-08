@@ -5,6 +5,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Projet2.Models
 {
+
+    public enum Role
+    {
+        Admin,
+        Salarié,
+        Benevole,
+        Adherent
+    }
     public class Account
     {
 
@@ -35,6 +43,8 @@ namespace Projet2.Models
 
         public int? ProfileId { get; set; }
         public virtual Profile Profile { get; set; }
+
+        public Role role { get; set; }
 
 
 
