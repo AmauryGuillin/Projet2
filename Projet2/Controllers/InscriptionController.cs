@@ -60,13 +60,15 @@ namespace Projet2.Controllers
                     
                     );
 
+
             inscriptionViewModel.Account =
             dal.AddAccount(
                  inscriptionViewModel.Account.Username,
                  inscriptionViewModel.Account.Password,
                  inscriptionViewModel.Contact.Id,
                  inscriptionViewModel.Infos.Id,
-                 inscriptionViewModel.Profile.Id
+                 inscriptionViewModel.Profile.Id,
+                 Projet2.Models.Role.Benevole
                  );
             inscriptionViewModel.Benevole =
              dal.CreateNewBenevole(inscriptionViewModel.Account.Id);
@@ -137,7 +139,8 @@ namespace Projet2.Controllers
                  inscriptionViewModel.Account.Password,
                  inscriptionViewModel.Contact.Id,
                  inscriptionViewModel.Infos.Id,
-                 inscriptionViewModel.Profile.Id
+                 inscriptionViewModel.Profile.Id,
+                 Projet2.Models.Role.Adherent
                  );
             inscriptionViewModel.Contribution =
                dal.CreateNewContribution(
@@ -178,17 +181,30 @@ namespace Projet2.Controllers
 
 
 
-        public ActionResult ProfileViewBenevole()
+        public ActionResult ProfileViewBenevole()// NOOOPE
         {
+           
+            InscriptionViewModel inscriptionViewModel= new InscriptionViewModel() { Authentificate = HttpContext.User.Identity.IsAuthenticated };
             
-            return View();
+            if (HttpContext.User.Identity.IsAuthenticated == true)
+            {
+                string accountId = (HttpContext.User.Identity.Name);
+                inscriptionViewModel.Account = dal.GetAccount(accountId);
+                Account accountUser = inscriptionViewModel.Account;
+                inscriptionViewModel.Profile = dal.GetProfiles().Where(r => r.Id == accountUser.ProfileId).FirstOrDefault();
+                inscriptionViewModel.Infos = dal.GetInformations().Where(r => r.Id == accountUser.InfoPersoId).FirstOrDefault();
+                inscriptionViewModel.Contact=dal.GetContacts().Where(r => r.Id== accountUser.ContactId).FirstOrDefault();
+                return View(inscriptionViewModel);
+            }
+           
+            return View(inscriptionViewModel);
 
         }
 
         public ActionResult ProfileViewAdherent()
         {
-
-            return View();
+            InscriptionViewModel inscriptionViewModel = new InscriptionViewModel();
+            return View(inscriptionViewModel);
 
         }
 
