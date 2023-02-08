@@ -191,8 +191,8 @@ namespace Projet2.Models
                 new ReservationStuff()
                 {
                     Id = 1,
-                    StartDate = new DateTime(2022, 12, 25),
-                    EndDate = new DateTime(2023, 12, 25),
+                    //StartDate = new DateTime(2022, 12, 25),
+                    //EndDate = new DateTime(2023, 12, 25),
                     ReservationBorrower = true,
                     AcceptationOwner = false,
                     StuffId= 2,

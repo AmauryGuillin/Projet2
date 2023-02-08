@@ -127,10 +127,10 @@
                     <th><h2>Description</h2></th>
                     <th><h2>Type</h2></th>
                     <th><h2>Etat</h2></th>
+                    <th><h2>Reservation</h2></th>
                 </tr>
                 @foreach (var Stuff in Model.Stuffs)
                 {
-                    
                     if (Stuff.AccountOwnerId == Model.Account.Id)
                     {
                         <tr><th>Mon Stuff à moi</th></tr>
@@ -139,9 +139,10 @@
                             <td>@Html.DisplayFor(mStuffs => Stuff.Description)</td>
                             <td>@Html.DisplayFor(mStuffs => Stuff.Type)</td>
                             <td>@Html.DisplayFor(mStuffs => Stuff.State)</td>
+                            <td>@Html.DisplayFor(mStuffs => Stuff.Reservation)</td>
+
                         </tr>
                     }
-                    
                     if (Stuff.AccountBorrowerId == Model.Account.Id)
                     {
                         <tr><th>Stuff en attente</th></tr>
@@ -150,18 +151,22 @@
                             <td>@Html.DisplayFor(mStuffs => Stuff.Description)</td>
                             <td>@Html.DisplayFor(mStuffs => Stuff.Type)</td>
                             <td>@Html.DisplayFor(mStuffs => Stuff.State)</td>
+                            <td>@Html.DisplayFor(mStuffs => Stuff.Reservation)</td>
                         </tr>
                     }
-                    @*<tr><th>Stuff reservation ok</th></tr>
-                    if (Stuff.AccountOwnerId == Model.Account.Id)
-                    {
-                        <tr>
-                            <td>@Html.DisplayFor(mStuffs => Stuff.Name)</td>
-                            <td>@Html.DisplayFor(mStuffs => Stuff.Description)</td>
-                            <td>@Html.DisplayFor(mStuffs => Stuff.Type)</td>
-                            <td>@Html.DisplayFor(mStuffs => Stuff.State)</td>
-                        </tr>
-                    }*@
+                                           
+                    }
+
+                        
+
+
+
+                    }
+
+                    
+                    
+                    
+                    
                 }
 
             </table>

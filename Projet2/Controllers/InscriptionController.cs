@@ -81,8 +81,13 @@ namespace Projet2.Controllers
             var userPrincipal = new ClaimsPrincipal(new[] { ClaimIdentity });
             HttpContext.SignInAsync(userPrincipal);
 
+            
             inscriptionViewModel.Stuffs = dal.GetStuffs();
             List<Stuff> Stuffs = inscriptionViewModel.Stuffs;
+            inscriptionViewModel.ReservationStuffs = dal.GetReservations();
+            List<ReservationStuff> ListReservations = inscriptionViewModel.ReservationStuffs;
+
+
 
             return View("ProfileViewBenevole", inscriptionViewModel);
            
@@ -200,6 +205,11 @@ namespace Projet2.Controllers
 
                 inscriptionViewModel.Stuffs = dal.GetStuffs();
                 List<Stuff> Stuffs = inscriptionViewModel.Stuffs;
+                inscriptionViewModel.ReservationStuffs = dal.GetReservations();
+                List<ReservationStuff> ListReservations = inscriptionViewModel.ReservationStuffs;
+
+                //int stuffRid = inscriptionViewModel.Stuff.Id;
+                //inscriptionViewModel.ReservationStuff = dal.GetReservations().Where(r => r.StuffId == stuffRid).FirstOrDefault();
 
                 return View(inscriptionViewModel);
             }

@@ -38,6 +38,8 @@ namespace Projet2.ViewModels
         public ContributionType ContributionType { get; set; }
         public Stuff Stuff { get; set; }
         public List<Stuff> Stuffs { get; set; }
+        public ReservationStuff ReservationStuff { get; set; }
+        public List<ReservationStuff> ReservationStuffs { get; set; }
 
     }
 }

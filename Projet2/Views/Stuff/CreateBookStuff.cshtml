@@ -17,7 +17,7 @@
 <p>Type : @Model.Stuff.State</p>
 <p>Proprio : @Model.Account.Username</p>
 
-<div>
+@*<div>
 @Html.LabelFor(m => m.ReservationStuff.StartDate)
 @Html.TextBoxFor(m => m.ReservationStuff.StartDate, new { @type = "datetime-local"})
 @Html.ValidationMessageFor(m => m.ReservationStuff.StartDate)
@@ -26,7 +26,7 @@
 @Html.LabelFor(m => m.ReservationStuff.EndDate)
 @Html.TextBoxFor(m => m.ReservationStuff.EndDate, new { @type = "datetime-local"})
 @Html.ValidationMessageFor(m => m.ReservationStuff.EndDate)
-</div>
+</div>*@
 <div>
 @Html.LabelFor(m => m.ReservationStuff.ReservationArgument)
 @Html.TextBoxFor(m => m.ReservationStuff.ReservationArgument)

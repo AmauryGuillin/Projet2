@@ -23,6 +23,13 @@ namespace Projet2.Models
             Salle
         }
 
+    public enum Reservation
+    {
+        libre,
+        enAttente,
+        valide
+    }
+
 
     public class Stuff
     {
@@ -37,7 +44,7 @@ namespace Projet2.Models
         public string Description { get; set; }
         public Type Type { get; set; }
         public State State { get; set; }
-
+        public Reservation Reservation { get; set; }
         public int? AccountOwnerId { get; set; }
         public virtual Account AccountOwner { get; set; }
         public int? AccountBorrowerId { get; set; }

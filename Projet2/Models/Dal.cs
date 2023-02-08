@@ -1272,6 +1272,11 @@ namespace Projet2.Models
             return reservation;
         }
 
+        public List<ReservationStuff> GetReservations()
+        {
+            return _bddContext.ReservationsStuffs.ToList();
+        }
+
 
 
         public void RemoveReservationStuff(int id)
@@ -1398,6 +1403,7 @@ namespace Projet2.Models
             Stuff stuff = _bddContext.Stuffs.Find(id);
             if (stuff != null)
             {
+                stuff.Reservation = Reservation.libre;
                 stuff.AccountOwnerId = accountOwnerId;
                 _bddContext.SaveChanges();
             }
@@ -1408,6 +1414,7 @@ namespace Projet2.Models
             Stuff stuff = _bddContext.Stuffs.Find(id);
             if (stuff != null)
             {
+                stuff.Reservation = Reservation.enAttente;
                 stuff.AccountBorrowerId = accountBorrowerId;
                 _bddContext.SaveChanges();
             }
