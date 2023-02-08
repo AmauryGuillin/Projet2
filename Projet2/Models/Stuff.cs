@@ -7,11 +7,12 @@ namespace Projet2.Models
 {
         public enum State
         {
-            Neuf,
-            TrèsBon,
+            Acceptable,
             Bon,
-            Acceptable
-        }
+            TrèsBon,
+            Neuf
+
+    }
 
         public enum Type
         {
@@ -27,7 +28,7 @@ namespace Projet2.Models
     {
         libre,
         enAttente,
-        valide
+        reserver
     }
 
 
