@@ -137,6 +137,7 @@ namespace Projet2.Models
                 ContactId = contactId,
                 InfoPersoId = infopersoId,
                 Inventory = new Inventory(),
+                Planning= AddPlanning(username),
                 role = role
                
             };
@@ -1066,10 +1067,11 @@ namespace Projet2.Models
 
         /////////////////PLANNING
         ///
-        public Planning AddPlanning()
+        public Planning AddPlanning(string name)
         {
             Planning planning = new Planning()
             {
+                Name= name,
             };
             this._bddContext.Planning.Add(planning);
             this._bddContext.SaveChanges();
@@ -1081,7 +1083,7 @@ namespace Projet2.Models
             return _bddContext.Planning.ToList();
         }
 
-        public void AddSlotToPlanning(string accountId, Slot slot)
+        public void AddSlotToPlanning(int accountId, Slot slot)
         {
             Account account=GetAccount(accountId);
            Planning planning= GetPlannings().Where(r => r.Id == account.PlanningId).FirstOrDefault();
@@ -1244,18 +1246,21 @@ namespace Projet2.Models
 
         /////////////////SLOTS
 
-        public int CreateSlot(DateTime date, DateTime startHour, DateTime endHour)
+        public Slot CreateSlot( DateTime startHour, DateTime endHour,int ActivityId,int PlanningId)
         {
             Slot slot = new Slot()
             {
-                Date = date,
+                
                 StartHour = startHour,
-                EndHour = endHour
+                EndHour = endHour,
+                ActivityId = ActivityId,
+                PlanningId = PlanningId
+
             };
 
             _bddContext.Slots.Add(slot);
             _bddContext.SaveChanges();
-            return slot.Id;
+            return slot;
         }
 
         public int CreateSlot(Slot slot)
