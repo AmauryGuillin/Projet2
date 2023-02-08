@@ -79,8 +79,6 @@ namespace Projet2.Controllers
             if (HttpContext.User.Identity.IsAuthenticated == true)
             {
 
-                
-
                 string accountId = (HttpContext.User.Identity.Name);
                 Stuff stuff = dal.GetOneStuff(id);
                 model.Stuff = stuff;
