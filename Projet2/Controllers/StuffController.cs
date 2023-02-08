@@ -44,7 +44,7 @@ namespace Projet2.Controllers
         public IActionResult CreateStuff(ProfileViewModel model)
         {
 
-                if (ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 string accountId = (HttpContext.User.Identity.Name);
 
@@ -61,7 +61,7 @@ namespace Projet2.Controllers
                 Stuff stuffCreated = dal.CreateStuff(model.Stuff);
                 dal.EditStuff(model.Stuff.Id, model.Account.Id);
 
-         
+
                 return View("Index");
             }
             return View();
@@ -87,9 +87,9 @@ namespace Projet2.Controllers
                 model.Stuff.AccountBorrowerId = userAccount.Id;
                 model.Account = dal.GetAccounts().Where(r => r.Id == stuff.AccountOwnerId).FirstOrDefault();
 
-             return View(model);
+                return View(model);
             }
-            
+
             return View(model);
 
         }
@@ -101,14 +101,13 @@ namespace Projet2.Controllers
             {
                 model.ReservationStuff.StuffId = model.Stuff.Id;
 
-                
                 string accountId = (HttpContext.User.Identity.Name);
                 model.Account = dal.GetAccount(accountId);
                 Account userAccount = model.Account;
 
+                //Sert à modifier l'accountBorowerId
                 dal.EditStuffReservation(model.Stuff.Id, model.Account.Id);
                 ReservationStuff reservationCreated = dal.CreateReservationStuff(model.ReservationStuff);
-
 
                 return View("Index");
             }
@@ -116,5 +115,33 @@ namespace Projet2.Controllers
             return View();
         }
 
+        public IActionResult AcceptationBookStuff(int id)
+        {
+            ProfileViewModel model = new ProfileViewModel();
+            if (HttpContext.User.Identity.IsAuthenticated == true)
+            {
+
+
+
+                return View(model);
+            }
+
+            return View(model);
+
+        }
+
+        [HttpPost]
+        public IActionResult AcceptationBookStuff(ProfileViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+
+
+                return View("Index");
+            }
+
+            return View();
+
+        }
     }
 }

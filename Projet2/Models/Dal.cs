@@ -1181,7 +1181,6 @@ namespace Projet2.Models
 
         public ReservationStuff CreateReservationStuff(ReservationStuff reservation)
         {
-
             _bddContext.ReservationsStuffs.Add(reservation);
             _bddContext.SaveChanges();
             return reservation;

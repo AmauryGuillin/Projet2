@@ -1,0 +1,26 @@
+﻿@model Projet2.ViewModels.ProfileViewModel
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+@{
+    Layout = "_LayoutGeneral";
+}
+
+
+<h2>Reservation Stuff</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(m=>m.Stuff.Id)
+
+    <p>Nom : @Model.Stuff.Name</p>
+    <p>Description : @Model.Stuff.Description</p>
+    <p>Type : @Model.Stuff.Type</p>
+    <p>Type : @Model.Stuff.State</p>
+    <p>Proprio : @Model.Account.Username</p>
+
+
+
+
+    <input type="submit" value="Accepter" />
+    @*<input type="" value="Refuser" />*@
+}
+

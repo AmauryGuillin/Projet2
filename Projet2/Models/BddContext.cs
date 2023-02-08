@@ -193,6 +193,8 @@ namespace Projet2.Models
                     Id = 1,
                     StartDate = new DateTime(2022, 12, 25),
                     EndDate = new DateTime(2023, 12, 25),
+                    ReservationBorrower = true,
+                    AcceptationOwner = false,
                     StuffId= 2,
                 });
 
@@ -209,8 +211,8 @@ namespace Projet2.Models
                 new Account()
                 {
                     Id = 1,
-                    Username = "TOTO",
-                    Password = "111",
+                    Username = "a",
+                    Password = "C5-E1-C5-86-05-3C-2F-FE-A6-AF-16-B4-4A-02-A1-CF",
                     InfoPersoId = null,
                     ContactId = null,
                     PlanningId = null,
