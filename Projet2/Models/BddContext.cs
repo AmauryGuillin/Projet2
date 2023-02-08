@@ -218,19 +218,21 @@ namespace Projet2.Models
                     PlanningId = null,
                     SportAssociationId = null,
                     ProfileId=1,
-                    InventoryId = 1
+                    InventoryId = 1,
+                    role=Role.Adherent
                 },
                 new Account()
                 {
                     Id = 2,
-                    Username = "TATA",
-                    Password = "12345",
+                    Username = "b",
+                    Password = "C5-E1-C5-86-05-3C-2F-FE-A6-AF-16-B4-4A-02-A1-CF",
                     InfoPersoId = null,
                     ContactId = null,
                     PlanningId = null,
                     SportAssociationId = null,
                     ProfileId=2,
-                    InventoryId = 2
+                    InventoryId = 2,
+                    role=Role.Benevole
                 } );
             this.Inventory.AddRange(
                 new Inventory()
