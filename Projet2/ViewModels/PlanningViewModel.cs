@@ -10,5 +10,9 @@ namespace Projet2.ViewModels
         public Slot Slot { get; set; }
 
         public List<Slot> slots { get; set; }
+        public Profile Profile { get; set; }
+        public ActivitiesViewModel Activities { get; set; }
+
+        public List<Activity> activities { get; set; }
     }
 }

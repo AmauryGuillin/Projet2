@@ -71,6 +71,7 @@ namespace Projet2.Controllers
             Account account = activitiesVM.Account;
             int planningid= (int)account.PlanningId;
             activitiesVM.activities = dal.GetActivities();
+            List<Activity> activities = activitiesVM.activities;
             Activity selected = dal.GetActivities().Where(a => a.Id == id).FirstOrDefault();
 
 
