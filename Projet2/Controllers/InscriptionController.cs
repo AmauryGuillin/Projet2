@@ -183,6 +183,11 @@ namespace Projet2.Controllers
             HttpContext.SignInAsync(userPrincipal);
             //inscriptionViewModel.Account = dal.GetAccounts().Where(r => r.Id == inscriptionViewModel.Account.Id).FirstOrDefault();
 
+            inscriptionViewModel.Stuffs = dal.GetStuffs();
+            List<Stuff> Stuffs = inscriptionViewModel.Stuffs;
+            inscriptionViewModel.ReservationStuffs = dal.GetReservations();
+            List<ReservationStuff> ListReservations = inscriptionViewModel.ReservationStuffs;
+
             return View("ProfileViewAdherent", inscriptionViewModel);
 
         }
@@ -207,10 +212,6 @@ namespace Projet2.Controllers
                 List<Stuff> Stuffs = inscriptionViewModel.Stuffs;
                 inscriptionViewModel.ReservationStuffs = dal.GetReservations();
                 List<ReservationStuff> ListReservations = inscriptionViewModel.ReservationStuffs;
-
-                //int stuffRid = inscriptionViewModel.Stuff.Id;
-                //inscriptionViewModel.ReservationStuff = dal.GetReservations().Where(r => r.StuffId == stuffRid).FirstOrDefault();
-
                 return View(inscriptionViewModel);
             }
            
@@ -221,7 +222,22 @@ namespace Projet2.Controllers
         public ActionResult ProfileViewAdherent()
         {
             InscriptionViewModel inscriptionViewModel = new InscriptionViewModel();
+            if (HttpContext.User.Identity.IsAuthenticated == true)
+            {
+                string accountId = (HttpContext.User.Identity.Name);
+                inscriptionViewModel.Account = dal.GetAccount(accountId);
+                Account accountUser = inscriptionViewModel.Account;
+                inscriptionViewModel.Profile = dal.GetProfiles().Where(r => r.Id == accountUser.ProfileId).FirstOrDefault();
+                inscriptionViewModel.Infos = dal.GetInformations().Where(r => r.Id == accountUser.InfoPersoId).FirstOrDefault();
+                inscriptionViewModel.Contact = dal.GetContacts().Where(r => r.Id == accountUser.ContactId).FirstOrDefault();
+
+                inscriptionViewModel.Stuffs = dal.GetStuffs();
+                List<Stuff> Stuffs = inscriptionViewModel.Stuffs;
+                inscriptionViewModel.ReservationStuffs = dal.GetReservations();
+                List<ReservationStuff> ListReservations = inscriptionViewModel.ReservationStuffs;
+            }
             return View(inscriptionViewModel);
+
 
         }
 

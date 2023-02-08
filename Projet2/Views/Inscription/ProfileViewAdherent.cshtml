@@ -45,7 +45,7 @@
             </li>
            
             <li class="nav-item ">
-                @Html.ActionLink("Ajouter du materiel", "CreateStuff", "Stuff", new {accountId = Model.Account.Id})
+                @Html.ActionLink("Ajouter du materiel", "CreateStuff", "Stuff")
                 
             </li>
             <li class="nav-item ">
@@ -65,7 +65,7 @@
             <div class="column1">
                 <section class="SectionDescription">
 @*@using (Html.BeginForm("EditProfilePic", "Inscription", FormMethod.Post, new { enctype = "multipart/form-data" }))*@
-{
+
 
                         @Html.HiddenFor(m=>m.Account.Id)
                         @Html.HiddenFor(m=>m.Profile.Id)
@@ -161,8 +161,7 @@
                     }
 
                 }
-                }
-                }
+ 
             </table>
         </fieldset>
     </div>
