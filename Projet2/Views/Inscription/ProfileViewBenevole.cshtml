@@ -140,6 +140,7 @@
                             <td>@Html.DisplayFor(mStuffs => Stuff.Type)</td>
                             <td>@Html.DisplayFor(mStuffs => Stuff.State)</td>
                             <td>@Html.DisplayFor(mStuffs => Stuff.Reservation)</td>
+                            <td>@Html.ActionLink("Consulter", "AcceptationBookStuff","Stuff", new { id = Stuff.Id })</td>
 
                         </tr>
                     }               

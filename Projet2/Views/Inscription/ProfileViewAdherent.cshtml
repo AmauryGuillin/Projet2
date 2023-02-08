@@ -136,18 +136,7 @@
                 </tr>
                 @foreach (var Stuff in Model.Stuffs)
                 {
-                    if (Stuff.AccountOwnerId == Model.Account.Id)
-                    {
-                        <tr><th>Mon Stuff à moi</th></tr>
-                        <tr>
-                            <td>@Html.DisplayFor(mStuffs => Stuff.Name)</td>
-                            <td>@Html.DisplayFor(mStuffs => Stuff.Description)</td>
-                            <td>@Html.DisplayFor(mStuffs => Stuff.Type)</td>
-                            <td>@Html.DisplayFor(mStuffs => Stuff.State)</td>
-                            <td>@Html.DisplayFor(mStuffs => Stuff.Reservation)</td>
-
-                        </tr>
-                    }
+                    
                     if (Stuff.AccountBorrowerId == Model.Account.Id)
                     {
                         <tr><th>Stuff en attente</th></tr>
@@ -157,6 +146,21 @@
                             <td>@Html.DisplayFor(mStuffs => Stuff.Type)</td>
                             <td>@Html.DisplayFor(mStuffs => Stuff.State)</td>
                             <td>@Html.DisplayFor(mStuffs => Stuff.Reservation)</td>
+
+                        </tr>
+                    }
+                    if (Stuff.AccountOwnerId == Model.Account.Id)
+                    {
+                        <tr><th>Mon Stuff à moi</th></tr>
+                        <tr>
+                            <td>@Html.DisplayFor(mStuffs => Stuff.Name)</td>
+                            <td>@Html.DisplayFor(mStuffs => Stuff.Description)</td>
+                            <td>@Html.DisplayFor(mStuffs => Stuff.Type)</td>
+                            <td>@Html.DisplayFor(mStuffs => Stuff.State)</td>
+                            <td>@Html.DisplayFor(mStuffs => Stuff.Reservation)</td>
+                            <td>@Html.ActionLink("Consulter", "AcceptationBookStuff","Stuff", new { id = Stuff.Id })</td>
+
+
                         </tr>
                     }
 

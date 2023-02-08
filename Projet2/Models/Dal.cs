@@ -1420,6 +1420,16 @@ namespace Projet2.Models
             }
         }
 
+        public void EditStuffAcceptation(int id)
+        {
+            Stuff stuff = _bddContext.Stuffs.Find(id);
+            if (stuff != null)
+            {
+                stuff.Reservation = Reservation.valide;
+                _bddContext.SaveChanges();
+            }
+        }
+
 
         public void EditStuff(Stuff stuff)
         {

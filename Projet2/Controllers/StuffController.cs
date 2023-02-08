@@ -136,10 +136,16 @@ namespace Projet2.Controllers
             ProfileViewModel model = new ProfileViewModel();
             if (HttpContext.User.Identity.IsAuthenticated == true)
             {
+                string accountId = (HttpContext.User.Identity.Name);
 
+                model.Stuff = dal.GetOneStuff(id);
+                Stuff stuff = model.Stuff;
 
+                model.Account = dal.GetAccount(accountId);
+                Account userAccount = model.Account;
+                model.Stuff.AccountBorrowerId = userAccount.Id;
+                model.Account = dal.GetAccounts().Where(r => r.Id == stuff.AccountOwnerId).FirstOrDefault();
 
-                return View(model);
             }
 
             return View(model);
@@ -147,13 +153,23 @@ namespace Projet2.Controllers
         }
 
         [HttpPost]
-        public IActionResult AcceptationBookStuff(ProfileViewModel model)
+        public IActionResult AcceptationBookStuff(ProfileViewModel model, int id)
         {
             if (ModelState.IsValid)
             {
+                string accountId = (HttpContext.User.Identity.Name);
+                model.Account = dal.GetAccount(accountId);
 
+                dal.EditStuffAcceptation(id);
 
-                return View("Index");
+                if (model.Account.role == Role.Adherent)
+                {
+                    return RedirectToAction("ProfileViewAdherent", "Inscription");
+                }
+                else if (model.Account.role == Role.Benevole)
+                {
+                    return RedirectToAction("ProfileViewBenevole", "Inscription");
+                }
             }
 
             return View();
