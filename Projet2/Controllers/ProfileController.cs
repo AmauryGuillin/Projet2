@@ -53,7 +53,7 @@ namespace Projet2.Controllers
         public IActionResult EditProfilePIC()
         {
             ProfileViewModel profilevm = new ProfileViewModel();
-            return View();
+            return View(profilevm);
         }
 
         [HttpPost]
@@ -68,7 +68,7 @@ namespace Projet2.Controllers
                     }
                     dal.EditProfilePIC("/images/" + profilevm.Profile.ProfilImage.FileName,profilevm.Profile.Id);
               
-            return View();
+            return View(profilevm);
         }
 
 

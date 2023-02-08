@@ -7,6 +7,7 @@ namespace Projet2.ViewModels
         public Account Account { get; set; }
         public bool Authentificate { get; set; }
        
+        //public Profile Profile { get; set; }
     }
 
 }
