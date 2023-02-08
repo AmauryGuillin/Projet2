@@ -2,21 +2,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title</title>
-
-	<link rel="stylesheet" href="~/css/LayoutGeneral.css">
-
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="~/css/LayoutGeneral.css" />
+    <link rel="shortcut icon"
+          href="Assets/Gif/ezgif-5-9ea2c6cf60-unscreen.gif"
+          type="image/gif" />
 </head>
-<body>
+
+<header>
+    <div class="header-grid">
+        <img class="header-gif"
+             src="~/Assets/Gif/blue-flame-happy-hopper.gif"
+             alt="Logo de l'association" />
+        <h1>Play4Us</h1>
+        <div class="menu">
+            <a href="#Accueil">Accueil</a>
+            <a href="#Apropos">À propos</a>
+            <a href="#Materiels">Materiels</a>
+            <a href="#Coaching">Coaching</a>
+            <a href="#Jeux">Jeux</a>
+            <a href="#Benevolat">Benevolat</a>
+            <a href="#Forum">Forum</a>
+            <a href="#Contact">Contact</a>
+            <input type="submit" value="Se Connecter" />
+        </div>
+    </div>
+
+    <nav class="navbar">
+        <img class="header-gif"
+             src="~/Assets/Gif/blue-flame-happy-hopper.gif"
+             alt="image fail to load" />
+        <h1>Play4Us</h1>
+        <div class="nav-links">
+            <ul>
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#">À propos</a></li>
+                <li><a href="#">Materiels</a></li>
+                <li><a href="#">Coaching</a></li>
+                <li><a href="#">Jeux</a></li>
+                <li><a href="#">Benevolat</a></li>
+                <li><a href="#">Forum</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+        <img src="~/Assets/Hamburger/transparent-hd-white-menu-burger-icon-31634946136ufll2pj5eo-removebg-preview.png"
+             alt="img-none"
+             class="menu-hamburger" />
+    </nav>
+  
+  
     @*@Html.HiddenFor(m=>m.Account.Id)
-    @Html.HiddenFor(m=>m.Account.role)*@
-    <header>
+    @Html.HiddenFor(m=>m.Account.role)
+  
         <h1>Play4Us</h1>
         <div class="menubar">
-@*
+
             @{
                 if (User.Identity.IsAuthenticated)
                 {
@@ -42,7 +85,7 @@
                         <span>@Html.ActionLink("Mon Profil","ProfileViewBenevole",new {id= Model.Account.Id,Model.Account.role}) </span>
                     }
    
-                }*@
+                }
 
 
                
@@ -53,22 +96,34 @@
             <span><a href="">Services</a></span>
             <span><a href="">Jeux</a></span>
             <span><a href="">Bénévolat</a></span>
-           @* <span><a href="">Forum</a></span>*@
+           <span><a href="">Forum</a></span>
             <span><a href="">Recrutement</a></span>
             <span><a href="">Contact</a></span>
              
-        </div>
+        </div> *@
        
-    </header>
-
-    <main>
-        <div id="contenu">
-            @RenderBody()
-        </div>
-    </main>
-
-    <footer>
-        &copy; @DateTime.Now.Year - Play4Us, contactez nous via play4us.asso@play4us.com
-    </footer>
+    
+  
+</header>
+<body>
+    @RenderBody()
+  
+  
+  
+  
+  
+  
 </body>
+<footer>
+    &copy; @DateTime.Now.Year - Play4Us, contactez nous via
+    play4us.asso@play4us.com
+</footer>
+<script>
+    const menuHamburger = document.querySelector(".menu-hamburger");
+    const navLinks = document.querySelector(".nav-links");
+
+    menuHamburger.addEventListener("click", () => {
+        navLinks.classList.toggle("mobile-menu");
+    });
+</script>
 </html>

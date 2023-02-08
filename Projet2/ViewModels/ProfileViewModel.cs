@@ -22,5 +22,7 @@ namespace Projet2.ViewModels
         public Inventory Inventory { get; set; }
         public Stuff Stuff { get; set; }    
 
+        public Stuff Stuff { get; set; }
+
     }
 }

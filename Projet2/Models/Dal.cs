@@ -796,10 +796,27 @@ namespace Projet2.Models
             return employee.Id;
         }
 
-        public void CreateEmployee(Employee employee)
+        public Profile CreateProfileEmployee(string bio, string games)
         {
+            Profile profile = new Profile() { Bio= bio, Games = games };
+            _bddContext.Profils.Add(profile);
+            _bddContext.SaveChanges();
+            return profile;
+        }
+
+        public Employee CreateEmployee(int accountId, string jobname, string matricule)
+        {
+            Employee employee = new Employee()
+            {
+                AccountId= accountId,
+                DateOfEmployement= DateTime.Now,
+                JobName=jobname,
+                SerialNumber=matricule
+            };
+
             _bddContext.Employees.Add(employee);
             _bddContext.SaveChanges();
+            return employee;
         }
 
         public void EditEmployee(int id, string serialNumber, string jobName, DateTime dateOfEmployement, int accountId)
@@ -961,13 +978,15 @@ namespace Projet2.Models
 
             return stuffOwned;
 
-            //Inventory inventory= new Inventory( );
-            //List<Stuff> inventoryContent = new List<Stuff> ( );
-            //foreach (Stuff stuffs in _bddContext.Stuffs) { 
-            // GetStuffs().Where(r => r.InventoryBorrowerId == inventory.Id).FirstOrDefault();
-            //    inventoryContent.Add( stuffs );
-            //}
-            //return inventoryContent;
+
+            /*Inventory inventory= new Inventory( );
+            List<Stuff> inventoryContent = new List<Stuff> ( );
+            foreach (Stuff stuffs in _bddContext.Stuffs) { 
+             GetStuffs().Where(r => r.InventoryBorrowerId == inventory.Id).FirstOrDefault();
+                inventoryContent.Add( stuffs );
+            }
+            return inventoryContent;*/
+
 
         }
 
