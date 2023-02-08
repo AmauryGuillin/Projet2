@@ -1,0 +1,50 @@
+﻿@model Projet2.ViewModels.ActivitiesViewModel
+@{
+    Layout = "_LayoutGeneral";
+}
+<h2>Creation d'activité</h2>
+
+@using (Html.BeginForm())
+{
+
+    @*@Html.HiddenFor(m=>m.Account.Id)
+    @Html.HiddenFor(n=>n.Inventory.Id)*@
+
+    <div>
+        @Html.LabelFor(m => m.activityType)
+        @Html.DropDownListFor(m => m.activityType,Html.GetEnumSelectList<Projet2.Models.ActivityType>(),"Selectionnez le type d'activité")
+        @Html.ValidationMessageFor(m => m.activityType)
+    </div>
+    
+    <div>
+        @Html.LabelFor(m => m.activityEventType)
+        @Html.DropDownListFor(m => m.activityEventType, Html.GetEnumSelectList<Projet2.Models.EventType>(), "Selectionnez le type d'evenement")
+        @Html.ValidationMessageFor(m => m.activityEventType)
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.Activity.Description)
+        @Html.TextBoxFor(m=>m.Activity.Description)
+        @Html.ValidationMessageFor(m => m.Activity.Description)
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.Activity.Place)
+        @Html.TextBoxFor(m=>m.Activity.Place)
+        @Html.ValidationMessageFor(m => m.Activity.Place)
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.Event.Theme)
+        @Html.TextBoxFor(m=>m.Event.Theme)
+        @Html.ValidationMessageFor(m => m.Event.Theme)
+    </div>
+
+
+
+
+
+
+    <input type="submit" value="Créer" />
+
+}

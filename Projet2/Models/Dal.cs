@@ -155,7 +155,7 @@ namespace Projet2.Models
             {
                 Description = description,
                 Place = place,
-                ActivityId = activityId,
+                //ActivityId = activityId,
             };
 
             _bddContext.AssociationActivities.Add(associationActivity);
@@ -177,7 +177,7 @@ namespace Projet2.Models
             {
                 associationActivity.Description = description;
                 associationActivity.Place = place;
-                associationActivity.ActivityId = activityId;
+                //associationActivity.ActivityId = activityId;
                 _bddContext.SaveChanges();
             }
         }
@@ -214,13 +214,29 @@ namespace Projet2.Models
 
         /////////////////ACTIVITY
 
-        public int CreateActivity(DateTime startDate, DateTime endDate, int slotId)
+        public int CreateActivity(DateTime startDate, DateTime endDate)
         {
-            Activity activity = new Activity() { StartDate = startDate, EndDate = endDate, SlotID = slotId };
+            Activity activity = new Activity() { StartDate = startDate, EndDate = endDate };
             _bddContext.Activities.Add(activity);
             _bddContext.SaveChanges();
 
             return activity.Id;
+        }
+
+        public Activity CreateNewActivity(DateTime startDate, DateTime endDate, string place, string description,ActivityType activityType,string organizer)
+        {
+            Activity activity = new Activity() { 
+                StartDate = startDate, 
+                EndDate = endDate,
+                Description=description,
+                Place=place, 
+                activityType=activityType,
+                Organizer=organizer
+            };
+            _bddContext.Activities.Add(activity);
+            _bddContext.SaveChanges();
+
+            return activity;
         }
 
         public int CreateActivity(Activity activity)
@@ -230,14 +246,14 @@ namespace Projet2.Models
             return activity.Id;
         }
 
-        public void EditActivity(int id, DateTime startDate, DateTime endDate, int slotId)
+        public void EditActivity(int id, DateTime startDate, DateTime endDate)
         {
             Activity activity = _bddContext.Activities.Find(id);
             if (activity != null)
             {
                 activity.StartDate = startDate;
                 activity.EndDate = endDate;
-                activity.SlotID = slotId;
+               
                 _bddContext.SaveChanges();
             }
 
@@ -260,9 +276,13 @@ namespace Projet2.Models
             }
         }
 
+        public List<Activity> GetActivities()
+        {
+            return _bddContext.Activities.ToList();
+        }
 
         /////////////////ADHERENT
-       
+
         public Adherent AddAdherent(int accountid,int benevoleid,int adhesion,int contributionId,string docs)
         {
             
@@ -855,9 +875,9 @@ namespace Projet2.Models
 
         /////////////////EVENT
 
-        public int CreateEvent(string theme, int numberOfParticipants, int associationActivityId)
+        public int CreateEvent(string theme, int numberOfParticipants, int ActivityId)
         {
-            Event ev = new Event() { Theme = theme, NumberOfParticipants = numberOfParticipants, AssociationActivityId = associationActivityId };
+            Event ev = new Event() { Theme = theme, NumberOfParticipants = numberOfParticipants, ActivityId = ActivityId };
             _bddContext.Events.Add(ev);
             _bddContext.SaveChanges();
             return ev.Id;
@@ -870,14 +890,14 @@ namespace Projet2.Models
             return ev.Id;
         }
 
-        public void EditEvent(int id, string theme, int numberOfParticipants, int associationActivityId)
+        public void EditEvent(int id, string theme, int numberOfParticipants, int ActivityId)
         {
             Event ev = _bddContext.Events.Find(id);
             if (ev != null)
             {
                 ev.Theme = theme;
                 ev.NumberOfParticipants = numberOfParticipants;
-                ev.AssociationActivityId = associationActivityId;
+                ev.ActivityId = ActivityId;
                 _bddContext.SaveChanges();
             }
         }
@@ -1045,13 +1065,39 @@ namespace Projet2.Models
         /////////////////MESSAGE
 
         /////////////////PLANNING
+        ///
+        public Planning AddPlanning()
+        {
+            Planning planning = new Planning()
+            {
+            };
+            this._bddContext.Planning.Add(planning);
+            this._bddContext.SaveChanges();
+            return planning;
+        }
+
+        public List<Planning> GetPlannings()
+        {
+            return _bddContext.Planning.ToList();
+        }
+
+        public void AddSlotToPlanning(string accountId, Slot slot)
+        {
+            Account account=GetAccount(accountId);
+           Planning planning= GetPlannings().Where(r => r.Id == account.PlanningId).FirstOrDefault();
+            slot.PlanningId = planning.Id;
+            this._bddContext.Slots.UpdateRange();
+            this._bddContext.SaveChanges();
+           
+        }
+
 
         /////////////////POST
         ///
-        
-        
+
+
         /////////////////PUBLICATION
-        
+
         /// <summary>
         /// This methods is used to create a publication into the SQL database.
         /// </summary>
@@ -1253,6 +1299,29 @@ namespace Projet2.Models
         {
             return _bddContext.Slots.ToList();
         }
+
+        public Slot AddActivityToSlot(Activity activity,Account account)
+        {
+            Slot activitySlot = new Slot()
+            {
+                Date = activity.StartDate,
+                StartHour = activity.StartDate,
+                EndHour = activity.EndDate,
+                ActivityId = activity.Id,
+                PlanningId =account.PlanningId,
+            };
+            return activitySlot;
+
+        }
+
+        //public Slot AddCoachingToSlot(Coaching coaching, Account account)
+        //{
+        //    Slot coachingSlot= new Slot()
+        //    {
+
+        //    }
+
+        //}
 
 
         /////////////////STUFF

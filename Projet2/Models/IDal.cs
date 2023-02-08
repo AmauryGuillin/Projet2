@@ -59,11 +59,11 @@ namespace Projet2.Models
         public void RemovePublication(Publication publication);
         List<Publication> GetPublications();
 
-        public int CreateActivity(DateTime startDate, DateTime endDate, int slotId);
-        public int CreateActivity(Activity activity);
-        public void EditActivity(int id, DateTime startDate, DateTime endDate, int slotId);
-        public void EditActivity(Activity activity);
-        public void RemoveActivity(int id);
+        //public int CreateActivity(DateTime startDate, DateTime endDate);
+        //public int CreateActivity(Activity activity);
+        ////public void EditActivity(int id, DateTime startDate, DateTime endDate, int slotId);
+        //public void EditActivity(Activity activity);
+        //public void RemoveActivity(int id);
 
 
         public Account AddAccount(string username, string password, int contactId, int infopersoId, int profileId,Role role);

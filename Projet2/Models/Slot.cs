@@ -18,7 +18,11 @@ namespace Projet2.Models
         [Column(TypeName = "DateTime")]
         public DateTime EndHour { get; set; } //a régler que sur l'heure
 
+        public int? ActivityId { get; set; }
+        public virtual Activity Activity { get; set; }
 
+        public int? PlanningId { get; set; }
+        public virtual Planning Planning { get; set; }
 
     }
 }

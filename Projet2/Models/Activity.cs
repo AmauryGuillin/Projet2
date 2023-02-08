@@ -14,10 +14,23 @@ namespace Projet2.Models
 
         [Column(TypeName = "DateTime")]
         public DateTime EndDate { get; set; }
+        public ActivityType activityType { get; set; }
+        public string Description { get; set; }
+        public string Place { get; set; }
+        public string Organizer { get; set; }
 
-        public int? SlotID { get; set; }
-        public virtual Slot Slot { get; set; }
 
-        //public virtual List<Benevole> ListeBenevoles { get; set; }
+
+
+
     }
+
+    public enum ActivityType
+    {
+        Tournoi,
+        Evenement,
+        Activité_association
+    }
+
+
 }
