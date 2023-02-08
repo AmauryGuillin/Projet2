@@ -1282,12 +1282,6 @@ namespace Projet2.Models
             return _bddContext.Stuffs.ToList();
         }
 
-        //A FAIRE
-        public List<Stuff> GetStuffsCatalog()
-        {
-            return _bddContext.Stuffs.ToList();
-        }
-
         public void EditStuff(int id, int accountOwnerId)
         {
             Stuff stuff = _bddContext.Stuffs.Find(id);

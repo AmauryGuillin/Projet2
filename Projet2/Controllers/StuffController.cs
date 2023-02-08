@@ -34,12 +34,7 @@ namespace Projet2.Controllers
             {
                 string accountId = (HttpContext.User.Identity.Name);
                 model.Account = dal.GetAccount(accountId);
-                
-                //StuffViewModel model = new StuffViewModel();
-                //model.InventoryId = inventoryId;
-                //model.AccountId = accountId;
 
-                
                 return View(model);
             }
             return View(model);
@@ -93,18 +88,6 @@ namespace Projet2.Controllers
                 Account userAccount = model.Account;
                 model.Stuff.AccountBorrowerId = userAccount.Id;
                 model.Account = dal.GetAccounts().Where(r => r.Id == stuff.AccountOwnerId).FirstOrDefault();
-
-
-                //inscriptionViewModel.Account = dal.GetAccount(accountId);
-                //Account accountUser = inscriptionViewModel.Account;
-                //inscriptionViewModel.Profile = dal.GetProfiles().Where(r => r.Id == accountUser.ProfileId).FirstOrDefault();
-                //inscriptionViewModel.Infos = dal.GetInformations().Where(r => r.Id == accountUser.InfoPersoId).FirstOrDefault();
-                //inscriptionViewModel.Contact = dal.GetContacts().Where(r => r.Id == accountUser.ContactId).FirstOrDefault();
-                //return View(inscriptionViewModel);
-
-
-
-                //model.Stuff.AccountBorrowerId = dal.GetAccount(accountId);
 
              return View(model);
             }
