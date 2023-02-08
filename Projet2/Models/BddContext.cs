@@ -35,7 +35,7 @@ namespace Projet2.Models
         public DbSet<Coaching> Training { get; set; } 
         public DbSet<Stuff> Stuffs { get; set; }
 
-        public DbSet<ReservationStuff> reservationsStuffs { get; set; }
+        public DbSet<ReservationStuff> ReservationsStuffs { get; set; }
 
 
         public DbSet<Publication> Publications { get; set; }
@@ -143,19 +143,30 @@ namespace Projet2.Models
                 {
                     Id = 1,
                     Name = "ordinateur",
+                    Description = "un très bo ordi",
                     Type = Type.Ordinateur,
                     State = State.Neuf,
                     AccountOwnerId = 1,
-                    InventoryBorrowerId = 2
                 },
                 new Stuff()
                 {
                     Id = 2,
                     Name = "casque PS4",
+                    Description = "chut",
                     Type = Type.PeripheriqueConsole,
                     State = State.Acceptable,
                     AccountOwnerId = 2,
-                    InventoryBorrowerId = 1
+                }, 
+                new Stuff()
+                {
+                    Id = 3,
+                    Name = "souris moche",
+                    Description = "fournis sans chat",
+                    Type = Type.PeripheriqueConsole,
+                    State = State.Neuf,
+                    AccountOwnerId = 1,
+                    AccountBorrowerId= 2,
+
                 });
 
 
@@ -176,6 +187,17 @@ namespace Projet2.Models
                     Games = "Call of Duty",
                 });
 
+            this.ReservationsStuffs.Add(
+                new ReservationStuff()
+                {
+                    Id = 1,
+                    StartDate = new DateTime(2022, 12, 25),
+                    EndDate = new DateTime(2023, 12, 25),
+                    ReservationBorrower = true,
+                    AcceptationOwner = false,
+                    StuffId= 2,
+                });
+
 
 
 
@@ -189,8 +211,8 @@ namespace Projet2.Models
                 new Account()
                 {
                     Id = 1,
-                    Username = "TOTO",
-                    Password = "111",
+                    Username = "a",
+                    Password = "C5-E1-C5-86-05-3C-2F-FE-A6-AF-16-B4-4A-02-A1-CF",
                     InfoPersoId = null,
                     ContactId = null,
                     PlanningId = null,

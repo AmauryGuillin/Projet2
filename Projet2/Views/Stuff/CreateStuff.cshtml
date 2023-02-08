@@ -6,9 +6,10 @@
 
 @using (Html.BeginForm())
 {
+    @Html.HiddenFor(m=>m.Stuff.AccountOwnerId)
 
-        @Html.HiddenFor(m=>m.Account.Id)  
-        @Html.HiddenFor(n=>n.Inventory.Id)
+
+    <h1>Mise à disposition de Matériel</h1>
 
         <div>
         @Html.LabelFor(m => m.Stuff.Name)
@@ -20,12 +21,19 @@
         @Html.TextBoxFor(m => m.Stuff.Description)
         @Html.ValidationMessageFor(m => m.Stuff.Description)
     </div>
+
+    @*<div>
+        @Html.LabelFor(m => m.StuffImage)
+        @Html.TextBoxFor(m => m.StuffImage, new {@type = "file"})
+    </div>*@
         
-        <div>
+
+    <div>
         @Html.LabelFor(m => m.Stuff.Type)
         @Html.DropDownListFor(m => m.Stuff.Type, Html.GetEnumSelectList<Projet2.Models.Type>(), "Selectionner un Type")
         @Html.ValidationMessageFor(m => m.Stuff.Type)
-    </div>
+     </div>
+
         
         <div>
         @Html.LabelFor(m => m.Stuff.State,"Neuf")

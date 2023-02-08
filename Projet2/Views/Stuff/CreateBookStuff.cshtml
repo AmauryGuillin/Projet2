@@ -1,0 +1,38 @@
+﻿@model Projet2.ViewModels.ProfileViewModel
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+@{
+    Layout = "_LayoutGeneral";
+}
+
+
+<h2>Reservation Stuff</h2>
+
+@using (Html.BeginForm())
+{
+@Html.HiddenFor(m=>m.Stuff.Id)
+
+<p>Nom : @Model.Stuff.Name</p>
+<p>Description : @Model.Stuff.Description</p>
+<p>Type : @Model.Stuff.Type</p>
+<p>Type : @Model.Stuff.State</p>
+<p>Proprio : @Model.Account.Username</p>
+
+<div>
+@Html.LabelFor(m => m.ReservationStuff.StartDate)
+@Html.TextBoxFor(m => m.ReservationStuff.StartDate, new { @type = "datetime-local"})
+@Html.ValidationMessageFor(m => m.ReservationStuff.StartDate)
+    </div>
+<div>
+@Html.LabelFor(m => m.ReservationStuff.EndDate)
+@Html.TextBoxFor(m => m.ReservationStuff.EndDate, new { @type = "datetime-local"})
+@Html.ValidationMessageFor(m => m.ReservationStuff.EndDate)
+</div>
+<div>
+@Html.LabelFor(m => m.ReservationStuff.ReservationArgument)
+@Html.TextBoxFor(m => m.ReservationStuff.ReservationArgument)
+@Html.ValidationMessageFor(m => m.ReservationStuff.ReservationArgument)
+</div>
+
+<input type="submit" value="Réserver" />
+}
+

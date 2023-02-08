@@ -983,15 +983,23 @@ namespace Projet2.Models
         {
             return _bddContext.Inventory.ToList();
         }
+        //public List<Stuff> GetBorrowerStuff(int accountid)
+        //{
+
+        //    int inventoryid = _bddContext.Account.Where(a => a.Id == accountid).FirstOrDefault().InventoryId.Value;
+        //    List<Stuff> stuffContent = _bddContext.Stuffs.Where(s => s.InventoryBorrowerId == inventoryid).ToList();
+            
+        //    return stuffContent;
+        //}
         public List<Stuff> GetBorrowerStuff(int accountid)
         {
 
             int inventoryid = _bddContext.Account.Where(a => a.Id == accountid).FirstOrDefault().InventoryId.Value;
-            List<Stuff> stuffContent = _bddContext.Stuffs.Where(s => s.InventoryBorrowerId == inventoryid).ToList();
-            
+            List<Stuff> stuffContent = _bddContext.Stuffs.Where(s => s.AccountBorrowerId == accountid).ToList();
+
             return stuffContent;
         }
-        
+
         public List<Stuff> GetOwnedStuff(int accountid)
         {
             
@@ -1000,13 +1008,13 @@ namespace Projet2.Models
             return stuffOwned;
 
 
-            /*Inventory inventory= new Inventory( );
-            List<Stuff> inventoryContent = new List<Stuff> ( );
-            foreach (Stuff stuffs in _bddContext.Stuffs) { 
-             GetStuffs().Where(r => r.InventoryBorrowerId == inventory.Id).FirstOrDefault();
-                inventoryContent.Add( stuffs );
-            }
-            return inventoryContent;*/
+            //Inventory inventory= new Inventory( );
+            //List<Stuff> inventoryContent = new List<Stuff> ( );
+            //foreach (Stuff stuffs in _bddContext.Stuffs) { 
+            // GetStuffs().Where(r => r.InventoryBorrowerId == inventory.Id).FirstOrDefault();
+            //    inventoryContent.Add( stuffs );
+            //}
+            //return inventoryContent;
 
 
         }
@@ -1243,6 +1251,40 @@ namespace Projet2.Models
             return profile.Id;
         }
 
+        /////////////////RESERVATION STUFF
+
+        //public void CreateReservationStuff(DateTime start, DateTime end)
+        //{
+        //    ReservationStuff reservation = new ReservationStuff()
+        //    {
+        //        StartDate = start,
+        //        EndDate = end,
+        //    };
+
+        //    _bddContext.reservationsStuffs.Add(reservation);
+        //    _bddContext.SaveChanges();
+        //}
+
+        public ReservationStuff CreateReservationStuff(ReservationStuff reservation)
+        {
+            _bddContext.ReservationsStuffs.Add(reservation);
+            _bddContext.SaveChanges();
+            return reservation;
+        }
+
+
+
+        public void RemoveReservationStuff(int id)
+        {
+            ReservationStuff reservation = _bddContext.ReservationsStuffs.Find(id);
+
+            if (reservation != null)
+            {
+                _bddContext.ReservationsStuffs.Remove(reservation);
+                _bddContext.SaveChanges();
+            }
+        }
+
 
         /////////////////SLOTS
 
@@ -1340,27 +1382,33 @@ namespace Projet2.Models
             return stuff;
         }
 
-        
+        public Stuff GetOneStuff(int id)
+        {
+            Stuff stuff = _bddContext.Stuffs.Find(id);
+            return stuff;
+        }
+
         public List<Stuff> GetStuffs()
-
-
         {
             return _bddContext.Stuffs.ToList();
         }
 
-
-
-        public void EditStuff(int id, string name, Type type, State state, int accountid, int inventoryId)
-
+        public void EditStuff(int id, int accountOwnerId)
         {
             Stuff stuff = _bddContext.Stuffs.Find(id);
             if (stuff != null)
             {
-                stuff.Name= name;
-                stuff.Type= type;
-                stuff.State= state;
-                stuff.AccountOwnerId= accountid;
-                stuff.InventoryBorrowerId= inventoryId;
+                stuff.AccountOwnerId = accountOwnerId;
+                _bddContext.SaveChanges();
+            }
+        }
+
+        public void EditStuffReservation(int id, int accountBorrowerId)
+        {
+            Stuff stuff = _bddContext.Stuffs.Find(id);
+            if (stuff != null)
+            {
+                stuff.AccountBorrowerId = accountBorrowerId;
                 _bddContext.SaveChanges();
             }
         }
@@ -1380,29 +1428,59 @@ namespace Projet2.Models
           {
             _bddContext.Stuffs.Remove(stuff);
            }
-        
         }   
 
+        public string GetOwnerStuff(int AccountOwnerId, string owner)
+        {
+            Account account = _bddContext.Account.Find(AccountOwnerId);
+            if (account != null)
+            {
+                owner = account.Username;
+            }
+        return owner;
+        }
+
+        public void BookStuff(int idStuff, int idAccount)
+        {
+
+            //while(reservation.EndDate != DateTime.Today)
+            //{
+            //    int idBorrow = 0;
+            //    Account account = _bddContext.Account.Find(idAccount);
+            //    if (account != null)
+            //    {
+            //        idBorrow = (int)account.InventoryId;
+            //    }
+
+            //    Stuff stuff = _bddContext.Stuffs.Find(idStuff);
+            //    if (stuff != null)
+            //    {
+            //        stuff.InventoryBorrowerId = idBorrow;
+            //    }
+            //}   
+        }
 
 
-        //public int CreateStuff(string name, Type type, State state, int accountId, int inventoryId)
+
+
+        //public Stuff CreateStuff(string name, string imagePath, Type type, State state)
         //{
         //    Stuff stuff = new Stuff()
         //    {
         //        Name = name,
         //        Type = type,
-        //        State = state,
-        //        AccountOwnerId = accountId,
-        //        InventoryBorrowerId = inventoryId
+        //        ImagePath= imagePath,
+        //        State = state
         //    };
+        //    return stuff;
         //}
 
 
-    
 
 
 
-        
+
+
         public void RemoveStuff(Stuff stuff)
         {
             _bddContext.Stuffs.Remove(stuff);
