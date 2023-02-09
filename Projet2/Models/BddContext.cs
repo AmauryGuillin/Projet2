@@ -290,7 +290,7 @@ namespace Projet2.Models
                     PublicationType = PublicationTypes.ArticleInformatif,
                     Content = "contenu de la publi",
                     Date= DateTime.Now,
-                    Author="Amaury",
+                    //Author="Amaury",
                     EmployeeId = 1,
                 },
 
@@ -301,7 +301,7 @@ namespace Projet2.Models
                     PublicationType = PublicationTypes.Video,
                     Content = "contenu de la publi",
                     Date = DateTime.Now,
-                    Author="Abigael",
+                    //Author="Abigael",
                     EmployeeId = 2,
                 },
 
@@ -312,7 +312,7 @@ namespace Projet2.Models
                     PublicationType= PublicationTypes.Newsletter,
                     Content = "contenu de la publi",
                     Date = DateTime.Now,
-                    Author="Asmma",
+                    //Author="Asmma",
                     EmployeeId = 4,
                 },
 
@@ -323,7 +323,7 @@ namespace Projet2.Models
                     PublicationType= PublicationTypes.FAQ,
                     Content = "contenu de la publi",
                     Date = DateTime.Now,
-                    Author="Michelle",
+                    //Author="Michelle",
                     EmployeeId = 3,
                 });
 

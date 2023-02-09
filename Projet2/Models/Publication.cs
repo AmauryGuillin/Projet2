@@ -21,7 +21,7 @@ namespace Projet2.Models
         public PublicationTypes PublicationType { get; set; }
         public string Content { get; set; }
         public DateTime Date { get; set; }
-        public string Author { get; set; }
+        //public string Author { get; set; }
         
         public int? EmployeeId { get; set; }
         public Employee Employee { get; set; }

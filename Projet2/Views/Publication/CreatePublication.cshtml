@@ -1,0 +1,37 @@
+﻿@model Projet2.ViewModels.PublicationViewModel
+@{
+    Layout = "_LayoutGeneral";
+}
+<h2>CreatePublication</h2>
+
+@using (Html.BeginForm())
+{
+    
+    @Html.HiddenFor(m=>m.Publication.Id)
+
+
+    <div>
+        @Html.LabelFor(m => m.Publication.Name)
+        @Html.TextBoxFor(m => m.Publication.Name)
+        @Html.ValidationMessageFor(m => m.Publication.Name)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Publication.PublicationType)
+        @Html.DropDownListFor(m => m.Publication.PublicationType, Html.GetEnumSelectList<Projet2.Models.PublicationTypes>(), "Selectionner un Type")
+        @Html.ValidationMessageFor(m => m.Publication.PublicationType)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Publication.Content)
+        @Html.TextBoxFor(m => m.Publication.Content)
+        @Html.ValidationMessageFor(m => m.Publication.Content)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Publication.Date)
+        @Html.TextBoxFor(m => m.Publication.Date, new { @type = "datetime-local"})
+        @Html.ValidationMessageFor(m => m.Publication.Date)
+    </div>
+    <input type="submit" value="Créer" />
+
+}
+
+
