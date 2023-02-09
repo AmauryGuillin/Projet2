@@ -11,8 +11,7 @@ namespace Projet2.Models
             Bon,
             TrèsBon,
             Neuf
-
-    }
+        }
 
         public enum Type
         {
@@ -28,7 +27,7 @@ namespace Projet2.Models
     {
         libre,
         enAttente,
-        reserver
+        reserve
     }
 
 

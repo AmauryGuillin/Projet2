@@ -1425,10 +1425,23 @@ namespace Projet2.Models
             Stuff stuff = _bddContext.Stuffs.Find(id);
             if (stuff != null)
             {
-                stuff.Reservation = Reservation.valide;
+                stuff.Reservation = Reservation.reserve;
                 _bddContext.SaveChanges();
             }
         }
+
+        public void EditStuffCancelation(int id)
+        {
+            Stuff stuff = _bddContext.Stuffs.Find(id);
+            if (stuff != null)
+            {
+                stuff.AccountBorrowerId = null;
+                stuff.Reservation = Reservation.libre;
+                _bddContext.SaveChanges();
+            }
+        }
+
+
 
 
         public void EditStuff(Stuff stuff)
