@@ -23,7 +23,7 @@ namespace Projet2.Models
         public DateTime Date { get; set; }
         //public string Author { get; set; }
         
-        public int? EmployeeId { get; set; }
-        public Employee Employee { get; set; }
+        public int? AccountId { get; set; }
+        public Account Account { get; set; }
     }
 }

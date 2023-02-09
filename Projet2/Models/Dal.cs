@@ -1140,7 +1140,7 @@ namespace Projet2.Models
             Publication publi = _bddContext.Publications.Find(id);
             if (publi != null)
             {
-                publi.EmployeeId = autorId;
+                publi.AccountId = autorId;
                 _bddContext.SaveChanges();
             }
             

@@ -291,7 +291,7 @@ namespace Projet2.Models
                     Content = "contenu de la publi",
                     Date= DateTime.Now,
                     //Author="Amaury",
-                    EmployeeId = 1,
+                    //EmployeeId = 1,
                 },
 
                 new Publication()
@@ -302,7 +302,7 @@ namespace Projet2.Models
                     Content = "contenu de la publi",
                     Date = DateTime.Now,
                     //Author="Abigael",
-                    EmployeeId = 2,
+                    //EmployeeId = 2,
                 },
 
                 new Publication()
@@ -313,7 +313,7 @@ namespace Projet2.Models
                     Content = "contenu de la publi",
                     Date = DateTime.Now,
                     //Author="Asmma",
-                    EmployeeId = 4,
+                    //EmployeeId = 4,
                 },
 
                 new Publication()
@@ -324,7 +324,7 @@ namespace Projet2.Models
                     Content = "contenu de la publi",
                     Date = DateTime.Now,
                     //Author="Michelle",
-                    EmployeeId = 3,
+                    //EmployeeId = 3,
                 });
 
 

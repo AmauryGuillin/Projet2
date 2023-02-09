@@ -38,18 +38,19 @@ namespace Projet2.Controllers
 
             if (ModelState.IsValid)
             {
+
                 string accountId = (HttpContext.User.Identity.Name);
                 model.Account = dal.GetAccount(accountId);
-
+                Account userAccount = model.Account;
                 Publication publi = dal.CreatePublication(model.Publication);
                 dal.EditCreatePublication(model.Publication.Id, model.Account.Id);
 
 
                 return RedirectToAction("PublicationWall");
+
             }
 
             return RedirectToAction("PublicationWall");
-
         }
     }
     
