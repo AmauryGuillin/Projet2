@@ -59,6 +59,8 @@ namespace Projet2.Controllers
                     inscriptionViewModel.Profile.Games
                     
                     );
+            inscriptionViewModel.Messagerie =
+                dal.AddMessagerie();
 
 
             inscriptionViewModel.Account =
@@ -68,7 +70,8 @@ namespace Projet2.Controllers
                  inscriptionViewModel.Contact.Id,
                  inscriptionViewModel.Infos.Id,
                  inscriptionViewModel.Profile.Id,
-                 Projet2.Models.Role.Benevole
+                 Projet2.Models.Role.Benevole,
+                 inscriptionViewModel.Messagerie.Id
                  );
             inscriptionViewModel.Benevole =
              dal.CreateNewBenevole(inscriptionViewModel.Account.Id);
@@ -126,12 +129,14 @@ namespace Projet2.Controllers
                      inscriptionViewModel.Infos.Birthday
                      );
 
-                inscriptionViewModel.Profile =
+             inscriptionViewModel.Profile =
                 dal.AddProfile(
                     "/images/" + inscriptionViewModel.Profile.ProfilImage.FileName,
                     inscriptionViewModel.Profile.Bio,
                     inscriptionViewModel.Profile.Games
                     );
+            inscriptionViewModel.Messagerie =
+               dal.AddMessagerie();
 
             inscriptionViewModel.Account =
             dal.AddAccount(
@@ -140,7 +145,8 @@ namespace Projet2.Controllers
                  inscriptionViewModel.Contact.Id,
                  inscriptionViewModel.Infos.Id,
                  inscriptionViewModel.Profile.Id,
-                 Projet2.Models.Role.Adherent
+                 Projet2.Models.Role.Adherent,
+                 inscriptionViewModel.Messagerie.Id
                  );
             inscriptionViewModel.Contribution =
                dal.CreateNewContribution(
@@ -191,7 +197,7 @@ namespace Projet2.Controllers
                 string accountId = (HttpContext.User.Identity.Name);
                 inscriptionViewModel.Account = dal.GetAccount(accountId);
                 Account accountUser = inscriptionViewModel.Account;
-                inscriptionViewModel.Profile = dal.GetProfiles().Where(r => r.Id == accountUser.ProfileId).FirstOrDefault();
+                inscriptionViewModel.Profile = dal.GetProfiles().Where(r => r.Id == accountUser.ProfileId ).FirstOrDefault();
                 inscriptionViewModel.Infos = dal.GetInformations().Where(r => r.Id == accountUser.InfoPersoId).FirstOrDefault();
                 inscriptionViewModel.Contact=dal.GetContacts().Where(r => r.Id== accountUser.ContactId).FirstOrDefault();
                 return View(inscriptionViewModel);
@@ -204,14 +210,22 @@ namespace Projet2.Controllers
         public ActionResult ProfileViewAdherent()
         {
             InscriptionViewModel inscriptionViewModel = new InscriptionViewModel();
+            if (HttpContext.User.Identity.IsAuthenticated == true)
+            {
+                string accountId = (HttpContext.User.Identity.Name);
+                inscriptionViewModel.Account = dal.GetAccount(accountId);
+                Account accountUser = inscriptionViewModel.Account;
+                inscriptionViewModel.Profile = dal.GetProfiles().Where(r => r.Id == accountUser.ProfileId).FirstOrDefault();
+                inscriptionViewModel.Infos = dal.GetInformations().Where(r => r.Id == accountUser.InfoPersoId).FirstOrDefault();
+                inscriptionViewModel.Contact = dal.GetContacts().Where(r => r.Id == accountUser.ContactId).FirstOrDefault();
+            }
             return View(inscriptionViewModel);
-
-        }
+            }
 
         public IActionResult EditProfilePIC()
         {
             InscriptionViewModel ivm = new InscriptionViewModel();
-            return View();
+            return View(ivm);
         }
 
         [HttpPost]

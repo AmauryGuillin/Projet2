@@ -72,7 +72,12 @@ namespace Projet2.Controllers
                             });
                         //break;
                         case Role.Adherent:
-                    return View("Index");
+                            dal.GetProfiles().Where(r => r.Id == account.ProfileId);
+                            return RedirectToAction("Index", new
+                            {
+                                id =
+                             account.Id
+                            });
 
 
                     }

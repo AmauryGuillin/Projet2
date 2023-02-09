@@ -1,0 +1,29 @@
+﻿@model Projet2.ViewModels.MessagerieViewModel
+@{
+    Layout = "_LayoutGeneral";
+}
+@Html.HiddenFor(m=>m.Account.Id)
+@Html.HiddenFor(m=>m.Account.role)
+
+
+<div>
+    <h1>Choisissez votre interlocuteur dans la liste</h1>
+<table>
+    <tbody>
+            @foreach(var Account in Model.Accounts)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(mAccount=>Account.Username)
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+</div>
+
+<textarea placeholder="Ecrivez votre message ici">
+
+</textarea>

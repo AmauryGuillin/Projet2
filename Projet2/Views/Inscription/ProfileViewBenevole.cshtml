@@ -1,9 +1,10 @@
 ﻿@model Projet2.ViewModels.InscriptionViewModel
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href=" ./Css/Profile.css" rel="stylesheet" />
+
 @{
     Layout ="_LayoutGeneral";
 }
+<link rel=" stylesheet" href="~/css/Profile.css" />
 <head>
 <title>
 @*   Profile @User.Identity*@
@@ -44,6 +45,16 @@
                 @Html.ActionLink("Ajouter du materiel", "CreateStuff", "Stuff", new {accountId = Model.Account.Id})
             </li>
             <li class="nav-item ">
+                    @Html.ActionLink("Consulter le planning", "PlanningView", "Planning", new {accountId = Model.Account.Id})
+            </li>
+            <li class="nav-item ">
+                    @Html.ActionLink("Consulter le catalogue d'activités", "CatalogueActivities", "Activities", new {accountId = Model.Account.Id})
+            </li>
+            
+            <li class="nav-item ">
+                @Html.ActionLink("Messagerie", "MessageBoardView", "Messagerie", new {accountId = Model.Account.Id})
+            </li>
+            <li class="nav-item ">
                 @Html.ActionLink("Se deconnecter", "Deconnexion","Inscription",new {
                     accountId=Model.Account.Id,
                 }, null)
@@ -79,7 +90,7 @@
 
 }
 *@
-                    <img src="@Model.Profile.ImagePath" height="400" width="400" />
+                    <img src="@Model.Profile.ImagePath" height="400" width="400" class=" profimage" />
                     <div class="Text">
                         
                         

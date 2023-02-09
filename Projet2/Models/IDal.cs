@@ -66,7 +66,7 @@ namespace Projet2.Models
         //public void RemoveActivity(int id);
 
 
-        public Account AddAccount(string username, string password, int contactId, int infopersoId, int profileId,Role role);
+        public Account AddAccount(string username, string password, int contactId, int infopersoId, int profileId,Role role,int ChatId);
 
         //int CreateSlot(DateTime date, DateTime startHour, DateTime endHour);
         int CreateSlot(Slot slot);

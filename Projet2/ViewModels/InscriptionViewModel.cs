@@ -1,6 +1,7 @@
 ﻿using Projet2.Models.Informations;
 using Projet2.Models;
 using System.Collections.Generic;
+using Projet2.Models.UserMessagerie;
 
 namespace Projet2.ViewModels
 {
@@ -36,6 +37,8 @@ namespace Projet2.ViewModels
 
         public PrelevementDate PrelevementDate { get; set;}
         public ContributionType ContributionType { get; set; }
+
+        public MessagerieA Messagerie { get; set; }
 
     }
 }
