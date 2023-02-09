@@ -10,6 +10,8 @@ namespace Projet2.Models.UserMessagerie
         
         public List<Conversation> Conversations { get; set; }
 
+        public List<Conversation> ConversationReceived { get; set; }
+
         public int NbConversations { get; set; }
 
 

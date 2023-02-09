@@ -686,14 +686,14 @@ namespace Projet2.Models
         {
            List <Conversation>ListConversationsStarter = new List<Conversation>();
 
-            ListConversationsStarter =GetConversations().Where(r => r.SenderAccount.Id == account1).ToList();
+            ListConversationsStarter =GetConversations().Where(r => r.FirstSenderId == account1).ToList();
             return ListConversationsStarter;
         }
 
         public List<Conversation> GetUserConversationsReplier(int account1)
         {
             List<Conversation> ListConversationsReplier = new List<Conversation>();
-            ListConversationsReplier = GetConversations().Where(r => r.ReceiverAccount.Id == account1).ToList();
+            ListConversationsReplier = GetConversations().Where(r => r.ReceiverId== account1).ToList();
             //LinkedList<Conversation> TotalConversations= new LinkedList<Conversation>();
             return ListConversationsReplier;
         }

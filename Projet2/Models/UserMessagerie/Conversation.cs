@@ -15,8 +15,11 @@ namespace Projet2.Models.Messagerie
         //public int? MessageId { get; set; }
         //public Message Message { get; set; }
 
-        public int? MessagerieId { get; set; }
-        public MessagerieA Messagerie { get; set; }
+        //public int? Messagerie1Id { get; set; }
+        //public MessagerieA Messagerie1 { get; set; }
+
+        //public int? Messagerie2Id { get; set; }
+        //public MessagerieA Messagerie2 { get; set; }
 
     }
 }

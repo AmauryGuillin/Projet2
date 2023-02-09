@@ -32,7 +32,8 @@ namespace Projet2.Controllers
                 Account account= mvm.Account;
                 mvm.Messagerie = dal.GetMessageries().Where(r=>r.Id==account.MessagerieId).FirstOrDefault();
                 MessagerieA thisUserMessagerie = mvm.Messagerie;
-                mvm.Conversations= dal.GetConversations().Where(r=>r.Id==thisUserMessagerie.Id).ToList();
+                mvm.Conversations = dal.GetUserConversationsStarter(account.Id);
+               
                 List<Conversation> AllUserConversations = new List<Conversation>();
                  AllUserConversations = mvm.Conversations;
                 return View(mvm);

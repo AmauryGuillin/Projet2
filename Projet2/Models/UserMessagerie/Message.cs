@@ -12,7 +12,8 @@ namespace Projet2.Models.Messagerie
         public virtual Profile Receiver { get; set; }
 
         public int? ConversationId { get; set; }
-        public Conversation UsersConversation { get; set; }
+        public Conversation UserConversation { get; set; }
+        
         public DateTime MessageTimeStamp { get; set; }
         [Display(Name="Veuillez Ecrire votre message")]
         public string Body { get; set; }
