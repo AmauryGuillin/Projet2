@@ -3,9 +3,6 @@
     Layout = "_LayoutGeneral";
 }
 
-<link rel="stylesheet" href="~/css/SignUpBenevole.css"/>
-
-
 <div class="content">
     @using (Html.BeginForm("SignUpBenevole", "Inscription", FormMethod.Post, new { enctype = "multipart/form-data"  }))
     {
@@ -85,3 +82,20 @@
         <input type="submit" value="S'inscrire" class="BoutonValidationFormulaire" />
     }
 </div>
+
+@*    @section ExtraJs{
+            <script>
+    const menuHamburgerProfile = document.querySelector(
+    ".menu-hamburger-profile"
+    );
+    const navLinksProfile = document.querySelector(".nav-links-profile");
+
+    menuHamburgerProfile.addEventListener("click", () => {
+    navLinksProfile.classList.toggle("mobile-menu-profile");
+    });
+</script>
+    }*@
+
+    @section ExtraCss {
+        <link rel="stylesheet" href="~/css/SignUpBenevole.css"/>
+    }

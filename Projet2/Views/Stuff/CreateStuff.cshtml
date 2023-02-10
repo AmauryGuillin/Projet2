@@ -2,7 +2,62 @@
 @{
     Layout = "_LayoutGeneral";
 }
-<h2>CreateStuff</h2>
+
+<link rel="stylesheet" href="~/css/VueCreateStuff.css" />
+
+<div class="content">
+    @using (Html.BeginForm())
+    {
+
+        @Html.HiddenFor(m=>m.Stuff.AccountOwnerId)
+
+
+
+        <h1>Mise à disposition du matériel</h1>
+        <div class="name">
+            <label><b>Nom</b></label>
+        </div>
+        @Html.TextBoxFor(m => m.Stuff.Name)
+        @Html.ValidationMessageFor(m => m.Stuff.Name)
+
+        <div class="description">
+            <label><b>Description</b></label>
+        </div>
+        @Html.TextBoxFor(m => m.Stuff.Description)
+        @Html.ValidationMessageFor(m => m.Stuff.Description)
+
+        <div class="type">
+            <label><b>Type</b></label>
+        </div>
+        @Html.DropDownListFor(m => m.Stuff.Type, Html.GetEnumSelectList<Projet2.Models.Type>(), "Selectionner un Type")
+        @Html.ValidationMessageFor(m => m.Stuff.Type)
+
+        <div class="state">
+            <label><b>Etat</b></label>
+        </div>
+        <div class="radio-buttons-state">
+            <div class="radios">
+                @Html.LabelFor(m => m.Stuff.State,"Neuf")
+                @Html.RadioButtonFor(m=>m.Stuff.State,"Neuf")
+                @Html.LabelFor(m => m.Stuff.State,"Très Bon")
+                @Html.RadioButtonFor(m=>m.Stuff.State,"TrèsBon")
+                @Html.LabelFor(m => m.Stuff.State,"Bon")
+                @Html.RadioButtonFor(m=>m.Stuff.State,"Bon")
+                @Html.LabelFor(m => m.Stuff.State,"Acceptable")
+                @Html.RadioButtonFor(m=>m.Stuff.State,"Acceptable")
+            </div>
+        </div>
+
+        <input type="submit" id="submit" value="Créer" />
+    }
+</div>
+
+
+
+
+
+
+@*<h2>CreateStuff</h2>
 
 @using (Html.BeginForm())
 {
@@ -28,14 +83,14 @@
     </div>*@
         
 
-    <div>
+    @*<div>
         @Html.LabelFor(m => m.Stuff.Type)
         @Html.DropDownListFor(m => m.Stuff.Type, Html.GetEnumSelectList<Projet2.Models.Type>(), "Selectionner un Type")
         @Html.ValidationMessageFor(m => m.Stuff.Type)
-     </div>
+     </div>*@
 
         
-        <div>
+        @*<div>
         @Html.LabelFor(m => m.Stuff.State,"Neuf")
         @Html.RadioButtonFor(m=>m.Stuff.State,"Neuf")
         @Html.LabelFor(m => m.Stuff.State,"Très Bon")
@@ -44,13 +99,13 @@
         @Html.RadioButtonFor(m=>m.Stuff.State,"Bon")
         @Html.LabelFor(m => m.Stuff.State,"Acceptable")
         @Html.RadioButtonFor(m=>m.Stuff.State,"Acceptable")
-        </div>
+        </div>*@
         
 
 
 
-            <input type="submit" value="Créer" />
+            @*<input type="submit" value="Créer" />
 
-}
+}*@
 
 
