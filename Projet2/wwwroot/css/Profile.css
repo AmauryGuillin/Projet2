@@ -93,3 +93,8 @@ li {
 a {
     color: white;
 }
+
+.profimage{
+    border-radius:250px;
+    position:center;
+}

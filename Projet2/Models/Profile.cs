@@ -31,8 +31,8 @@ namespace Projet2.Models
         
         //public int? AccountId { get; set; }
         //public virtual Account AccountUser { get; set; }
-        public int? ChatId { get; set; }
-        public virtual Chat Chat { get; set; }
+        //public int? ChatId { get; set; }
+        //public virtual Messagerie Messagerie { get; set; }
 
         
         public static Profile CreateProfile()

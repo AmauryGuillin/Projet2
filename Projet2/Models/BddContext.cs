@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Projet2.Models.Informations;
+using Projet2.Models.Messagerie;
 using System;
 using System.Security.AccessControl;
 using System.Xml.Linq;
+using  Projet2.Models.UserMessagerie;
 
 namespace Projet2.Models
 {
@@ -14,7 +16,7 @@ namespace Projet2.Models
         public DbSet<Adherent> Adherents { get; set; } //ajout d'un 's' à la fin
         public DbSet<AssociationActivity> AssociationActivities { get; set; }
         public DbSet<Benevole> Benevoles { get; set; } //ajout d'un 's' à la fin
-        public DbSet<Chat> Chat { get; set; }
+        public DbSet<MessagerieA> Messageries { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Contact> Contact { get; set; }
         public DbSet<Contribution> Contributions { get; set; }//ajout d'un 's' à la fin
@@ -290,8 +292,8 @@ namespace Projet2.Models
                     PublicationType = PublicationTypes.ArticleInformatif,
                     Content = "contenu de la publi",
                     Date= DateTime.Now,
-                    Author="Amaury",
-                    EmployeeId = 1,
+                    //Author="Amaury",
+                    //EmployeeId = 1,
                 },
 
                 new Publication()
@@ -301,8 +303,8 @@ namespace Projet2.Models
                     PublicationType = PublicationTypes.Video,
                     Content = "contenu de la publi",
                     Date = DateTime.Now,
-                    Author="Abigael",
-                    EmployeeId = 2,
+                    //Author="Abigael",
+                    //EmployeeId = 2,
                 },
 
                 new Publication()
@@ -312,8 +314,8 @@ namespace Projet2.Models
                     PublicationType= PublicationTypes.Newsletter,
                     Content = "contenu de la publi",
                     Date = DateTime.Now,
-                    Author="Asmma",
-                    EmployeeId = 4,
+                    //Author="Asmma",
+                    //EmployeeId = 4,
                 },
 
                 new Publication()
@@ -323,8 +325,8 @@ namespace Projet2.Models
                     PublicationType= PublicationTypes.FAQ,
                     Content = "contenu de la publi",
                     Date = DateTime.Now,
-                    Author="Michelle",
-                    EmployeeId = 3,
+                    //Author="Michelle",
+                    //EmployeeId = 3,
                 });
 
 

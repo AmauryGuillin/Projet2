@@ -1,0 +1,25 @@
+﻿.Planning {
+    background-image: url("/images/PlanningBackground.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height:100vh;
+    border-radius:20px;
+}
+/*.Ligne-activity{
+    border:3px;
+    border-color: darkslateblue;
+    border-radius:15px;
+}*/
+
+.imgMiniP{
+    border-radius:110px;
+}
+/*.ContenuPlanning {
+    border:solid;
+}*/
+
+.affichageActivités{
+
+    border:medium;
+}

@@ -1,8 +1,9 @@
 ﻿.content {
+    min-height: 100vh;
+    border-radius: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom:40px;
 }
 
 form {
@@ -23,7 +24,7 @@ form {
 
 form h1 {
     width: 100%;
-    margin: 0 auto auto auto;
+    margin: 0 auto 10px auto;
     padding-bottom: 10px;
     color: white;
     text-align: center;
@@ -31,10 +32,15 @@ form h1 {
     grid-area: h1;
 }
 
+form label {
+    font-weight: bold;
+}
+
 sup {
     color: red;
     font-weight: bold;
 }
+
 
 form .part1 {
     grid-area: part1;
@@ -48,20 +54,23 @@ form .part2 {
     width: 90%;
 }
 
-.username {
+.pseudo {
     color: white;
     margin-bottom: 10px;
     margin-top: 10px
 }
 
-.password, .job, .firstname, .lastname, .biographie, .email, .telephone, .games, .birthdate, .profimage, .matricule {
+.profilePic {
+    color: white;
+    margin-bottom: 10px;
+    margin-top: 10px
+}
+
+.password, .firstname, .lastname, .email, .telnumber, .birthday, .bio, .games, .docID, .iban, .prelevementDate, .contributionType {
     color: white;
     margin-bottom: 10px;
 }
 
-.job {
-    margin-top: 10px;
-}
 
 form input[type=text],
 form input[type=password],
@@ -77,6 +86,9 @@ form input[type=date] {
     border-radius: 20px;
 }
 
+.biographie {
+    margin-top: 10px;
+}
 
 form textarea {
     width: 100%;
@@ -95,10 +107,30 @@ form input[type=password]:hover,
 form input[type=email]:hover,
 form input[type=date]:hover,
 form textarea:hover {
-
     border: 2px solid #4b2df1;
-
 }
+
+input::file-selector-button {
+    font-weight: bold;
+    padding: 5px 5px;
+    margin-top:10px;
+    margin-bottom: 20px;
+}
+
+#PrelevementDate {
+    margin: auto auto 20px auto;
+    min-height: 30px;
+    min-width: 50px;
+    text-align:center;
+}
+
+#ContributionType {
+    margin: auto auto 10px auto;
+    min-height: 30px;
+    min-width: 50px;
+    text-align: center;
+}
+
 
 form input[type=submit] {
     grid-area: button;
@@ -109,22 +141,64 @@ form input[type=submit] {
     border-radius: 5px;
     color: black;
     padding: 14px 20px;
-    margin: 50px 0 10px auto;
+    margin: 50px 0 auto auto;
     border: none;
     cursor: pointer;
-    width: 15%;
+    width: 25%;
     border-radius: 20px;
-    font-size: 1rem;
     font-weight: bold;
+    font-size: 1rem;
 }
 
-    form input[type=submit]:hover {
-        color: white;
-        background-color: #4b2df1;
-        transition: 0.2s;
-    }
+form input[type=submit]:hover {
+    color: white;
+    background-color: #4b2df1;
+    transition: 0.2s;
+}
+
 
 @media screen and (max-width: 922px) {
+
+    body {
+        margin: 0;
+    }
+
+    .header-grid, .menu {
+        display: none;
+    }
+
+    .navbar h1 {
+        display: flex;
+        text-transform: uppercase;
+        color: #fafafa;
+        text-shadow: 3px 3px 12px #ffffff38;
+        justify-self: center;
+        grid-area: h1;
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .navbar .header-gif {
+        display: block;
+    }
+
+    .navbar {
+        content-visibility: visible;
+        background: rgba(0, 0, 0, 0.137);
+    }
+
+        .navbar .menu-hamburger {
+            display: block;
+        }
+
+    .nav-links.mobile-menu {
+        display: flex;
+        transition: all 0.5s ease;
+    }
+
+    .nav-links {
+        margin-left: -100%;
+    }
 
     form {
         margin-top: 4%;
@@ -144,23 +218,18 @@ form input[type=submit] {
         transition: 0.2s;
     }
 
-        form input[type=submit] {
-            grid-area: button;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 1px solid #d33bfd;
-            border-radius: 5px;
-            color: black;
-            padding: 14px 20px;
-            margin: 50px 0 10px auto;
-            border: none;
-            cursor: pointer;
-            width: 25%;
-            border-radius: 20px;
-            font-size: 1rem;
-            font-weight: bold;
-        }
-
-
+    input[type=submit] {
+        grid-area: button;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #d33bfd;
+        color: black;
+        border: none;
+        cursor: pointer;
+        width: 25%;
+        border-radius: 20px;
+        font-weight: bold;
+        font-size: 1rem;
+    }
 }

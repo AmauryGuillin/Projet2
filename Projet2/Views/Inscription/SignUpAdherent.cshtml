@@ -3,8 +3,116 @@
     Layout = "_LayoutGeneral";
 }
 
+<link rel="stylesheet" href="~/css/SignUpAdherent.css"/>
 
-<head>
+
+
+<div class="content">
+    @using (Html.BeginForm("SignUpAdherent", "Inscription", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+        @Html.HiddenFor(m=>m.Account.Id)
+        @Html.HiddenFor(m=>m.Profile.Id)
+        @Html.HiddenFor(n=>n.Contact.Id)
+        @Html.HiddenFor(n=>n.Infos.Id)
+        @Html.HiddenFor(n=>n.Inventory.Id)
+        @Html.HiddenFor(m=>m.Account.role)
+
+        <h1>Inscription Adherent</h1>
+        <div class="part1">
+            <div class="pseudo">
+                <label>Pseudo</label>
+            </div>
+            @Html.TextBoxFor(m => m.Account.Username, new { placeholder = "Entrez votre pseudo"})
+            @Html.ValidationMessageFor(m =>  m.Account.Username)
+
+            <div class="password">
+                <label>Mot de passe</label>
+            </div>
+            @Html.PasswordFor(m =>m.Account.Password , new { placeholder = "Entrez votre mot de passe"})
+            @Html.ValidationMessageFor(m =>m.Account.Password)
+
+            <div class="firstname">
+                <label>Prenom</label>
+            </div>
+            @Html.TextBoxFor(m =>m.Infos.FirstName , new { placeholder = "Entrez votre prenom"})
+            @Html.ValidationMessageFor(m =>m.Infos.FirstName)
+
+            <div class="lastname">
+                <label>Nom</label>
+            </div>
+            @Html.TextBoxFor(m =>m.Infos.LastName , new { placeholder = "Entrez votre nom"})
+            @Html.ValidationMessageFor(m =>m.Infos.LastName)
+
+            <div class="birthday">
+                <label>Date de naissance</label>
+            </div>
+            @Html.TextBoxFor(m =>m.Infos.Birthday, new { @type = "date", placeholder = "Entrez votre date de naissance"})
+            @Html.ValidationMessageFor(m =>m.Infos.Birthday)
+
+            <div class="email">
+                <label>Email</label>
+            </div>
+            @Html.TextBoxFor(m =>m.Contact.EmailAdress , new { placeholder = "Entrez votre adresse email", type="email"})
+            @Html.ValidationMessageFor(m =>m.Contact.EmailAdress)
+
+            <div class="telnumber">
+                <label>N° de telephone</label>
+            </div>
+            @Html.TextBoxFor(m =>m.Contact.TelephoneNumber, new { placeholder = "Entrez votre n° de telephone"})
+            @Html.ValidationMessageFor(m =>m.Contact.TelephoneNumber)
+        </div>
+
+        <div class="part2">
+            <div class="profilePic">
+                <label>Image de profil</label>
+            </div>
+            @Html.TextBoxFor(model => model.Profile.ProfilImage, new { placeholder = "Description", @type = "file" })
+
+            <div class="bio">
+                <label>Biographie</label>
+            </div>
+            @Html.TextAreaFor(m => m.Profile.Bio , new { placeholder = "Decrivez-vous en quelques lignes"})
+            @Html.ValidationMessageFor(m =>  m.Profile.Bio)
+
+            <div class="games">
+                <label>Genre de jeux préférés ?</label>
+            </div>
+            @Html.TextBoxFor(m => m.Profile.Games , new { placeholder = "Dites-nous tout..."})
+            @Html.ValidationMessageFor(m =>  m.Profile.Games)
+
+            <div class="docID">
+                <label>Document ID</label>
+            </div>
+            @Html.TextBoxFor(m => m.Adherent.IDDocuments , new { placeholder = "..."})
+            @Html.ValidationMessageFor(m =>m.Adherent.IDDocuments)
+            <input type="button" name="docID" value="Choisir" required />
+
+            <div class="iban">
+                <label>IBAN/RIB</label>
+            </div>
+            @Html.TextBoxFor(m => m.Contribution.RIB , new { placeholder = "FRXX-XXXX-XXXX-XXXX-XXXX"})
+            @Html.ValidationMessageFor(m =>  m.Contribution.RIB)
+
+            <div class="prelevementDate">
+                <label>DatePrelèvement</label>
+            </div>
+            @Html.DropDownListFor(m => m.PrelevementDate, Html.GetEnumSelectList<Projet2.Models.PrelevementDate>(), "Selectionner une date")
+            @Html.ValidationMessageFor(m => m.PrelevementDate)
+
+            <div class="contributionType">
+                <label>Contributiontype</label>
+            </div>
+            @Html.DropDownListFor(m => m.ContributionType, Html.GetEnumSelectList<Projet2.Models.ContributionType>(), "Selectionner une date")
+            @Html.ValidationMessageFor(m => m.ContributionType)
+        </div>
+
+        <input type="submit" value="S'inscrire" class="BoutonValidationFormulaire" />
+    }
+</div>
+
+
+@*<head>
     <title>Inscription Benevole</title>
 </head>
 
@@ -14,126 +122,6 @@
 </p>
 @using (Html.BeginForm("SignUpAdherent", "Inscription", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    @Html.HiddenFor(m=>m.Account.Id)
-    @Html.HiddenFor(m=>m.Profile.Id)
-    @Html.HiddenFor(n=>n.Contact.Id)
-    @Html.HiddenFor(n=>n.Infos.Id)
-    @Html.HiddenFor(n=>n.Inventory.Id)
-    @Html.HiddenFor(m=>m.Account.role)
-
-    <fieldset>
-        <legend>
-            Creez vos identifiants de connexion
-        </legend>
-        <section>
-            <table>
-                <tbody>
-                    <tr>
-                        <td>@Html.LabelFor(m => m.Account.Username)</td>
-                        <td> @Html.TextBoxFor(m => m.Account.Username)</td>
-                        <td> @Html.ValidationMessageFor(m =>  m.Account.Username)</td>
-                    </tr>
-                    <tr>
-                        <td>@Html.LabelFor(m => m.Account.Password)</td>
-                        <td>@Html.PasswordFor(m =>m.Account.Password)</td>
-                        <td> @Html.ValidationMessageFor(m =>m.Account.Password)</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-    </fieldset>
-
-
-    <fieldset>
-        <legend>
-            Presentez vous :
-        </legend>
-        <section>
-            <table>
-                <tbody>
-                    <tr>
-                        <td> @Html.LabelFor(m => m.Infos.FirstName)</td>
-                        <td> @Html.TextBoxFor(m =>m.Infos.FirstName)</td>
-                        <td>@Html.ValidationMessageFor(m =>m.Infos.FirstName)</td>
-                    </tr>
-                    <tr>
-                        <td> @Html.LabelFor(m => m.Infos.LastName)</td>
-                        <td> @Html.TextBoxFor(m =>m.Infos.LastName)</td>
-                        <td>@Html.ValidationMessageFor(m =>m.Infos.LastName)</td>
-                    </tr>
-                    <tr>
-                        <td> @Html.LabelFor(m => m.Infos.Birthday)</td>
-                        <td> @Html.TextBoxFor(m =>m.Infos.Birthday)</td>
-                        <td>@Html.ValidationMessageFor(m =>m.Infos.Birthday)</td>
-                    </tr>
-
-                </tbody>
-            </table>
-        </section>
-    </fieldset>
-
-
-
-    <fieldset>
-        <legend>
-            Contact:
-        </legend>
-        <section>
-            <table>
-                <tbody>
-                    <tr>
-                        <td> @Html.LabelFor(m => m.Contact.EmailAdress)</td>
-                        <td> @Html.TextBoxFor(m =>m.Contact.EmailAdress)</td>
-                        <td> @Html.ValidationMessageFor(m =>m.Contact.EmailAdress)</td>
-                    </tr>
-                    <tr>
-                        <td> @Html.LabelFor(m => m.Contact.TelephoneNumber)</td>
-                        <td> @Html.TextBoxFor(m =>m.Contact.TelephoneNumber)</td>
-                        <td> @Html.ValidationMessageFor(m =>m.Contact.TelephoneNumber)</td>
-                    </tr>
-
-                </tbody>
-            </table>
-        </section>
-    </fieldset>
-
-    <fieldset>
-        <legend>
-            Remplissez votre profil :
-        </legend>
-        <section>
-            <div class="form-group">
-                @Html.LabelFor(model => model.Profile.ProfilImage, new { id = "imageLabel", @style = "text-align:center;" })
-                @Html.TextBoxFor(model => model.Profile.ProfilImage, new { placeholder = "Description", @type = "file" })
-                <div class="col-md-10">
-                   
-
-
-                </div>
-            </div>
-            <table>
-                <tbody>
-                    <tr>
-                        <td>@Html.LabelFor(m => m.Profile.ProfilImage)</td>
-                        <td> @Html.TextBoxFor(m => m.Profile.ProfilImage)</td>
-                        <td> @Html.ValidationMessageFor(m =>  m.Profile.ProfilImage)</td>
-                    </tr>
-                    <tr>
-                        <td>@Html.LabelFor(m => m.Profile.Bio)</td>
-                        <td> @Html.TextAreaFor(m => m.Profile.Bio)</td>
-                        <td> @Html.ValidationMessageFor(m =>  m.Profile.Bio)</td>
-                    </tr>
-                    <tr>
-                        <td>@Html.LabelFor(m => m.Profile.Games)</td>
-                        <td> @Html.TextBoxFor(m => m.Profile.Games)</td>
-                        <td> @Html.ValidationMessageFor(m =>  m.Profile.Games)</td>
-                    </tr>
-
-
-                </tbody>
-            </table>
-        </section>
-    </fieldset>
 
 
     <fieldset >
@@ -178,4 +166,4 @@
 
     <input type="submit" value="Créer" class="BoutonValidationFormulaire"/>
    
-}
+}*@

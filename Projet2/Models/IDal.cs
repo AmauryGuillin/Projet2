@@ -51,12 +51,12 @@ namespace Projet2.Models
         void RemoveStuff(int id);
         List<Stuff> GetStuffs();
 
-        int CreatePublication(string name, PublicationTypes publicationType, string content, DateTime creationdate, string author, int employeId);
-        public void CreatePublication(Publication publication);
-        public void EditPublication(int id, string name, PublicationTypes publicationType, string content, DateTime creationdate, string author, int employeId);
+        //int CreatePublication(string name, PublicationTypes publicationType, string content, DateTime creationdate, string author, int employeId);
+        //public void CreatePublication(Publication publication);
+        //public void EditPublication(int id, string name, PublicationTypes publicationType, string content, DateTime creationdate, string author, int employeId);
         public void EditPublication(Publication publication);
         public void RemovePublication(int id);
-        public void RemovePublication(Publication publication);
+        //public void RemovePublication(Publication publication);
         List<Publication> GetPublications();
 
         //public int CreateActivity(DateTime startDate, DateTime endDate);
@@ -66,7 +66,7 @@ namespace Projet2.Models
         //public void RemoveActivity(int id);
 
 
-        public Account AddAccount(string username, string password, int contactId, int infopersoId, int profileId,Role role);
+        public Account AddAccount(string username, string password, int contactId, int infopersoId, int profileId,Role role,int ChatId);
 
         //int CreateSlot(DateTime date, DateTime startHour, DateTime endHour);
         int CreateSlot(Slot slot);

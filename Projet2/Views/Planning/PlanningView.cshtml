@@ -1,8 +1,9 @@
 ﻿@model Projet2.ViewModels.PlanningViewModel
 @{
     Layout = "_LayoutGeneral";
-
 }
+
+<link rel=" stylesheet" href="~/css/PlanningView.css"/>
 @Html.HiddenFor(m=>m.Account.Id)
 @Html.HiddenFor(m=>m.Account.role)
 @Html.HiddenFor(m=>m.Account.PlanningId)
@@ -11,28 +12,49 @@
 @*@Html.HiddenFor(m=>m.Account.role)
 @Html.HiddenFor(m=>m.Account.ProfileId)*@
 
-<h1 style="text-align: center">Accueil  @Model.Account.Username:)</h1>
+<section>
 
-@if (Model.Account.role==Projet2.Models.Role.Benevole){
 
- <img src="@Model.Profile.ImagePath" height="400" width="400" />
-<p>
- @Model.Account.role 
-    @Model.Account.Username @Model.Account.ProfileId
+</section>
+
+<section class="Planning">
+    @Model.Account.ProfileId
     @Html.ActionLink("Profil","ProfileViewBenevole","Inscription",new{
     accountId=Model.Account.Id
-    },null
-    )
-    Tu es passée de booking a Planning 
+    },null)
+
+@if (Model.Account.role==Projet2.Models.Role.Benevole){
+    <div>
+ <img src="@Model.Profile.ImagePath" height="200" width="200" class="imgMiniP" />
+     <h1 style="text-align: center">Planning de @Model.Account.Username :)</h1>
+     </div>
+<p class=" affichageActivités">
+   Hey
+    @Model.Account.Username,
+            Vous etes @Model.Account.role au sein de Play 4 US!
+            Ici vous pourrez consulter tous les évenements et activités auxquels vous vous etes iscrit!
+       
+
         @foreach(var Slot in Model.slots)
         {
           <table>
+             
               <tbody>
-                  <tr>
-                        <td>@Html.DisplayFor(mSlot=>Slot.Activity.StartDate)</td>
+                        <tr class="Ligne-activity">
+                            <td>@Html.DisplayFor(mSlot=>Slot.Activity.activityType)</td>
+                            <td>@Html.DisplayFor(mSlot=>Slot.Activity.Description)</td>
+                            <td>@Html.DisplayFor(mSlot=>Slot.Activity.Place)</td>
+                            
+                            <td>@Html.DisplayFor(mSlot=>Slot.Activity.StartDate)</td>
+                           <td>@Html.DisplayFor(mSlot=>Slot.Activity.EndDate)</td>
+                            <td>@Html.DisplayFor(mSlot=>Slot.Activity.Organizer)</td>
                   </tr>
               </tbody>
           </table>  
         }
-    </p>
+        </p>
+    
 }
+    
+
+    </section>
