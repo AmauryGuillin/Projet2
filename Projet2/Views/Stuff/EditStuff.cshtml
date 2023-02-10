@@ -1,0 +1,48 @@
+﻿@model Projet2.ViewModels.ProfileViewModel
+@{
+    Layout = "_LayoutGeneral";
+}
+<h2>EditStuff</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(m=>m.Stuff.AccountOwnerId)
+
+    <fieldset>
+      <legend> Matériel </legend>
+
+
+    
+    <div>
+        @Html.LabelFor(m => m.Stuff.Name)
+        @Html.TextBoxFor(m => m.Stuff.Name)
+        @Html.ValidationMessageFor(m => m.Stuff.Name)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Stuff.Description)
+        @Html.TextBoxFor(m => m.Stuff.Description)
+        @Html.ValidationMessageFor(m => m.Stuff.Description)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Stuff.Type)
+        @Html.DropDownListFor(m => m.Stuff.Type, Html.GetEnumSelectList<Projet2.Models.Type>(), "Selectionner un Type")
+        @Html.ValidationMessageFor(m => m.Stuff.Type)
+    </div>
+
+
+    <div>
+        @Html.LabelFor(m => m.Stuff.State,"Neuf")
+        @Html.RadioButtonFor(m=>m.Stuff.State,"Neuf")
+        @Html.LabelFor(m => m.Stuff.State,"Très Bon")
+        @Html.RadioButtonFor(m=>m.Stuff.State,"TrèsBon")
+        @Html.LabelFor(m => m.Stuff.State,"Bon")
+        @Html.RadioButtonFor(m=>m.Stuff.State,"Bon")
+        @Html.LabelFor(m => m.Stuff.State,"Acceptable")
+        @Html.RadioButtonFor(m=>m.Stuff.State,"Acceptable")
+    </div>
+
+    <input type="submit" value="Sauvegarder" />
+    </fieldset>
+}
+
+

@@ -1535,7 +1535,7 @@ namespace Projet2.Models
             return _bddContext.Stuffs.ToList();
         }
 
-        public void EditStuff(int id, int accountOwnerId)
+        public void EditStuffCreate(int id, int accountOwnerId)
         {
             Stuff stuff = _bddContext.Stuffs.Find(id);
             if (stuff != null)
@@ -1581,10 +1581,17 @@ namespace Projet2.Models
 
 
 
-        public void EditStuff(Stuff stuff)
+        public void EditStuff(int id, string name, string description,Type type, State state)
         {
-            _bddContext.Stuffs.Update(stuff);
-            _bddContext.SaveChanges();
+            Stuff stuff = _bddContext.Stuffs.Find(id);
+            if (stuff != null)
+            {
+                stuff.Name= name;
+                stuff.Description= description;
+                stuff.Type= type;
+                stuff.State= state;
+                _bddContext.SaveChanges();
+            }
         }
 
 
