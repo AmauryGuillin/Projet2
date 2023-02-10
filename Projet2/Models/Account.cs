@@ -2,6 +2,7 @@
 using Projet2.Models.Informations;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Projet2.Models.UserMessagerie;
 
 namespace Projet2.Models
 {
@@ -43,6 +44,9 @@ namespace Projet2.Models
 
         public int? ProfileId { get; set; }
         public virtual Profile Profile { get; set; }
+
+        public int? MessagerieId { get; set; }
+        public MessagerieA Messagerie { get; set; }
 
         public Role role { get; set; }
 

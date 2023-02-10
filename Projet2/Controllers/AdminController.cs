@@ -59,7 +59,8 @@ namespace Projet2.Controllers
                     model.Profile.Bio,
                     model.Profile.Games
                     );
-
+           model.Messagerie =
+              dal.AddMessagerie();
             model.Account =
             dal.AddAccount(
                  model.Account.Username,
@@ -67,7 +68,8 @@ namespace Projet2.Controllers
                  model.Contact.Id,
                  model.Infos.Id,
                  model.Profile.Id,
-                 model.Account.role
+                 model.Account.role,
+                 model.Messagerie.Id
                  );
 
             model.Employee = dal.CreateEmployee(model.Account.Id, model.Employee.JobName, model.Employee.SerialNumber);

@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Projet2.Models.Informations;
+using Projet2.Models.Messagerie;
 using System;
 using System.Security.AccessControl;
 using System.Xml.Linq;
+using  Projet2.Models.UserMessagerie;
 
 namespace Projet2.Models
 {
@@ -14,7 +16,7 @@ namespace Projet2.Models
         public DbSet<Adherent> Adherents { get; set; } //ajout d'un 's' à la fin
         public DbSet<AssociationActivity> AssociationActivities { get; set; }
         public DbSet<Benevole> Benevoles { get; set; } //ajout d'un 's' à la fin
-        public DbSet<Chat> Chat { get; set; }
+        public DbSet<MessagerieA> Messageries { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Contact> Contact { get; set; }
         public DbSet<Contribution> Contributions { get; set; }//ajout d'un 's' à la fin

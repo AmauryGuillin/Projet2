@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using Projet2.Models.Informations;
+
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,7 +10,12 @@ using System.Runtime.Intrinsics.X86;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+//using Projet2.Models.Messagerie;
 
+using Projet2.Models.UserMessagerie;
+using Projet2.Models.Messagerie;
+using System.Security.Principal;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Projet2.Models
 {
@@ -85,6 +91,26 @@ namespace Projet2.Models
         {
             return _bddContext.Account.ToList();
         }
+
+        
+        public  int[] AccountIds()
+        {
+            //int[] accountIds = new int[] {GetListAccount().Count };
+            List<int> list = new List<int>();
+           foreach(Account Account in this._bddContext.Account){
+               int accountId = Account.Id;
+                list.Add(accountId);
+            }
+            int[]accountIds=list.ToArray();
+           return accountIds;
+        }
+
+        //public int[] Accountids()
+        //{
+        //    int size = GetListAccount().Count;
+        //    int[] accountIds = new int[size];
+        //}
+
         public Account GetAccount(int id)
         {
             return this._bddContext.Account.Find(id);
@@ -126,7 +152,7 @@ namespace Projet2.Models
         /// This method adds a user's account in the database while encoding the user's password
         /// </summary>
         /// <returns></returns>
-        public Account AddAccount(string username, string password,int contactId,int infopersoId,int profileId,Role role)
+        public Account AddAccount(string username, string password,int contactId,int infopersoId,int profileId,Role role,int MessagerieId)
         {
             string wordpass = EncodeMD5(password);
             //idProfile= CreateProfile();
@@ -137,8 +163,9 @@ namespace Projet2.Models
                 ContactId = contactId,
                 InfoPersoId = infopersoId,
                 Inventory = new Inventory(),
-                Planning= AddPlanning(username),
-                role = role
+                Planning = AddPlanning(username),
+                role = role,
+                MessagerieId = MessagerieId
                
             };
             this._bddContext.Account.Add(account);
@@ -626,7 +653,102 @@ namespace Projet2.Models
             }
         }
 
-        /////////////////CHAT
+        /////////////////CHAT && CONVERSATIONS
+        ///
+
+        public MessagerieA AddMessagerie()
+        {
+           MessagerieA messagerie = new MessagerieA()
+            {
+                NbConversations = 0
+            };
+            this._bddContext.Messageries.Add(messagerie);
+            this._bddContext.SaveChanges();
+            return messagerie;
+        }
+
+        public List<MessagerieA> GetMessageries()
+        {
+            return _bddContext.Messageries.ToList();
+        }
+
+        public List<Conversation> GetConversations()
+        {
+            return _bddContext.Conversations.ToList();
+        }
+
+        public Conversation GetThisConversation(int convId)
+        {
+            return _bddContext.Conversations.Find(convId);
+        }
+
+        public List<Conversation> GetUserConversationsStarter(int account1)
+        {
+           List <Conversation>ListConversationsStarter = new List<Conversation>();
+
+            ListConversationsStarter =GetConversations().Where(r => r.FirstSenderId == account1).ToList();
+            return ListConversationsStarter;
+        }
+
+        public List<Conversation> GetUserConversationsReplier(int account1)
+        {
+            List<Conversation> ListConversationsReplier = new List<Conversation>();
+            ListConversationsReplier = GetConversations().Where(r => r.ReceiverId== account1).ToList();
+            //LinkedList<Conversation> TotalConversations= new LinkedList<Conversation>();
+            return ListConversationsReplier;
+        }
+        
+        public Conversation CreateConversation(int accountIdSender, int accountReceiver)
+        {
+            Conversation conversation = new Conversation()
+            {
+                FirstSenderId = accountIdSender,
+                ReceiverId = accountReceiver,
+               
+            };
+            this._bddContext.Conversations.Add(conversation);
+            this._bddContext.SaveChanges();
+            return conversation;
+        }
+
+        public Message FirstMessage(int conversationId, int account1, int account2, string body)
+        {
+            Message firstMessage = new Message()
+            {
+                Body = body,
+                ConversationId = conversationId,
+                SenderId = account1,
+                ReceiverId = account2,
+                MessageTimeStamp = new DateTime(),
+                isRead = false,
+            };
+            this._bddContext.Messages.Add(firstMessage);
+            this._bddContext.SaveChanges();
+            return firstMessage;
+        }
+
+        public Message MessageReply(int conversationId,int account1, int account2, string body)
+        {
+            Message NewMessage = new Message()
+            { Body = body,
+                ConversationId = conversationId,
+                SenderId = account1,
+                ReceiverId = account2,
+                MessageTimeStamp = new DateTime(),
+                isRead= false,
+            };
+            //List<Message> conversation = new List<Message>();
+            GetUserConversationsStarter(account1);
+            GetUserConversationsReplier(account1);
+            //if (GetUserConversationsStarter(account1).Contains(GetThisConversation(conversationId))) { 
+
+            //}
+            this._bddContext.Messages.Add(NewMessage);
+            this._bddContext.SaveChanges();
+
+            return NewMessage;
+        }
+
 
         /////////////////COACHING
 
@@ -803,6 +925,10 @@ namespace Projet2.Models
             _bddContext.Contributions.Remove(contribution);
             _bddContext.SaveChanges();
         }
+
+        /////////////////CONTRIBUTION
+     
+
 
         /////////////////EMPLOYEE
         ///
@@ -1197,9 +1323,8 @@ namespace Projet2.Models
             {
                 ImagePath = profilImage,
                 Bio = Bio,
-                Games = games,
-                Chat=new Chat(),
-                
+                Games = games
+               
             };
             this._bddContext.Profils.Add(profile);
             this._bddContext.SaveChanges();

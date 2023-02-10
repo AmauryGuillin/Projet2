@@ -1,0 +1,43 @@
+﻿@model Projet2.ViewModels.MessagerieViewModel
+
+@{
+    Layout = "_LayoutGeneral";
+}
+
+@using(Html.BeginForm("NewMessageConversationView","Messagerie",FormMethod.Post)){
+<section class="UserDef">
+     <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-blue rounded box-shadow">
+        <img class="mr-3" src=" @Model.Profile.ImagePath" alt="" width="100" height="100">
+        
+        <div class="lh-100">
+            <h3 class="mb-0 text-white lh-100">@Model.Account.Username HI THERE</h3>
+            <small>Messages</small>
+        </div>
+      </div>
+</section>
+
+
+    <section class="UsersList">
+    
+     
+    <div style="height: 200px; overflow: auto;">
+
+       
+        
+    @Html.DropDownListFor(m => m.selectedAccount, Model.ListAccounts,"Selectionnez un contact")
+  
+    </div>
+  
+</section>
+<section class=" MessageCreation">
+   
+    @Html.LabelFor(m=>m.Message.Body)
+
+    @Html.TextAreaFor(m=>m.Message.Body)
+
+
+    <input type="submit" value="Envoyez votre message" class="BoutonValidationFormulaire" />
+</section>
+    }
+
+   

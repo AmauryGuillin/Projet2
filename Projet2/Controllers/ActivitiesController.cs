@@ -19,15 +19,19 @@ namespace Projet2.Controllers
         {
             ActivitiesViewModel activitiesVM = new ActivitiesViewModel();
             activitiesVM.Account = dal.GetAccount(HttpContext.User.Identity.Name);
-            return View(activitiesVM);
+            if (activitiesVM.Account != null)
+            {return View(activitiesVM); }
+            else { return RedirectToAction("Login", "Login"); }
         }
 
         [HttpPost]
 
-          public IActionResult CreateActivity(ActivitiesViewModel activitiesVM)
-            {
+        public IActionResult CreateActivity(ActivitiesViewModel activitiesVM)
+        {
             activitiesVM.Account = dal.GetAccount(HttpContext.User.Identity.Name);
-           activitiesVM.Activity= 
+            if (activitiesVM.Account != null)
+            {
+                activitiesVM.Activity =
                 dal.CreateNewActivity(
                 activitiesVM.Activity.StartDate,
                 activitiesVM.Activity.EndDate,
@@ -36,17 +40,29 @@ namespace Projet2.Controllers
                 activitiesVM.Activity.activityType,
                 activitiesVM.Account.Username
                 );
-                return View("CatalogueActivities",activitiesVM);
+                return View("CatalogueActivities", activitiesVM);
             }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
+        }
 
 
-        public IActionResult CatalogueActivities()
+    public IActionResult CatalogueActivities()
         {
-          ActivitiesViewModel activitiesVM = new ActivitiesViewModel();
-          activitiesVM.Account = dal.GetAccount(HttpContext.User.Identity.Name); 
-          activitiesVM.activities=dal.GetActivities();
-           
-            return View(activitiesVM);
+            ActivitiesViewModel activitiesVM = new ActivitiesViewModel();
+            activitiesVM.Account = dal.GetAccount(HttpContext.User.Identity.Name);
+            if (activitiesVM.Account != null)
+            { 
+                activitiesVM.activities = dal.GetActivities();
+
+                return View(activitiesVM);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         
@@ -73,8 +89,6 @@ namespace Projet2.Controllers
             activitiesVM.activities = dal.GetActivities();
             List<Activity> activities = activitiesVM.activities;
             Activity selected = dal.GetActivities().Where(a => a.Id == id).FirstOrDefault();
-
-
             activitiesVM.Slot = dal.CreateSlot
                     (
                         selected.StartDate,

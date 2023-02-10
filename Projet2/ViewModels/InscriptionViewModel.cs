@@ -1,6 +1,7 @@
 ﻿using Projet2.Models.Informations;
 using Projet2.Models;
 using System.Collections.Generic;
+using Projet2.Models.UserMessagerie;
 
 namespace Projet2.ViewModels
 {
@@ -40,6 +41,8 @@ namespace Projet2.ViewModels
         public List<Stuff> Stuffs { get; set; }
         public ReservationStuff ReservationStuff { get; set; }
         public List<ReservationStuff> ReservationStuffs { get; set; }
+
+        public MessagerieA Messagerie { get; set; }
 
     }
 }
