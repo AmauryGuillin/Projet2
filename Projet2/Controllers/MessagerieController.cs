@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.CodeAnalysis;
 using Newtonsoft.Json.Linq;
 using Microsoft.AspNetCore.Http;
-
+using Microsoft.AspNetCore.Authentication;
 namespace Projet2.Controllers
 {
     public class MessagerieController : Controller
@@ -24,21 +24,22 @@ namespace Projet2.Controllers
         }
         public IActionResult MessageBoardView()
         {
-            MessagerieViewModel mvm= new MessagerieViewModel();
-            if (HttpContext.User.Identity.IsAuthenticated == true)
+            MessagerieViewModel mvm = new MessagerieViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
+            if (mvm.Authentificate == true)
             {
                 string accountId = (HttpContext.User.Identity.Name);
                 mvm.Account = dal.GetAccount(accountId);
                 Account account= mvm.Account;
                 mvm.Messagerie = dal.GetMessageries().Where(r=>r.Id==account.MessagerieId).FirstOrDefault();
                 MessagerieA thisUserMessagerie = mvm.Messagerie;
+
                 mvm.UserConversationsStarter = dal.GetUserConversationsStarter(account.Id);
-               
                 List<Conversation> UserStarterConversations = new List<Conversation>();
                 UserStarterConversations = mvm.UserConversationsStarter;
 
                 mvm.UserConversationsReceiver= dal.GetUserConversationsReplier(account.Id);
-                List<Conversation> UserReceiverConversations = mvm.UserConversationsReceiver;
+                List<Conversation> UserReceiverConversations = new List<Conversation>();
+                UserReceiverConversations=mvm.UserConversationsReceiver;
 
                 return View(mvm);
             }
@@ -49,8 +50,8 @@ namespace Projet2.Controllers
 
         public IActionResult NewMessageConversationView()
         {
-            MessagerieViewModel mvm = new MessagerieViewModel();
-            if (HttpContext.User.Identity.IsAuthenticated == true)
+            MessagerieViewModel mvm = new MessagerieViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
+            if (mvm.Authentificate == true)
             {
                 string accountId = (HttpContext.User.Identity.Name);
                 mvm.Account = dal.GetAccount(accountId);
@@ -59,10 +60,8 @@ namespace Projet2.Controllers
                 mvm.Accounts = dal.GetAccounts();
                 List<Account> AllAccounts = mvm.Accounts;
                 mvm.ListAccounts = GetAllAccounts();
-
                 var AccountData = dal.GetAccounts();
                 mvm.ListAccounts= new List<SelectListItem>();
-
                 foreach(var account in AccountData)
                 {
                     mvm.ListAccounts.Add(new SelectListItem
@@ -74,7 +73,6 @@ namespace Projet2.Controllers
 
                 return View(mvm);
             }
-
                 return View("Login","Login");
         }
 
@@ -86,37 +84,70 @@ namespace Projet2.Controllers
                 string accountId = (HttpContext.User.Identity.Name);
                 mvm.Account = dal.GetAccount(accountId);
                 Account accountUser = mvm.Account;
-
                 var selectedAccount = mvm.selectedAccount;
-
                 int idSelected = int.Parse(selectedAccount);
-
-
                 mvm.Message = dal.FirstMessage(
                     dal.CreateConversation(accountUser.Id, idSelected).Id,
                     accountUser.Id,
                     idSelected,
                     mvm.Message.Body
-
                     );
-
-
-
-
                 return RedirectToAction("MessageBoardView","Messagerie");
             }
             return View("Login", "Login");
         }
 
 
-        public IActionResult ReplyMessage()
+        public IActionResult ReplyMessage(int id)
         {
-            MessagerieViewModel mvm = new MessagerieViewModel();
-            return View(mvm);
+            MessagerieViewModel mvm = new MessagerieViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
+            if (mvm.Authentificate == true)
+            {
+                string accountId = (HttpContext.User.Identity.Name);
+                mvm.Account = dal.GetAccount(accountId);
+                Account Useraccount = mvm.Account;
+                mvm.Profile = dal.GetProfile(accountId);
+                mvm.Conversation = dal.GetConversations().Where(r => r.Id == id).FirstOrDefault();
+                Conversation conversation = mvm.Conversation;
+                mvm.Messages = dal.GetMessages().Where(r => r.ConversationId == conversation.Id).ToList();
+                //int lastSenderId= (int)mvm.Messages.Last().SenderId;
+                //List<Message> messages = mvm.Messages;
+                //mvm.Message = dal.MessageReply(
+                //    conversation.Id,
+                //    Useraccount.Id,
+                //    lastSenderId,
+                //    mvm.Message.Body
+
+                //    ); ;
+                return View(mvm);
+            }
+            return RedirectToAction("Login", "Login");
+        }
+        [HttpPost]
+        public IActionResult ReplyMessage(MessagerieViewModel mvm,int id)
+        {
+            string accountId = (HttpContext.User.Identity.Name);
+            mvm.Account = dal.GetAccount(accountId);
+            Account Useraccount = mvm.Account;
+            mvm.Profile = dal.GetProfile(accountId);
+            mvm.Conversation = dal.GetConversations().Where(r => r.Id == id).FirstOrDefault();
+            Conversation conversation = mvm.Conversation;
+            mvm.Messages = dal.GetMessages().Where(r => r.ConversationId == conversation.Id).ToList();
+            int lastSenderId = (int)mvm.Messages.Last().SenderId;
+            List<Message> messages = mvm.Messages;
+            mvm.Message = dal.MessageReply(
+                conversation.Id,
+                Useraccount.Id,
+                lastSenderId,
+                mvm.Message.Body
+                );
+            Message message= mvm.Message;
+            messages.Add(message);
+
+            return RedirectToAction("MessageBoardView", mvm);
         }
 
-
-        public List<SelectListItem> GetAllAccounts()
+            public List<SelectListItem> GetAllAccounts()
         {
             List<SelectListItem> SelectionAccounts = new List<SelectListItem>();
             foreach (Account account in dal.GetAccounts())
@@ -135,7 +166,11 @@ namespace Projet2.Controllers
             return new SelectList(selectedAccounts,selectedAccount);
         }
 
-
-///////////////////////////END//////////
+        public ActionResult Deconnexion()
+        {
+            HttpContext.SignOutAsync();
+            return RedirectToAction("LOgin", "Login");
+        }
+        ///////////////////////////END//////////
     }
 }

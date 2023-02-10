@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Projet2.ViewModels
 {
+    
     public class MessagerieViewModel
     {
         //public PagedList.IPagedList<MessageSent> Messages { get; set; }
@@ -43,7 +44,8 @@ namespace Projet2.ViewModels
         public int[] AccountIds { get; set; }
 
         public string selectedAccount { get; set; }
-     
+        public bool Authentificate { get; set; }
+
         ////////////////////FIN
     }
 

@@ -7,9 +7,9 @@ namespace Projet2.Models.Messagerie
     {
         public int Id { get; set; }
         public int? SenderId { get; set; }
-        public virtual Profile Sender { get; set; }
+        public virtual Account Sender { get; set; }
         public int? ReceiverId { get; set; }
-        public virtual Profile Receiver { get; set; }
+        public virtual Account Receiver { get; set; }
 
         public int? ConversationId { get; set; }
         public Conversation UserConversation { get; set; }

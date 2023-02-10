@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc;
 using Projet2.Models;
 using Projet2.ViewModels;
 using System.Collections.Generic;
@@ -52,6 +53,13 @@ namespace Projet2.Controllers
 
             return RedirectToAction("PublicationWall");
         }
+
+        public ActionResult Deconnexion()
+        {
+            HttpContext.SignOutAsync();
+            return RedirectToAction("LOgin", "Login");
+        }
+        /////////////////////////END
     }
     
 }
