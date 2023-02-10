@@ -1,27 +1,91 @@
 ﻿@model Projet2.ViewModels.LoginViewModel
+
 @{
-    Layout = "_LayoutGeneral";
-    
+    Layout = "_LayoutGeneral";  
 }
 
-@*@Html.HiddenFor(m=>m.Account.Id)*@
-@*@Html.HiddenFor(m=>m.Account.role)
-@Html.HiddenFor(m=>m.Account.ProfileId)*@
+<link href="~/css/ViewIndex.css" rel="stylesheet"/>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
-<h1 style="text-align: center">Accueil :)</h1>
-@* 
-@if (Model.Account.role==Projet2.Models.Role.Benevole){*@
+<div class="slider">
+    <img src="~/Assets/Images/img1.png" alt="img1" class="img__slider active" />
+    <img src="~/Assets/Images/img2.png" alt="img2" class="img__slider" />
+    <img src="~/Assets/Images/img3.png" alt="img3" class="img__slider" />
+    <div class="suivant">
+        <i class="fas fa-chevron-circle-right"></i>
+    </div>
+    <div class="precedent">
+        <i class="fas fa-chevron-circle-left"></i>
+    </div>
+</div>
+<div class="bienvenue">
+    <h1>Bienvenue sur notre site</h1>
 
-   @* <img src="@Model.Profile.ImagePath" height="400" width="400" />*@
-   <p>@Model.Account.role @Model.Account.Username @*@Model.Account.ProfileId*@
-    @Html.ActionLink("Profil","ProfileViewBenevole","Inscription",new{
-        accountId=Model.Account.Id
-        },null
-        )
-</p>
-@*}
-else {
 
-    <p> ça n'a pas encore marché </p>
-}
-  *@          
+</div>
+
+<div class="apropos">
+    <img src="~/Assets/Images/img4.jpeg" class="img1">
+    <div class="bloc">
+        <h1>A PROPOS DE NOUS</h1><hr />
+        <p class="p1">
+            <br />Play4Us est une association créée en décembre 2022. <br />Ayant pour but de développer un environnement sain pour tous les joueurs souhaitant s’investir dans le gaming, <br />en leur fournissant les outils nécessaires pour qu’ils puissent s’ épanouir dans ce milieu.<br />
+            Nous souhaitons également les aider à évoluer dans le domaines de l’esport. Notre but étant de s’ouvrir à la mixité et à la diversité dans ces domaines.<br /><br />
+            <a href="#" class="button">En savoir plus...</a>
+        </p>
+    </div>
+</div>
+
+
+<div class="equipe">
+    <h1 class="team">NOTRE EQUIPE</h1>
+
+    <img src="~/Assets/avatar/avatar_abigael.png" alt="Abigael" class="img2">
+    <img src="~/Assets/avatar/avatar_michelle.png" alt="Michelle" class="img3">
+    <img src="~/Assets/avatar/avatar_asmma.png" alt="Asmma" class="img4">
+    <img src="~/Assets/avatar/avatar_amaury.png" alt="Amaury" class="img5">
+
+</div>
+<div class="jeux">
+    <img src="~/Assets/Images/game.png" alt="jeux" class="img6">
+    <div class="bloc">
+        <h1>Nos  Jeux          </h1><hr />
+        <p class="p4"><br /><br />Mario Kart<br /><br />Leagues of Legends<br /> <br />Street Fighter</p>
+        <p classe="p5">
+    </div>
+    </div>
+
+    <h2>CE QUE NOUS FAISONS</h2>
+
+
+
+
+    <script src="~/JS/ViewIndex.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+         
