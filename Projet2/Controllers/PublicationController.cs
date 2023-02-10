@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Projet2.Models;
 using Projet2.ViewModels;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Projet2.Controllers
 {
@@ -54,6 +55,35 @@ namespace Projet2.Controllers
             return RedirectToAction("PublicationWall");
         }
 
+        public IActionResult OnePublication(int id)
+        {
+            PublicationViewModel model = new PublicationViewModel();
+            if (HttpContext.User.Identity.IsAuthenticated == true)
+            {
+                string accountId = (HttpContext.User.Identity.Name);
+
+                model.Publication = dal.GetOnePublication(id);
+                Publication publication = model.Publication;
+
+            }
+
+            return View(model);
+
+        }
+
+        [HttpPost]
+        public IActionResult OnePublication(PublicationViewModel model, int id)
+        {
+            if (ModelState.IsValid)
+            {
+                string accountId = (HttpContext.User.Identity.Name);
+                model.Account = dal.GetAccount(accountId);
+
+                return View("EditPublication");
+            }
+
+            return View();
+        }
 
         public IActionResult EditPublication(int id)
         {
