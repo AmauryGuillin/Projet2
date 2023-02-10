@@ -49,6 +49,9 @@ namespace Projet2.Models
         public virtual Account AccountOwner { get; set; }
         public int? AccountBorrowerId { get; set; }
         public virtual Account AccountBorrower { get; set; }
+        public bool Authentificate { get; set; }
+
+
     }
     
 }

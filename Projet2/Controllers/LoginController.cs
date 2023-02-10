@@ -19,7 +19,8 @@ namespace Projet2.Controllers
         }
         public IActionResult Login()
         {
-            LoginViewModel viewModel = new LoginViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
+            LoginViewModel viewModel = new LoginViewModel 
+            { Authentificate = HttpContext.User.Identity.IsAuthenticated };
             if (viewModel.Authentificate == true)
             {
                 viewModel.Account = dal.GetAccount(HttpContext.User.Identity.Name);

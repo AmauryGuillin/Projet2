@@ -16,6 +16,15 @@
                     <td>
                         @Html.DisplayFor(mMessage=>Message.Body)
                     </td>
+                        <td>
+                        @Html.DisplayFor(mMessage=>Message.MessageTimeStamp)
+                        </td>
+                            <td>
+                        @Html.DisplayFor(mMessage=>Message.Sender.Username)
+                        </td>
+                            <td>
+                        @Html.DisplayFor(mMessage=>Message.Body)
+                        </td>
                 </tr>
             }
         </tbody>
@@ -23,8 +32,13 @@
     </table>
 
 </div>
+
+@Html.BeginForm(FormMethod.Post)
+{
 @Html.TextAreaFor(m=>m.Message.Body)
 
 <textarea placeholder="Ecrivez votre message ici">
 
 </textarea>
+<input type="submit" value="Envoyer" />
+}

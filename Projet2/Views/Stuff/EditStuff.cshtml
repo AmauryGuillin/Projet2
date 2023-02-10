@@ -1,18 +1,17 @@
-﻿@model Projet2.ViewModels.ProfileViewModel
+﻿@model Projet2.ViewModels.StuffViewModel
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 @{
     Layout = "_LayoutGeneral";
 }
-<h2>EditStuff</h2>
 
 @using (Html.BeginForm())
 {
     @Html.HiddenFor(m=>m.Stuff.AccountOwnerId)
 
     <fieldset>
-      <legend> Matériel </legend>
-
-
-    
+      <legend> Edit Stuff </legend>
+  
     <div>
         @Html.LabelFor(m => m.Stuff.Name)
         @Html.TextBoxFor(m => m.Stuff.Name)

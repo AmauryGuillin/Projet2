@@ -10,15 +10,7 @@
     </title>
 
 </head>
-@*<style>
-    body {
-        background-image: url("./T2.jpg");
-        background-position: center;
-    }
-</style>*@
 
-
-@*@Html.HiddenFor(n=>n.stuff.Id)*@
 
 <body class="body">
 
@@ -29,35 +21,29 @@
     @Html.HiddenFor(n=>n.Inventory.Id)
     @Html.HiddenFor(model=>model.Profile.ImagePath)
     @Html.HiddenFor(m=>m.Account.role)
-    @* <a class="navbar-brand" href="#">
-    <img src="./YagamiPIC.jpg" alt="Logo" style="width:50px;">
-    </a> *@
+  
     <div class=" profileMenu">
-        <ul class="nav flex-column">
-            <li class="nav-item">
-                <a class="nav-link active" href="#">Messagerie</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="#">Forum</a>
-            </li>
-            <li class="nav-item ">
+       <ul class="nav flex-column">
+             <li class="nav-item ">
                 <a class="nav-link active" href="#">Paramètres du compte</a>
-            </li>
-           
             <li class="nav-item ">
+
 
                 @Html.ActionLink("Ajouter du materiel", "CreateStuff", "Stuff", new {accountId = Model.Account.Id})
 
                 
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link active" href="#">Louer du materiel</a>
 
             </li>
             <li class="nav-item ">
-                @Html.ActionLink("Se deconnecter", "Deconnexion")
+                    @Html.ActionLink("Consulter le planning", "PlanningView", "Planning", new {accountId = Model.Account.Id})
             </li>
+            
+            <li class="nav-item ">
+                @Html.ActionLink("Messagerie", "MessageBoardView", "Messagerie", new {accountId = Model.Account.Id})
+            </li>
+            
         </ul>
+        
     </div>
 
 
@@ -69,18 +55,13 @@
 @*@using (Html.BeginForm("EditProfilePic", "Inscription", FormMethod.Post, new { enctype = "multipart/form-data" }))*@
 
 
-                        @Html.HiddenFor(m=>m.Account.Id)
-                        @Html.HiddenFor(m=>m.Profile.Id)
-                        @Html.HiddenFor(n=>n.Contact.Id)
-                        @Html.HiddenFor(n=>n.Infos.Id)
-                        @Html.HiddenFor(n=>n.Inventory.Id)
-                        @Html.HiddenFor(m=> m.Profile.ImagePath)
+                        
 
                     <div class="form-floating mb-3">
-                        <div>
+                       @* <div>
                                 @Html.LabelFor(model => model.Profile.ProfilImage, new { id = "imageLabel", @style = "text-align:center;" })
                                 @Html.TextBoxFor(model => model.Profile.ProfilImage, new { placeholder = "Description", @type = "file" })
-                        </div>
+                        </div>*@
                     </div>
                     <div class="text-center">
                             <img src="@Model.Profile.ImagePath" height="400" width="400" />
@@ -134,6 +115,7 @@
                     <th><h2>Description</h2></th>
                     <th><h2>Type</h2></th>
                     <th><h2>Etat</h2></th>
+                    <th><h2>Modification</h2></th>
                     <th><h2>Reservation</h2></th>
                 </tr>
                 @foreach (var Stuff in Model.Stuffs)
@@ -148,8 +130,10 @@
                             <td>@Html.DisplayFor(mStuffs => Stuff.Type)</td>
                             <td>@Html.DisplayFor(mStuffs => Stuff.State)</td>
                             <td>@Html.DisplayFor(mStuffs => Stuff.Reservation)</td>
-                            <th><h2>Modif Stuff</h2></th>
-                            <th><h2>Accepter/refuser reservation</h2></th>
+                            <td>Impossible de modif</td>
+                            <td>@Html.ActionLink("Consulter la Reservation", "ConsultationBookStuff","Stuff", new { id = Stuff.Id })</td>
+
+                        
 
                         </tr>
                     }
@@ -163,7 +147,7 @@
                             <td>@Html.DisplayFor(mStuffs => Stuff.State)</td>
                             <td>@Html.DisplayFor(mStuffs => Stuff.Reservation)</td>
                             <td>@Html.ActionLink("Modification", "EditStuff","Stuff", new { id = Stuff.Id })</td>
-                            <td>@Html.ActionLink("Consulter", "AcceptationBookStuff","Stuff", new { id = Stuff.Id })</td>
+                            <td>@Html.ActionLink("Réservation ajouter le if", "AcceptationBookStuff","Stuff", new { id = Stuff.Id })</td>
                         </tr>
                     }
 

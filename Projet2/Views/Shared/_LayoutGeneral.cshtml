@@ -1,4 +1,6 @@
 ﻿
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,15 +22,43 @@
              alt="Logo de l'association" />
         <h1>Play4Us</h1>
         <div class="menu">
-            <a href="#Accueil">Accueil</a>
+            <a href="/Login/Index">Accueil</a>
             <a href="#Apropos">À propos</a>
-            <a href="#Materiels">Materiels</a>
-            <a href="#Coaching">Coaching</a>
+            <a href="#Contact">Contact</a>
             <a href="#Jeux">Jeux</a>
             <a href="#Benevolat">Benevolat</a>
-            <a href="#Forum">Forum</a>
-            <a href="#Contact">Contact</a>
-            <input type="submit" value="Se Connecter" />
+            <a href="#Forum">Publications</a>
+            
+            @if (Model.Authentificate == true)
+            {
+                <a href='@Url.Action("StuffCatalog", "Stuff", new {accountId = Model.Account.Id})'> Materiels </a>
+                <a href='@Url.Action("CatalogueActivities", "Activities", new {accountId = Model.Account.Id})'> Activités et Coaching</a>
+
+            if(Model.Account!= null){
+                if (Model.Account.role == Projet2.Models.Role.Benevole)
+                {
+                        <a href='@Url.Action("ProfileViewBenevole", "Inscription", new {accountId = Model.Account.Id})'> Profil</a>
+                }
+                if (Model.Account.role == Projet2.Models.Role.Adherent)
+                {
+                        <a href='@Url.Action("ProfileViewAdherent", "Inscription", new {accountId = Model.Account.Id})'> Profil</a>
+                }
+                if (Model.Account.role == Projet2.Models.Role.Salarié)
+                {
+                        <a href='@Url.Action("ProfileViewEmployee", "Employee", new {accountId = Model.Account.Id})'> Profil</a>
+                }
+                  if (Model.Account.role == Projet2.Models.Role.Admin)
+                {
+                        <a href='@Url.Action("ViewDashboard", "Admin", new {accountId = Model.Account.Id})'> Dashboard</a>
+                }
+                }
+                <input type="submit" value="Se Deconnecter" onclick="location.href='@Url.Action("Deconnexion")'" />
+
+            
+            }
+            else{
+            <input type="submit" value="Se Connecter/S'inscrire" onclick="location.href='@Url.Action("Login", "Login")'"/>
+            }
         </div>
     </div>
 
@@ -39,13 +69,13 @@
         <h1>Play4Us</h1>
         <div class="nav-links">
             <ul>
-                <li><a href="#">Accueil</a></li>
+                <li><a href="/Inscription/Index">Accueil</a></li>
                 <li><a href="#">À propos</a></li>
                 <li><a href="#">Materiels</a></li>
                 <li><a href="#">Coaching</a></li>
                 <li><a href="#">Jeux</a></li>
                 <li><a href="#">Benevolat</a></li>
-                <li><a href="#">Forum</a></li>
+                <li><a href="#">Publications</a></li>
                 <li><a href="#">Contact</a></li>
             </ul>
         </div>

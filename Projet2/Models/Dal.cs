@@ -672,6 +672,11 @@ namespace Projet2.Models
             return _bddContext.Messageries.ToList();
         }
 
+        public List<Message> GetMessages()
+        {
+            return _bddContext.Messages.ToList();
+        }
+
         public List<Conversation> GetConversations()
         {
             return _bddContext.Conversations.ToList();
@@ -704,6 +709,9 @@ namespace Projet2.Models
             {
                 FirstSenderId = accountIdSender,
                 ReceiverId = accountReceiver,
+                SenderAccount= GetAccount(accountIdSender),
+                ReceiverAccount=GetAccount(accountReceiver)
+              
                
             };
             this._bddContext.Conversations.Add(conversation);
@@ -721,6 +729,7 @@ namespace Projet2.Models
                 ReceiverId = account2,
                 MessageTimeStamp = new DateTime(),
                 isRead = false,
+                
             };
             this._bddContext.Messages.Add(firstMessage);
             this._bddContext.SaveChanges();
@@ -809,6 +818,19 @@ namespace Projet2.Models
         {
             _bddContext.Publications.Update(publication);
             _bddContext.SaveChanges();
+        }
+
+        public void EditPublication(int id, string name, PublicationTypes type, string content, DateTime date)
+        {
+            Publication publi = _bddContext.Publications.Find(id);
+            if (publi != null)
+            {
+                publi.Name = name;
+                publi.PublicationType = type;
+                publi.Content = content;
+                publi.Date = date;
+                _bddContext.SaveChanges();
+            }
         }
 
         /////////////////CONTRIBUTION
@@ -1299,6 +1321,8 @@ namespace Projet2.Models
             }
         }
 
+
+
         //public void RemovePublication(Publication publication)
         //{
         //    _bddContext.Publications.Remove(publication);
@@ -1308,6 +1332,11 @@ namespace Projet2.Models
         public List<Publication> GetPublications()
         {
             return _bddContext.Publications.ToList();
+        }
+        public Publication GetOnePublication(int id)
+        {
+            Publication publication = _bddContext.Publications.Find(id);
+            return publication;
         }
 
 
@@ -1601,7 +1630,8 @@ namespace Projet2.Models
         if (stuff != null)
           {
             _bddContext.Stuffs.Remove(stuff);
-           }
+            _bddContext.SaveChanges();
+            }
         }   
 
         public string GetOwnerStuff(int AccountOwnerId, string owner)
