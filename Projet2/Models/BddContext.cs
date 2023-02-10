@@ -22,6 +22,7 @@ namespace Projet2.Models
         public DbSet<Contribution> Contributions { get; set; }//ajout d'un 's' à la fin
         public DbSet<Conversation> Conversations { get; set; }
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<Admin> Admins { get; set; }
         public DbSet<Forum> Forums { get; set; }
         public DbSet<Game> Games { get; set; }
         public DbSet<Inventory> Inventory { get; set; }
@@ -58,6 +59,13 @@ namespace Projet2.Models
                 new Adherent() { Id = 1, BenevoleId = null, NumAdherent = 1, InscriptionDate = new DateTime(2000, 12, 25), Contribution=400.80, IDDocuments = "justification-OUI", TeamId = null, AdhesionId = null, CoachingId = null },
                 new Adherent() { Id = 2, BenevoleId = null, NumAdherent = 2, InscriptionDate = new DateTime(2000, 12, 30), Contribution=250.25, IDDocuments = "justification-NON", TeamId= null,AdhesionId= null,CoachingId= null });
 
+            this.Admins.Add(
+                new Admin()
+                {
+                    Id = 1,
+                    AccountId= 1,
+                }
+                );
             this.Contributions.AddRange(
                 new Contribution()
                 {
@@ -215,9 +223,9 @@ namespace Projet2.Models
                     Id = 1,
                     Username = "a",
                     Password = "C5-E1-C5-86-05-3C-2F-FE-A6-AF-16-B4-4A-02-A1-CF",
-                    InfoPersoId = null,
-                    ContactId = null,
-                    PlanningId = null,
+                    InfoPersoId = 1,
+                    ContactId = 1,
+                    PlanningId = 1,
                     SportAssociationId = null,
                     ProfileId=1,
                     InventoryId = 1,
