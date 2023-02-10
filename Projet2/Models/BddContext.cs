@@ -292,6 +292,7 @@ namespace Projet2.Models
                     PublicationType = PublicationTypes.ArticleInformatif,
                     Content = "contenu de la publi",
                     Date= DateTime.Now,
+                    AccountId= 1
                     //Author="Amaury",
                     //EmployeeId = 1,
                 },
@@ -305,6 +306,7 @@ namespace Projet2.Models
                     Date = DateTime.Now,
                     //Author="Abigael",
                     //EmployeeId = 2,
+                    AccountId = 1
                 },
 
                 new Publication()
@@ -316,6 +318,7 @@ namespace Projet2.Models
                     Date = DateTime.Now,
                     //Author="Asmma",
                     //EmployeeId = 4,
+                    AccountId = 1
                 },
 
                 new Publication()
@@ -327,6 +330,7 @@ namespace Projet2.Models
                     Date = DateTime.Now,
                     //Author="Michelle",
                     //EmployeeId = 3,
+                    AccountId = 1
                 });
 
 

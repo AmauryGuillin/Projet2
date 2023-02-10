@@ -1,0 +1,19 @@
+﻿@model Projet2.ViewModels.PublicationViewModel
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+@{
+    Layout = "_LayoutGeneral";
+}
+
+
+    <h2>PUBLICATION</h2>
+
+    @Html.HiddenFor(m=>m.Publication.Id)
+
+    <h1>@Model.Publication.Name</h1>
+    <p>@Model.Publication.PublicationType</p>
+    <p>@Model.Publication.Date</p>
+    <p>@Model.Publication.Content</p>
+
+    
+@Html.ActionLink("Modifier", "EditPublication", "Publication", new { id = Model.Publication.Id })
+

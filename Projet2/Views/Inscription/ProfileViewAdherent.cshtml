@@ -110,6 +110,7 @@
                     <th><h2>Description</h2></th>
                     <th><h2>Type</h2></th>
                     <th><h2>Etat</h2></th>
+                    <th><h2>Modification</h2></th>
                     <th><h2>Reservation</h2></th>
                 </tr>
                 @foreach (var Stuff in Model.Stuffs)
@@ -124,8 +125,10 @@
                             <td>@Html.DisplayFor(mStuffs => Stuff.Type)</td>
                             <td>@Html.DisplayFor(mStuffs => Stuff.State)</td>
                             <td>@Html.DisplayFor(mStuffs => Stuff.Reservation)</td>
-                            <th><h2>Modif Stuff</h2></th>
-                            <th><h2>Accepter/refuser reservation</h2></th>
+                            <td>Impossible de modif</td>
+                            <td>@Html.ActionLink("Consulter la Reservation", "ConsultationBookStuff","Stuff", new { id = Stuff.Id })</td>
+
+                        
 
                         </tr>
                     }
@@ -139,7 +142,7 @@
                             <td>@Html.DisplayFor(mStuffs => Stuff.State)</td>
                             <td>@Html.DisplayFor(mStuffs => Stuff.Reservation)</td>
                             <td>@Html.ActionLink("Modification", "EditStuff","Stuff", new { id = Stuff.Id })</td>
-                            <td>@Html.ActionLink("Consulter", "AcceptationBookStuff","Stuff", new { id = Stuff.Id })</td>
+                            <td>@Html.ActionLink("Réservation ajouter le if", "AcceptationBookStuff","Stuff", new { id = Stuff.Id })</td>
                         </tr>
                     }
 

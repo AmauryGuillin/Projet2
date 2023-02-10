@@ -820,6 +820,19 @@ namespace Projet2.Models
             _bddContext.SaveChanges();
         }
 
+        public void EditPublication(int id, string name, PublicationTypes type, string content, DateTime date)
+        {
+            Publication publi = _bddContext.Publications.Find(id);
+            if (publi != null)
+            {
+                publi.Name = name;
+                publi.PublicationType = type;
+                publi.Content = content;
+                publi.Date = date;
+                _bddContext.SaveChanges();
+            }
+        }
+
         /////////////////CONTRIBUTION
 
         ///
@@ -1308,6 +1321,8 @@ namespace Projet2.Models
             }
         }
 
+
+
         //public void RemovePublication(Publication publication)
         //{
         //    _bddContext.Publications.Remove(publication);
@@ -1317,6 +1332,11 @@ namespace Projet2.Models
         public List<Publication> GetPublications()
         {
             return _bddContext.Publications.ToList();
+        }
+        public Publication GetOnePublication(int id)
+        {
+            Publication publication = _bddContext.Publications.Find(id);
+            return publication;
         }
 
 
@@ -1610,7 +1630,8 @@ namespace Projet2.Models
         if (stuff != null)
           {
             _bddContext.Stuffs.Remove(stuff);
-           }
+            _bddContext.SaveChanges();
+            }
         }   
 
         public string GetOwnerStuff(int AccountOwnerId, string owner)
