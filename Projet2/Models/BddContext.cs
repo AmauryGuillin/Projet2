@@ -22,6 +22,7 @@ namespace Projet2.Models
         public DbSet<Contribution> Contributions { get; set; }//ajout d'un 's' à la fin
         public DbSet<Conversation> Conversations { get; set; }
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<Admin> Admins { get; set; }
         public DbSet<Forum> Forums { get; set; }
         public DbSet<Game> Games { get; set; }
         public DbSet<Inventory> Inventory { get; set; }
