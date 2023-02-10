@@ -191,8 +191,8 @@ namespace Projet2.Models
                 new ReservationStuff()
                 {
                     Id = 1,
-                    StartDate = new DateTime(2022, 12, 25),
-                    EndDate = new DateTime(2023, 12, 25),
+                    //StartDate = new DateTime(2022, 12, 25),
+                    //EndDate = new DateTime(2023, 12, 25),
                     ReservationBorrower = true,
                     AcceptationOwner = false,
                     StuffId= 2,
@@ -290,8 +290,8 @@ namespace Projet2.Models
                     PublicationType = PublicationTypes.ArticleInformatif,
                     Content = "contenu de la publi",
                     Date= DateTime.Now,
-                    Author="Amaury",
-                    EmployeeId = 1,
+                    //Author="Amaury",
+                    //EmployeeId = 1,
                 },
 
                 new Publication()
@@ -301,8 +301,8 @@ namespace Projet2.Models
                     PublicationType = PublicationTypes.Video,
                     Content = "contenu de la publi",
                     Date = DateTime.Now,
-                    Author="Abigael",
-                    EmployeeId = 2,
+                    //Author="Abigael",
+                    //EmployeeId = 2,
                 },
 
                 new Publication()
@@ -312,8 +312,8 @@ namespace Projet2.Models
                     PublicationType= PublicationTypes.Newsletter,
                     Content = "contenu de la publi",
                     Date = DateTime.Now,
-                    Author="Asmma",
-                    EmployeeId = 4,
+                    //Author="Asmma",
+                    //EmployeeId = 4,
                 },
 
                 new Publication()
@@ -323,8 +323,8 @@ namespace Projet2.Models
                     PublicationType= PublicationTypes.FAQ,
                     Content = "contenu de la publi",
                     Date = DateTime.Now,
-                    Author="Michelle",
-                    EmployeeId = 3,
+                    //Author="Michelle",
+                    //EmployeeId = 3,
                 });
 
 

@@ -36,6 +36,10 @@ namespace Projet2.ViewModels
 
         public PrelevementDate PrelevementDate { get; set;}
         public ContributionType ContributionType { get; set; }
+        public Stuff Stuff { get; set; }
+        public List<Stuff> Stuffs { get; set; }
+        public ReservationStuff ReservationStuff { get; set; }
+        public List<ReservationStuff> ReservationStuffs { get; set; }
 
     }
 }
