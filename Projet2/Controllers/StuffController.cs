@@ -308,6 +308,50 @@ namespace Projet2.Controllers
             return View();
         }
 
-        
+        public IActionResult ConsultationBookStuff(int id)
+        {
+            ProfileViewModel model = new ProfileViewModel();
+            if (HttpContext.User.Identity.IsAuthenticated == true)
+            {
+                string accountId = (HttpContext.User.Identity.Name);
+
+                model.Stuff = dal.GetOneStuff(id);
+                Stuff stuff = model.Stuff;
+
+                model.ReservationStuff = dal.GetReservations().Where(r => r.StuffId == stuff.Id).FirstOrDefault();
+                model.Account = dal.GetAccounts().Where(r => r.Id == stuff.AccountBorrowerId).FirstOrDefault();
+
+                
+
+            }
+
+            return View(model);
+
+        }
+
+        [HttpPost]
+        public IActionResult ConsultationBookStuff(ProfileViewModel model, int id)
+        {
+            if (ModelState.IsValid)
+            {
+                string accountId = (HttpContext.User.Identity.Name);
+                model.Account = dal.GetAccount(accountId);
+
+                dal.EditStuffCancelation(id);
+
+                if (model.Account.role == Role.Adherent)
+                {
+                    return RedirectToAction("ProfileViewAdherent", "Inscription");
+                }
+                else if (model.Account.role == Role.Benevole)
+                {
+                    return RedirectToAction("ProfileViewBenevole", "Inscription");
+                }
+            }
+
+            return View();
+        }
+
+
     }
 }
