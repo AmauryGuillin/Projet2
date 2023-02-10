@@ -42,7 +42,7 @@
               <li class="nav-item ">
                 <a class="nav-link active" href="#">Paramètres du compte</a>
             <li class="nav-item ">
-                @Html.ActionLink("Ajouter du materiel", "CreateStuff", "Stuff", new {accountId = Model.Account.Id})
+                @Html.ActionLink("Ajouter du materiel", "CreateStuff", "Stuff")
             </li>
             <li class="nav-item ">
                     @Html.ActionLink("Consulter le planning", "PlanningView", "Planning", new {accountId = Model.Account.Id})
@@ -129,8 +129,37 @@
             </div>
         </div>
     </div>
-
-  
+    <div>
+    <fieldset>
+      <legend> Mon inventaire : (Stuff) </legend>
+            <table border="1">
+                <tr>
+                    <th><h2>Nom</h2></th>
+                    <th><h2>Description</h2></th>
+                    <th><h2>Type</h2></th>
+                    <th><h2>Etat</h2></th>
+                    <th><h2>Reservation</h2></th>
+                </tr>
+                @foreach (var Stuff in Model.Stuffs)
+                {
+                    if (Stuff.AccountOwnerId == Model.Account.Id)
+                    {
+                        <tr><th>Mon Stuff à moi</th></tr>
+                        <tr>
+                            <td>@Html.DisplayFor(mStuffs => Stuff.Name)</td>
+                            <td>@Html.DisplayFor(mStuffs => Stuff.Description)</td>
+                            <td>@Html.DisplayFor(mStuffs => Stuff.Type)</td>
+                            <td>@Html.DisplayFor(mStuffs => Stuff.State)</td>
+                            <td>@Html.DisplayFor(mStuffs => Stuff.Reservation)</td>
+                            <td>@Html.ActionLink("Consulter", "AcceptationBookStuff","Stuff", new { id = Stuff.Id })</td>
+                        </tr>
+                    }   
+                 }
+            }
+        }
+            </table>
+    </fieldset>
+    </div> 
 
     @Html.ActionLink("Voulez-vous vous déconnecter ?", "Deconnexion")
 </body>

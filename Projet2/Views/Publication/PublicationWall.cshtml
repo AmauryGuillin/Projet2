@@ -1,0 +1,37 @@
+﻿@model List<Projet2.Models.Publication>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+@{
+    Layout = "_LayoutGeneral";
+}
+
+<h2>Mur des publications</h2>
+
+@Html.ActionLink("Créer", "CreatePublication", "Publication")
+
+<div>
+    <table border="1">
+        <tr>
+            <th><h2>Nom</h2></th>
+            <th><h2>Type</h2></th>
+            <th><h2>Contenu</h2></th>
+            <th><h2>Date</h2></th>
+            <th><h2>Auteur</h2></th>
+
+
+        </tr>
+        @foreach (var publication in Model)
+        {
+            
+            <tr>
+                <td style="text-align : center">@publication.Name</td>
+                <td style="text-align : center">@publication.PublicationType</td>
+                <td style="text-align : center">@publication.Content</td>
+                <td style="text-align : center">@publication.Date</td>
+                <td style="text-align : center"><h1>Username de l'employe</h1></td>
+     
+            </tr>
+            
+        }
+    </table>
+
+</div>

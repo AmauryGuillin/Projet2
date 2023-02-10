@@ -4,23 +4,51 @@
     Layout = "_LayoutGeneral";
 }
 
-
-<h2>Reservation Stuff</h2>
-
 @using (Html.BeginForm())
 {
+<h2>Reservation Stuff</h2>
+
+
     @Html.HiddenFor(m=>m.Stuff.Id)
+    @Html.HiddenFor(m=>m.Stuff.AccountBorrowerId)
 
     <p>Nom : @Model.Stuff.Name</p>
     <p>Description : @Model.Stuff.Description</p>
     <p>Type : @Model.Stuff.Type</p>
-    <p>Type : @Model.Stuff.State</p>
-    <p>Proprio : @Model.Account.Username</p>
-
-
-
+    <p>Etat : @Model.Stuff.State</p>
+    <p>Reservation : @Model.Stuff.Reservation</p>
+    <p>Emprunteur : @Model.Account.Username</p>
+    <p>Argument : @Model.ReservationStuff.ReservationArgument</p>
 
     <input type="submit" value="Accepter" />
-    @*<input type="" value="Refuser" />*@
+    
+    
+}
+@*<div>
+    @Html.ActionLink("Refuser","CancelationBookStuff","Stuff", new {id =Model.Stuff.Id})
+</div>
+<div>
+    @Html.ActionLink("Retour","ReturnStuff","Stuff", new {id =Model.Stuff.Id})
+</div>*@
+
+@using (Html.BeginForm("CancelationBookStuff","Stuff", FormMethod.Post))
+{
+    @Html.HiddenFor(m=>m.Stuff.Id)
+
+    <input type="submit" value="Refuser ">
+}
+
+@using (Html.BeginForm("ReturnStuff", "Stuff", FormMethod.Post))
+{
+    @Html.HiddenFor(m=>m.Stuff.Id)
+    @Html.HiddenFor(m=>m.Stuff.Name)
+    @Html.HiddenFor(m=>m.Stuff.Description)
+    @Html.HiddenFor(m=>m.Stuff.Type)
+    @Html.HiddenFor(m=>m.Stuff.State)
+    @Html.HiddenFor(m=>m.Stuff.Reservation)
+    @Html.HiddenFor(m=>m.Stuff.AccountBorrowerId)
+    @Html.HiddenFor(m=>m.Account.Username)
+
+    <input type="submit" value="Retour ">
 }
 

@@ -13,6 +13,8 @@
             <th><h2>Description</h2></th>
             <th><h2>Type</h2></th>
             <th><h2>Etat</h2></th>
+            
+
         </tr>
         @foreach (var stuff in Model)
         {
@@ -23,6 +25,7 @@
                     <td style="text-align : center">@stuff.Description</td>
                     <td style="text-align : center">@stuff.Type</td>
                     <td style="text-align : center">@stuff.State</td>
+                    
                     @*<td><img src="@stuff.ImagePath" height="400" width="400" /></td>*@
                     @*<td><a asp-controller="Stuff" asp-action="CreateBookStuff" asp-route-id="@stuff.Id">Réserver</a></td>*@
                     <td>@Html.ActionLink("Réserver", "CreateBookStuff", "Stuff", new { id = stuff.Id })</td>

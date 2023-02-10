@@ -1245,38 +1245,50 @@ namespace Projet2.Models
         /// <param name="employeId">Employee who created the publication</param>
         /// <returns></returns>
 
-        public int CreatePublication(string name, PublicationTypes publicationType, string content, DateTime creationdate, string author, int employeId)
+        //public int CreatePublication(string name, PublicationTypes publicationType, string content, DateTime creationdate, string author, int employeId)
+        //{
+        //    Publication publication = new Publication() { Name = name, PublicationType = publicationType, Date = creationdate, Author = author, EmployeeId = employeId };
+        //    _bddContext.Publications.Add(publication);
+        //    _bddContext.SaveChanges();
+
+        //    return publication.Id;
+
+        //}
+
+        public Publication CreatePublication(Publication publication)
         {
-            Publication publication = new Publication() { Name = name, PublicationType = publicationType, Date = creationdate, Author = author, EmployeeId = employeId };
             _bddContext.Publications.Add(publication);
             _bddContext.SaveChanges();
-
-            return publication.Id;
-
+            return publication;
         }
-
-        public void CreatePublication(Publication publication)
+        public void EditCreatePublication(int id, int autorId)
         {
-            _bddContext.Publications.Add(publication);
-            _bddContext.SaveChanges();
-        }
-
-        public void EditPublication(int id, string name, PublicationTypes publicationType, string content, DateTime creationdate, string author, int employeId)
-        {
-            Publication publication = _bddContext.Publications.Find(id);
-
-            if (publication != null)
+            Publication publi = _bddContext.Publications.Find(id);
+            if (publi != null)
             {
-                publication.Name = name;
-                publication.PublicationType = publicationType;
-                publication.Date = creationdate;
-                publication.Author = author;
-                publication.EmployeeId = employeId;
+                publi.AccountId = autorId;
                 _bddContext.SaveChanges();
             }
+            
         }
-        
-         public void RemovePublication(int id)
+
+
+        //public void EditPublication(int id, string name, PublicationTypes publicationType, string content, DateTime creationdate, string author, int employeId)
+        //{
+        //    Publication publication = _bddContext.Publications.Find(id);
+
+        //    if (publication != null)
+        //    {
+        //        publication.Name = name;
+        //        publication.PublicationType = publicationType;
+        //        publication.Date = creationdate;
+        //        publication.Author = author;
+        //        publication.EmployeeId = employeId;
+        //        _bddContext.SaveChanges();
+        //    }
+        //}
+
+        public void RemovePublication(int id)
 
         {
             Publication publication = _bddContext.Publications.Find(id);
@@ -1287,11 +1299,11 @@ namespace Projet2.Models
             }
         }
 
-        public void RemovePublication(Publication publication)
-        {
-            _bddContext.Publications.Remove(publication);
-            _bddContext.SaveChanges();
-        }
+        //public void RemovePublication(Publication publication)
+        //{
+        //    _bddContext.Publications.Remove(publication);
+        //    _bddContext.SaveChanges();
+        //}
 
         public List<Publication> GetPublications()
         {
@@ -1395,6 +1407,11 @@ namespace Projet2.Models
             _bddContext.ReservationsStuffs.Add(reservation);
             _bddContext.SaveChanges();
             return reservation;
+        }
+
+        public List<ReservationStuff> GetReservations()
+        {
+            return _bddContext.ReservationsStuffs.ToList();
         }
 
 
@@ -1523,6 +1540,7 @@ namespace Projet2.Models
             Stuff stuff = _bddContext.Stuffs.Find(id);
             if (stuff != null)
             {
+                stuff.Reservation = Reservation.libre;
                 stuff.AccountOwnerId = accountOwnerId;
                 _bddContext.SaveChanges();
             }
@@ -1533,10 +1551,34 @@ namespace Projet2.Models
             Stuff stuff = _bddContext.Stuffs.Find(id);
             if (stuff != null)
             {
+                stuff.Reservation = Reservation.enAttente;
                 stuff.AccountBorrowerId = accountBorrowerId;
                 _bddContext.SaveChanges();
             }
         }
+
+        public void EditStuffAcceptation(int id)
+        {
+            Stuff stuff = _bddContext.Stuffs.Find(id);
+            if (stuff != null)
+            {
+                stuff.Reservation = Reservation.reserve;
+                _bddContext.SaveChanges();
+            }
+        }
+
+        public void EditStuffCancelation(int id)
+        {
+            Stuff stuff = _bddContext.Stuffs.Find(id);
+            if (stuff != null)
+            {
+                stuff.AccountBorrowerId = null;
+                stuff.Reservation = Reservation.libre;
+                _bddContext.SaveChanges();
+            }
+        }
+
+
 
 
         public void EditStuff(Stuff stuff)
@@ -1565,25 +1607,6 @@ namespace Projet2.Models
         return owner;
         }
 
-        public void BookStuff(int idStuff, int idAccount)
-        {
-
-            //while(reservation.EndDate != DateTime.Today)
-            //{
-            //    int idBorrow = 0;
-            //    Account account = _bddContext.Account.Find(idAccount);
-            //    if (account != null)
-            //    {
-            //        idBorrow = (int)account.InventoryId;
-            //    }
-
-            //    Stuff stuff = _bddContext.Stuffs.Find(idStuff);
-            //    if (stuff != null)
-            //    {
-            //        stuff.InventoryBorrowerId = idBorrow;
-            //    }
-            //}   
-        }
 
 
 

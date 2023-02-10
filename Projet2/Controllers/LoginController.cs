@@ -78,8 +78,6 @@ namespace Projet2.Controllers
                                 id =
                              account.Id
                             });
-
-
                     }
 
                 }
