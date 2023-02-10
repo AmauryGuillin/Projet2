@@ -16,6 +16,8 @@
             <th><h2>Contenu</h2></th>
             <th><h2>Date</h2></th>
             <th><h2>Auteur</h2></th>
+            <th><h2>Modif</h2></th>
+
 
 
         </tr>
@@ -28,6 +30,8 @@
                 <td style="text-align : center">@publication.Content</td>
                 <td style="text-align : center">@publication.Date</td>
                 <td style="text-align : center"><h1>Username de l'employe</h1></td>
+                <td>@Html.ActionLink("Edit à modif en consulte (Edite dans la consulte) ", "EditPublication","Publication", new { id = publication.Id })</td>
+
      
             </tr>
             

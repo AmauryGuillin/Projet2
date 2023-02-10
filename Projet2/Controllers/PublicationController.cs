@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Projet2.Models;
 using Projet2.ViewModels;
 using System.Collections.Generic;
@@ -52,6 +53,44 @@ namespace Projet2.Controllers
 
             return RedirectToAction("PublicationWall");
         }
+
+
+        public IActionResult EditPublication(int id)
+        {
+            PublicationViewModel model = new PublicationViewModel();
+            if (HttpContext.User.Identity.IsAuthenticated == true)
+            {
+                string accountId = (HttpContext.User.Identity.Name);
+                model.Account = dal.GetAccount(accountId);
+                model.Publication = dal.GetOnePublication(id);
+
+                return View(model);
+            }
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult EditPublication(PublicationViewModel model, int id)
+        {
+            if (ModelState.IsValid)
+            {
+
+                string accountId = (HttpContext.User.Identity.Name);
+                model.Account = dal.GetAccount(accountId);
+                
+                dal.EditPublication(id, model.Publication.Name, model.Publication.PublicationType,model.Publication.Content,model.Publication.Date);
+
+
+                return RedirectToAction("PublicationWall");
+
+            }
+
+            return RedirectToAction("PublicationWall");
+
+        }
+
     }
+
     
+
 }

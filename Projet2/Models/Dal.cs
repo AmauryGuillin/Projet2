@@ -811,6 +811,19 @@ namespace Projet2.Models
             _bddContext.SaveChanges();
         }
 
+        public void EditPublication(int id, string name, PublicationTypes type, string content, DateTime date)
+        {
+            Publication publi = _bddContext.Publications.Find(id);
+            if (publi != null)
+            {
+                publi.Name = name;
+                publi.PublicationType = type;
+                publi.Content = content;
+                publi.Date = date;
+                _bddContext.SaveChanges();
+            }
+        }
+
         /////////////////CONTRIBUTION
 
         ///
@@ -1308,6 +1321,11 @@ namespace Projet2.Models
         public List<Publication> GetPublications()
         {
             return _bddContext.Publications.ToList();
+        }
+        public Publication GetOnePublication(int id)
+        {
+            Publication publication = _bddContext.Publications.Find(id);
+            return publication;
         }
 
 
