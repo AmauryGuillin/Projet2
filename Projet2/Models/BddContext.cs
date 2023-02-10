@@ -63,7 +63,7 @@ namespace Projet2.Models
                 new Admin()
                 {
                     Id = 1,
-                    AccountId= 1,
+                    AccountId = 1,
                 }
                 );
             this.Contributions.AddRange(
@@ -223,13 +223,13 @@ namespace Projet2.Models
                     Id = 1,
                     Username = "a",
                     Password = "C5-E1-C5-86-05-3C-2F-FE-A6-AF-16-B4-4A-02-A1-CF",
-                    InfoPersoId = 1,
-                    ContactId = 1,
-                    PlanningId = 1,
+                    InfoPersoId = null,
+                    ContactId = null,
+                    PlanningId = null,
                     SportAssociationId = null,
-                    ProfileId=1,
-                    InventoryId = 1,
-                    role=Role.Adherent
+                    ProfileId = null,
+                    InventoryId = null,
+                    role = Role.Adherent
                 },
                 new Account()
                 {
