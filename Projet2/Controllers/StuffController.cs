@@ -110,6 +110,44 @@ namespace Projet2.Controllers
             return View();
         }
 
+        public IActionResult RemoveStuff(int id)
+        {
+            ProfileViewModel model = new ProfileViewModel();
+            if (HttpContext.User.Identity.IsAuthenticated == true)
+            {
+                string accountId = (HttpContext.User.Identity.Name);
+                model.Account = dal.GetAccount(accountId);
+                model.Stuff = dal.GetOneStuff(id);
+
+            }
+
+            return View(model);
+
+        }
+
+        [HttpPost]
+        public IActionResult RemoveStuff(ProfileViewModel model, int id)
+        {
+            if (ModelState.IsValid)
+            {
+                string accountId = (HttpContext.User.Identity.Name);
+                model.Account = dal.GetAccount(accountId);
+
+                dal.RemoveStuff(id);
+
+                if (model.Account.role == Role.Adherent)
+                {
+                    return RedirectToAction("ProfileViewAdherent", "Inscription");
+                }
+                else if (model.Account.role == Role.Benevole)
+                {
+                    return RedirectToAction("ProfileViewBenevole", "Inscription");
+                }
+            }
+
+            return View();
+        }
+
         public IActionResult StuffCatalog()
         {
             List<Stuff> listStuff = dal.GetStuffs();

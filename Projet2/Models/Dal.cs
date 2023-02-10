@@ -1601,7 +1601,8 @@ namespace Projet2.Models
         if (stuff != null)
           {
             _bddContext.Stuffs.Remove(stuff);
-           }
+            _bddContext.SaveChanges();
+            }
         }   
 
         public string GetOwnerStuff(int AccountOwnerId, string owner)
