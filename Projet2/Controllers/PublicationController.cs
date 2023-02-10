@@ -119,8 +119,38 @@ namespace Projet2.Controllers
 
         }
 
-    }
+        public IActionResult RemovePublication(int id)
+        {
+            PublicationViewModel model = new PublicationViewModel();
+            if (HttpContext.User.Identity.IsAuthenticated == true)
+            {
+                string accountId = (HttpContext.User.Identity.Name);
+                model.Account = dal.GetAccount(accountId);
+                model.Publication = dal.GetOnePublication(id);
 
-    
+            }
+
+            return View(model);
+
+        }
+
+        [HttpPost]
+        public IActionResult RemoveStuff(PublicationViewModel model, int id)
+        {
+            if (ModelState.IsValid)
+            {
+                string accountId = (HttpContext.User.Identity.Name);
+                model.Account = dal.GetAccount(accountId);
+
+                dal.RemovePublication(id);
+
+                return View("PublicationWall");
+            }
+
+            return View();
+        }
+
+
+    }
 
 }

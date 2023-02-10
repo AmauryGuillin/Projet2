@@ -1312,6 +1312,8 @@ namespace Projet2.Models
             }
         }
 
+
+
         //public void RemovePublication(Publication publication)
         //{
         //    _bddContext.Publications.Remove(publication);
