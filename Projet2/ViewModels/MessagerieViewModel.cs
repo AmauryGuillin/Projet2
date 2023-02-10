@@ -27,8 +27,10 @@ namespace Projet2.ViewModels
         
 
         public Conversation Conversation { get; set; }
-        public List <Conversation> Conversations { get; set; }
-       public Message Message { get; set; }
+        public List <Conversation> UserConversationsStarter { get; set; }
+        public List<Conversation> UserConversationsReceiver { get; set; }
+        public Message Message { get; set; }
+        public List<Message> Messages { get; set; }
         public Account Account { get; set; }
         public List<Account> Accounts { get; set; }
         public MessagerieA Messagerie { get; set; }

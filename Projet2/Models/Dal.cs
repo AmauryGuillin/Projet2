@@ -716,7 +716,7 @@ namespace Projet2.Models
             Message firstMessage = new Message()
             {
                 Body = body,
-                ConversationId = CreateConversation(account1, account2).Id,
+                ConversationId = conversationId,
                 SenderId = account1,
                 ReceiverId = account2,
                 MessageTimeStamp = new DateTime(),

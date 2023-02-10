@@ -7,14 +7,14 @@
 
 
 <div>
-    <h1>Choisissez votre interlocuteur dans la liste</h1>
+    <h1>Votre conversation avec :</h1>
 <table>
     <tbody>
-            @foreach(var Account in Model.Accounts)
+            @foreach(var Message in Model.Messages)
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(mAccount=>Account.Username)
+                        @Html.DisplayFor(mMessage=>Message.Body)
                     </td>
                 </tr>
             }
@@ -23,6 +23,7 @@
     </table>
 
 </div>
+@Html.TextAreaFor(m=>m.Message.Body)
 
 <textarea placeholder="Ecrivez votre message ici">
 
