@@ -24,7 +24,10 @@ namespace Projet2.Controllers
         }
         public IActionResult SignUpBenevole()
         {
-          InscriptionViewModel inscriptionViewModel= new InscriptionViewModel();
+          InscriptionViewModel inscriptionViewModel= new InscriptionViewModel
+          {
+              Authentificate= HttpContext.User.Identity.IsAuthenticated
+          };
 
             return View(inscriptionViewModel);
         }
@@ -92,7 +95,7 @@ namespace Projet2.Controllers
 
 
 
-            return View("ProfileViewBenevole", inscriptionViewModel);
+            return RedirectToAction("ProfileViewBenevole", inscriptionViewModel);
            
 
 
@@ -110,7 +113,11 @@ namespace Projet2.Controllers
 
         public IActionResult SignUpAdherent()
         {
-            InscriptionViewModel inscriptionViewModel = new InscriptionViewModel();
+
+            InscriptionViewModel inscriptionViewModel = new InscriptionViewModel
+            {
+                Authentificate = HttpContext.User.Identity.IsAuthenticated
+            };
 
             return View(inscriptionViewModel);
         }
@@ -194,7 +201,7 @@ namespace Projet2.Controllers
             inscriptionViewModel.ReservationStuffs = dal.GetReservations();
             List<ReservationStuff> ListReservations = inscriptionViewModel.ReservationStuffs;
 
-            return View("ProfileViewAdherent", inscriptionViewModel);
+            return RedirectToAction("ProfileViewAdherent", inscriptionViewModel);
 
         }
 
@@ -203,9 +210,9 @@ namespace Projet2.Controllers
         public ActionResult ProfileViewBenevole()// NOOOPE
         {
            
-            InscriptionViewModel inscriptionViewModel= new InscriptionViewModel() { Authentificate = HttpContext.User.Identity.IsAuthenticated };
+            InscriptionViewModel inscriptionViewModel= new InscriptionViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
             
-            if (HttpContext.User.Identity.IsAuthenticated == true)
+            if (inscriptionViewModel.Authentificate == true)
             {
                 string accountId = (HttpContext.User.Identity.Name);
                 inscriptionViewModel.Account = dal.GetAccount(accountId);
@@ -221,19 +228,20 @@ namespace Projet2.Controllers
                 return View(inscriptionViewModel);
             }
            
-            return View(inscriptionViewModel);
+            return RedirectToAction("Login","Login");
 
         }
 
         public ActionResult ProfileViewAdherent()
         {
-            InscriptionViewModel inscriptionViewModel = new InscriptionViewModel();
-            if (HttpContext.User.Identity.IsAuthenticated == true)
+            InscriptionViewModel inscriptionViewModel = new InscriptionViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
+            if (inscriptionViewModel.Authentificate== true)
             {
                 string accountId = (HttpContext.User.Identity.Name);
                 inscriptionViewModel.Account = dal.GetAccount(accountId);
                 Account accountUser = inscriptionViewModel.Account;
                 inscriptionViewModel.Profile = dal.GetProfiles().Where(r => r.Id == accountUser.ProfileId).FirstOrDefault();
+              
                 inscriptionViewModel.Infos = dal.GetInformations().Where(r => r.Id == accountUser.InfoPersoId).FirstOrDefault();
                 inscriptionViewModel.Contact = dal.GetContacts().Where(r => r.Id == accountUser.ContactId).FirstOrDefault();
                 inscriptionViewModel.Stuffs = dal.GetStuffs();
@@ -242,7 +250,7 @@ namespace Projet2.Controllers
                 List<ReservationStuff> ListReservations = inscriptionViewModel.ReservationStuffs;
                 return View(inscriptionViewModel);
             }
-            return View(inscriptionViewModel);
+            return RedirectToAction("Login", "Login");
 
         }
 

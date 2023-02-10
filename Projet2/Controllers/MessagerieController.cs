@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.CodeAnalysis;
 using Newtonsoft.Json.Linq;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authentication;
 
 namespace Projet2.Controllers
 {
@@ -135,7 +136,11 @@ namespace Projet2.Controllers
             return new SelectList(selectedAccounts,selectedAccount);
         }
 
-
-///////////////////////////END//////////
+        public ActionResult Deconnexion()
+        {
+            HttpContext.SignOutAsync();
+            return RedirectToAction("LOgin", "Login");
+        }
+        ///////////////////////////END//////////
     }
 }

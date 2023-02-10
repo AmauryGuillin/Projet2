@@ -1,4 +1,4 @@
-﻿@model List<Projet2.Models.Stuff>
+﻿@model Projet2.ViewModels.StuffViewModel
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 @{
     Layout = "_LayoutGeneral";
@@ -16,7 +16,7 @@
             
 
         </tr>
-        @foreach (var stuff in Model)
+        @foreach (var stuff in Model.stuffs)
         {
             if(stuff.AccountBorrowerId == null)
             {

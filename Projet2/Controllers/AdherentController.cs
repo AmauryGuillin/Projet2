@@ -166,7 +166,11 @@ namespace Projet2.Controllers
 
 
         }
-
+        public ActionResult Deconnexion()
+        {
+            HttpContext.SignOutAsync();
+            return RedirectToAction("LOgin", "Login");
+        }
         //    new
         //        {
         //            id =

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc;
 using Projet2.Models;
 using Projet2.ViewModels;
 using System.Collections.Generic;
@@ -17,10 +18,12 @@ namespace Projet2.Controllers
         }
         public IActionResult CreateActivity()
         {
-            ActivitiesViewModel activitiesVM = new ActivitiesViewModel();
+            ActivitiesViewModel activitiesVM = new ActivitiesViewModel
+            { Authentificate = HttpContext.User.Identity.IsAuthenticated};
+            if (activitiesVM.Authentificate == true) { 
             activitiesVM.Account = dal.GetAccount(HttpContext.User.Identity.Name);
-            if (activitiesVM.Account != null)
-            {return View(activitiesVM); }
+            return View(activitiesVM); 
+            }
             else { return RedirectToAction("Login", "Login"); }
         }
 
@@ -28,6 +31,8 @@ namespace Projet2.Controllers
 
         public IActionResult CreateActivity(ActivitiesViewModel activitiesVM)
         {
+
+           
             activitiesVM.Account = dal.GetAccount(HttpContext.User.Identity.Name);
             if (activitiesVM.Account != null)
             {
@@ -103,7 +108,11 @@ namespace Projet2.Controllers
 
 
 
-        
+        public ActionResult Deconnexion()
+        {
+            HttpContext.SignOutAsync();
+            return RedirectToAction("LOgin", "Login");
+        }
 
         ////////////////////////END
 
