@@ -30,23 +30,26 @@
             
             @if (Model.Authentificate == true)
             {
-            <a href='@Url.Action("StuffCatalog", "Stuff")'> Materiels </a>
-            <a href='@Url.Action("CatalogueActivities", "Activities")'> Activités et Coaching</a>
+                <a href='@Url.Action("StuffCatalog", "Stuff", new {accountId = Model.Account.Id})'> Materiels </a>
+                <a href='@Url.Action("CatalogueActivities", "Activities", new {accountId = Model.Account.Id})'> Activités et Coaching</a>
+
+            if(Model.Account!= null){
                 if (Model.Account.role == Projet2.Models.Role.Benevole)
                 {
-                    <a href='@Url.Action("ProfileViewBenevole", "Inscription")'> Profil</a>
+                        <a href='@Url.Action("ProfileViewBenevole", "Inscription", new {accountId = Model.Account.Id})'> Profil</a>
                 }
                 if (Model.Account.role == Projet2.Models.Role.Adherent)
                 {
-                    <a href='@Url.Action("ProfileViewAdherent", "Inscription")'> Profil</a>
+                        <a href='@Url.Action("ProfileViewAdherent", "Inscription", new {accountId = Model.Account.Id})'> Profil</a>
                 }
                 if (Model.Account.role == Projet2.Models.Role.Salarié)
                 {
-                    <a href='@Url.Action("ProfileViewEmployee", "Employee")'> Profil</a>
+                        <a href='@Url.Action("ProfileViewEmployee", "Employee", new {accountId = Model.Account.Id})'> Profil</a>
                 }
                   if (Model.Account.role == Projet2.Models.Role.Admin)
                 {
-                    <a href='@Url.Action("ViewDashboard", "Admin")'> Dashboard</a>
+                        <a href='@Url.Action("ViewDashboard", "Admin", new {accountId = Model.Account.Id})'> Dashboard</a>
+                }
                 }
                 <input type="submit" value="Se Deconnecter" onclick="location.href='@Url.Action("Deconnexion")'" />
 

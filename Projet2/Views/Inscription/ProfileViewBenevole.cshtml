@@ -27,7 +27,7 @@
              <li class="nav-item ">
                 <a class="nav-link active" href="#">Paramètres du compte</a>
             <li class="nav-item ">
-                @Html.ActionLink("Ajouter du materiel", "CreateStuff", "Stuff")
+                    @Html.ActionLink("Ajouter du materiel", "CreateStuff", "Stuff", new {accountId = Model.Account.Id})
             </li>
             <li class="nav-item ">
                     @Html.ActionLink("Consulter le planning", "PlanningView", "Planning", new {accountId = Model.Account.Id})

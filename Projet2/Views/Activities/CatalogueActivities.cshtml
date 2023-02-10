@@ -7,10 +7,7 @@
 <h2>Catalogue d'activités</h2>
 <div>
 
-    @Html.HiddenFor(m=>m.Account.Id)
-    @Html.HiddenFor(m=>m.Account.role)
-    @Html.HiddenFor(m=>m.Account.PlanningId)
-    @Html.HiddenFor(m=>m.Slot.Id)
+   
 
 <table >
         <tr>
@@ -19,8 +16,7 @@
             <th><h2>Organizer</h2></th>
             <th><h2>StartDate</h2></th>
             <th><h2>EndDate</h2></th>
-        @*<th><h2>Debut</h2></th>
-        <th><h2>Fin</h2></th>*@
+    
         </tr>
         @foreach (var Activity in Model.activities)
  {

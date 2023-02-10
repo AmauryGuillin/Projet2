@@ -56,18 +56,22 @@ namespace Projet2.Controllers
 
     public IActionResult CatalogueActivities()
         {
-            ActivitiesViewModel activitiesVM = new ActivitiesViewModel();
-            activitiesVM.Account = dal.GetAccount(HttpContext.User.Identity.Name);
-            if (activitiesVM.Account != null)
-            { 
-                activitiesVM.activities = dal.GetActivities();
-
-                return View(activitiesVM);
-            }
-            else
+            ActivitiesViewModel activitiesVM = new ActivitiesViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
+            if (activitiesVM.Authentificate == true)
             {
-                return RedirectToAction("Login", "Login");
+                string accountId = (HttpContext.User.Identity.Name);
+                activitiesVM.Account = dal.GetAccount(accountId);
+                Account account = activitiesVM.Account;
+                if (account != null)
+                {
+                    activitiesVM.activities = dal.GetActivities();
+
+                    return View(activitiesVM);
+                }
             }
+            
+                return RedirectToAction("Login", "Login");
+          
         }
 
         
