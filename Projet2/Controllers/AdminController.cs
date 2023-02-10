@@ -90,5 +90,12 @@ namespace Projet2.Controllers
         {
             return View();
         }
+
+        public ActionResult Deconnexion()
+        {
+            HttpContext.SignOutAsync();
+            return RedirectToAction("LOgin", "Login");
+        }
+
     }
 }

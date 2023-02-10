@@ -672,6 +672,11 @@ namespace Projet2.Models
             return _bddContext.Messageries.ToList();
         }
 
+        public List<Message> GetMessages()
+        {
+            return _bddContext.Messages.ToList();
+        }
+
         public List<Conversation> GetConversations()
         {
             return _bddContext.Conversations.ToList();
@@ -704,6 +709,9 @@ namespace Projet2.Models
             {
                 FirstSenderId = accountIdSender,
                 ReceiverId = accountReceiver,
+                SenderAccount= GetAccount(accountIdSender),
+                ReceiverAccount=GetAccount(accountReceiver)
+              
                
             };
             this._bddContext.Conversations.Add(conversation);
@@ -721,6 +729,7 @@ namespace Projet2.Models
                 ReceiverId = account2,
                 MessageTimeStamp = new DateTime(),
                 isRead = false,
+                
             };
             this._bddContext.Messages.Add(firstMessage);
             this._bddContext.SaveChanges();

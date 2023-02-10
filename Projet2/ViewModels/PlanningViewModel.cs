@@ -14,5 +14,6 @@ namespace Projet2.ViewModels
         public ActivitiesViewModel Activities { get; set; }
 
         public List<Activity> activities { get; set; }
+        public bool Authentificate { get; set; }
     }
 }

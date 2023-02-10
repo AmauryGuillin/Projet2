@@ -29,8 +29,8 @@ namespace Projet2.Controllers
 
         public IActionResult CreateStuff()
         {
-            ProfileViewModel model = new ProfileViewModel();
-            if (HttpContext.User.Identity.IsAuthenticated == true)
+            StuffViewModel model = new StuffViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
+            if (model.Authentificate == true)
             {
                 string accountId = (HttpContext.User.Identity.Name);
                 model.Account = dal.GetAccount(accountId);
@@ -41,10 +41,10 @@ namespace Projet2.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateStuff(ProfileViewModel model)
+        public IActionResult CreateStuff(StuffViewModel model)
         {
-
-            if (ModelState.IsValid)
+            
+            if (model.Authentificate == true)
             {
                 string accountId = (HttpContext.User.Identity.Name);
 
@@ -74,8 +74,8 @@ namespace Projet2.Controllers
 
         public IActionResult EditStuff(int id)
         {
-            ProfileViewModel model = new ProfileViewModel();
-            if (HttpContext.User.Identity.IsAuthenticated == true)
+            StuffViewModel model = new StuffViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
+            if (model.Authentificate == true)
             {
                 string accountId = (HttpContext.User.Identity.Name);
                 model.Account = dal.GetAccount(accountId);
@@ -87,10 +87,10 @@ namespace Projet2.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditStuff(ProfileViewModel model, int id)
+        public IActionResult EditStuff(StuffViewModel model, int id)
         {
 
-            if (ModelState.IsValid)
+            if (model.Authentificate == true)
             {
                 string accountId = (HttpContext.User.Identity.Name);
 
@@ -150,14 +150,28 @@ namespace Projet2.Controllers
 
         public IActionResult StuffCatalog()
         {
-            List<Stuff> listStuff = dal.GetStuffs();
-            return View(listStuff);
+            
+            StuffViewModel model = new StuffViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
+            
+            if (model.Authentificate == true) {
+                string accountId = (HttpContext.User.Identity.Name);
+                model.Account = dal.GetAccount(accountId);
+            if (model.Account != null)
+            {
+                Account account = model.Account;
+                model.stuffs = dal.GetStuffs();
+                List<Stuff> listStuff = model.stuffs.ToList();
+                return View(model);
+            }
+                return View(model);
+            }
+            return RedirectToAction("Login", "Login");
         }
 
         public IActionResult CreateBookStuff(int id)
         {
-            ProfileViewModel model = new ProfileViewModel();
-            if (HttpContext.User.Identity.IsAuthenticated == true)
+            StuffViewModel model = new StuffViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
+            if (model.Authentificate == true)
             {
 
                 string accountId = (HttpContext.User.Identity.Name);
@@ -177,16 +191,16 @@ namespace Projet2.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateBookStuff(ProfileViewModel model, int id)
+        public IActionResult CreateBookStuff(StuffViewModel model, int id)
         {
-            if (ModelState.IsValid)
+            if (model.Authentificate == true)
             {
+
+                string accountId = (HttpContext.User.Identity.Name);
 
                 model.ReservationStuff.StuffId = model.Stuff.Id;
                 model.Stuff = dal.GetOneStuff(id);
                 Stuff stuff = model.Stuff;
-
-                string accountId = (HttpContext.User.Identity.Name);
                 model.Account = dal.GetAccount(accountId);
                 Account userAccount = model.Account;
 
@@ -209,11 +223,11 @@ namespace Projet2.Controllers
 
         public IActionResult AcceptationBookStuff(int id)
         {
-            ProfileViewModel model = new ProfileViewModel();
-            if (HttpContext.User.Identity.IsAuthenticated == true)
+            StuffViewModel model = new StuffViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
+            if (model.Authentificate == true)
             {
-                string accountId = (HttpContext.User.Identity.Name);
 
+                string accountId = (HttpContext.User.Identity.Name);
                 model.Stuff = dal.GetOneStuff(id);
                 Stuff stuff = model.Stuff;
 
@@ -232,9 +246,9 @@ namespace Projet2.Controllers
         }
 
         [HttpPost]
-        public IActionResult AcceptationBookStuff(ProfileViewModel model, int id)
+        public IActionResult AcceptationBookStuff(StuffViewModel model, int id)
         {
-            if (ModelState.IsValid)
+            if (model.Authentificate==true)
             {
                 string accountId = (HttpContext.User.Identity.Name);
                 model.Account = dal.GetAccount(accountId);
@@ -256,8 +270,8 @@ namespace Projet2.Controllers
 
         public IActionResult CancelationBookStuff(int id)
         {
-            ProfileViewModel model = new ProfileViewModel();
-            if (HttpContext.User.Identity.IsAuthenticated == true)
+            StuffViewModel model = new StuffViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
+            if (model.Authentificate == true)
             {
                 string accountId = (HttpContext.User.Identity.Name);
 
@@ -283,10 +297,10 @@ namespace Projet2.Controllers
 
 
         [HttpPost]
-        public IActionResult CancelationBookStuff(ProfileViewModel model, int id)
+        public IActionResult CancelationBookStuff(StuffViewModel model, int id)
         {
             
-            if (HttpContext.User.Identity.IsAuthenticated == true)
+            if (model.Authentificate == true)
             {
 
                 string accountId = (HttpContext.User.Identity.Name);
@@ -307,6 +321,7 @@ namespace Projet2.Controllers
 
             return View();
         }
+
 
         public IActionResult ConsultationBookStuff(int id)
         {
@@ -352,6 +367,15 @@ namespace Projet2.Controllers
             return View();
         }
 
+
+
+        public ActionResult Deconnexion()
+        {
+            HttpContext.SignOutAsync();
+            return RedirectToAction("LOgin", "Login");
+        }
+
+        ////////////////////RND    
 
     }
 }

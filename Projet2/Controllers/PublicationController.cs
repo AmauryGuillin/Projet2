@@ -1,4 +1,8 @@
+
 ﻿using Microsoft.AspNetCore.Http;
+
+﻿using Microsoft.AspNetCore.Authentication;
+
 using Microsoft.AspNetCore.Mvc;
 using Projet2.Models;
 using Projet2.ViewModels;
@@ -83,6 +87,7 @@ namespace Projet2.Controllers
             return RedirectToAction("PublicationWall");
         }
 
+
         public IActionResult OnePublication(int id)
         {
             PublicationViewModel model = new PublicationViewModel();
@@ -149,6 +154,14 @@ namespace Projet2.Controllers
 
         
 
+
+
+        public ActionResult Deconnexion()
+        {
+            HttpContext.SignOutAsync();
+            return RedirectToAction("LOgin", "Login");
+        }
+        /////////////////////////END
 
     }
 

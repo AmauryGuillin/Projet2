@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Projet2.Controllers
 {
@@ -7,6 +8,13 @@ namespace Projet2.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+
+        public ActionResult Deconnexion()
+        {
+            HttpContext.SignOutAsync();
+            return RedirectToAction("LOgin", "Login");
         }
     }
 }

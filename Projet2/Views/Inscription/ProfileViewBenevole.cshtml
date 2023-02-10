@@ -11,15 +11,7 @@
 </title>
   
 </head>
-@*<style>
-    body {
-        background-image: url("./T2.jpg");
-        background-position: center;
-    }
-</style>*@
 
-
-@*@Html.HiddenFor(n=>n.stuff.Id)*@
 
     <body class="body">
 
@@ -32,33 +24,19 @@
                
 <div class=" profileMenu">
         <ul class="nav flex-column">
-            <li class="nav-item">
-                <a class="nav-link active" href="#">Messagerie</a>
-              </li>
-
-            <li class="nav-item">
-                <a class="nav-link active" href="#">Forum</a>
-            </li>
-              <li class="nav-item ">
+             <li class="nav-item ">
                 <a class="nav-link active" href="#">Paramètres du compte</a>
             <li class="nav-item ">
-                @Html.ActionLink("Ajouter du materiel", "CreateStuff", "Stuff")
+                    @Html.ActionLink("Ajouter du materiel", "CreateStuff", "Stuff", new {accountId = Model.Account.Id})
             </li>
             <li class="nav-item ">
                     @Html.ActionLink("Consulter le planning", "PlanningView", "Planning", new {accountId = Model.Account.Id})
-            </li>
-            <li class="nav-item ">
-                    @Html.ActionLink("Consulter le catalogue d'activités", "CatalogueActivities", "Activities", new {accountId = Model.Account.Id})
             </li>
             
             <li class="nav-item ">
                 @Html.ActionLink("Messagerie", "MessageBoardView", "Messagerie", new {accountId = Model.Account.Id})
             </li>
-            <li class="nav-item ">
-                @Html.ActionLink("Se deconnecter", "Deconnexion","Inscription",new {
-                    accountId=Model.Account.Id,
-                }, null)
-            </li>
+            
         </ul>
     </div>
     
