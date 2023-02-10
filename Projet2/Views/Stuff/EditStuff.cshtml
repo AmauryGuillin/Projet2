@@ -8,9 +8,11 @@
 {
     @Html.HiddenFor(m=>m.Stuff.AccountOwnerId)
 
+    <fieldset>
+      <legend> Matériel </legend>
 
-    <h1>Mise à disposition de Matériel</h1>
 
+    
     <div>
         @Html.LabelFor(m => m.Stuff.Name)
         @Html.TextBoxFor(m => m.Stuff.Name)
@@ -39,11 +41,8 @@
         @Html.RadioButtonFor(m=>m.Stuff.State,"Acceptable")
     </div>
 
-
-
-
-    <input type="submit" value="Créer" />
-
+    <input type="submit" value="Sauvegarder" />
+    </fieldset>
 }
 
 

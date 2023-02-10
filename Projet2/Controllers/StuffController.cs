@@ -59,7 +59,7 @@ namespace Projet2.Controllers
                 model.Account = dal.GetAccount(accountId);
                 Account userAccount = model.Account;
                 Stuff stuffCreated = dal.CreateStuff(model.Stuff);
-                dal.EditStuff(model.Stuff.Id, model.Account.Id);
+                dal.EditStuffCreate(model.Stuff.Id, model.Account.Id);
 
                 if (model.Account.role == Role.Adherent)
                 {
@@ -68,6 +68,44 @@ namespace Projet2.Controllers
                 {
                     return RedirectToAction("ProfileViewBenevole", "Inscription");
                 }    
+            }
+            return View();
+        }
+
+        public IActionResult EditStuff(int id)
+        {
+            ProfileViewModel model = new ProfileViewModel();
+            if (HttpContext.User.Identity.IsAuthenticated == true)
+            {
+                string accountId = (HttpContext.User.Identity.Name);
+                model.Account = dal.GetAccount(accountId);
+                model.Stuff = dal.GetOneStuff(id);
+
+                return View(model);
+            }
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult EditStuff(ProfileViewModel model, int id)
+        {
+
+            if (ModelState.IsValid)
+            {
+                string accountId = (HttpContext.User.Identity.Name);
+
+                model.Account = dal.GetAccount(accountId);
+                
+                dal.EditStuff(id, model.Stuff.Name, model.Stuff.Description, model.Stuff.Type, model.Stuff.State);
+
+                if (model.Account.role == Role.Adherent)
+                {
+                    return RedirectToAction("ProfileViewAdherent", "Inscription");
+                }
+                else if (model.Account.role == Role.Benevole)
+                {
+                    return RedirectToAction("ProfileViewBenevole", "Inscription");
+                }
             }
             return View();
         }
