@@ -22,9 +22,9 @@
         <div class="media text-muted pt-3">
             <img src="~/images/av2.png" alt="" class="mr-2 rounded" width="32" height="32">
             <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                <strong class="d-block text-gray-dark"> Message from : @Conversation.FirstSenderId HI THERE</strong>
+                <strong class="d-block text-gray-dark"> Message pour : @Conversation.FirstSenderId HI THERE</strong>
             </p>
-            @Html.ActionLink("Cliquez ici pour acceder a la discussion","ReplyMessage","Messagerie");
+                @Html.ActionLink("Cliquez ici pour acceder a la discussion","ReplyMessage","Messagerie",new{id= Conversation.Id});
         </div>
         </div>
         
@@ -37,9 +37,9 @@
             <div class="media text-muted pt-3">
                 <img src="~/images/av2.png" alt="" class="mr-2 rounded" width="32" height="32">
                 <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <strong class="d-block text-gray-dark"> Message from : @Conversation.FirstSenderId HI THERE</strong>
+                    <strong class="d-block text-gray-dark"> Message de : @Conversation.FirstSenderId HI THERE</strong>
                 </p>
-                @Html.ActionLink("Cliquez ici pour acceder a la discussion","ReplyMessage","Messagerie");
+                @Html.ActionLink("Cliquez ici pour acceder a la discussion","ReplyMessage","Messagerie", new{id= Conversation.Id});
             </div>
         </div>
 
