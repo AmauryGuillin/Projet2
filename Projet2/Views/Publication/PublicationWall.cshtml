@@ -1,4 +1,4 @@
-﻿@model List<Projet2.Models.Publication>
+﻿@model Projet2.ViewModels.PublicationViewModel
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 @{
     Layout = "_LayoutGeneral";
@@ -21,18 +21,16 @@
 
 
         </tr>
-        @foreach (var publication in Model)
+        @foreach (var Publication in Model.Publications)
         {
-            
+            var Account = Model.Account;
             <tr>
-                <td style="text-align : center">@publication.Name</td>
-                <td style="text-align : center">@publication.PublicationType</td>
-                <td style="text-align : center">@publication.Content</td>
-                <td style="text-align : center">@publication.Date</td>
-                <td style="text-align : center"><h1>Username de l'employe</h1></td>
-                <td>@Html.ActionLink("Consulter", "OnePublication","Publication", new { id = publication.Id })</td>
-
-     
+                <td>@Html.DisplayFor(mPublications => Publication.Name)</td>
+                <td>@Html.DisplayFor(mPublications => Publication.PublicationType)</td>
+                <td>@Html.DisplayFor(mPublications => Publication.Date)</td>
+                <td>@Html.DisplayFor(mPublications => Publication.Content)</td>
+                <td>@Html.DisplayFor(mAccount => Publication.Account.Username)</td>
+                <td>@Html.ActionLink("Consulter", "OnePublication","Publication", new { id = Publication.Id })</td>
             </tr>
             
         }

@@ -15,11 +15,39 @@ namespace Projet2.Controllers
         {
             dal = new Dal();
         }
-        public IActionResult PublicationWall()
+        public IActionResult PublicationWall(PublicationViewModel model)
         {
-            List<Publication> listPubli = dal.GetPublications();
-            return View(listPubli);
+
+            model.Publications = dal.GetPublications();
+            List<Publication> publications = model.Publications;
+
+            //Publication publication = model.Publication;
+
+            List<Account> accounts = dal.GetAccounts();
+
+            foreach (var publication in publications)
+            {
+                var account = accounts.Where(r => r.Id == publication.AccountId).FirstOrDefault();
+                publication.Account = account;
+            }
+
+            return View(model);
         }
+
+        //public IActionResult PublicationWall()
+        //{
+        //    var model = new PublicationViewModel();
+        //    model.Publications = dal.GetPublications();
+        //    var accounts = dal.GetAccounts().ToDictionary(x => x.Id, x => x);
+
+        //    foreach (var publication in model.Publications)
+        //    {
+        //        publication.Account = accounts[publication.AccountId];
+        //    }
+
+        //    return View(model);
+        //}
+
 
         public IActionResult CreatePublication()
         {
@@ -119,36 +147,7 @@ namespace Projet2.Controllers
 
         }
 
-        public IActionResult RemovePublication(int id)
-        {
-            PublicationViewModel model = new PublicationViewModel();
-            if (HttpContext.User.Identity.IsAuthenticated == true)
-            {
-                string accountId = (HttpContext.User.Identity.Name);
-                model.Account = dal.GetAccount(accountId);
-                model.Publication = dal.GetOnePublication(id);
-
-            }
-
-            return View(model);
-
-        }
-
-        [HttpPost]
-        public IActionResult RemoveStuff(PublicationViewModel model, int id)
-        {
-            if (ModelState.IsValid)
-            {
-                string accountId = (HttpContext.User.Identity.Name);
-                model.Account = dal.GetAccount(accountId);
-
-                dal.RemovePublication(id);
-
-                return View("PublicationWall");
-            }
-
-            return View();
-        }
+        
 
 
     }
