@@ -45,7 +45,10 @@
             </li>
            
             <li class="nav-item ">
+
                 @Html.ActionLink("Ajouter du materiel", "CreateStuff", "Stuff")
+                @Html.ActionLink("Ajouter du materiel", "CreateStuff", "Stuff", new {accountId = Model.Account.Id})check
+
                 
             </li>
             <li class="nav-item ">
