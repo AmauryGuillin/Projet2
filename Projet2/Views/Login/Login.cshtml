@@ -4,6 +4,18 @@
     Layout = "_LayoutGeneral";
 }
 
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CreerEmployé</title>
+    <link rel="stylesheet" href="~/css/Login.css" />
+    <link rel="shortcut icon"
+          href="Assets/Gif/ezgif-5-9ea2c6cf60-unscreen.gif"
+          type="image/gif" />
+</head>
+
+
 
 @if (Model.Authentificate==true)
 
@@ -15,14 +27,83 @@
 }
 else
 {
-    <p>
+    
+
+    <div class="content">
+        <form action="" method="POST">
+            <h1>Connexion</h1>
+            <div class="label1">
+                <label><b>Nom d'utilisateur</b></label>
+            </div>
+            @Html.TextBoxFor(m => m.Account.Username)
+            @Html.ValidationMessageFor(m => m.Account.Username)
+
+            <div class="label2">
+                <label><b>Mot de passe</b></label>
+            </div>
+            @Html.PasswordFor(m => m.Account.Password)
+            @Html.ValidationMessageFor(m => m.Account.Password)
+
+            <input type="submit" id="submit" value="CONNEXION" />
+        </form>
+    </div>
+
+    <div class="content-adherent-benevole">
+        <div class="content-adherent">
+            <h1>ADHERENT</h1>
+            <h3>Vous souhaitez devenir un adhérent de l'association ?</h3>
+            <p>
+
+                <ul>
+                    Vous pourrez bénéficier de multiples avantages tels que :
+                    <li>Reserver une scéance d'entrainement avec un de nos coach spécialisé.</li>
+                    <li>Emprunter du matériel mis à disposition (Ordinateur, périphériques PC/Console...).</li>
+                    <li>Mettre à disposition du matériel pour aider les autres adhérents.</li>
+                    <li>
+                        Participer à des évenement divers tels que des compétitions intra- et
+                        inter-associative dans le but de perfectionner ses connaissances et mécaniques.
+                        mais aussi pour tenter de gagner les prix proposés.
+                    </li>
+                    <li>
+                        <b>
+                            Moyennant une somme de 35€ par an, vous deviendrez un membre à part entière de l'association
+                            et prétendre aux prestations précédement citées.
+                        </b>
+                    </li>
+                    <li>Il est à noter que chaque adhérent devra participer à au moins 2 activités de bénévolat par an.</li>
+                </ul>
+            </p>
+            <input type="button" value="S'inscrire" onclick="location.href='@Url.Action("SignUpAdherent", "Inscription")'" />
+        </div>
+        <div class="content-benevole">
+            <h1>BENEVOLE</h1>
+            <h3>Vous souhaitez devenir un bénévole de l'association ?</h3>
+            <p>
+
+                <ul>
+                    Vous pourrez participer à diverses tâches organisationnelles de l'association :
+                    <li>Participer à l'oganisation des tournois intra- et inter-association.</li>
+                    <li>Mettre à disposition du matériel pour les adhérents (Ordinateurs, périphériques PC/Console...).</li>
+                    <li> blabla</li>
+                    <li>
+                        <b> C'est GRATUIT bien sûr ! La seule condition est d'avoir plus de 18 ans.</b>
+                    </li>
+                    <li>blabla</li>
+                </ul>
+            </p>
+            <input type="button" value="S'inscrire" onclick="location.href='@Url.Action("SignUpBenevole", "Inscription")'" />
+        </div>
+    </div>
+
+
+ @*   <p>
         Veuillez vous authentifier :
     </p>
     using (Html.BeginForm())
     {
-        @*@Html.HiddenFor(m=>m.Account.Id)
-        @Html.HiddenFor(m=>m.Account.role)*@
-      @*  @Html.HiddenFor(m=>m.Profile.Id)*@
+        @Html.HiddenFor(m=>m.Account.Id)
+        @Html.HiddenFor(m=>m.Account.role)
+       @Html.HiddenFor(m=>m.Profile.Id)
 
         <div>
             @Html.LabelFor(m => m.Account.Username)
@@ -41,8 +122,9 @@ else
             Creez votre compte
         </p>
         <br />
+
         @Html.ActionLink("Creez votre compte Benevole", "SignUpBenevole","Inscription")
         <br/>
         @Html.ActionLink("Creez votre compte Adherent", "SignUpAdherent","Inscription")
-    }
+    }*@
 }
