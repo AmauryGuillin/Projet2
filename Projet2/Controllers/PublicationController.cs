@@ -60,15 +60,15 @@ namespace Projet2.Controllers
 
         public IActionResult CreatePublication()
         {
-            PublicationViewModel model = new PublicationViewModel();
-            if (HttpContext.User.Identity.IsAuthenticated == true)
+            PublicationViewModel model = new PublicationViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
+            if (model.Authentificate == true)
             {
                 string accountId = (HttpContext.User.Identity.Name);
                 model.Account = dal.GetAccount(accountId);
 
                 return View(model);
             }
-            return View(model);
+            return RedirectToAction("Login", "Login");
 
         }
         [HttpPost]
@@ -104,38 +104,39 @@ namespace Projet2.Controllers
 
         public IActionResult OnePublication(int id)
         {
-            PublicationViewModel model = new PublicationViewModel();
-            if (HttpContext.User.Identity.IsAuthenticated == true)
+            PublicationViewModel model = new PublicationViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
+            if (model.Authentificate == true) 
             {
                 string accountId = (HttpContext.User.Identity.Name);
 
                 model.Publication = dal.GetOnePublication(id);
                 Publication publication = model.Publication;
-
+                return View(model);
             }
 
-            return View(model);
 
+            return RedirectToAction("Login", "Login");
         }
 
         [HttpPost]
         public IActionResult OnePublication(PublicationViewModel model, int id)
         {
-            if (ModelState.IsValid)
-            {
+            
+            if (model.Authentificate == true)
+            { 
                 string accountId = (HttpContext.User.Identity.Name);
                 model.Account = dal.GetAccount(accountId);
 
                 return View("EditPublication");
             }
 
-            return View();
+            return RedirectToAction("Login", "Login");
         }
 
         public IActionResult EditPublication(int id)
         {
-            PublicationViewModel model = new PublicationViewModel();
-            if (HttpContext.User.Identity.IsAuthenticated == true)
+            PublicationViewModel model = new PublicationViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
+            if (model.Authentificate == true)
             {
                 string accountId = (HttpContext.User.Identity.Name);
                 model.Account = dal.GetAccount(accountId);
@@ -143,13 +144,13 @@ namespace Projet2.Controllers
 
                 return View(model);
             }
-            return View(model);
+            return RedirectToAction("Login", "Login");
         }
 
         [HttpPost]
         public IActionResult EditPublication(PublicationViewModel model, int id)
         {
-            if (ModelState.IsValid)
+            if (model.Authentificate == true)
             {
 
                 string accountId = (HttpContext.User.Identity.Name);
@@ -162,7 +163,7 @@ namespace Projet2.Controllers
 
             }
 
-            return RedirectToAction("PublicationWall");
+            return RedirectToAction("Login", "Login");
 
         }
 

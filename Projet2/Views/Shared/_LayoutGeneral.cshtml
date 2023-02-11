@@ -31,7 +31,7 @@
             
             @if (Model.Authentificate == true)
             {
-                <a href='@Url.Action("PublicationWall", "Publication", new {accountId = Model.Account.Id})'>Publications</a>
+                <a href='@Url.Action("PublicationWall","Publication", new {accountId = Model.Account.Id})'>Publications</a>
                 <a href='@Url.Action("StuffCatalog", "Stuff", new {accountId = Model.Account.Id})'> Materiels </a>
                 <a href='@Url.Action("CatalogueActivities", "Activities", new {accountId = Model.Account.Id})'> Activités et Coaching</a>
 

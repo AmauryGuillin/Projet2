@@ -30,6 +30,7 @@ namespace Projet2.Controllers
                 string accountId = (HttpContext.User.Identity.Name);
                 mvm.Account = dal.GetAccount(accountId);
                 Account account= mvm.Account;
+                mvm.Profile = dal.GetProfile(accountId);
                 mvm.Messagerie = dal.GetMessageries().Where(r=>r.Id==account.MessagerieId).FirstOrDefault();
                 MessagerieA thisUserMessagerie = mvm.Messagerie;
 
@@ -41,6 +42,28 @@ namespace Projet2.Controllers
                 List<Conversation> UserReceiverConversations = new List<Conversation>();
                 UserReceiverConversations=mvm.UserConversationsReceiver;
                  mvm.Messagerie.NbConversations= UserReceiverConversations.Count +UserStarterConversations.Count;
+                if (UserStarterConversations.Count != 0)
+                {
+
+                    foreach (var conversation in mvm.UserConversationsStarter)
+                    {
+                        mvm.Conversation= conversation;
+                        Account ConvReceiver = new Account();
+                        mvm.Conversation.ReceiverAccount = dal.GetAccounts().Where(r=>r.Id==conversation.ReceiverId).FirstOrDefault();
+                         ConvReceiver= mvm.Conversation.ReceiverAccount;
+                    }
+                } 
+
+                if (UserReceiverConversations.Count!=0) {
+
+                    foreach (var conversation in mvm.UserConversationsReceiver)
+                    {
+                        mvm.Conversation= conversation;
+                        Account ConvSender = new Account();
+                        mvm.Conversation.SenderAccount = dal.GetAccounts().Where(r => r.Id == conversation.FirstSenderId).FirstOrDefault();
+                        ConvSender = mvm.Conversation.SenderAccount;
+                    }
+                }
                 return View(mvm);
             }
 
@@ -117,6 +140,8 @@ namespace Projet2.Controllers
                     mvm.Message = message;
                     mvm.Message.Sender = dal.GetAccount((int)mvm.Message.SenderId);
                     Account Sender= mvm.Message.Sender;
+                    Profile SenderProfile= dal.GetProfile(Sender.Id);
+                    mvm.Message.Sender.Profile= SenderProfile;
                 }
                 return View(mvm);
             }
@@ -129,12 +154,14 @@ namespace Projet2.Controllers
             mvm.Account = dal.GetAccount(accountId);
             Account Useraccount = mvm.Account;
             mvm.Profile = dal.GetProfile(accountId);
+
             mvm.Conversation = dal.GetConversations().Where(r => r.Id == id).FirstOrDefault();
             Conversation conversation = mvm.Conversation;
             mvm.Messages = dal.GetMessages().Where(r => r.ConversationId == conversation.Id).ToList();
             int lastSenderId = (int)mvm.Messages.Last().SenderId;
             List<Message> messages = mvm.Messages;
             MessagerieViewModel mvm2= new MessagerieViewModel();
+            mvm2.Profile=dal.GetProfile(lastSenderId);
             Message message1 = new Message();
             mvm2.Message = message1;
             message1 = dal.MessageReply(
@@ -161,13 +188,13 @@ namespace Projet2.Controllers
         }
 
 
-        private SelectList GetSelectedAccount(Account selectedAccount)
-        {
-            var selectedAccounts = dal.GetAccounts();
+        //private SelectList GetSelectedAccount(Account selectedAccount)
+        //{
+        //    var selectedAccounts = dal.GetAccounts();
 
 
-            return new SelectList(selectedAccounts,selectedAccount);
-        }
+        //    return new SelectList(selectedAccounts,selectedAccount);
+        //}
 
         public ActionResult Deconnexion()
         {

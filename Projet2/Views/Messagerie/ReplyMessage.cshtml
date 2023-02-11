@@ -13,7 +13,9 @@
             @foreach(var Message in Model.Messages)
             {
                 <tr>
-                  
+                  <td>
+                        <img src="@Message.Sender.Profile.ImagePath" height="100" width="100" alt="" class=""/>
+                </td>
                             <td>
                         @Html.DisplayFor(mMessage=>Message.Sender.Username)
                         </td>

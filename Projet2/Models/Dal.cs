@@ -1573,13 +1573,17 @@ namespace Projet2.Models
         //    _bddContext.SaveChanges();
         //    return stuff;
         //}
-        public Stuff CreateStuff(string profilImage, int accountOwnerId)
+        public Stuff CreateStuff(string profilImage, int accountOwnerId, string name, string description, Type type, State state)
         {
             Stuff stuff = new Stuff()
             {
                 ImagePath = profilImage,
                 Reservation = Reservation.libre,
-                AccountOwnerId = accountOwnerId
+                AccountOwnerId = accountOwnerId,
+                Name=name,
+                Description=description,
+                Type = type,
+                    State = state
             };
        
             this._bddContext.Stuffs.Add(stuff);
