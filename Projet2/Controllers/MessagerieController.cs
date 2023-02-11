@@ -40,7 +40,7 @@ namespace Projet2.Controllers
                 mvm.UserConversationsReceiver= dal.GetUserConversationsReplier(account.Id);
                 List<Conversation> UserReceiverConversations = new List<Conversation>();
                 UserReceiverConversations=mvm.UserConversationsReceiver;
-
+                 mvm.Messagerie.NbConversations= UserReceiverConversations.Count +UserStarterConversations.Count;
                 return View(mvm);
             }
 
@@ -111,7 +111,6 @@ namespace Projet2.Controllers
                 Conversation conversation = mvm.Conversation;
                 mvm.Messages = dal.GetMessages().Where(r => r.ConversationId == conversation.Id).ToList();
                 var Messages = mvm.Messages;
-                //int lastSenderId= (int)mvm.Messages.Last().SenderId;
                 List<Message> messages = mvm.Messages;
                 foreach(var message in Messages)
                 {

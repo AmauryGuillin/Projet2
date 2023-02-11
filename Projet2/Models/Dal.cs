@@ -251,7 +251,7 @@ namespace Projet2.Models
             return activity.Id;
         }
 
-        public Activity CreateNewActivity(DateTime startDate, DateTime endDate, string place, string description,ActivityType activityType,string organizer)
+        public Activity CreateNewActivity(DateTime startDate, DateTime endDate, string place, string description,ActivityType activityType,string organizer,string filepath)
         {
             Activity activity = new Activity() { 
                 StartDate = startDate, 
@@ -259,7 +259,8 @@ namespace Projet2.Models
                 Description=description,
                 Place=place, 
                 activityType=activityType,
-                Organizer=organizer
+                Organizer=organizer,
+                ImagePath=filepath
             };
             _bddContext.Activities.Add(activity);
             _bddContext.SaveChanges();
@@ -1278,12 +1279,31 @@ namespace Projet2.Models
 
         //}
 
-        public Publication CreatePublication(Publication publication)
+        //public Publication CreatePublication(Publication publication)
+        //{
+        //    _bddContext.Publications.Add(publication);
+        //    _bddContext.SaveChanges();
+        //    return publication;
+        //}
+
+        public Publication CreatePublication(string profilImage, int authorid,string body,string name,PublicationTypes publicationTypes)
         {
-            _bddContext.Publications.Add(publication);
-            _bddContext.SaveChanges();
-            return publication;
+            Publication publi = new Publication()
+            {
+                ImagePath = profilImage,
+                AccountId= authorid,
+                Content=body,
+                Name= name,
+                PublicationType= publicationTypes
+
+                
+            };
+
+            this._bddContext.Publications.Add(publi);
+            this._bddContext.SaveChanges();
+            return publi;
         }
+
         public void EditCreatePublication(int id, int autorId)
         {
             Publication publi = _bddContext.Publications.Find(id);
@@ -1547,13 +1567,25 @@ namespace Projet2.Models
 
 
 
-        public Stuff CreateStuff(Stuff stuff)
+        //public Stuff CreateStuff(Stuff stuff)
+        //{
+        //    _bddContext.Stuffs.Add(stuff);
+        //    _bddContext.SaveChanges();
+        //    return stuff;
+        //}
+        public Stuff CreateStuff(string profilImage, int accountOwnerId)
         {
-            _bddContext.Stuffs.Add(stuff);
-            _bddContext.SaveChanges();
+            Stuff stuff = new Stuff()
+            {
+                ImagePath = profilImage,
+                Reservation = Reservation.libre,
+                AccountOwnerId = accountOwnerId
+            };
+       
+            this._bddContext.Stuffs.Add(stuff);
+            this._bddContext.SaveChanges();
             return stuff;
         }
-
         public Stuff GetOneStuff(int id)
         {
             Stuff stuff = _bddContext.Stuffs.Find(id);
@@ -1565,13 +1597,14 @@ namespace Projet2.Models
             return _bddContext.Stuffs.ToList();
         }
 
-        public void EditStuffCreate(int id, int accountOwnerId)
+        public void EditStuffCreate(int id, int accountOwnerId,string filepath)
         {
             Stuff stuff = _bddContext.Stuffs.Find(id);
             if (stuff != null)
             {
                 stuff.Reservation = Reservation.libre;
                 stuff.AccountOwnerId = accountOwnerId;
+                stuff.ImagePath= filepath;
                 _bddContext.SaveChanges();
             }
         }

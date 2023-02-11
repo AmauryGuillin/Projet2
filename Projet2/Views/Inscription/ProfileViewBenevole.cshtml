@@ -23,6 +23,7 @@
     @Html.HiddenFor(m=>m.Account.role)
                
 <div class=" profileMenu">
+
         <ul class="nav flex-column">
              <li class="nav-item ">
                 <a class="nav-link active" href="#">Paramètres du compte</a>
@@ -122,13 +123,11 @@
                     
                 </tr>
                 @foreach (var Stuff in Model.Stuffs)
-                {
-                    if (Stuff.AccountOwnerId == Model.Account.Id)
-                    {
-                        
+                { 
                         <tr><th>Mon Stuff à moi</th></tr>
                         <tr>
-                            <td>@Html.DisplayFor(mStuffs => Stuff.Name)</td>
+                      <td><img src="@Stuff.ImagePath" height="200" width="200"  /></td>
+                            <td>@Html.DisplayFor(mStuff => Stuff.Name)</td>
                             <td>@Html.DisplayFor(mStuffs => Stuff.Description)</td>
                             <td>@Html.DisplayFor(mStuffs => Stuff.Type)</td>
                             <td>@Html.DisplayFor(mStuffs => Stuff.State)</td>
@@ -136,11 +135,7 @@
                             <td>@Html.ActionLink("Modification", "EditStuff","Stuff", new { id = Stuff.Id })</td>
                             <td>@Html.ActionLink("Réservation ajouter le if", "AcceptationBookStuff","Stuff", new { id = Stuff.Id })</td>
                         </tr>
-                        
-                        
-                        
-                        
-                    }   
+               
                  }
             }
         }

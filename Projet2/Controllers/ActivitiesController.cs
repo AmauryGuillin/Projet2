@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Projet2.Models;
 using Projet2.ViewModels;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Principal;
 using System.Threading.Tasks;
@@ -12,9 +14,11 @@ namespace Projet2.Controllers
     public class ActivitiesController : Controller
     {
         private Dal dal;
-        public ActivitiesController()
+        private IWebHostEnvironment _webEnv;
+        public ActivitiesController(IWebHostEnvironment environment)
         {
-            dal = new Dal();
+            _webEnv = environment;
+            this.dal = new Dal();
         }
         public IActionResult CreateActivity()
         {
@@ -31,9 +35,11 @@ namespace Projet2.Controllers
 
         public IActionResult CreateActivity(ActivitiesViewModel activitiesVM)
         {
+            string uploads = Path.Combine(_webEnv.WebRootPath, "images");
+            string filePath = Path.Combine(uploads, activitiesVM.Activity.ActivityImage.FileName);
+            using (Stream fileStream = new FileStream(filePath, FileMode.Create))
 
-           
-            activitiesVM.Account = dal.GetAccount(HttpContext.User.Identity.Name);
+                activitiesVM.Account = dal.GetAccount(HttpContext.User.Identity.Name);
             if (activitiesVM.Account != null)
             {
                 activitiesVM.Activity =
@@ -43,9 +49,15 @@ namespace Projet2.Controllers
                 activitiesVM.Activity.Description,
                 activitiesVM.Activity.Place,
                 activitiesVM.Activity.activityType,
-                activitiesVM.Account.Username
+                activitiesVM.Account.Username,
+                "/images/" + activitiesVM.Activity.ActivityImage.FileName
                 );
-                return View("CatalogueActivities", activitiesVM);
+
+                List<Activity> CatActivities = new List<Activity>();
+                CatActivities = dal.GetActivities();
+                activitiesVM.activities = CatActivities;
+
+                return RedirectToAction("CatalogueActivities", activitiesVM);
             }
             else
             {
@@ -64,7 +76,9 @@ namespace Projet2.Controllers
                 Account account = activitiesVM.Account;
                 if (account != null)
                 {
-                    activitiesVM.activities = dal.GetActivities();
+                    List <Activity> CatActivities= new List<Activity>();
+                    CatActivities = dal.GetActivities();
+                    activitiesVM.activities = CatActivities;
 
                     return View(activitiesVM);
                 }

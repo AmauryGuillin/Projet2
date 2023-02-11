@@ -15,51 +15,47 @@ namespace Projet2.Controllers
     public class StuffController : Controller
     {
         private Dal dal;
-
-        public StuffController()
+        private IWebHostEnvironment _webEnv;
+        public StuffController(IWebHostEnvironment environment)
         {
-            dal = new Dal();
+            _webEnv = environment;
+            this.dal = new Dal();
         }
-        //private IWebHostEnvironment _webEnv;
-        //public StuffController(IWebHostEnvironment environment)
-        //{
-        //    _webEnv = environment;
-        //    this.dal = new Dal();
-        //}
 
         public IActionResult CreateStuff()
         {
             StuffViewModel model = new StuffViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
-            if (model.Authentificate == true)
-            {
-                string accountId = (HttpContext.User.Identity.Name);
-                model.Account = dal.GetAccount(accountId);
 
-                return View(model);
-            }
+            string accountId = (HttpContext.User.Identity.Name);
+            model.Account = dal.GetAccount(accountId);
+
             return View(model);
+            
         }
 
         [HttpPost]
         public IActionResult CreateStuff(StuffViewModel model)
         {
-            
-            if (model.Authentificate == true)
-            {
+     
                 string accountId = (HttpContext.User.Identity.Name);
 
-                //string uploads = Path.Combine(_webEnv.WebRootPath, "images");
-                //string filePath = Path.Combine(uploads, model.StuffImage.FileName);
-                //using (Stream fileStream = new FileStream(filePath, FileMode.Create))
-                //{
-                //    model.StuffImage.CopyTo(fileStream);
-                //}
+                string uploads = Path.Combine(_webEnv.WebRootPath, "images");
+                string filePath = Path.Combine(uploads, model.Stuff.StuffImage.FileName);
+                using (Stream fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    model.Stuff.StuffImage.CopyTo(fileStream);
+                }
                 //dal.CreateStuff(
                 //    model.Name, "/images/" + model.StuffImage.FileName, model.Type, model.State);
                 model.Account = dal.GetAccount(accountId);
                 Account userAccount = model.Account;
-                Stuff stuffCreated = dal.CreateStuff(model.Stuff);
-                dal.EditStuffCreate(model.Stuff.Id, model.Account.Id);
+                model.Stuff = dal.CreateStuff(
+                    "/images/" + model.Stuff.StuffImage.FileName,
+                    userAccount.Id
+                    );
+                Stuff stuffCreated = new Stuff();
+                stuffCreated= model.Stuff;
+                //dal.EditStuffCreate(stuffCreated.Id, userAccount.Id, "/images/" + model.Stuff.StuffImage.FileName);
 
                 if (model.Account.role == Role.Adherent)
                 {
@@ -68,8 +64,8 @@ namespace Projet2.Controllers
                 {
                     return RedirectToAction("ProfileViewBenevole", "Inscription");
                 }    
-            }
-            return View();
+            
+            return RedirectToAction("Login","Login");
         }
 
         public IActionResult EditStuff(int id)
