@@ -33,12 +33,13 @@
 
 </div>
 
-@Html.BeginForm(FormMethod.Post)
+@using (Html.BeginForm(FormMethod.Post))
 {
-@Html.TextAreaFor(m=>m.Message.Body)
+    
 
-<textarea placeholder="Ecrivez votre message ici">
+    @Html.TextAreaFor(m=>m.Message.Body)
+@*<textarea placeholder="Ecrivez votre message ici">
 
-</textarea>
+</textarea>*@
 <input type="submit" value="Envoyer" />
 }

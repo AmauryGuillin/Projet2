@@ -135,14 +135,18 @@ namespace Projet2.Controllers
             mvm.Messages = dal.GetMessages().Where(r => r.ConversationId == conversation.Id).ToList();
             int lastSenderId = (int)mvm.Messages.Last().SenderId;
             List<Message> messages = mvm.Messages;
-            mvm.Message = dal.MessageReply(
+            MessagerieViewModel mvm2= new MessagerieViewModel();
+            Message message1 = new Message();
+            mvm2.Message = message1;
+            message1 = dal.MessageReply(
                 conversation.Id,
                 Useraccount.Id,
                 lastSenderId,
                 mvm.Message.Body
+                
                 );
-            Message message= mvm.Message;
-            messages.Add(message);
+            mvm2.Message= message1;
+            messages.Add(message1);
 
             return RedirectToAction("MessageBoardView", mvm);
         }
