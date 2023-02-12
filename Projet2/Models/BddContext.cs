@@ -56,8 +56,8 @@ namespace Projet2.Models
             this.Adherents.AddRange(
 
 
-                new Adherent() { Id = 1, BenevoleId = null, NumAdherent = 1, InscriptionDate = new DateTime(2000, 12, 25), Contribution=400.80 ,TeamId = null, AdhesionId = null, CoachingId = null },
-                new Adherent() { Id = 2, BenevoleId = null, NumAdherent = 2, InscriptionDate = new DateTime(2000, 12, 30), Contribution=250.25, TeamId= null,AdhesionId= null,CoachingId= null });
+                new Adherent() { Id = 1, BenevoleId = null, NumAdherent = 1, InscriptionDate = new DateTime(2000, 12, 25), Contribution=400.80 ,TeamId = null, AdhesionId = null },
+                new Adherent() { Id = 2, BenevoleId = null, NumAdherent = 2, InscriptionDate = new DateTime(2000, 12, 30), Contribution=250.25, TeamId= null,AdhesionId= null });
 
             this.Admins.Add(
                 new Admin()

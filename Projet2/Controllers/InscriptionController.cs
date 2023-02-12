@@ -246,13 +246,18 @@ namespace Projet2.Controllers
                 inscriptionViewModel.Account = dal.GetAccount(accountId);
                 Account accountUser = inscriptionViewModel.Account;
                 inscriptionViewModel.Profile = dal.GetProfiles().Where(r => r.Id == accountUser.ProfileId).FirstOrDefault();
-              
                 inscriptionViewModel.Infos = dal.GetInformations().Where(r => r.Id == accountUser.InfoPersoId).FirstOrDefault();
                 inscriptionViewModel.Contact = dal.GetContacts().Where(r => r.Id == accountUser.ContactId).FirstOrDefault();
+                
                 inscriptionViewModel.Stuffs = dal.GetStuffs();
                 List<Stuff> Stuffs = inscriptionViewModel.Stuffs;
                 inscriptionViewModel.ReservationStuffs = dal.GetReservations();
                 List<ReservationStuff> ListReservations = inscriptionViewModel.ReservationStuffs;
+
+
+                IEnumerable <Activity> lastactivities = dal.GetActivities();
+                
+                inscriptionViewModel.Activities= lastactivities.Reverse<Activity>().Take(3);
                 return View(inscriptionViewModel);
             }
             return RedirectToAction("Login", "Login");

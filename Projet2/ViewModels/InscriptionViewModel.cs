@@ -44,5 +44,8 @@ namespace Projet2.ViewModels
 
         public MessagerieA Messagerie { get; set; }
 
+        public Activity Activity { get; set; }
+        public IEnumerable <Activity> Activities { get; set;}
+
     }
 }

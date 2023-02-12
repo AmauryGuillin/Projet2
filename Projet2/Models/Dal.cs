@@ -352,7 +352,7 @@ namespace Projet2.Models
                 DocPath = idDocuments,
                 TeamId = teamId,
                 AdhesionId = adhesionId,
-                CoachingId = coachingId
+               
             };
 
             _bddContext.Adherents.Add(adherent);
@@ -416,7 +416,7 @@ namespace Projet2.Models
                 adherent.DocPath = idDocuments;
                 adherent.TeamId = teamId;
                 adherent.AdhesionId = adhesionId;
-                adherent.CoachingId = coachingId;
+                
                 _bddContext.SaveChanges();
             }
         }

@@ -67,7 +67,7 @@
             <div class="profilePic">
                 <label>Image de profil</label>
             </div>
-            @Html.TextBoxFor(model => model.Profile.ProfilImage, new { placeholder = "Description", @type = "file" })
+            @Html.TextBoxFor(model => model.Profile.ProfilImage, new { placeholder = "Description", @type = "file" ,accept=".png, .jpg, .jpeg,.gif"})
 
             <div class="bio">
                 <label>Biographie</label>
@@ -85,7 +85,7 @@
                 <label>Document d'identité</label>
                 <p>Veuillez fournir un justificatif d'identité en format PDF</p>
             </div>
-            @Html.TextBoxFor(m => m.Adherent.DocAdherent , new { placeholder = "Description", @type = "file" })
+            @Html.TextBoxFor(m => m.Adherent.DocAdherent , new { placeholder = "Description", @type = "file" ,accept=".pdf"})
             @Html.ValidationMessageFor(m =>m.Adherent.DocAdherent)
             <div class="iban">
                 <label>IBAN/RIB</label>
