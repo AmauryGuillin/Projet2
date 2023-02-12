@@ -265,7 +265,11 @@ namespace Projet2.Controllers
                 model.Stuff = dal.GetOneStuff(id);
                 Stuff stuff = model.Stuff;
                 model.ReservationStuff = dal.GetReservations().Where(r => r.StuffId == stuff.Id).FirstOrDefault();
-                model.Account = dal.GetAccounts().Where(r => r.Id == stuff.AccountBorrowerId).FirstOrDefault();
+
+                model.Stuff.AccountBorrower = dal.GetAccounts().Where(r => r.Id == stuff.AccountBorrowerId).FirstOrDefault();
+                
+                //model.Account = dal.GetAccounts().Where(r => r.Id == stuff.AccountBorrowerId).FirstOrDefault();
+
                 //model.Account = dal.GetAccount(accountId);
                 //Account userAccount = model.Account;
                 //model.Stuff.AccountBorrowerId = userAccount.Id;
