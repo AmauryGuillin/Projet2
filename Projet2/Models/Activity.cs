@@ -23,8 +23,10 @@ namespace Projet2.Models
         [NotMapped]
         public IFormFile ActivityImage { get; set; }
 
+        public EventType ActivityEventType { get; set; }
 
-
+        public int NumberOfParticipants { get; set; }
+        public string Theme { get; set; }
 
     }
 
@@ -32,8 +34,25 @@ namespace Projet2.Models
     {
         Tournoi,
         Evenement,
-        Activité_association
+        Activité_association,
+        demande_benevolat
     }
 
+    public enum EventType
+    {
+        Aucun,
+        Coaching,
+        Resultats_competition,
+        Autre
+    }
+
+    public enum Niveau
+    {
+        Sauron,
+        Galadriel,
+        Gandalf_Le_Blanc,
+        Sam_Gamgee_Le_Brave,
+        Orc
+    }
 
 }

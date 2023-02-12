@@ -11,6 +11,8 @@
 
 <table >
         <tr>
+            <th name="Image"></th>
+            <th name="Type"><h2>Type de l'activité</h2></th>
             <th name="Description"><h2>Description</h2></th>
             <th name="Place"><h2>Place</h2></th>
             <th><h2>Organizer</h2></th>
@@ -22,7 +24,8 @@
  {
     <tr>
                 <td><img src="@Activity.ImagePath" height="100" width="100" /></td>
-        <td>@Html.DisplayFor(mActivity=>Activity.Description)</td>
+              <td>@Html.DisplayFor(mActivity=>Activity.activityType)</td>
+                <td>@Html.DisplayFor(mActivity=>Activity.Description)</td>
                 <td>@Html.DisplayFor(mActivity=>Activity.Place)</td>
                 <td>@Html.DisplayFor(mActivity=>Activity.Organizer)</td>
                 <td>@Html.DisplayFor(mActivity=>Activity.StartDate)</td>

@@ -49,6 +49,7 @@ namespace Projet2.Controllers
                 activitiesVM.Activity.Description,
                 activitiesVM.Activity.Place,
                 activitiesVM.Activity.activityType,
+                activitiesVM.Activity.ActivityEventType,
                 activitiesVM.Account.Username,
                 "/images/" + activitiesVM.Activity.ActivityImage.FileName
                 );

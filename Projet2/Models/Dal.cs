@@ -251,7 +251,7 @@ namespace Projet2.Models
             return activity.Id;
         }
 
-        public Activity CreateNewActivity(DateTime startDate, DateTime endDate, string place, string description,ActivityType activityType,string organizer,string filepath)
+        public Activity CreateNewActivity(DateTime startDate, DateTime endDate, string place, string description,ActivityType activityType,EventType eventType,string organizer,string filepath)
         {
             Activity activity = new Activity() { 
                 StartDate = startDate, 
@@ -259,6 +259,7 @@ namespace Projet2.Models
                 Description=description,
                 Place=place, 
                 activityType=activityType,
+                ActivityEventType=eventType,
                 Organizer=organizer,
                 ImagePath=filepath
             };
@@ -1363,10 +1364,7 @@ namespace Projet2.Models
 
         /////////////////PROFILE
 
-        public void UploadProfileImage()
-        {
-           
-        }
+    
         public Profile AddProfile(string profilImage, string Bio, string games)
         {
             Profile profile = new Profile()
@@ -1374,7 +1372,6 @@ namespace Projet2.Models
                 ImagePath = profilImage,
                 Bio = Bio,
                 Games = games
-               
             };
             this._bddContext.Profils.Add(profile);
             this._bddContext.SaveChanges();
