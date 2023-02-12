@@ -215,9 +215,7 @@ namespace Projet2.Controllers
 
         public ActionResult ProfileViewBenevole()// NOOOPE
         {
-           
             InscriptionViewModel inscriptionViewModel= new InscriptionViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
-            
             if (inscriptionViewModel.Authentificate == true)
             {
                 string accountId = (HttpContext.User.Identity.Name);
@@ -230,6 +228,10 @@ namespace Projet2.Controllers
                 List<Stuff> Stuffs = inscriptionViewModel.Stuffs;
                 inscriptionViewModel.ReservationStuffs = dal.GetReservations();
                 List<ReservationStuff> ListReservations = inscriptionViewModel.ReservationStuffs;
+
+                IEnumerable<Activity> lastactivities = dal.GetActivities();
+                inscriptionViewModel.Activities = lastactivities.Reverse<Activity>().Take(3);
+
                 return View(inscriptionViewModel);
             }
            
@@ -254,10 +256,9 @@ namespace Projet2.Controllers
                 inscriptionViewModel.ReservationStuffs = dal.GetReservations();
                 List<ReservationStuff> ListReservations = inscriptionViewModel.ReservationStuffs;
 
-
                 IEnumerable <Activity> lastactivities = dal.GetActivities();
-                
                 inscriptionViewModel.Activities= lastactivities.Reverse<Activity>().Take(3);
+
                 return View(inscriptionViewModel);
             }
             return RedirectToAction("Login", "Login");

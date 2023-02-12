@@ -142,6 +142,31 @@
             </table>
     </fieldset>
     </div> 
+    <div>
+        <fieldset>
+            <legend> Les denières activités de l'association': (Stuff) </legend>
 
+            <table border="1">
+                <tr>
+                    <th><h2>Type</h2></th>
+                    <th><h2>Description</h2></th>
+                    <th><h2>Lieu</h2></th>
+                    <th><h2>Organisateur</h2></th>
+
+                </tr>
+
+                @foreach (var Activity in Model.Activities)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(mActivity => Activity.Description)</td>
+                        <td>@Html.DisplayFor(mActivity => Activity.Place)</td>
+                        <td>@Html.DisplayFor(mActivity => Activity.Organizer)</td>
+                    </tr>
+                }
+
+
+            </table>
+        </fieldset>
+    </div>
     @Html.ActionLink("Voulez-vous vous déconnecter ?", "Deconnexion")
 </body>
