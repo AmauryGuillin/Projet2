@@ -4,8 +4,77 @@
     Layout = "_LayoutGeneral";
 }
 
+<div class="content">
+      @using (Html.BeginForm())
+      {
 
-<h2>Reservation Stuff</h2>
+        @Html.HiddenFor(m=>m.Stuff.Id)
+
+
+            <h1>Réserver du matériel</h1>
+            <div class="image">
+                <img src="Assets/Image/1.PNG" alt="image du materiel à réserver" />
+            </div>
+
+            <div class="attributs">
+                <div class="name">
+                <label><b>@Model.Stuff.Name</b></label>
+                </div>
+
+                <div class="type">
+                    -
+                <label>@Model.Stuff.Type</label>
+                </div>
+
+                <div class="state">
+                    -
+                <label>@Model.Stuff.State</label>
+                </div>
+
+                <div class="owner">
+                    <label><em>Skyouuuh</em></label>
+                </div>
+            </div>
+
+            <div class="description">
+                <label
+            ><b>Description</b>
+                <p>@Model.Stuff.Description</p>
+                </label>
+            </div>
+        @Html.TextAreaFor(m => m.ReservationStuff.ReservationArgument, new {placeholder = "Pourquoi avez-vous besoin de ce matériel :"})
+            @Html.ValidationMessageFor(m => m.ReservationStuff.ReservationArgument)
+
+            <input type="submit" id="submit" value="Réserver" />
+      }
+</div>
+
+@section ExtraCSS {
+    <link rel="stylesheet" href="~/css/CreateBookStuff.css" />
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<h2>Reservation Stuff</h2>
 
 @using (Html.BeginForm())
 {
@@ -16,7 +85,7 @@
 <p>Type : @Model.Stuff.Type</p>
 <p>Type : @Model.Stuff.State</p>
 <p>Proprio : @Model.Account.Username</p>
-
+*@
 @*<div>
 @Html.LabelFor(m => m.ReservationStuff.StartDate)
 @Html.TextBoxFor(m => m.ReservationStuff.StartDate, new { @type = "datetime-local"})
@@ -27,7 +96,7 @@
 @Html.TextBoxFor(m => m.ReservationStuff.EndDate, new { @type = "datetime-local"})
 @Html.ValidationMessageFor(m => m.ReservationStuff.EndDate)
 </div>*@
-<div>
+@*<div>
 @Html.LabelFor(m => m.ReservationStuff.ReservationArgument)
 @Html.TextBoxFor(m => m.ReservationStuff.ReservationArgument)
 @Html.ValidationMessageFor(m => m.ReservationStuff.ReservationArgument)
@@ -35,4 +104,4 @@
 
 <input type="submit" value="Réserver" />
 }
-
+*@
