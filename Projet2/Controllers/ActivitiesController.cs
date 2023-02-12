@@ -80,7 +80,6 @@ namespace Projet2.Controllers
                     List <Activity> CatActivities= new List<Activity>();
                     CatActivities = dal.GetActivities();
                     activitiesVM.activities = CatActivities;
-
                     return View(activitiesVM);
                 }
             }
