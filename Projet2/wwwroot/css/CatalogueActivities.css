@@ -1,0 +1,133 @@
+﻿.content {
+    border-radius: 20px;
+    min-height: 100vh;
+    padding: 10px 150px 10px 150px;
+    margin-bottom: 20px;
+}
+
+.planning {
+    border: 2px solid rgba(0, 0, 0, 0.151);
+    background: linear-gradient(to bottom left,#ffffff27, #00000031) no-repeat;
+    border-radius: 20px;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 60%;
+    grid-template-rows: 8%;
+    grid-template-areas:
+        "title title"
+        "table description";
+}
+
+.table-title {
+    grid-area: title;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom left,#ea03ff27, #8c00ff31) no-repeat;
+    margin-bottom: 10px;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+}
+
+.activities {
+    grid-area: table;
+    padding: 10px 10px 0 10px;
+    border-right: 2px solid rgba(241, 211, 146, 0.479);
+    border-radius: 15px;
+    height: fit-content;
+}
+
+    .activities table {
+        width: 100%;
+        text-align: center;
+    }
+
+
+table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+    table tr th {
+        padding-top: 10px;
+        border-bottom: 2px solid rgba(245, 222, 179, 0.473);
+        padding-bottom: 10px;
+    }
+
+    table th, table td {
+        border-bottom: 2px solid rgba(245, 222, 179, 0.473);
+        padding: 10px 0 10px 0;
+    }
+
+.button-add-activities {
+    margin-top: 10px;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    padding-right: 10px;
+}
+
+    .button-add-activities input[type=button] {
+        color: black;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        border-radius: 20px;
+        font-weight: bold;
+        font-size: 0.9rem;
+    }
+
+        .button-add-activities input[type=button]:hover {
+            background-color: #a3a3a3;
+            transition: 0.2s;
+        }
+
+.description-content {
+    grid-area: description;
+    padding: 30px;
+}
+
+    .description-content .description {
+        display: none;
+        border: 2px solid rgba(241, 211, 146, 0.479);
+        border-right: none;
+        border-left: none;
+        border-radius: 20px;
+        min-height: fit-content;
+        padding: 10px;
+    }
+
+.inscription-button {
+    display: flex;
+    justify-content: end;
+    align-items: end;
+}
+
+.preview-description {
+    cursor: pointer;
+    white-space: nowrap;
+    width: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.inscription-button input[type=button] {
+    height: 30px;
+    width: 100px;
+    color: black;
+    padding: 0;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+    .inscription-button input[type=button]:hover {
+        color: white;
+        background-color: #e40f7a;
+        transition: 0.2s;
+    }

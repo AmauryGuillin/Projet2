@@ -16,7 +16,7 @@
                 @Html.ValidationMessageFor(m => m.Publication.Name)
             </div>
 
-            <div ="type">
+            <div class="type">
                 <label><b>Type</b></label>
                 @Html.DropDownListFor(m => m.Publication.PublicationType, Html.GetEnumSelectList<Projet2.Models.PublicationTypes>(), "Selectionner un Type")
                 @Html.ValidationMessageFor(m => m.Publication.PublicationType)

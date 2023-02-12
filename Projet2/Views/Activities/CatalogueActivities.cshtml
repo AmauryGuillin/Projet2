@@ -4,28 +4,36 @@
     Layout = "_LayoutGeneral";
 
 }
-<h2>Catalogue d'activités</h2>
-<div>
+<div class="content">
+    git
+    <div class="planning">
+        <div class="table-title">
+            <h1>Activités</h1>
+        </div>
+        <div class="activities">
 
    
 
 <table >
+                <thead>
         <tr>
-            <th name="Image"></th>
-            <th name="Type"><h2>Type de l'activité</h2></th>
-            <th name="Description"><h2>Description</h2></th>
-            <th name="Place"><h2>Place</h2></th>
+            <th></th>
+            <th><h2>Type de l'activité</h2></th>
+            <th><h2>Description</h2></th>
+            <th><h2>Place</h2></th>
             <th><h2>Organizer</h2></th>
             <th><h2>StartDate</h2></th>
             <th><h2>EndDate</h2></th>
     
         </tr>
+                </thead>
+                <tbody>
         @foreach (var Activity in Model.activities)
  {
     <tr>
                 <td><img src="@Activity.ImagePath" height="100" width="100" /></td>
               <td>@Html.DisplayFor(mActivity=>Activity.activityType)</td>
-                <td>@Html.DisplayFor(mActivity=>Activity.Description)</td>
+              <td class="preview-description">@Html.DisplayFor(mActivity=>Activity.Description)</td>
                 <td>@Html.DisplayFor(mActivity=>Activity.Place)</td>
                 <td>@Html.DisplayFor(mActivity=>Activity.Organizer)</td>
                 <td>@Html.DisplayFor(mActivity=>Activity.StartDate)</td>
@@ -42,8 +50,29 @@
     </tr>
 }
 
-
+                </tbody>
 </table>
+            <div class="button-add-activities">
+                <input type="button" value="+" />
+            </div>
+        </div>
+        <div class="description-content">
+            <div id="description" class="description">
+                <h3>Description</h3>
+                <p id="description-text"></p>
+                <div class="inscription-button">
+                    <input type="button" value="S'inscrire" />
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
        @* && Model.Account.role!=Projet2.Models.Role.Benevole*@
+
+                @section ExtraCss{
+                    <link rel="stylesheet" href="~/css/CatalogueActivities.css"/>
+                }
+@section ExtraJs{
+    <script src="~/JS/CatalogueActivities.js"></script>
+                }
