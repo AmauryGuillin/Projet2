@@ -34,9 +34,9 @@
        
     <tr>
         <!--Adherent : JustifIdentite-->
-        <td> @Html.LabelFor(m=>m.Adherent.IDDocuments)  </td>
+       @* <td> @Html.LabelFor(m=>m.Adherent.IDDocuments)  </td>
         <td><input type="file" />   </td>
-                @Html.ValidationMessageFor(m =>m.Adherent.IDDocuments)
+                @Html.ValidationMessageFor(m =>m.Adherent.IDDocuments)*@
     </tr>
          @* <!--Adherent : Cotisation-->
            <tr> <td> @Html.LabelFor(m=>m.Adherent.Contribution ): </td>

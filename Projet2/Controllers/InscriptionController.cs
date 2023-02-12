@@ -132,6 +132,12 @@ namespace Projet2.Controllers
             {
                 inscriptionViewModel.Profile.ProfilImage.CopyTo(fileStream);
             }
+            string uploadsPdf = Path.Combine(_webEnv.WebRootPath, "AdherentsDocuments");
+            string filePathpdf =Path.Combine(uploadsPdf,inscriptionViewModel.Adherent.DocAdherent.FileName);
+            using (Stream fileStreamPdf = new FileStream(filePathpdf, FileMode.Create))
+            {
+                inscriptionViewModel.Adherent.DocAdherent.CopyTo(fileStreamPdf);
+            }
             inscriptionViewModel.Contact =
                  dal.AddContact(
                      inscriptionViewModel.Contact.EmailAdress,
@@ -184,7 +190,7 @@ namespace Projet2.Controllers
                  inscriptionViewModel.Benevole.Id,
                  inscriptionViewModel.Adhesion.Id,
                  inscriptionViewModel.Contribution.Id,
-                 inscriptionViewModel.Adherent.IDDocuments
+                 "/AdherentsDocuments/"+ inscriptionViewModel.Adherent.DocAdherent.FileName
                  );
 
             var userClaims = new List<Claim>()

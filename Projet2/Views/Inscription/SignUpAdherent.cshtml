@@ -82,12 +82,11 @@
             @Html.ValidationMessageFor(m =>  m.Profile.Games)
 
             <div class="docID">
-                <label>Document ID</label>
+                <label>Document d'identité</label>
+                <p>Veuillez fournir un justificatif d'identité en format PDF</p>
             </div>
-            @Html.TextBoxFor(m => m.Adherent.IDDocuments , new { placeholder = "..."})
-            @Html.ValidationMessageFor(m =>m.Adherent.IDDocuments)
-            <input type="button" name="docID" value="Choisir" required />
-
+            @Html.TextBoxFor(m => m.Adherent.DocAdherent , new { placeholder = "Description", @type = "file" })
+            @Html.ValidationMessageFor(m =>m.Adherent.DocAdherent)
             <div class="iban">
                 <label>IBAN/RIB</label>
             </div>

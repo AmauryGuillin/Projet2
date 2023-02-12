@@ -321,7 +321,7 @@ namespace Projet2.Models
                 BenevoleId = benevoleid,
                 AdhesionId= adhesion,
                 Contribution = contributionId,
-                IDDocuments = docs
+                DocPath = docs
             };
             this._bddContext.Adherents.Add(adherent);
             this._bddContext.SaveChanges();
@@ -349,7 +349,7 @@ namespace Projet2.Models
                 NumAdherent = numAdherent,
                 InscriptionDate = inscriptiondate,
                 Contribution = contribution,
-                IDDocuments = idDocuments,
+                DocPath = idDocuments,
                 TeamId = teamId,
                 AdhesionId = adhesionId,
                 CoachingId = coachingId
@@ -413,7 +413,7 @@ namespace Projet2.Models
                 adherent.NumAdherent = numAdherent;
                 adherent.InscriptionDate = inscriptiondate;
                 adherent.Contribution = contribution;
-                adherent.IDDocuments = idDocuments;
+                adherent.DocPath = idDocuments;
                 adherent.TeamId = teamId;
                 adherent.AdhesionId = adhesionId;
                 adherent.CoachingId = coachingId;
