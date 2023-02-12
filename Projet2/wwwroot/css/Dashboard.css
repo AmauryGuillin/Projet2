@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap');
+
+:root {
+	--violet: #d33bfd;
+}
+
+body {
+	margin-left: 20px;
+	margin-right: 20px;
+	font-family: 'Montserrat', sans-serif;
+	color: white;
+    background: linear-gradient(#13181d, #20212e, #341b47);
+    min-height: 100vh;
+}
+
+header {
+	margin-bottom: 20px;
+}
+
+header nav {
+	padding: 30px 5% 0px 5%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+}
+header nav h1 {
+	margin: 0;
+	text-transform: uppercase;
+	color:  #d33bfd;
+}
+header nav .menu {
+	display: flex;
+	align-items: center;
+}
+header nav .menu a {
+	margin: 0 15px 0 0;
+	color: #ccc;
+    text-decoration:none;
+}
+
+header nav .menu a:hover {
+	color: white;
+	cursor: pointer;
+    
+}
+header nav .menu input {
+	padding: 5px 15px;
+	font-size: 16px;
+	background-color: inherit;
+	border: 1px solid  #d33bfd;
+	border-radius: 5px;
+	color:  #d33bfd;
+	cursor: pointer;
+	transition: color 0.5s, background-color 0.5s;
+}
+
+header nav .menu input:hover {
+	color: inherit;
+	background-color:  #d33bfd;
+}
+
+.content{
+	padding: 20px;
+	display: flex;
+    border: 2px solid red;
+    border-radius: 20px;
+	background: rgba(0, 0, 0, 0.13);
+    min-height: 100vh;
+}
+
+.menu-left {
+	margin-right: 10px;
+	border: 2px solid red;
+	border-radius: 20px;
+	background: rgba(128, 128, 128, 0.068);
+	min-height: 200px;
+	width: 40%;
+}
+
+.menu-left h2 {
+	margin-left: 25px
+}
+
+.grid-container {
+	border: 2px solid red;
+	border-radius: 20px;
+	min-height: 200px;
+	width: 85%;
+	padding: 20px;
+	display: grid;
+	grid-template-columns: auto;
+	grid-template-rows: 50%;
+	grid-template-areas: 
+	"user-box"
+	"nav-box";
+	
+}
+
+ .user-box {
+	grid-area: user-box;
+	border: 2px solid red;
+	border-radius: 20px;
+	justify-self: end;
+	width: 50%;
+	display: flex;
+	justify-content: center;
+	align-self: center;
+	margin-right: 70px;
+}
+
+.user-box1 {
+	border: 2px solid rgb(0, 255, 0);
+	border-radius: 20px;
+	background: rgba(128, 128, 128, 0.068);
+	justify-content: center;
+	height: 200px;
+	width: 600px;
+}
+
+.user-box1 h2 {
+	margin-left: 20px;
+}
+
+.nav-box {
+	grid-area: nav-box;
+	border: 2px solid red;
+	border-radius: 20px;
+	justify-self: end;
+	width: 60%;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-self: center;
+}
+
+.nav-box1 {
+	border: 2px solid rgb(0, 255, 0);
+	border-radius: 20px;
+	background: rgba(128, 128, 128, 0.068);
+	justify-content: center;
+	height: 200px;
+	width: 600px;
+}
+
+
