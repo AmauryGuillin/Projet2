@@ -739,7 +739,8 @@ namespace Projet2.Models
         public Message MessageReply(int conversationId,int account1, int account2, string body)
         {
             Message NewMessage = new Message()
-            { Body = body,
+            { 
+                Body = body,
                 ConversationId = conversationId,
                 SenderId = account1,
                 ReceiverId = account2,

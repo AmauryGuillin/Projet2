@@ -60,7 +60,7 @@ namespace Projet2.Controllers
                 mvm.Accounts = dal.GetAccounts();
                 List<Account> AllAccounts = mvm.Accounts;
                 mvm.ListAccounts = GetAllAccounts();
-                var AccountData = dal.GetAccounts();
+                var AccountData = dal.GetAccounts().Where(r => r.Id != Useraccount.Id);
                 mvm.ListAccounts= new List<SelectListItem>();
                 foreach(var account in AccountData)
                 {
@@ -110,15 +110,15 @@ namespace Projet2.Controllers
                 mvm.Conversation = dal.GetConversations().Where(r => r.Id == id).FirstOrDefault();
                 Conversation conversation = mvm.Conversation;
                 mvm.Messages = dal.GetMessages().Where(r => r.ConversationId == conversation.Id).ToList();
+                var Messages = mvm.Messages;
                 //int lastSenderId= (int)mvm.Messages.Last().SenderId;
-                //List<Message> messages = mvm.Messages;
-                //mvm.Message = dal.MessageReply(
-                //    conversation.Id,
-                //    Useraccount.Id,
-                //    lastSenderId,
-                //    mvm.Message.Body
-
-                //    ); ;
+                List<Message> messages = mvm.Messages;
+                foreach(var message in Messages)
+                {
+                    mvm.Message = message;
+                    mvm.Message.Sender = dal.GetAccount((int)mvm.Message.SenderId);
+                    Account Sender= mvm.Message.Sender;
+                }
                 return View(mvm);
             }
             return RedirectToAction("Login", "Login");
@@ -135,14 +135,18 @@ namespace Projet2.Controllers
             mvm.Messages = dal.GetMessages().Where(r => r.ConversationId == conversation.Id).ToList();
             int lastSenderId = (int)mvm.Messages.Last().SenderId;
             List<Message> messages = mvm.Messages;
-            mvm.Message = dal.MessageReply(
+            MessagerieViewModel mvm2= new MessagerieViewModel();
+            Message message1 = new Message();
+            mvm2.Message = message1;
+            message1 = dal.MessageReply(
                 conversation.Id,
                 Useraccount.Id,
                 lastSenderId,
                 mvm.Message.Body
+                
                 );
-            Message message= mvm.Message;
-            messages.Add(message);
+            mvm2.Message= message1;
+            messages.Add(message1);
 
             return RedirectToAction("MessageBoardView", mvm);
         }
