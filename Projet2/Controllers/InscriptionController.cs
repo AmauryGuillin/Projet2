@@ -132,6 +132,12 @@ namespace Projet2.Controllers
             {
                 inscriptionViewModel.Profile.ProfilImage.CopyTo(fileStream);
             }
+            string uploadsPdf = Path.Combine(_webEnv.WebRootPath, "AdherentsDocuments");
+            string filePathpdf =Path.Combine(uploadsPdf,inscriptionViewModel.Adherent.DocAdherent.FileName);
+            using (Stream fileStreamPdf = new FileStream(filePathpdf, FileMode.Create))
+            {
+                inscriptionViewModel.Adherent.DocAdherent.CopyTo(fileStreamPdf);
+            }
             inscriptionViewModel.Contact =
                  dal.AddContact(
                      inscriptionViewModel.Contact.EmailAdress,
@@ -184,7 +190,7 @@ namespace Projet2.Controllers
                  inscriptionViewModel.Benevole.Id,
                  inscriptionViewModel.Adhesion.Id,
                  inscriptionViewModel.Contribution.Id,
-                 inscriptionViewModel.Adherent.IDDocuments
+                 "/AdherentsDocuments/"+ inscriptionViewModel.Adherent.DocAdherent.FileName
                  );
 
             var userClaims = new List<Claim>()
@@ -209,9 +215,7 @@ namespace Projet2.Controllers
 
         public ActionResult ProfileViewBenevole()// NOOOPE
         {
-           
             InscriptionViewModel inscriptionViewModel= new InscriptionViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
-            
             if (inscriptionViewModel.Authentificate == true)
             {
                 string accountId = (HttpContext.User.Identity.Name);
@@ -224,6 +228,19 @@ namespace Projet2.Controllers
                 List<Stuff> Stuffs = inscriptionViewModel.Stuffs;
                 inscriptionViewModel.ReservationStuffs = dal.GetReservations();
                 List<ReservationStuff> ListReservations = inscriptionViewModel.ReservationStuffs;
+
+                IEnumerable<Activity> lastactivities = dal.GetActivities();
+                inscriptionViewModel.Activities = lastactivities.Reverse<Activity>().Take(3);
+
+                IEnumerable<Publication> lastpublications = dal.GetPublications();
+                inscriptionViewModel.Publications = lastpublications.Reverse<Publication>().Take(3);
+
+                foreach (var Publication in inscriptionViewModel.Publications)
+                {
+                    Account AuthorPubli = dal.GetAccounts().Where(r => r.Id == Publication.AccountId).FirstOrDefault();
+                    if (AuthorPubli != null) { inscriptionViewModel.Account = AuthorPubli; }
+                }
+
                 return View(inscriptionViewModel);
             }
            
@@ -240,13 +257,25 @@ namespace Projet2.Controllers
                 inscriptionViewModel.Account = dal.GetAccount(accountId);
                 Account accountUser = inscriptionViewModel.Account;
                 inscriptionViewModel.Profile = dal.GetProfiles().Where(r => r.Id == accountUser.ProfileId).FirstOrDefault();
-              
                 inscriptionViewModel.Infos = dal.GetInformations().Where(r => r.Id == accountUser.InfoPersoId).FirstOrDefault();
                 inscriptionViewModel.Contact = dal.GetContacts().Where(r => r.Id == accountUser.ContactId).FirstOrDefault();
+                
                 inscriptionViewModel.Stuffs = dal.GetStuffs();
                 List<Stuff> Stuffs = inscriptionViewModel.Stuffs;
                 inscriptionViewModel.ReservationStuffs = dal.GetReservations();
                 List<ReservationStuff> ListReservations = inscriptionViewModel.ReservationStuffs;
+
+                IEnumerable <Activity> lastactivities = dal.GetActivities();
+                inscriptionViewModel.Activities= lastactivities.Reverse<Activity>().Take(3);
+
+                IEnumerable<Publication> lastpublications = dal.GetPublications();
+                inscriptionViewModel.Publications = lastpublications.Reverse<Publication>().Take(3);
+
+                foreach (var Publication in inscriptionViewModel.Publications)
+                {
+                    Account AuthorPubli = dal.GetAccounts().Where(r => r.Id == Publication.AccountId).FirstOrDefault();
+                    if (AuthorPubli != null) { inscriptionViewModel.Account = AuthorPubli; }
+                }
                 return View(inscriptionViewModel);
             }
             return RedirectToAction("Login", "Login");

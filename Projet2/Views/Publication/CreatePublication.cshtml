@@ -31,7 +31,7 @@
         @Html.ValidationMessageFor(m => m.Publication.Date)
     </div>
     <div>
-        @Html.TextBoxFor(model => model.Publication.PubliImage, new { placeholder = "Description", @type = "file" })
+        @Html.TextBoxFor(model => model.Publication.PubliImage, new { placeholder = "Description", @type = "file",accept=".png, .jpg, .jpeg,.gif" })
         @Html.ValidationMessageFor(m => m.Publication.PubliImage)
     </div>
     <input type="submit" value="Créer" />

@@ -11,17 +11,21 @@
     @Html.HiddenFor(n=>n.Inventory.Id)*@
 
     <div>
-        @Html.LabelFor(m => m.activityType)
-        @Html.DropDownListFor(m => m.activityType,Html.GetEnumSelectList<Projet2.Models.ActivityType>(),"Selectionnez le type d'activité")
-        @Html.ValidationMessageFor(m => m.activityType)
+        @Html.LabelFor(m => m.Activity.activityType)
+        @Html.DropDownListFor(m => m.Activity.activityType,Html.GetEnumSelectList<Projet2.Models.ActivityType>(),"Selectionnez le type d'activité")
+        @Html.ValidationMessageFor(m => m.Activity.activityType)
     </div>
     
     <div>
-        @Html.LabelFor(m => m.activityEventType)
-        @Html.DropDownListFor(m => m.activityEventType, Html.GetEnumSelectList<Projet2.Models.EventType>(), "Selectionnez le type d'evenement")
-        @Html.ValidationMessageFor(m => m.activityEventType)
+        @Html.LabelFor(m => m.Activity.ActivityEventType)
+        @Html.DropDownListFor(m => m.Activity.ActivityEventType, Html.GetEnumSelectList<Projet2.Models.EventType>(), "Selectionnez le type d'evenement")
+        @Html.ValidationMessageFor(m => m.Activity.ActivityEventType)
     </div>
-
+    <div>
+        @Html.LabelFor(m => m.Activity.Theme)
+        @Html.TextBoxFor(m => m.Activity.Theme)
+        @Html.ValidationMessageFor(m => m.Event.Theme)
+    </div>
     <div>
         @Html.LabelFor(m => m.Activity.Description)
         @Html.TextBoxFor(m=>m.Activity.Description)
@@ -36,14 +40,10 @@
 
     <div>
         @Html.LabelFor(m => m.Activity.ActivityImage)
-        @Html.TextBoxFor(model => model.Activity.ActivityImage, new { placeholder = "Description", @type = "file" })
+        @Html.TextBoxFor(model => model.Activity.ActivityImage, new { placeholder = "Description", @type = "file",accept=".png, .jpg, .jpeg,.gif" })
         @Html.ValidationMessageFor(m => m.Event.Theme)
     </div>
-    <div>
-        @Html.LabelFor(m => m.Event.Theme)
-        @Html.TextBoxFor(m=>m.Event.Theme)
-        @Html.ValidationMessageFor(m => m.Event.Theme)
-    </div>
+    
 
 
 

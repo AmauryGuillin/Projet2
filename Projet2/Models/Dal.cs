@@ -251,7 +251,7 @@ namespace Projet2.Models
             return activity.Id;
         }
 
-        public Activity CreateNewActivity(DateTime startDate, DateTime endDate, string place, string description,ActivityType activityType,string organizer,string filepath)
+        public Activity CreateNewActivity(DateTime startDate, DateTime endDate, string place, string description,ActivityType activityType,EventType eventType,string organizer,string filepath)
         {
             Activity activity = new Activity() { 
                 StartDate = startDate, 
@@ -259,6 +259,7 @@ namespace Projet2.Models
                 Description=description,
                 Place=place, 
                 activityType=activityType,
+                ActivityEventType=eventType,
                 Organizer=organizer,
                 ImagePath=filepath
             };
@@ -321,7 +322,7 @@ namespace Projet2.Models
                 BenevoleId = benevoleid,
                 AdhesionId= adhesion,
                 Contribution = contributionId,
-                IDDocuments = docs
+                DocPath = docs
             };
             this._bddContext.Adherents.Add(adherent);
             this._bddContext.SaveChanges();
@@ -349,10 +350,10 @@ namespace Projet2.Models
                 NumAdherent = numAdherent,
                 InscriptionDate = inscriptiondate,
                 Contribution = contribution,
-                IDDocuments = idDocuments,
+                DocPath = idDocuments,
                 TeamId = teamId,
                 AdhesionId = adhesionId,
-                CoachingId = coachingId
+               
             };
 
             _bddContext.Adherents.Add(adherent);
@@ -413,10 +414,10 @@ namespace Projet2.Models
                 adherent.NumAdherent = numAdherent;
                 adherent.InscriptionDate = inscriptiondate;
                 adherent.Contribution = contribution;
-                adherent.IDDocuments = idDocuments;
+                adherent.DocPath = idDocuments;
                 adherent.TeamId = teamId;
                 adherent.AdhesionId = adhesionId;
-                adherent.CoachingId = coachingId;
+                
                 _bddContext.SaveChanges();
             }
         }
@@ -1363,10 +1364,7 @@ namespace Projet2.Models
 
         /////////////////PROFILE
 
-        public void UploadProfileImage()
-        {
-           
-        }
+    
         public Profile AddProfile(string profilImage, string Bio, string games)
         {
             Profile profile = new Profile()
@@ -1374,7 +1372,6 @@ namespace Projet2.Models
                 ImagePath = profilImage,
                 Bio = Bio,
                 Games = games
-               
             };
             this._bddContext.Profils.Add(profile);
             this._bddContext.SaveChanges();

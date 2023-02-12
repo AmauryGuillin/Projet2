@@ -31,8 +31,6 @@
 
                 @Html.ActionLink("Ajouter du materiel", "CreateStuff", "Stuff", new {accountId = Model.Account.Id})
 
-                
-
             </li>
             <li class="nav-item ">
                     @Html.ActionLink("Consulter le planning", "PlanningView", "Planning", new {accountId = Model.Account.Id})
@@ -75,7 +73,7 @@
                         <h3>Nom: @Model.Infos.LastName</h3> <h3 class="spec"> </h3>
                         <h3> Prenom: @Model.Infos.FirstName </h3> <h3 class="spec"> </h3>
 
-                        <h3>Date de naissance:@Model.Infos.Birthday </h3><h3 class="spec">28 fÃ©vrier 1986</h3>
+                        <h3>Date de naissance:@Model.Infos.Birthday </h3>
                         <h3>Adresse mail : @Model.Contact.EmailAdress</h3>
                     </div>
                 </section>
@@ -98,7 +96,7 @@
                         </p>
                     </fieldset>
                     <fieldset id="FS4">
-                        <legend class="leg"> Autres compÃ©tences </legend>
+                        <legend class="leg">Denières Activités de l'asso </legend>
                         <p>Light parvient Ã ler Rem, le Shinigami liÃ© au Death Note de Misa. Il atteindra'elle Ã©crive le nom de L dans son carnet.</p>
                     </fieldset>
 
@@ -152,6 +150,8 @@
                     }
 
                 }
+
+
  
             </table>
         </fieldset>
@@ -159,5 +159,32 @@
 
 
 
+   
+<div>
+        <fieldset>
+            <legend> Les denières publications: (Stuff) </legend>
+
+            <table border="1">
+                <tr>
+                    <th><h2>Nom</h2></th>
+                    <th><h2>Description</h2></th>
+                    <th><h2>Auteur</h2></th>
+
+                </tr>
+
+                @foreach (var Publication in Model.Publications)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(mPublication => Publication.Name)</td>
+                        <td>@Html.DisplayFor(mPublication => Publication.Content)</td>
+                        <td>@Html.DisplayFor(mPublication => Publication.Account.Username)</td>
+                    </tr>
+                }
+
+
+            </table>
+        </fieldset>
+
+</div>
     @Html.ActionLink("Voulez-vous vous déconnecter ?", "Deconnexion")
 </body>

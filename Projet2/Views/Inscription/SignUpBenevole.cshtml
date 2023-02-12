@@ -64,7 +64,7 @@
             <div class="profilePic">
                 <label>Image de profil</label>
             </div>
-            @Html.TextBoxFor(model => model.Profile.ProfilImage, new { placeholder = "Description", @type = "file" })
+            @Html.TextBoxFor(model => model.Profile.ProfilImage, new { placeholder = "Description", @type = "file" ,accept=".png, .jpg, .jpeg,.gif"})
 
             <div class="bio">
                 <label>Biographie</label>

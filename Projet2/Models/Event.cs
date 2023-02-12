@@ -10,13 +10,13 @@
         public Activity Activity { get; set; }
     }
 
-    public enum EventType
-    {
-        Aucun,
-        Coaching,
-        Autre,
+    //public enum EventType
+    //{
+    //    Aucun,
+    //    Coaching,
+    //    Autre,
         
-    }
+    //}
 
 
 
