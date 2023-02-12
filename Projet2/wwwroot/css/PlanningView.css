@@ -1,25 +1,150 @@
-﻿.Planning {
-    background-image: url("/images/PlanningBackground.jpg");
+﻿.content {
+    position: relative;
+    border-radius: 20px;
+    min-height: 100vh;
+    padding-left: 200px;
+    padding-right: 200px;
+}
+
+.banner-region {
+    background: rgba(0, 0, 0, 0.137);
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    min-height: 100vh;
+}
+
+.banner {
+    background: rgba(255, 0, 0, 0.247);
+    background-image: url('../Assets/Banner/PrtScr capture.png');
     background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    min-height:100vh;
-    border-radius:20px;
+    background-size: auto auto;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    min-height: 200px;
+    padding-top: 40px;
+    padding-left: 20px;
+    position: relative;
 }
-/*.Ligne-activity{
-    border:3px;
-    border-color: darkslateblue;
-    border-radius:15px;
-}*/
 
-.imgMiniP{
-    border-radius:110px;
+    .banner .nav-links-profile {
+        position: absolute;
+        top: 10px;
+        right: 70px;
+        text-align: end;
+        opacity: 0%;
+        transition: 0.5s;
+    }
+
+        .banner .nav-links-profile ul li {
+            text-decoration: none;
+            list-style-type: none;
+            margin-bottom: 12px;
+        }
+
+            .banner .nav-links-profile ul li a {
+                color: white;
+                text-decoration: none;
+                font-size: 1.2rem;
+            }
+
+    .banner .menu-hamburger-profile {
+        position: absolute;
+        width: 50px;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+
+    .banner .nav-links-profile.mobile-menu-profile {
+        opacity: 100%;
+        transition: 0.5s;
+    }
+
+
+.side-section-top {
+    background: rgba(254, 254, 255, 0.452);
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    width: 20.9%;
+    min-height: 200px;
+    border-bottom: none;
+    box-shadow: 5px 3px 20px 0 rgb(0 0 0 / 65%), 0 5px 5px 0 rgb(0 0 0 / 24%);
 }
-/*.ContenuPlanning {
-    border:solid;
-}*/
 
-.affichageActivités{
-
-    border:medium;
+.profile-pic {
+    padding-top: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
 }
+
+    .profile-pic img {
+        width: 200px;
+        height: 200px;
+        clip-path: circle();
+        justify-self: center;
+        object-fit: cover;
+    }
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    background: linear-gradient(to bottom left,#ff030327, #ffffff31) no-repeat;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    margin-top: 1rem;
+    height: 3.5rem;
+    font-weight: bold;
+}
+
+.main-content {
+    background: rgba(0, 0, 0, 0.137);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    border-top: none;
+    min-height: 100vh;
+    padding: 1rem;
+}
+
+    .main-content .box {
+        width: 20rem;
+        height: fit-content;
+        margin-right: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 1rem;
+        border: 2px solid rgba(190, 32, 32, 0.185);
+        border-radius: 20px;
+        background: linear-gradient(to bottom left,#1D083B, #531760) no-repeat;
+    }
+
+        .main-content .box h3 {
+            text-transform: uppercase;
+        }
+
+        .main-content .box img {
+            width: 230px;
+            height: 170px;
+        }
+
+        .main-content .box #dates {
+            align-self: center;
+        }
+
+
+        .main-content .box p {
+            align-self: flex-start;
+            padding-left: 0.3rem;
+        }
+
+        .main-content .box #organizer {
+            align-self: flex-end;
+            padding-right: 1rem;
+        }
