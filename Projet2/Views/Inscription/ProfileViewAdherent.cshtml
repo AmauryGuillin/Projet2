@@ -1,18 +1,177 @@
 ﻿@model Projet2.ViewModels.InscriptionViewModel
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href=" ./Css/Profile.css" rel="stylesheet" />
 @{
     Layout = "_LayoutGeneral";
 }
-<head>
-    <title>
+
+    @Html.HiddenFor(m=>m.Account.Id)
+    @Html.HiddenFor(m=>m.Account.ProfileId)
+    @Html.HiddenFor(m=>m.Account.ContactId)
+    @Html.HiddenFor(m=>m.Account.InfoPersoId)
+    @Html.HiddenFor(n=>n.Inventory.Id)
+    @Html.HiddenFor(model=>model.Profile.ImagePath)
+    @Html.HiddenFor(m=>m.Account.role)
+<div class="content">
+<div class="banner-region">
+    <div class="banner">
+        <div class="nav-links-profile">
+            <ul>
+                <li><a href="#">Paramètres du compte</a></li>
+                <li>@Html.ActionLink("Ajouter du materiel", "CreateStuff", "Stuff", new {accountId = Model.Account.Id})</li>
+                <li>@Html.ActionLink("Consulter le planning", "PlanningView", "Planning", new {accountId = Model.Account.Id})</li>
+                <li>@Html.ActionLink("Messagerie", "MessageBoardView", "Messagerie", new {accountId = Model.Account.Id})</li>
+            </ul>
+        </div>
+        <img src="~/Assets/Hamburger/transparent-hd-white-menu-burger-icon-31634946136ufll2pj5eo-removebg-preview.png"
+             alt="menu hamburger"
+             class="menu-hamburger-profile" />
+        <div class="side-section-top">
+            <div class="profile-pic">
+                <img src="@Model.Profile.ImagePath" alt="Photo de profil" ,height="400" width="400" />
+            </div>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="side-section">
+            <div class="pseudo1">@Model.Account.Username</div>
+            <hr />
+            <div class="about">
+                <h3>A propos</h3>
+                <p>@Model.Profile.Bio</p>
+            </div>
+            <hr />
+            <div class="firstname1">
+                <h3>Prenom</h3>
+                @Model.Infos.FirstName
+            </div>
+            <hr />
+            <div class="lastname1">
+                <h3>Nom</h3>
+                @Model.Infos.LastName
+            </div>
+            <hr />
+            <div class="birthday1">
+                <h3>Date de naissance</h3>
+                @Model.Infos.Birthday
+            </div>
+            <hr />
+            <div class="games1">
+                <h3>Jeux favoris</h3>
+                @Model.Profile.Games
+            </div>
+        </div>
+        <div class="mid-section">
+            <div class="planning">
+                <div class="activities">
+                    <div class="table-title">
+                        <h1>Publications</h1>
+                    </div>
+                    <div class="activities-adherent">
+                        <table>
+                            <tbody>
+                                @foreach (var Publication in Model.Publications)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(mPublication => Publication.Name)</td>
+                                        <td class="preview-description">@Html.DisplayFor(mPublication => Publication.Content)</td>
+                                        <td>@Html.DisplayFor(mPublication => Publication.Account.Username)</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+                <div class="table">
+                    <div class="table-title">
+                        <h1>Inventaire</h1>
+                    </div>
+                    <div class="table-content1">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th colspan="2"><h3>Mon Stuff</h3></th>
+                                </tr>
+                                </thead>
+                                @foreach (var Stuff in Model.Stuffs)
+                                {
+                                    if (Stuff.AccountOwnerId == Model.Account.Id)
+                                    {
+   
+                                        <tr>
+                                            <td>@Html.DisplayFor(mStuffs => Stuff.Name)</td>
+                                            <td>@Html.ActionLink("Modification", "EditStuff","Stuff", new { id = Stuff.Id })</td>
+                                            <td>@Html.ActionLink("Réservation", "AcceptationBookStuff","Stuff", new { id = Stuff.Id })</td>
+                                        </tr>
+                                    }
+                                }
+                        </table>
+                    </div>
+                    <div class="table-content2">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th colspan="2"><h3>Mes emprunts</h3></th>
+                                </tr>
+                            </thead>
+                            @foreach (var Stuff in Model.Stuffs)
+                            {
+
+                                if (Stuff.AccountBorrowerId == Model.Account.Id)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(mStuffs => Stuff.Name)</td>
+                                        <td>@Html.DisplayFor(mStuffs => Stuff.Reservation)</td>
+                                        <td>@Html.ActionLink("Consulter la Reservation", "ConsultationBookStuff","Stuff", new { id = Stuff.Id })</td>
+                                    </tr>
+                                }
+                            }
+                        </table>
+                    </div>
+        </div>
+    </div>
+</div>
+<div id="pop-up-description" class="pop-up-description">
+    <h3>Description</h3>
+    <hr />
+    <p id="pop-up-description-zone-text"></p>
+    <input id="pop-up-close-button" type="button" value="Fermer" />
+</div>
+    </div>
+    </div>
+
+
+
+    @section ExtraCSS {
+            <link href="~/css/ProfileViewAdherent.css" rel="stylesheet" />
+    }
+
+    @section ExtraJS {
+        <script src="~/JS/ProfileViewAdherent.js"></script>
+        <script src="~/JS/BurgerMenuProfile.js"></script>
+    }
+    
+
+
+
+
+
+
+
+
+
+
+@*CODE MICHELLE*@
+
+@*<head>
+    <title>*@
         @*   Profile @User.Identity*@
-    </title>
+@*    </title>
 
-</head>
+</head>*@
 
 
-<body class="body">
+@*<body class="body">
 
     @Html.HiddenFor(m=>m.Account.Id)
     @Html.HiddenFor(m=>m.Account.ProfileId)
@@ -42,25 +201,25 @@
             
         </ul>
         
-    </div>
+    </div>*@
 
 
-    <h1> Bienvenue sur votre profil @Model.Account.Username </h1>
+    @*<h1> Bienvenue sur votre profil @Model.Account.Username </h1>
     <div class="container-fluid">
         <div class="row">
             <div class="column1">
-                <section class="SectionDescription">
+                <section class="SectionDescription">*@
 @*@using (Html.BeginForm("EditProfilePic", "Inscription", FormMethod.Post, new { enctype = "multipart/form-data" }))*@
 
 
                         
 
-                    <div class="form-floating mb-3">
+                    @*<div class="form-floating mb-3">*@
                        @* <div>
                                 @Html.LabelFor(model => model.Profile.ProfilImage, new { id = "imageLabel", @style = "text-align:center;" })
                                 @Html.TextBoxFor(model => model.Profile.ProfilImage, new { placeholder = "Description", @type = "file" })
                         </div>*@
-                    </div>
+                   @* </div>
                     <div class="text-center">
                             <img src="@Model.Profile.ImagePath" height="400" width="400" />
                         </div>
@@ -103,8 +262,8 @@
                 </section>
             </div>
         </div>
-    </div>
-    <div>
+    </div>*@
+    @*<div>
         <fieldset>
             <legend> Mon inventaire : (Stuff) </legend>
             <table border="1">
@@ -149,11 +308,11 @@
                         </tr>
                     }
 
-                }
+                }*@
 
 
  
-            </table>
+           @* </table>
         </fieldset>
     </div>
 
@@ -183,8 +342,8 @@
 
 
             </table>
-        </fieldset>
+        </fieldset>*@
 
-</div>
+@*</div>
     @Html.ActionLink("Voulez-vous vous déconnecter ?", "Deconnexion")
-</body>
+</body>*@
