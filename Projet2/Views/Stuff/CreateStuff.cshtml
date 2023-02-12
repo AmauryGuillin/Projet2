@@ -3,8 +3,6 @@
     Layout = "_LayoutGeneral";
 }
 
-<link rel="stylesheet" href="~/css/VueCreateStuff.css" />
-
 <div class="content">
     @using (Html.BeginForm(FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
@@ -20,15 +18,10 @@
         @Html.TextBoxFor(m => m.Stuff.Name)
         @Html.ValidationMessageFor(m => m.Stuff.Name)
 
-        <div class="StuffPic">
-            <label>Image du materiel</label>
-        </div>
-        @Html.TextBoxFor(model => model.Stuff.StuffImage, new { placeholder = "Description", @type = "file" })
         <div class="description">
             <label><b>Description</b></label>
         </div>
-       
-        @Html.TextBoxFor(m => m.Stuff.Description)
+        @Html.TextAreaFor(m => m.Stuff.Description, new {placeholder = "Decrivez-vous en quelques lignes"})
         @Html.ValidationMessageFor(m => m.Stuff.Description)
 
         <div class="type">
@@ -36,6 +29,11 @@
         </div>
         @Html.DropDownListFor(m => m.Stuff.Type, Html.GetEnumSelectList<Projet2.Models.Type>(), "Selectionner un Type")
         @Html.ValidationMessageFor(m => m.Stuff.Type)
+
+        <div class="StuffPic">
+            <label><b>Image du materiel</b></label>
+        </div>
+        @Html.TextBoxFor(model => model.Stuff.StuffImage, new { placeholder = "Description", @type = "file" })
 
         <div class="state">
             <label><b>Etat</b></label>
@@ -58,7 +56,9 @@
 </div>
 
 
-
+    @section ExtraCss {
+        <link rel="stylesheet" href="~/css/VueCreateStuff.css"/>
+    }
 
 
 

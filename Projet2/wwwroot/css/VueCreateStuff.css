@@ -5,7 +5,7 @@
 }
 
 form {
-    margin-top:4%;
+    margin-top: 4%;
     width: 500px;
     padding: 30px;
     border: 1px solid #0000001e;
@@ -18,16 +18,16 @@ form {
     margin-bottom: 40px;
 }
 
-form h1 {
-    width: 100%;
-    margin-top: 0;
-    padding-bottom: 10px;
-    color: white;
-    text-align: center;
-}
+    form h1 {
+        width: 100%;
+        margin-top: 0;
+        padding-bottom: 10px;
+        color: white;
+        text-align: center;
+    }
 
 
-.name, .description, .type {
+.name, .image, .description, .type, .StuffPic {
     color: white;
     margin-bottom: 10px;
     align-self: flex-start;
@@ -39,6 +39,26 @@ form h1 {
     align-self: flex-start;
 }
 
+form #Stuff_StuffImage {
+    height: 30px;
+    align-self: start;
+    margin-bottom: 10px;
+    text-align: start;
+}
+
+#Stuff_Type {
+    align-self: start;
+    height:2rem;
+    width:15rem;
+    margin-bottom:1rem;
+}
+
+input::file-selector-button {
+    height: 30px;
+    border: none;
+    border-radius: 10px;
+}
+
 form input[type=text] {
     width: 100%;
     padding: 12px 20px;
@@ -48,32 +68,34 @@ form input[type=text] {
     border: 1px solid #ccc;
     box-sizing: border-box;
     border-radius: 20px;
-} 
-
-form input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    margin-bottom: 12px;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    border-radius: 20px;
+    font-family: 'Montserrat', sans-serif;
 }
 
-form input[type=text]:hover, input[type=password]:hover{
+form textarea {
+    grid-area: reservation-reason;
+    align-self: flex-start;
+    resize: none;
+    border-radius: 10px;
+    font-family: 'Montserrat', sans-serif;
+    padding-top: 10px;
+    padding-left: 10px;
+    margin-bottom: 0.7rem;
+    width: 97%;
+    height:8rem;
+}
+
+textarea::-webkit-input-placeholder {
+    font-family: 'Montserrat', sans-serif;
+    /* padding-top: 5px;
+    padding-left: 5px; */
+}
+
+form textarea:hover {
     border: 2px solid #4b2df1;
 }
 
-form #Stuff_Type {
-    width: 40%;
-    height: 30px;
-    align-self:start;
-    margin-bottom:10px;
-    text-align:start;
-}
 
-form #Stuff_Type:hover {
+form input[type=text]:hover {
     border: 2px solid #4b2df1;
 }
 
@@ -83,13 +105,12 @@ form #Stuff_Type:hover {
 
 form input[type=radio] {
     margin-right: 20px;
-    
 }
 
 form input[type=submit] {
-    border: 1px solid  #d33bfd;
-	border-radius: 5px;
-	color:  black;
+    border: 1px solid #d33bfd;
+    border-radius: 5px;
+    color: black;
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
@@ -102,8 +123,8 @@ form input[type=submit] {
     margin-bottom: 0;
 }
 
-form input[type=submit]:hover {
-    color: white;
-	background-color:  #4b2df1;
-    transition: 0.2s;
-}
+    form input[type=submit]:hover {
+        color: white;
+        background-color: #4b2df1;
+        transition: 0.2s;
+    }
