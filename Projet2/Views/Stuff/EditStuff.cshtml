@@ -5,7 +5,63 @@
     Layout = "_LayoutGeneral";
 }
 
-@using (Html.BeginForm())
+<div class="content">
+    @using (Html.BeginForm())
+{
+
+        @Html.HiddenFor(m=>m.Stuff.AccountOwnerId)
+
+        <h1>Modification du matériel</h1>
+        <div class="name">
+            <label><b>Nom</b></label>
+        </div>
+        @Html.TextBoxFor(m => m.Stuff.Name)
+        @Html.ValidationMessageFor(m => m.Stuff.Name)
+
+        <div class="description">
+            <label><b>Description</b></label>
+        </div>
+        @Html.TextAreaFor(m => m.Stuff.Description)
+        @Html.ValidationMessageFor(m => m.Stuff.Description)
+
+        <div class="type">
+            <label><b>Type</b></label>
+        </div>
+        @Html.DropDownListFor(m => m.Stuff.Type, Html.GetEnumSelectList<Projet2.Models.Type>(), "Selectionner un Type")
+        @Html.ValidationMessageFor(m => m.Stuff.Type)
+
+        <div class="image">
+            <label><b>Image du materiel</b></label>
+        </div>
+        @Html.TextBoxFor(model => model.Stuff.StuffImage, new { placeholder = "Description", @type = "file" })
+
+        <div class="state">
+            <label><b>Etat</b></label>
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Stuff.State,"Neuf")
+            @Html.RadioButtonFor(m=>m.Stuff.State,"Neuf")
+            @Html.LabelFor(m => m.Stuff.State,"Très Bon")
+            @Html.RadioButtonFor(m=>m.Stuff.State,"TrèsBon")
+            @Html.LabelFor(m => m.Stuff.State,"Bon")
+            @Html.RadioButtonFor(m=>m.Stuff.State,"Bon")
+            @Html.LabelFor(m => m.Stuff.State,"Acceptable")
+            @Html.RadioButtonFor(m=>m.Stuff.State,"Acceptable")
+        </div>
+
+       
+
+        <input type="submit" id="submit" value="Sauvegarder" />
+    
+    }
+</div>
+
+@section ExtraCss{
+    <link rel="stylesheet" href="~/css/VueEditStuff.css"/>
+}
+
+
+@*@using (Html.BeginForm())
 {
     @Html.HiddenFor(m=>m.Stuff.AccountOwnerId)
 
@@ -42,6 +98,6 @@
 
     <input type="submit" value="Sauvegarder" />
     </fieldset>
-}
+}*@
 
 
