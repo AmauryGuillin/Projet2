@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -18,7 +19,9 @@ namespace Projet2.Models
         public string Description { get; set; }
         public string Place { get; set; }
         public string Organizer { get; set; }
-
+        public string ImagePath { get; set; }
+        [NotMapped]
+        public IFormFile ActivityImage { get; set; }
 
 
 

@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="~/css/VueCreateStuff.css" />
 
 <div class="content">
-    @using (Html.BeginForm())
+    @using (Html.BeginForm(FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
 
         @Html.HiddenFor(m=>m.Stuff.AccountOwnerId)
@@ -20,9 +20,14 @@
         @Html.TextBoxFor(m => m.Stuff.Name)
         @Html.ValidationMessageFor(m => m.Stuff.Name)
 
+        <div class="StuffPic">
+            <label>Image du materiel</label>
+        </div>
+        @Html.TextBoxFor(model => model.Stuff.StuffImage, new { placeholder = "Description", @type = "file" })
         <div class="description">
             <label><b>Description</b></label>
         </div>
+       
         @Html.TextBoxFor(m => m.Stuff.Description)
         @Html.ValidationMessageFor(m => m.Stuff.Description)
 

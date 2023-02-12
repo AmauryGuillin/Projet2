@@ -4,7 +4,7 @@
 }
 <h2>CreatePublication</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm(FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     
     @*@Html.HiddenFor(m=>m.Publication.Id)*@
@@ -29,6 +29,10 @@
         @Html.LabelFor(m => m.Publication.Date)
         @Html.TextBoxFor(m => m.Publication.Date, new { @type = "datetime-local"})
         @Html.ValidationMessageFor(m => m.Publication.Date)
+    </div>
+    <div>
+        @Html.TextBoxFor(model => model.Publication.PubliImage, new { placeholder = "Description", @type = "file" })
+        @Html.ValidationMessageFor(m => m.Publication.PubliImage)
     </div>
     <input type="submit" value="Créer" />
 

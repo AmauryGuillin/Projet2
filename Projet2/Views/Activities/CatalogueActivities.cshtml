@@ -21,6 +21,7 @@
         @foreach (var Activity in Model.activities)
  {
     <tr>
+                <td><img src="@Activity.ImagePath" height="100" width="100" /></td>
         <td>@Html.DisplayFor(mActivity=>Activity.Description)</td>
                 <td>@Html.DisplayFor(mActivity=>Activity.Place)</td>
                 <td>@Html.DisplayFor(mActivity=>Activity.Organizer)</td>

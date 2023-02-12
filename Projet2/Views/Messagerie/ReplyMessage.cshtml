@@ -7,23 +7,23 @@
 
 
 <div>
-    <h1>Votre conversation avec :</h1>
+    <h1>Votre conversation :</h1>
 <table>
     <tbody>
             @foreach(var Message in Model.Messages)
             {
                 <tr>
-                    <td>
-                        @Html.DisplayFor(mMessage=>Message.Body)
-                    </td>
-                        <td>
-                        @Html.DisplayFor(mMessage=>Message.MessageTimeStamp)
-                        </td>
+                  <td>
+                        <img src="@Message.Sender.Profile.ImagePath" height="100" width="100" alt="" class=""/>
+                </td>
                             <td>
                         @Html.DisplayFor(mMessage=>Message.Sender.Username)
                         </td>
                             <td>
                         @Html.DisplayFor(mMessage=>Message.Body)
+                        </td>
+                        <td>
+                        @Html.DisplayFor(mMessage=>Message.MessageTimeStamp)
                         </td>
                 </tr>
             }
@@ -37,7 +37,7 @@
 {
     
 
-    @Html.TextAreaFor(m=>m.Message.Body)
+    @Html.TextAreaFor(m=>m.Message.Body,htmlAttributes: new { @style = "width: 450px;", @placeholder = "Ecrivez votre message ici ..." })
 @*<textarea placeholder="Ecrivez votre message ici">
 
 </textarea>*@

@@ -4,7 +4,7 @@
 }
 <h2>Creation d'activité</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm(FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
 
     @*@Html.HiddenFor(m=>m.Account.Id)
@@ -34,6 +34,11 @@
         @Html.ValidationMessageFor(m => m.Activity.Place)
     </div>
 
+    <div>
+        @Html.LabelFor(m => m.Activity.ActivityImage)
+        @Html.TextBoxFor(model => model.Activity.ActivityImage, new { placeholder = "Description", @type = "file" })
+        @Html.ValidationMessageFor(m => m.Event.Theme)
+    </div>
     <div>
         @Html.LabelFor(m => m.Event.Theme)
         @Html.TextBoxFor(m=>m.Event.Theme)

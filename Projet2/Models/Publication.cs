@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Projet2.Models
 {
@@ -25,5 +27,10 @@ namespace Projet2.Models
         
         public int? AccountId { get; set; }
         public Account Account { get; set; }
+
+        public string ImagePath { get; set; }
+        [NotMapped]
+        public IFormFile PubliImage { get; set; }
+
     }
 }
