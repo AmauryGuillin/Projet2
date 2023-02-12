@@ -1,0 +1,145 @@
+﻿.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    width: 500px;
+    padding: 30px;
+    border: 1px solid #0000001e;
+    background: #0000001e;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+    form h1 {
+        width: 100%;
+        margin-top: 0;
+        padding-bottom: 10px;
+        color: white;
+        text-align: center;
+    }
+
+
+.name, .image, .description, .type {
+    color: white;
+    margin-bottom: 10px;
+    align-self: flex-start;
+}
+
+.state {
+    color: white;
+    margin-bottom: 10px;
+    align-self: flex-start;
+}
+
+form #Stuff_StuffImage {
+    height: 30px;
+    align-self: start;
+    margin-bottom: 10px;
+    text-align: start;
+}
+
+input::file-selector-button {
+    height: 30px;
+    border: none;
+    border-radius: 10px;
+    cursor:pointer;
+}
+
+#Stuff_Type {
+    align-self: start;
+    height: 2rem;
+    width: 15rem;
+    margin-bottom: 1rem;
+}
+
+textarea {
+    grid-area: reservation-reason;
+    align-self: flex-start;
+    resize: none;
+    border-radius: 10px;
+    font-family: 'Montserrat', sans-serif;
+    padding-top: 10px;
+    padding-left: 10px;
+    margin-bottom: 0.7rem;
+    width: 97%;
+    height: 8rem;
+}
+
+textarea::-webkit-input-placeholder {
+    font-family: 'Montserrat', sans-serif;
+    color: #7e259e;
+}
+
+form textarea:hover {
+    border: 2px solid #4b2df1;
+}
+
+
+
+form input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    margin-bottom: 15px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 20px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+form input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    margin-bottom: 12px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 20px;
+}
+
+form input[type=text]:hover, input[type=password]:hover {
+    border: 2px solid #4b2df1;
+}
+
+input::file-selector-button {
+    align-self: flex-start;
+}
+
+.radio-buttons-state .radios {
+    align-self: flex-start;
+}
+
+form input[type=radio] {
+    margin-right: 20px;
+}
+
+form input[type=submit] {
+    border: 1px solid #d33bfd;
+    border-radius: 5px;
+    color: black;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-top: 30px;
+    margin-bottom: 0;
+}
+
+    form input[type=submit]:hover {
+        color: white;
+        background-color: #4b2df1;
+        transition: 0.2s;
+    }
