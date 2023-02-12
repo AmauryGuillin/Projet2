@@ -28,18 +28,13 @@ namespace Projet2.Controllers
 
             model.Publications = dal.GetPublications();
             List<Publication> publications = model.Publications;
-
             //Publication publication = model.Publication;
-
             List<Account> accounts = dal.GetAccounts();
-            
-
             //foreach (var publication in publications)
             //{
             //    var account = accounts.Where(r => r.Id == publication.AccountId).FirstOrDefault();
             //    publication.Account = account;
             //}
-
             return View(model);
         }
 
@@ -65,11 +60,9 @@ namespace Projet2.Controllers
             {
                 string accountId = (HttpContext.User.Identity.Name);
                 model.Account = dal.GetAccount(accountId);
-
                 return View(model);
             }
             return RedirectToAction("Login", "Login");
-
         }
         [HttpPost]
         public IActionResult CreatePublication(PublicationViewModel model)
@@ -80,7 +73,6 @@ namespace Projet2.Controllers
 
                 if (HttpContext.User.Identity.IsAuthenticated == true)
             {
-
                 string accountId = (HttpContext.User.Identity.Name);
                 model.Account = dal.GetAccount(accountId);
                 Account userAccount = model.Account;
@@ -93,9 +85,7 @@ namespace Projet2.Controllers
                     );
                     //dal.EditCreatePublication(model.Publication.Id, model.Account.Id);
                     model.Publication = publi;
-
                 return RedirectToAction("PublicationWall",model);
-
             }
 
             return RedirectToAction("Login", "Login");
@@ -108,13 +98,10 @@ namespace Projet2.Controllers
             if (model.Authentificate == true) 
             {
                 string accountId = (HttpContext.User.Identity.Name);
-
                 model.Publication = dal.GetOnePublication(id);
                 Publication publication = model.Publication;
                 return View(model);
             }
-
-
             return RedirectToAction("Login", "Login");
         }
 
@@ -126,10 +113,8 @@ namespace Projet2.Controllers
             { 
                 string accountId = (HttpContext.User.Identity.Name);
                 model.Account = dal.GetAccount(accountId);
-
                 return View("EditPublication");
             }
-
             return RedirectToAction("Login", "Login");
         }
 
@@ -141,7 +126,6 @@ namespace Projet2.Controllers
                 string accountId = (HttpContext.User.Identity.Name);
                 model.Account = dal.GetAccount(accountId);
                 model.Publication = dal.GetOnePublication(id);
-
                 return View(model);
             }
             return RedirectToAction("Login", "Login");
@@ -152,24 +136,15 @@ namespace Projet2.Controllers
         {
             if (model.Authentificate == true)
             {
-
                 string accountId = (HttpContext.User.Identity.Name);
                 model.Account = dal.GetAccount(accountId);
-                
                 dal.EditPublication(id, model.Publication.Name, model.Publication.PublicationType,model.Publication.Content,model.Publication.Date);
-
-
                 return RedirectToAction("PublicationWall");
-
             }
-
             return RedirectToAction("Login", "Login");
-
         }
 
         
-
-
 
         public ActionResult Deconnexion()
         {

@@ -27,20 +27,15 @@ namespace Projet2.Controllers
         public IActionResult CreateStuff()
         {
             StuffViewModel model = new StuffViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
-
             string accountId = (HttpContext.User.Identity.Name);
             model.Account = dal.GetAccount(accountId);
-
             return View(model);
-            
         }
 
         [HttpPost]
         public IActionResult CreateStuff(StuffViewModel model)
         {
-     
                 string accountId = (HttpContext.User.Identity.Name);
-
                 string uploads = Path.Combine(_webEnv.WebRootPath, "images");
                 string filePath = Path.Combine(uploads, model.Stuff.StuffImage.FileName);
                 using (Stream fileStream = new FileStream(filePath, FileMode.Create))
@@ -62,7 +57,6 @@ namespace Projet2.Controllers
                 Stuff stuffCreated = new Stuff();
                 stuffCreated= model.Stuff;
                 //dal.EditStuffCreate(stuffCreated.Id, userAccount.Id, "/images/" + model.Stuff.StuffImage.FileName);
-
                 if (model.Account.role == Role.Adherent)
                 {
                     return RedirectToAction("ProfileViewAdherent", "Inscription");
@@ -82,10 +76,9 @@ namespace Projet2.Controllers
                 string accountId = (HttpContext.User.Identity.Name);
                 model.Account = dal.GetAccount(accountId);
                 model.Stuff = dal.GetOneStuff(id);
-
                 return View(model);
             }
-            return View(model);
+            return RedirectToAction("Login", "Login");
         }
 
         [HttpPost]
@@ -109,7 +102,7 @@ namespace Projet2.Controllers
                     return RedirectToAction("ProfileViewBenevole", "Inscription");
                 }
             }
-            return View();
+            return RedirectToAction("Login", "Login");
         }
 
         public IActionResult RemoveStuff(int id)
@@ -120,11 +113,9 @@ namespace Projet2.Controllers
                 string accountId = (HttpContext.User.Identity.Name);
                 model.Account = dal.GetAccount(accountId);
                 model.Stuff = dal.GetOneStuff(id);
-
+                return View(model);
             }
-
-            return View(model);
-
+            return RedirectToAction("Login", "Login");
         }
 
         [HttpPost]
@@ -134,9 +125,7 @@ namespace Projet2.Controllers
             {
                 string accountId = (HttpContext.User.Identity.Name);
                 model.Account = dal.GetAccount(accountId);
-
                 dal.RemoveStuff(id);
-
                 if (model.Account.role == Role.Adherent)
                 {
                     return RedirectToAction("ProfileViewAdherent", "Inscription");
@@ -147,7 +136,7 @@ namespace Projet2.Controllers
                 }
             }
 
-            return View();
+            return RedirectToAction("Login", "Login");
         }
 
         public IActionResult StuffCatalog()
@@ -158,12 +147,12 @@ namespace Projet2.Controllers
             if (model.Authentificate == true) {
                 string accountId = (HttpContext.User.Identity.Name);
                 model.Account = dal.GetAccount(accountId);
-            if (model.Account != null)
-            {
-                Account account = model.Account;
-                model.stuffs = dal.GetStuffs();
-                List<Stuff> listStuff = model.stuffs.ToList();
-                return View(model);
+                    if (model.Account != null)
+                    {
+                     Account account = model.Account;
+                     model.stuffs = dal.GetStuffs();
+                     List<Stuff> listStuff = model.stuffs.ToList();
+                     return View(model);
             }
                 return View(model);
             }
@@ -219,8 +208,7 @@ namespace Projet2.Controllers
                             Conversation.Id,
                             userAccount.Id,
                             (int)StuffOwner.Id,
-                            messageauto
-                            );
+                            messageauto);
                             model.Message = message1;
                             return RedirectToAction("StuffCatalog", model);
                         }
@@ -232,8 +220,7 @@ namespace Projet2.Controllers
                             Conversation.Id,
                             userAccount.Id,
                             (int)StuffOwner.Id,
-                            messageauto
-                            );
+                            messageauto);
                             model.Message = message1;
                             return RedirectToAction("StuffCatalog", model);
                         }
@@ -245,8 +232,7 @@ namespace Projet2.Controllers
                             Conversation.Id,
                             userAccount.Id,
                             (int)StuffOwner.Id,
-                             messageauto
-                            );
+                             messageauto );
                             model.Message = message1;
                             return RedirectToAction("StuffCatalog", model);
                         }
@@ -261,12 +247,9 @@ namespace Projet2.Controllers
                     newConversation.Id,
                     userAccount.Id,
                     (int)StuffOwner.Id,
-                    messageauto
-                    );
+                    messageauto);
                     model.Message= message;
                     return RedirectToAction("StuffCatalog", model);
-                
-
             }
             return RedirectToAction("Login", "Login");
 
@@ -333,10 +316,9 @@ namespace Projet2.Controllers
 
                 //int borrowerId = (int)model.Stuff.AccountBorrowerId;
                 //Account borrowerAccount = dal.GetAccount(borrowerId);
+                return View(model);
             }
-
-            return View(model);
-
+            return RedirectToAction("Login", "Login");
         }
 
 
@@ -358,10 +340,8 @@ namespace Projet2.Controllers
                 {
                     return RedirectToAction("ProfileViewBenevole", "Inscription");
                 }
-
             }
-
-            return View();
+            return RedirectToAction("Login", "Login");
         }
 
 
@@ -371,19 +351,13 @@ namespace Projet2.Controllers
             if (HttpContext.User.Identity.IsAuthenticated == true)
             {
                 string accountId = (HttpContext.User.Identity.Name);
-
                 model.Stuff = dal.GetOneStuff(id);
                 Stuff stuff = model.Stuff;
-
                 model.ReservationStuff = dal.GetReservations().Where(r => r.StuffId == stuff.Id).FirstOrDefault();
                 model.Account = dal.GetAccounts().Where(r => r.Id == stuff.AccountBorrowerId).FirstOrDefault();
-
-                
-
+                return View(model);
             }
-
-            return View(model);
-
+            return RedirectToAction("Login", "Login");
         }
 
         [HttpPost]
@@ -393,9 +367,7 @@ namespace Projet2.Controllers
             {
                 string accountId = (HttpContext.User.Identity.Name);
                 model.Account = dal.GetAccount(accountId);
-
                 dal.EditStuffCancelation(id);
-
                 if (model.Account.role == Role.Adherent)
                 {
                     return RedirectToAction("ProfileViewAdherent", "Inscription");
@@ -405,8 +377,7 @@ namespace Projet2.Controllers
                     return RedirectToAction("ProfileViewBenevole", "Inscription");
                 }
             }
-
-            return View();
+            return RedirectToAction("Login", "Login");
         }
 
 

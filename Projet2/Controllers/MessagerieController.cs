@@ -44,7 +44,6 @@ namespace Projet2.Controllers
                  mvm.Messagerie.NbConversations= UserReceiverConversations.Count +UserStarterConversations.Count;
                 if (UserStarterConversations.Count != 0)
                 {
-
                     foreach (var conversation in mvm.UserConversationsStarter)
                     {
                         mvm.Conversation= conversation;
@@ -53,9 +52,8 @@ namespace Projet2.Controllers
                          ConvReceiver= mvm.Conversation.ReceiverAccount;
                     }
                 } 
-
-                if (UserReceiverConversations.Count!=0) {
-
+                if (UserReceiverConversations.Count!=0) 
+                {
                     foreach (var conversation in mvm.UserConversationsReceiver)
                     {
                         mvm.Conversation= conversation;
@@ -173,7 +171,6 @@ namespace Projet2.Controllers
                 );
             mvm2.Message= message1;
             messages.Add(message1);
-
             return RedirectToAction("MessageBoardView", mvm);
         }
 
@@ -183,7 +180,6 @@ namespace Projet2.Controllers
             foreach (Account account in dal.GetAccounts())
             {
                 SelectionAccounts.Add(new SelectListItem{Text= account.Username, Value =account.Id.ToString() }); }
-
             return SelectionAccounts;
         }
 

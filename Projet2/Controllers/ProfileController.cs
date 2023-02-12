@@ -41,7 +41,6 @@ namespace Projet2.Controllers
         [HttpPost]
         public IActionResult EditProfile(ProfileViewModel profilevm)
         {
-            
             profilevm.Account = dal.GetAccounts().Where(r => r.Id == profilevm.Account.Id).FirstOrDefault();
             dal.EditProfile(profilevm.Profile);
             dal.EditContact(profilevm.Contact);
@@ -59,15 +58,11 @@ namespace Projet2.Controllers
         [HttpPost]
         public IActionResult EditProfilePIC(ProfileViewModel profilevm)
         {
-            
-                    string uploads = Path.Combine(_webEnv.WebRootPath, "images");
-                    string filePath = Path.Combine(uploads, profilevm.Profile.ProfilImage.FileName);
-                    using (Stream fileStream = new FileStream(filePath, FileMode.Create))
-                    {
-                        profilevm.Profile.ProfilImage.CopyTo(fileStream);
-                    }
-                    dal.EditProfilePIC("/images/" + profilevm.Profile.ProfilImage.FileName,profilevm.Profile.Id);
-              
+            string uploads = Path.Combine(_webEnv.WebRootPath, "images");
+            string filePath = Path.Combine(uploads, profilevm.Profile.ProfilImage.FileName);
+            using (Stream fileStream = new FileStream(filePath, FileMode.Create))
+            { profilevm.Profile.ProfilImage.CopyTo(fileStream); }
+            dal.EditProfilePIC("/images/" + profilevm.Profile.ProfilImage.FileName,profilevm.Profile.Id);
             return View(profilevm);
         }
 
