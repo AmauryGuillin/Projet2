@@ -83,9 +83,7 @@ namespace Projet2.Controllers
                     return View(activitiesVM);
                 }
             }
-            
                 return RedirectToAction("Login", "Login");
-          
         }
 
         
