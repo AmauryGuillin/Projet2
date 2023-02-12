@@ -1,5 +1,4 @@
 ﻿@model Projet2.ViewModels.PublicationViewModel
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 @{
     Layout = "_LayoutGeneral";
 }
@@ -11,6 +10,7 @@
 <div>
     <table border="1">
         <tr>
+            <th></th>
             <th><h2>Nom</h2></th>
             <th><h2>Type</h2></th>
             <th><h2>Contenu</h2></th>
@@ -21,17 +21,21 @@
 
 
         </tr>
-        @foreach (var Publication in Model.Publications)
+        @foreach (var publication in Model.Publications)
         {
-            var Account = Model.Account;
+           @* var Account = Model.Account;*@
             <tr>
-                <td><img src="@Publication.ImagePath" height="100" width="100" alt="" class="" /></td>
-                <td>@Html.DisplayFor(mPublications => Publication.Name)</td>
-                <td>@Html.DisplayFor(mPublications => Publication.PublicationType)</td>
-                <td>@Html.DisplayFor(mPublications => Publication.Date)</td>
-                <td>@Html.DisplayFor(mPublications => Publication.Content)</td>
-                <td>@Html.DisplayFor(mAccount => Publication.Account.Username)</td>
-                <td>@Html.ActionLink("Consulter", "OnePublication","Publication", new { id = Publication.Id })</td>
+
+                <td><img src="@publication.ImagePath" height="100" width="100" alt="" class="" /></td>
+                <td>@Html.DisplayFor(mPublications => publication.Name)</td>
+                <td>@Html.DisplayFor(mPublications => publication.PublicationType)</td>
+                <td>@Html.DisplayFor(mPublications => publication.Content)</td>
+                <td>@Html.DisplayFor(mPublications => publication.Date)</td>
+                <td>@Html.DisplayFor(mAccount => publication.Account.Username)</td>
+                @if(Model.Account!=null){
+               
+                <td>@Html.ActionLink("Consulter", "OnePublication","Publication",new {@id= publication.Id})</td>
+                }
             </tr>
             
         }

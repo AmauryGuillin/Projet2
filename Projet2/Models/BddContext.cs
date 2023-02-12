@@ -5,6 +5,7 @@ using System;
 using System.Security.AccessControl;
 using System.Xml.Linq;
 using  Projet2.Models.UserMessagerie;
+using System.Security.Policy;
 
 namespace Projet2.Models
 {
@@ -53,754 +54,82 @@ namespace Projet2.Models
         {
             this.Database.EnsureDeleted();
             this.Database.EnsureCreated();
-            this.Adherents.AddRange(
 
-
-                new Adherent() { Id = 1, BenevoleId = null, NumAdherent = 1, InscriptionDate = new DateTime(2000, 12, 25), Contribution=400.80 ,TeamId = null, AdhesionId = null },
-                new Adherent() { Id = 2, BenevoleId = null, NumAdherent = 2, InscriptionDate = new DateTime(2000, 12, 30), Contribution=250.25, TeamId= null,AdhesionId= null });
-
-            this.Admins.Add(
-                new Admin()
-                {
-                    Id = 1,
-                    AccountId = 1,
-                }
-                );
-            this.Contributions.AddRange(
-                new Contribution()
-                {
-                    Id = 1,
-                    PaymentStatus = true,
-                   
-                    PrelevementDate = PrelevementDate.CinqDuMois,
-                    ContributionType = ContributionType.Mensuel
-                },
-                new Contribution()
-                {
-                    Id = 2,
-                    PaymentStatus = false,
-                   
-                    PrelevementDate = PrelevementDate.VingtCingDuMois,
-                    ContributionType = ContributionType.Annuel
-                });
-            this.Adhesions.AddRange(
-                new Adhesion()
-                {
-                    Id = 1,
-                    ContributionId = null,
-                    Echeance = DateTime.Now,
-                    AdhesionStatus = AdhesionStatus.Verfie
-                },
-                new Adhesion()
-                {
-                    Id = 2,
-                    ContributionId = null,
-                    Echeance = DateTime.Now,
-                    AdhesionStatus = AdhesionStatus.EnCours
-                });
-
-            this.Teams.AddRange(
-                new Team()
-                {
-                    Id = 1,
-                    Name = "Les BG du 44",
-                    GameId = null,
-                    CreationDate = new DateTime(2001, 01, 01),
-                    NbAdherent = 5
-                },
-                new Team()
-                {
-                    Id = 2,
-                    Name = "Les Tartines de Fromages",
-                    GameId = null,
-                    CreationDate = new DateTime(2002, 02, 02),
-                    NbAdherent = 15
-                });
-
-            this.Training.Add(
-                new Coaching() 
-                { 
-                    Id = 1, 
-                    Level = Level.Galadriel 
-                });
-
-            this.Games.AddRange(
-                new Game()
-                {
-                    Id = 1,
-                    GameType = "console",
-                    GameList = GameList.Mk
-                },
-                
-                new Game()
-                {
-                    Id = 2,
-                    GameType = "PC",
-                    GameList = GameList.Lol
-                },
-
-                new Game()
-                {
-                    Id = 3,
-                    GameType = "PC/Console",
-                    GameList = GameList.Stf
-                }
-                );
-
-
-            this.Stuffs.AddRange(
-                new Stuff()
-                {
-                    Id = 1,
-                    Name = "ordinateur",
-                    Description = "un très bo ordi",
-                    Type = Type.Ordinateur,
-                    State = State.Neuf,
-                    AccountOwnerId = 1,
-                },
-                new Stuff()
-                {
-                    Id = 2,
-                    Name = "casque PS4",
-                    Description = "chut",
-                    Type = Type.PeripheriqueConsole,
-                    State = State.Acceptable,
-                    AccountOwnerId = 2,
-                }, 
-                new Stuff()
-                {
-                    Id = 3,
-                    Name = "souris moche",
-                    Description = "fournis sans chat",
-                    Type = Type.PeripheriqueConsole,
-                    State = State.Neuf,
-                    AccountOwnerId = 1,
-                    AccountBorrowerId= 2,
-
-                });
-
-
-            this.Profils.AddRange(
-                new Profile()
-                {
-                    Id = 1,
-                    ImagePath="ser",
-                    Bio="Je pense donc je suis",
-                    Games ="Final Fantasy",
-                   
-                },
-                new Profile()
-                {
-                    Id = 2,
-                    ImagePath = "erty",
-                    Bio = "Je ne suis pas",
-                    Games = "Call of Duty",
-                });
-
-            this.ReservationsStuffs.Add(
-                new ReservationStuff()
-                {
-                    Id = 1,
-                    //StartDate = new DateTime(2022, 12, 25),
-                    //EndDate = new DateTime(2023, 12, 25),
-                    ReservationBorrower = true,
-                    AcceptationOwner = false,
-                    StuffId= 2,
-                });
-
-
-
-
-
-            this.Benevoles.AddRange(
-                new Benevole() { Id = 1, AccountId = null, NbActionVolunteering = 15 },
-                new Benevole() { Id = 2, AccountId = null, NbActionVolunteering = 3 }
-                );
-
-            this.Account.AddRange(
-                new Account()
-                {
-                    Id = 1,
-                    Username = "a",
-                    Password = "C5-E1-C5-86-05-3C-2F-FE-A6-AF-16-B4-4A-02-A1-CF",
-                    InfoPersoId = null,
-                    ContactId = null,
-                    PlanningId = null,
-                    SportAssociationId = null,
-                    ProfileId = null,
-                    InventoryId = null,
-                    role = Role.Adherent
-                },
-                new Account()
-                {
-                    Id = 2,
-                    Username = "b",
-                    Password = "C5-E1-C5-86-05-3C-2F-FE-A6-AF-16-B4-4A-02-A1-CF",
-                    InfoPersoId = null,
-                    ContactId = null,
-                    PlanningId = null,
-                    SportAssociationId = null,
-                    ProfileId=2,
-                    InventoryId = 2,
-                    role=Role.Benevole
-                } );
-            this.Inventory.AddRange(
-                new Inventory()
-                {
-                    Id = 1,
-                    nbStuff = 0
-                },
-                new Inventory()
-                {
-                    Id = 2,
-                    nbStuff = 0
-                });
-
-            this.Employees.AddRange(
-                new Employee()
-                {
-                    Id = 1,
-                    JobName = "Administrateur",
-                    DateOfEmployement= DateTime.Now,
-                    SerialNumber = "AAG0001",
-                    AccountId = null,
-                },
-
-                new Employee()
-                {
-                    Id = 2,
-                    JobName = "Coach",
-                    DateOfEmployement= DateTime.Now,
-                    SerialNumber = "CAC0001",
-                    AccountId = null,
-                },
-
-                new Employee()
-                {
-                    Id= 3,
-                    JobName = "Gestionnaire",
-                    DateOfEmployement = DateTime.Now,
-                    SerialNumber = "GMB0001",
-                    AccountId = null,
-                },
-                new Employee()
-                {
-                    Id = 4,
-                    JobName = "Administrateur",
-                    DateOfEmployement = DateTime.Now,
-                    SerialNumber = "AAEM0002",
-                    AccountId = null,
-                });
-
-            this.Publications.AddRange(
-                new Publication()
-                {
-                    Id = 1,
-                    Name = "Règles à respectées sur le Forum",
-                    PublicationType = PublicationTypes.ArticleInformatif,
-                    Content = "contenu de la publi",
-                    Date= DateTime.Now,
-                    AccountId= 1
-                    //Author="Amaury",
-                    //EmployeeId = 1,
-                },
-
-                new Publication()
-                {
-                    Id = 2,
-                    Name = "Video de la remises des prix du tournois du 15/02/2023",
-                    PublicationType = PublicationTypes.Video,
-                    Content = "contenu de la publi",
-                    Date = DateTime.Now,
-                    //Author="Abigael",
-                    //EmployeeId = 2,
-                    AccountId = 1
-                },
-
-                new Publication()
-                {
-                    Id = 3,
-                    Name = "Information pour les Bénévoles",
-                    PublicationType= PublicationTypes.Newsletter,
-                    Content = "contenu de la publi",
-                    Date = DateTime.Now,
-                    //Author="Asmma",
-                    //EmployeeId = 4,
-                    AccountId = 1
-                },
-
-                new Publication()
-                {
-                    Id = 4,
-                    Name = "Les questions les plus posées",
-                    PublicationType= PublicationTypes.FAQ,
-                    Content = "contenu de la publi",
-                    Date = DateTime.Now,
-                    //Author="Michelle",
-                    //EmployeeId = 3,
-                    AccountId = 1
-                });
-
-
-            this.Activities.AddRange(
-                new Activity()
-                {
-                    Id = 1,
-                    Description="Fin du monde",
-                    Place= "Locaux",
-                    StartDate= DateTime.UtcNow,
-                    EndDate= new DateTime(2023, 02, 10),
-                    //SlotID= 1,
-                },
-
-                new Activity()
-                {
-                    Id = 2,
-                    Description = "Fin du monde",
-                    Place = "Locaux",
-                    StartDate = new DateTime(1998,02,10),
-                    EndDate= DateTime.Now,
-                    //SlotID= 3,
-                },
-
-                new Activity()
-                {
-                    Id = 3,
-                    Description = "Fin du monde",
-                    Place = "Locaux",
-                    StartDate = DateTime.Now,
-                    EndDate= DateTime.Now,
-                    //SlotID= 2,
-                },
-
-                new Activity()
-                {
-                    Id = 4,
-                    Description = "Fin du monde",
-                    Place = "Locaux",
-                    StartDate = DateTime.Now,
-                    EndDate = DateTime.Now,
-                    //SlotID = 5,
-                },
-
-                new Activity()
-                {
-                    Id = 5,
-                    Description = "Fin du monde",
-                    Place = "Locaux",
-                    StartDate = DateTime.Now,
-                    EndDate = DateTime.Now,
-                    //SlotID = 4,
-                },
-
-                new Activity()
-                {
-                    Id = 6,
-                    Description = "Fin du monde",
-                    Place = "Locaux",
-                    StartDate = DateTime.Now,
-                    EndDate = DateTime.Now,
-                    //SlotID = 8,
-                },
-
-                new Activity()
-                {
-                    Id = 7,
-                    StartDate = DateTime.Now,
-                    EndDate = DateTime.Now,
-                    //SlotID = 7,
-                },
-
-                new Activity()
-                {
-                    Id = 8,
-                    StartDate = DateTime.Now,
-                    EndDate = DateTime.Now,
-                    //SlotID = 6,
-                },
-
-                new Activity()
-                {
-                    Id = 9,
-                    StartDate = DateTime.Now,
-                    EndDate = DateTime.Now,
-                    //SlotID = 9,
-                },
-
-                new Activity()
-                {
-                    Id = 10,
-                    StartDate = DateTime.Now,
-                    EndDate = DateTime.Now,
-                    //SlotID = 10,
-                });
-
-            this.Slots.AddRange(
-                new Slot()
-                {
-                    Id = 1,
-                    Date= DateTime.Now,
-                    StartHour= DateTime.Now,
-                    EndHour = DateTime.Now
-                },
-                new Slot()
-                {
-                    Id = 2,
-                    Date = DateTime.Now,
-                    StartHour = DateTime.Now,
-                    EndHour = DateTime.Now
-                },
-                new Slot()
-                {
-                    Id = 3,
-                    Date = DateTime.Now,
-                    StartHour = DateTime.Now,
-                    EndHour = DateTime.Now
-                },
-                new Slot()
-                {
-                    Id = 4,
-                    Date = DateTime.Now,
-                    StartHour = DateTime.Now,
-                    EndHour = DateTime.Now
-                },
-                new Slot()
-                {
-                    Id = 5,
-                    Date = new DateTime(1998, 02, 10),
-                    StartHour = DateTime.Now,
-                    EndHour = DateTime.Now
-                },
-                new Slot()
-                {
-                    Id = 6,
-                    Date = DateTime.Now,
-                    StartHour = DateTime.Now,
-                    EndHour = DateTime.Now
-                },
-                new Slot()
-                {
-                    Id = 7,
-                    Date = DateTime.Now,
-                    StartHour = DateTime.Now,
-                    EndHour = DateTime.Now
-                },
-                new Slot()
-                {
-                    Id = 8,
-                    Date = DateTime.Now,
-                    StartHour = DateTime.Now,
-                    EndHour = DateTime.Now
-                },
-                new Slot()
-                {
-                    Id = 9,
-                    Date = DateTime.Now,
-                    StartHour = DateTime.Now,
-                    EndHour = DateTime.Now
-                },
-                new Slot()
-                {
-                    Id = 10,
-                    Date = DateTime.Now,
-                    StartHour = DateTime.Now,
-                    EndHour = DateTime.Now
-                }
-                );
-
-            //this.AssociationActivities.AddRange(
-            //    new AssociationActivity()
-            //    {
-            //        Id = 1,
-            //        Description="Description 1",
-            //        Place="Paris",
-            //        ActivityId= null,
-            //    },
-
-            //    new AssociationActivity()
-            //    {
-            //        Id = 2,
-            //        Description = "Description 1",
-            //        Place = "Paris",
-            //        ActivityId = null,
-            //    },
-
-            //    new AssociationActivity()
-            //    {
-            //        Id = 3,
-            //        Description = "Description 1",
-            //        Place = "Paris",
-            //        ActivityId = null,
-            //    },
-
-            //    new AssociationActivity()
-            //    {
-            //        Id = 4,
-            //        Description = "Description 1",
-            //        Place = "Paris",
-            //        ActivityId = 1,
-            //    },
-
-            //    new AssociationActivity()
-            //    {
-            //        Id = 5,
-            //        Description = "Description 1",
-            //        Place = "Paris",
-            //        ActivityId = null,
-            //    },
-
-            //    new AssociationActivity()
-            //    {
-            //        Id = 6,
-            //        Description = "Description 1",
-            //        Place = "Paris",
-            //        ActivityId = 2,
-            //    },
-
-            //    new AssociationActivity()
-            //    {
-            //        Id = 7,
-            //        Description = "Description 1",
-            //        Place = "Paris",
-            //        ActivityId = null,
-            //    },
-
-            //    new AssociationActivity()
-            //    {
-            //        Id = 8,
-            //        Description = "Description 1",
-            //        Place = "Paris",
-            //        ActivityId = null,
-            //    },
-
-            //    new AssociationActivity()
-            //    {
-            //        Id = 9,
-            //        Description = "Description 1",
-            //        Place = "Paris",
-            //        ActivityId = 3,
-            //    },
-
-            //    new AssociationActivity()
-            //    {
-            //        Id = 10,
-            //        Description = "Description 1",
-            //        Place = "Paris",
-            //        ActivityId = null,
-            //    }
-
-            //    );
-
-            //this.VolunteeringActivities.AddRange(
-            //    new VolunteeringActivity()
-            //    {
-            //        Id = 1,
-            //        Name="Name 1",
-            //        Type="Type 1",
-            //        StartDate=DateTime.Now,
-            //        EndDate=DateTime.Now,
-            //        AssociationActivityId=1,
-            //    },
-
-            //    new VolunteeringActivity()
-            //    {
-            //        Id = 2,
-            //        Name = "Name 2",
-            //        Type = "Type 2",
-            //        StartDate = DateTime.Now,
-            //        EndDate = DateTime.Now,
-            //        AssociationActivityId = 2,
-            //    },
-
-            //    new VolunteeringActivity()
-            //    {
-            //        Id = 3,
-            //        Name = "Name 3",
-            //        Type = "Type 3",
-            //        StartDate = DateTime.Now,
-            //        EndDate = DateTime.Now,
-            //        AssociationActivityId = 3,
-            //    },
-
-            //    new VolunteeringActivity()
-            //    {
-            //        Id = 4,
-            //        Name = "Name 4",
-            //        Type = "Type 4",
-            //        StartDate = DateTime.Now,
-            //        EndDate = DateTime.Now,
-            //        AssociationActivityId = 4,
-            //    },
-
-            //    new VolunteeringActivity()
-            //    {
-            //        Id = 5,
-            //        Name = "Name 5",
-            //        Type = "Type 5",
-            //        StartDate = DateTime.Now,
-            //        EndDate = DateTime.Now,
-            //        AssociationActivityId= 5,
-            //    },
-
-            //    new VolunteeringActivity()
-            //    {
-            //        Id = 6,
-            //        Name = "Name 6",
-            //        Type = "Type 6",
-            //        StartDate = DateTime.Now,
-            //        EndDate = DateTime.Now,
-            //        AssociationActivityId = 6,
-            //    },
-
-            //    new VolunteeringActivity()
-            //    {
-            //        Id = 7,
-            //        Name = "Name 7",
-            //        Type = "Type 7",
-            //        StartDate = DateTime.Now,
-            //        EndDate = DateTime.Now,
-            //        AssociationActivityId = 7,
-            //    },
-
-            //    new VolunteeringActivity()
-            //    {
-            //        Id = 8,
-            //        Name = "Name 8",
-            //        Type = "Type 8",
-            //        StartDate = DateTime.Now,
-            //        EndDate = DateTime.Now,
-            //        AssociationActivityId = 8,
-            //    },
-
-            //    new VolunteeringActivity()
-            //    {
-            //        Id = 9,
-            //        Name = "Name 9",
-            //        Type = "Type 9",
-            //        StartDate = DateTime.Now,
-            //        EndDate = DateTime.Now,
-            //        AssociationActivityId = 9,
-            //    },
-
-            //    new VolunteeringActivity()
-            //    {
-            //        Id = 10,
-            //        Name = "Name 10",
-            //        Type = "Type 10",
-            //        StartDate = DateTime.Now,
-            //        EndDate = DateTime.Now,
-            //        AssociationActivityId = 10,
-            //    });
-
-
-            //this.Tournaments.AddRange(
-            //    new Tournament()
-            //    {
-            //        Id = 1,
-            //        FinalScore= "3 - 1",
-            //        NumberOfParticipants = 1,
-            //        Reward="100€",
-            //        GameId= 1,
-            //        AssociationActivityId= 1,
-            //    },
-
-            //    new Tournament()
-            //    {
-            //        Id = 2,
-            //        FinalScore = "1 - 2",
-            //        NumberOfParticipants = 5,
-            //        Reward = "0€",
-            //        GameId = 2,
-            //        AssociationActivityId = 2,
-            //    },
-
-            //    new Tournament()
-            //    {
-            //        Id = 3,
-            //        FinalScore = "2 - 0",
-            //        NumberOfParticipants = 5,
-            //        Reward = "1000€",
-            //        GameId = 2,
-            //        AssociationActivityId = 2,
-            //    },
-
-            //    new Tournament()
-            //    {
-            //        Id = 4,
-            //        FinalScore = "2 - 1",
-            //        NumberOfParticipants = 1,
-            //        Reward = "200€",
-            //        GameId = 3,
-            //        AssociationActivityId = 4,
-            //    }
-            //    );
-
-
-            this.Events.AddRange(
-                new Event()
-                {
-                    Id = 1,
-                    Theme="thème 1",
-                    NumberOfParticipants=10,
-                    ActivityId= 2,
-                },
-
-                new Event()
-                {
-                    Id = 2,
-                    Theme = "thème 2",
-                    NumberOfParticipants = 5,
-                   ActivityId = 1,
-                }
-                );
+            ///BENEVOLE
+            this.Benevoles.Add(new Benevole() { Id=1,AccountId=1,NbActionVolunteering=2});
+            this.Account.Add(new Models.Account()
+            {
+                Id=1,
+                Username="Benevole",
+                Password= "AC-35-7E-4A-EA-CC-F4-8C-70-AB-7D-59-12-69-02-FA",// 123
+                InfoPersoId=1,
+                ContactId=1,
+                PlanningId=1,
+                ProfileId=1,
+                MessagerieId=1,
+                role= Role.Benevole
+            });
+            this.Profils.Add(new Profile()
+            {
+                Id=1,
+                ImagePath= "/images/angrycat1.jpg",
+                Bio="Je suis un benevole",
+                Games="Candy Crush",
+
+            });
+            this.Contact.Add(new Informations.Contact()
+            {
+                Id=1,
+                EmailAdress="benevole@gmail.com",
+                TelephoneNumber="0505050505"
+            });
+            this.PersonnalInfo.Add(new InfoPerso()
+            {
+                Id=1,
+                LastName="Vole",
+                FirstName="Bene",
+                Birthday="02-11-2002"
+            });
+            this.Messageries.Add(new MessagerieA()
+            {
+                Id=1,
+                NbConversations=0,
+            });
+            this.Planning.Add(new Models.Planning
+            {
+                Id = 1,
+                Name = "Le planning de Bene Vole",
+                nbSlots = 0
+            }) ;
+            this.Stuffs.Add(new Stuff()
+            {
+                Id=1,
+                Name="poudre de licorne",
+                ImagePath= "/images/angrycat1.jpg",
+                Description= "La poudre de licorne est un produit fictif qui est souvent associé à la magie et à l'imagination. On dit que la poudre de licorne a des propriétés magiques uniques, telles que la capacité de guérir les blessures, d'accorder des souhaits et de renforcer les pouvoirs magiques. Cependant, il est important de noter que la poudre de licorne n'existe pas dans la réalité et que toutes les allégations à son sujet sont purement fictives.",
+                Type=Type.AccessoireBureau,
+                State=State.Neuf,
+                Reservation=Reservation.libre,
+                AccountOwnerId=1,
+
+
+            });
+            this.Publications.Add(new Publication()
+            {
+                Id=1,
+                Name="Un truc chiant.....",
+                PublicationType=PublicationTypes.FAQ,
+                Content= "puceau moi ? serieusement ^^ haha on me l avait pas sortie celle la depuis loooongtemps  demande a mes potes si je suis puceau tu vas voir les reponses que tu vas te prendre XD rien que la semaine passee j ai niquer donc chuuuuut ferme la puceau de merde car oui toi tu m as tout l air d un bon puceau de merde car souvent vous etes frustrer de ne pas BAISER  ses agreable de se faire un missionnaire ou un amazone avec une meuf hein? tu peux pas repondre car tu ne sais pas ce que c ou alors tu le sais mais tu as du taper dans ta barre de recherche \"missionnaire sexe\" ou \"amazone sexe\" pour comprendre ce que c etait mdddrrr !! c est grave quoiquil en soit.... pour revenir a moi, je pense que je suis le mec le moins puceau de ma bande de 11 meilleurs amis pas psk j ai eu le plus de rapport intime mais psk j ai eu les plus jolie femme que mes amis ses pas moi qui le dit, ses eux qui commente sous mes photos insta \"trop belle la fille que tu as coucher avec hier en boite notamment!\" donc apres si tu veux que sa parte plus loi sa peut partir vraiment loi j habite dans la banlieue de niort sa te parle steven sanchez ? ses juste un cousin donc OKLM hahaha on verra si tu parles encore le puceau de merde mdddrrr pk insulter qd on est soi meme puceau tu me feras toujour marrer!! ",
+                AccountId=1,
+            });
+            // this.Activities.Add();
+
+            //ADHERENT
 
                 
             this.SaveChanges();
 
-            using (Dal dal = new Dal())
-            {
-
-                //dal.EditAdherent(1, 1, 33, new DateTime(2000, 12, 25), 33.33, "OUI", 1, 1, 1);
-                //dal.EditAdhesion(1, 1, DateTime.Now, AdhesionStatus.EnCours);
-                //dal.EditContribution(1, true, 33.33, PrelevementDate.VingtCingDuMois, ContributionType.Annuel);
-                //dal.EditTeam(2, "Les Tartines de Gruillere", 1, new DateTime(2002, 02, 02), 46);
-
-
-                //dal.RemoveAdherent(1);
-                //dal.RemoveContribution(1);
-                //dal.RemoveAdhesion(1);
-
-                //dal.RemoveTeam(1);
-
-
-                // dal.EditBenevole(1, 1, 45);
-                //dal.RemoveBenevole(1);
-
-                //dal.CreatePublication("Test creation publi 1", PublicationTypes.Infographie, "contenu de la publi", DateTime.Now, "Auteur 1", 2);
-                //dal.EditPublication(5, "Test creation publi 1 MODIF", PublicationTypes.Infographie, "contenu de la publi MODIF", DateTime.Now, "Auteur 1", 2);
-                //dal.RemovePublication(5);
-
-                //dal.CreateSlot(DateTime.Now, DateTime.Now, DateTime.Now);
-                //dal.EditSlot(11, new DateTime(1998,02,10), DateTime.Now, DateTime.Now);
-                //dal.RemoveSlot(11);
-
-                //dal.CreateAssoActivity("Description test", "Chez moi ! :)", 9);
-                //dal.EditAssoActivity(11, "Description test MOFID", "Chez moi ! :) MODIF", 5);
-                //dal.RemoveAssoActivity(11);
-
-                //dal.CreateVolunteeringActivity("Type 11", "Name 11", DateTime.Now, DateTime.Now, 11);
-                //dal.EditVolunteeringActivity(11, "Type 11 MODIF", "Name 11 MODIF", DateTime.Now, DateTime.Now, 11);
-                //dal.RemoveVolunteeringActivity(11);
-
-                //dal.CreateTournament("1 - 2", 1, "0€", 3, 9);
-                //dal.EditTournament(5, "1 - 2", 1, "50€", 3, 9);
-                //dal.RemoveTournament(5);
-
-                //dal.CreateEvent("thème 3", 6, 10);
-                //dal.EditEvent(3, "thème 3 MODIF", 6, 10);
-                //dal.RemoveEvent(3);
-            }
-
+        ///////////
         }
 
 
@@ -808,9 +137,9 @@ namespace Projet2.Models
         {
             optionsBuilder.UseMySql(ConnexionSQL.connexion);
         }
-
-
+///////////////////////////////////////////////
     }
+
 
 
 }

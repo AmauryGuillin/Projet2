@@ -32,5 +32,6 @@ namespace Projet2.Models
         [NotMapped]
         public IFormFile PubliImage { get; set; }
 
+        public string Dateplus { get; set; }
     }
 }

@@ -1,5 +1,5 @@
-﻿@model Projet2.ViewModels.PublicationViewModel
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+﻿@using Projet2.Models;
+@model Projet2.ViewModels.PublicationViewModel
 @{
     Layout = "_LayoutGeneral";
 }
@@ -7,7 +7,8 @@
 
     <h2>PUBLICATION</h2>
 
-    @Html.HiddenFor(m=>m.Publication.Id)
+  @*  @Html.HiddenFor(m=>m.Publication.Id)*@
+
 
     <h1>@Model.Publication.Name</h1>
     <p>@Model.Publication.PublicationType</p>

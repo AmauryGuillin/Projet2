@@ -23,37 +23,29 @@ namespace Projet2.Controllers
             _webEnv = environment;
             this.dal = new Dal();
         }
-        public IActionResult PublicationWall(PublicationViewModel model)
+        public IActionResult PublicationWall()
         {
+            PublicationViewModel model = new PublicationViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
+            string accountId = (HttpContext.User.Identity.Name);
+            model.Account = dal.GetAccount(accountId);
+            Account account= model.Account;
+            if (account !=null)
+            {
+             List<Publication> publications = dal.GetPublications();
+             model.Publications= publications;
+             foreach (var publication in publications) {
+               model.Publication= publication;
+               model.Publication.Account = dal.GetAccounts().Where(r => r.Id == publication.Account.Id).FirstOrDefault();
+               Account Author = model.Publication.Account;    
+                }
 
-            model.Publications = dal.GetPublications();
-            List<Publication> publications = model.Publications;
-            //Publication publication = model.Publication;
-            List<Account> accounts = dal.GetAccounts();
-            //foreach (var publication in publications)
-            //{
-            //    var account = accounts.Where(r => r.Id == publication.AccountId).FirstOrDefault();
-            //    publication.Account = account;
-            //}
-            return View(model);
+                return View(model);
+            }
+            return RedirectToAction("Login", "Login");
         }
 
-        //public IActionResult PublicationWall()
-        //{
-        //    var model = new PublicationViewModel();
-        //    model.Publications = dal.GetPublications();
-        //    var accounts = dal.GetAccounts().ToDictionary(x => x.Id, x => x);
 
-        //    foreach (var publication in model.Publications)
-        //    {
-        //        publication.Account = accounts[publication.AccountId];
-        //    }
-
-        //    return View(model);
-        //}
-
-
-        public IActionResult CreatePublication()
+    public IActionResult CreatePublication()
         {
             PublicationViewModel model = new PublicationViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
             if (model.Authentificate == true)
@@ -95,9 +87,10 @@ namespace Projet2.Controllers
         public IActionResult OnePublication(int id)
         {
             PublicationViewModel model = new PublicationViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
-            if (model.Authentificate == true) 
+            string accountId = (HttpContext.User.Identity.Name);
+            Account userAccount= dal.GetAccount(accountId);
+            if (userAccount!=null)
             {
-                string accountId = (HttpContext.User.Identity.Name);
                 model.Publication = dal.GetOnePublication(id);
                 Publication publication = model.Publication;
                 return View(model);
@@ -105,18 +98,19 @@ namespace Projet2.Controllers
             return RedirectToAction("Login", "Login");
         }
 
-        [HttpPost]
-        public IActionResult OnePublication(PublicationViewModel model, int id)
-        {
-            
-            if (model.Authentificate == true)
-            { 
-                string accountId = (HttpContext.User.Identity.Name);
-                model.Account = dal.GetAccount(accountId);
-                return View("EditPublication");
-            }
-            return RedirectToAction("Login", "Login");
-        }
+        //[HttpPost]
+        //public IActionResult OnePublication(PublicationViewModel model, )
+        //{
+        //    string accountId = (HttpContext.User.Identity.Name);
+        //    Account account = dal.GetAccount(accountId);
+        //    if (account!=null)
+        //    {
+        //        model.Publication = dal.GetOnePublication(id);
+        //        Publication publication = model.Publication;
+        //        return View("EditPublication", model);
+        //    }
+        //    return RedirectToAction("Login", "Login");
+        //}
 
         public IActionResult EditPublication(int id)
         {
