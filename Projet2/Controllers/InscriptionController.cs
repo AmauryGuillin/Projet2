@@ -232,6 +232,15 @@ namespace Projet2.Controllers
                 IEnumerable<Activity> lastactivities = dal.GetActivities();
                 inscriptionViewModel.Activities = lastactivities.Reverse<Activity>().Take(3);
 
+                IEnumerable<Publication> lastpublications = dal.GetPublications();
+                inscriptionViewModel.Publications = lastpublications.Reverse<Publication>().Take(3);
+
+                foreach (var Publication in inscriptionViewModel.Publications)
+                {
+                    Account AuthorPubli = dal.GetAccounts().Where(r => r.Id == Publication.AccountId).FirstOrDefault();
+                    if (AuthorPubli != null) { inscriptionViewModel.Account = AuthorPubli; }
+                }
+
                 return View(inscriptionViewModel);
             }
            
@@ -259,6 +268,14 @@ namespace Projet2.Controllers
                 IEnumerable <Activity> lastactivities = dal.GetActivities();
                 inscriptionViewModel.Activities= lastactivities.Reverse<Activity>().Take(3);
 
+                IEnumerable<Publication> lastpublications = dal.GetPublications();
+                inscriptionViewModel.Publications = lastpublications.Reverse<Publication>().Take(3);
+
+                foreach (var Publication in inscriptionViewModel.Publications)
+                {
+                    Account AuthorPubli = dal.GetAccounts().Where(r => r.Id == Publication.AccountId).FirstOrDefault();
+                    if (AuthorPubli != null) { inscriptionViewModel.Account = AuthorPubli; }
+                }
                 return View(inscriptionViewModel);
             }
             return RedirectToAction("Login", "Login");

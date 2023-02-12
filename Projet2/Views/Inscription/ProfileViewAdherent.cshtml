@@ -156,32 +156,35 @@
             </table>
         </fieldset>
     </div>
+
+
+
    
-    <div>
+<div>
         <fieldset>
-            <legend> Les denières activités de l'association': (Stuff) </legend>
-    
-    <table border="1">
+            <legend> Les denières publications: (Stuff) </legend>
+
+            <table border="1">
                 <tr>
-                    <th><h2>Type</h2></th>
+                    <th><h2>Nom</h2></th>
                     <th><h2>Description</h2></th>
-                    <th><h2>Lieu</h2></th>
-                    <th><h2>Organisateur</h2></th>
-                   
+                    <th><h2>Auteur</h2></th>
+
                 </tr>
 
-                @foreach(var Activity in Model.Activities)
+                @foreach (var Publication in Model.Publications)
                 {
                     <tr>
-                            <td>@Html.DisplayFor(mActivity => Activity.Description)</td>
-                        <td>@Html.DisplayFor(mActivity => Activity.Place)</td>
-                        <td>@Html.DisplayFor(mActivity => Activity.Organizer)</td>
-                            </tr>
+                        <td>@Html.DisplayFor(mPublication => Publication.Name)</td>
+                        <td>@Html.DisplayFor(mPublication => Publication.Content)</td>
+                        <td>@Html.DisplayFor(mPublication => Publication.Account.Username)</td>
+                    </tr>
                 }
 
 
-</table>
-</fieldset>
+            </table>
+        </fieldset>
+
 </div>
     @Html.ActionLink("Voulez-vous vous déconnecter ?", "Deconnexion")
 </body>

@@ -47,5 +47,9 @@ namespace Projet2.ViewModels
         public Activity Activity { get; set; }
         public IEnumerable <Activity> Activities { get; set;}
 
+        public Publication Publication { get; set; }
+        public IEnumerable<Publication> Publications { get; set; }
+
+
     }
 }
