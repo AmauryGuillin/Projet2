@@ -368,11 +368,14 @@ namespace Projet2.Controllers
         {
             List<SelectListItem> SelectionAccountsAdherents = new List<SelectListItem>();
             var adherents=dal.GetAdherents();
-
             foreach (Adherent adherent in adherents)
             {
-                Account account= adherent.Account;
-                SelectionAccountsAdherents.Add(new SelectListItem { Text = account.Username, Value = account.Id.ToString() });
+            Account account = adherent.Account;
+
+               
+                        SelectionAccountsAdherents.Add(new SelectListItem { Text = account.Username, Value = account.Id.ToString() });
+                    
+                  
             }
             return SelectionAccountsAdherents;
         }
@@ -384,7 +387,15 @@ namespace Projet2.Controllers
             foreach (Benevole benevole in benevoles)
             {
                 Account account = benevole.Account;
-                SelectionAccountsBenevole.Add(new SelectListItem { Text = account.Username, Value = account.Id.ToString() });
+
+                var adherents = dal.GetAdherents();
+                foreach(var adherent in adherents)
+                {
+                    if (benevole.AccountId!=adherent.AccountId)
+                    {
+                        SelectionAccountsBenevole.Add(new SelectListItem { Text = account.Username, Value = account.Id.ToString() });
+                    }
+                } 
             }
             return SelectionAccountsBenevole;
         }

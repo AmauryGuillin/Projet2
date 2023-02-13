@@ -17,7 +17,7 @@
     <div class="banner">
         <div class="nav-links-profile">
             <ul>
-                <li><a href="#">Paramètres du compte</a></li>
+                    <li>@Html.ActionLink("Modifier le compte","ProfileViewParamsAdherent","Inscription",new{accountId=Model.Account.Id,adherentId=Model.Adherent.Id})</li>
                 <li>@Html.ActionLink("Ajouter du materiel", "CreateStuff", "Stuff", new {accountId = Model.Account.Id})</li>
                 <li>@Html.ActionLink("Consulter le planning", "PlanningView", "Planning", new {accountId = Model.Account.Id})</li>
                 <li>@Html.ActionLink("Messagerie", "MessageBoardView", "Messagerie", new {accountId = Model.Account.Id})</li>

@@ -10,6 +10,7 @@ using System.Linq;
 using System.Security.Claims;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
+using Projet2.Models.Informations;
 
 namespace Projet2.Controllers
 {
@@ -24,10 +25,10 @@ namespace Projet2.Controllers
         }
         public IActionResult SignUpBenevole()
         {
-          InscriptionViewModel inscriptionViewModel= new InscriptionViewModel
-          {
-              Authentificate= HttpContext.User.Identity.IsAuthenticated
-          };
+            InscriptionViewModel inscriptionViewModel = new InscriptionViewModel
+            {
+                Authentificate = HttpContext.User.Identity.IsAuthenticated
+            };
 
             return View(inscriptionViewModel);
         }
@@ -35,7 +36,7 @@ namespace Projet2.Controllers
 
         [HttpPost]
         public IActionResult SignUpBenevole(InscriptionViewModel inscriptionViewModel)
-        { 
+        {
 
             string uploads = Path.Combine(_webEnv.WebRootPath, "images");
             string filePath = Path.Combine(uploads, inscriptionViewModel.Profile.ProfilImage.FileName);
@@ -54,13 +55,13 @@ namespace Projet2.Controllers
                      inscriptionViewModel.Infos.LastName,
                      inscriptionViewModel.Infos.Birthday
                      );
-           
+
             inscriptionViewModel.Profile =
                 dal.AddProfile(
                     "/images/" + inscriptionViewModel.Profile.ProfilImage.FileName,
                     inscriptionViewModel.Profile.Bio,
                     inscriptionViewModel.Profile.Games
-                    
+
                     );
             inscriptionViewModel.Messagerie =
                 dal.AddMessagerie();
@@ -96,7 +97,7 @@ namespace Projet2.Controllers
 
 
             return RedirectToAction("ProfileViewBenevole", inscriptionViewModel);
-           
+
 
 
         }
@@ -133,7 +134,7 @@ namespace Projet2.Controllers
                 inscriptionViewModel.Profile.ProfilImage.CopyTo(fileStream);
             }
             string uploadsPdf = Path.Combine(_webEnv.WebRootPath, "AdherentsDocuments");
-            string filePathpdf =Path.Combine(uploadsPdf,inscriptionViewModel.Adherent.DocAdherent.FileName);
+            string filePathpdf = Path.Combine(uploadsPdf, inscriptionViewModel.Adherent.DocAdherent.FileName);
             using (Stream fileStreamPdf = new FileStream(filePathpdf, FileMode.Create))
             {
                 inscriptionViewModel.Adherent.DocAdherent.CopyTo(fileStreamPdf);
@@ -150,12 +151,12 @@ namespace Projet2.Controllers
                      inscriptionViewModel.Infos.Birthday
                      );
 
-             inscriptionViewModel.Profile =
-                dal.AddProfile(
-                    "/images/" + inscriptionViewModel.Profile.ProfilImage.FileName,
-                    inscriptionViewModel.Profile.Bio,
-                    inscriptionViewModel.Profile.Games
-                    );
+            inscriptionViewModel.Profile =
+               dal.AddProfile(
+                   "/images/" + inscriptionViewModel.Profile.ProfilImage.FileName,
+                   inscriptionViewModel.Profile.Bio,
+                   inscriptionViewModel.Profile.Games
+                   );
             inscriptionViewModel.Messagerie =
                dal.AddMessagerie();
 
@@ -177,10 +178,10 @@ namespace Projet2.Controllers
             inscriptionViewModel.Adhesion =
                 dal.CreateNewAdhesion(
                    inscriptionViewModel.Contribution.Id,
-                   DateTime.UtcNow.AddDays( 365 ),
+                   DateTime.UtcNow.AddDays(365),
                    AdhesionStatus.EnCours
                     );
- 
+
             inscriptionViewModel.Benevole =
             dal.CreateNewBenevole(inscriptionViewModel.Account.Id);
 
@@ -190,7 +191,7 @@ namespace Projet2.Controllers
                  inscriptionViewModel.Benevole.Id,
                  inscriptionViewModel.Adhesion.Id,
                  inscriptionViewModel.Contribution.Id,
-                 "/AdherentsDocuments/"+ inscriptionViewModel.Adherent.DocAdherent.FileName
+                 "/AdherentsDocuments/" + inscriptionViewModel.Adherent.DocAdherent.FileName
                  );
 
             var userClaims = new List<Claim>()
@@ -215,15 +216,15 @@ namespace Projet2.Controllers
 
         public ActionResult ProfileViewBenevole()
         {
-            InscriptionViewModel inscriptionViewModel= new InscriptionViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
+            InscriptionViewModel inscriptionViewModel = new InscriptionViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
             Account accountUser = dal.GetAccount(HttpContext.User.Identity.Name);
-            inscriptionViewModel.Account= accountUser;
-            
-            if (accountUser!=null)
+            inscriptionViewModel.Account = accountUser;
+
+            if (accountUser != null)
             {
-                inscriptionViewModel.Profile = dal.GetProfiles().Where(r => r.Id == accountUser.ProfileId ).FirstOrDefault();
+                inscriptionViewModel.Profile = dal.GetProfiles().Where(r => r.Id == accountUser.ProfileId).FirstOrDefault();
                 inscriptionViewModel.Infos = dal.GetInformations().Where(r => r.Id == accountUser.InfoPersoId).FirstOrDefault();
-                inscriptionViewModel.Contact=dal.GetContacts().Where(r => r.Id== accountUser.ContactId).FirstOrDefault();
+                inscriptionViewModel.Contact = dal.GetContacts().Where(r => r.Id == accountUser.ContactId).FirstOrDefault();
                 inscriptionViewModel.Stuffs = dal.GetOwnedStuff(accountUser.Id);
                 List<Stuff> Stuffs = inscriptionViewModel.Stuffs;
                 inscriptionViewModel.ReservationStuffs = dal.GetReservations();
@@ -240,8 +241,8 @@ namespace Projet2.Controllers
 
                 return View(inscriptionViewModel);
             }
-           
-            return RedirectToAction("Login","Login");
+
+            return RedirectToAction("Login", "Login");
 
         }
 
@@ -249,12 +250,14 @@ namespace Projet2.Controllers
         {
             InscriptionViewModel inscriptionViewModel = new InscriptionViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
             string accountId = (HttpContext.User.Identity.Name);
-            Account account= dal.GetAccount(accountId); 
+            Account account = dal.GetAccount(accountId);
 
-            if (account!=null)
+            if (account != null)
             {
                 inscriptionViewModel.Account = dal.GetAccount(accountId);
                 Account accountUser = inscriptionViewModel.Account;
+                Adherent adherent = dal.GetAdherents().Where(r => r.AccountId == account.Id).FirstOrDefault();
+                inscriptionViewModel.Adherent = adherent;
                 inscriptionViewModel.Profile = dal.GetProfiles().Where(r => r.Id == accountUser.ProfileId).FirstOrDefault();
                 inscriptionViewModel.Infos = dal.GetInformations().Where(r => r.Id == accountUser.InfoPersoId).FirstOrDefault();
                 inscriptionViewModel.Contact = dal.GetContacts().Where(r => r.Id == accountUser.ContactId).FirstOrDefault();
@@ -262,8 +265,8 @@ namespace Projet2.Controllers
                 List<Stuff> Stuffs = inscriptionViewModel.Stuffs;
                 inscriptionViewModel.ReservationStuffs = dal.GetReservations();
                 List<ReservationStuff> ListReservations = inscriptionViewModel.ReservationStuffs;
-                IEnumerable <Activity> lastactivities = dal.GetActivities();
-                inscriptionViewModel.Activities= lastactivities.Reverse<Activity>().Take(3);
+                IEnumerable<Activity> lastactivities = dal.GetActivities();
+                inscriptionViewModel.Activities = lastactivities.Reverse<Activity>().Take(3);
                 IEnumerable<Publication> lastpublications = dal.GetPublications();
                 inscriptionViewModel.Publications = lastpublications.Reverse<Publication>().Take(3);
                 foreach (var Publication in inscriptionViewModel.Publications)
@@ -301,14 +304,138 @@ namespace Projet2.Controllers
         [HttpPost]
         public IActionResult ProfileViewParamsBenevole(InscriptionViewModel inscriptionViewModel)
         {
+            string imagepath;
             string accountId = (HttpContext.User.Identity.Name);
             Account account = dal.GetAccount(accountId);
             if (account != null)
             {
+                Contact contact = dal.GetContacts().Where(r => r.Id == account.ContactId).FirstOrDefault();
+                InfoPerso infos = dal.GetInformations().Where(r => r.Id == account.InfoPersoId).FirstOrDefault();
+                Profile profile = dal.GetProfiles().Where(r => r.Id == account.ProfileId).FirstOrDefault();
+
+
+                string uploads = Path.Combine(_webEnv.WebRootPath, "images");
+                if (inscriptionViewModel.Profile.ProfilImage != null)
+                {
+                    string filePath = Path.Combine(uploads, inscriptionViewModel.Profile.ProfilImage.FileName);
+                    using (Stream fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        inscriptionViewModel.Profile.ProfilImage.CopyTo(fileStream);
+                    }
+                    imagepath = "/images/" + inscriptionViewModel.Profile.ProfilImage.FileName;
+                }
+                else { imagepath = profile.ImagePath; }
+
+                inscriptionViewModel.Account = dal.EditAccount(
+                        account.Id,
+                        inscriptionViewModel.Account.Username,
+                        inscriptionViewModel.Account.Password
+                        );
+                inscriptionViewModel.Profile = dal.EditProfileS(
+                        profile.Id,
+                        imagepath,
+                         inscriptionViewModel.Profile.Games,
+                         inscriptionViewModel.Profile.Bio
+                        );
+                inscriptionViewModel.Contact = dal.EditContacts(
+                        contact.Id,
+                        inscriptionViewModel.Contact.EmailAdress,
+                        inscriptionViewModel.Contact.TelephoneNumber
+                        );
+
+                    return RedirectToAction("ProfileViewBenevole", inscriptionViewModel);
+                }
+
+                return RedirectToAction("Login", "Login");
+            }
 
 
 
-                return RedirectToAction("ProfileViewBenevole", inscriptionViewModel);
+        public IActionResult ProfileViewParamsAdherent()
+        {
+
+            InscriptionViewModel inscriptionViewModel = new InscriptionViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
+            string accountId = (HttpContext.User.Identity.Name);
+            Account account = dal.GetAccount(accountId);
+
+            if (account != null)
+            {
+                inscriptionViewModel.Account = account;
+                inscriptionViewModel.Profile = dal.GetProfiles().Where(r => r.Id == account.ProfileId).FirstOrDefault();
+                inscriptionViewModel.Contact = dal.GetContacts().Where(r => r.Id == account.ContactId).FirstOrDefault();
+                inscriptionViewModel.Infos = dal.GetInformations().Where(r => r.Id == account.InfoPersoId).FirstOrDefault();
+                Adherent adherent=dal.GetAdherents().Where(r => r.AccountId== account.Id).FirstOrDefault();
+               inscriptionViewModel.Adherent= adherent;
+                return View(inscriptionViewModel);
+            }
+
+            return RedirectToAction("Login", "Login");
+        }
+
+
+        [HttpPost]
+        public IActionResult ProfileViewParamsAdherent(InscriptionViewModel inscriptionViewModel)
+        {
+
+            string accountId = (HttpContext.User.Identity.Name);
+            Account account = dal.GetAccount(accountId);
+            if (account != null)
+            {
+                string filepath;
+                string imagepath;
+                Contact contact = dal.GetContacts().Where(r => r.Id == account.ContactId).FirstOrDefault();
+                InfoPerso infos = dal.GetInformations().Where(r => r.Id == account.InfoPersoId).FirstOrDefault();
+                Profile profile = dal.GetProfiles().Where(r => r.Id == account.ProfileId).FirstOrDefault();
+                Adherent adherent=dal.GetAdherents().Where(r=>r.AccountId== account.Id).FirstOrDefault();
+                inscriptionViewModel.Adherent= adherent;
+
+                string uploads = Path.Combine(_webEnv.WebRootPath, "images");
+                if (inscriptionViewModel.Profile.ProfilImage != null) {
+                    string filePath = Path.Combine(uploads, inscriptionViewModel.Profile.ProfilImage.FileName);
+                    using (Stream fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        inscriptionViewModel.Profile.ProfilImage.CopyTo(fileStream);
+                    }
+                    imagepath = "/images/" + inscriptionViewModel.Profile.ProfilImage.FileName;
+                }
+                else { imagepath = profile.ImagePath; }
+
+                string uploadsPdf = Path.Combine(_webEnv.WebRootPath, "AdherentsDocuments");
+                if (inscriptionViewModel.Adherent.DocAdherent != null)
+                {
+                    string filePathpdf = Path.Combine(uploadsPdf, inscriptionViewModel.Adherent.DocAdherent.FileName);
+                    using (Stream fileStreamPdf = new FileStream(filePathpdf, FileMode.Create))
+                    {
+                        inscriptionViewModel.Adherent.DocAdherent.CopyTo(fileStreamPdf);
+                    }
+                    filepath = "/AdherentsDocuments/" + inscriptionViewModel.Adherent.DocAdherent.FileName;
+                }
+                else { filepath = adherent.DocPath; }
+                
+               
+                inscriptionViewModel.Account = dal.EditAccount(
+                        account.Id,
+                        inscriptionViewModel.Account.Username,
+                        inscriptionViewModel.Account.Password
+                        );
+                inscriptionViewModel.Profile = dal.EditProfileS(
+                        profile.Id,
+                         imagepath,
+                         inscriptionViewModel.Profile.Games,
+                         inscriptionViewModel.Profile.Bio
+                        );
+                inscriptionViewModel.Contact = dal.EditContacts(
+                        contact.Id,
+                        inscriptionViewModel.Contact.EmailAdress,
+                        inscriptionViewModel.Contact.TelephoneNumber
+                        );
+                
+                inscriptionViewModel.Adherent = dal.EditAdherent(
+                    adherent.Id,
+                    filepath
+                    );
+
+                return RedirectToAction("ProfileViewAdherent", inscriptionViewModel);
             }
 
             return RedirectToAction("Login", "Login");
@@ -316,6 +443,15 @@ namespace Projet2.Controllers
 
 
 
+        
+
+
+
+        public ActionResult Deconnexion()
+            {
+                HttpContext.SignOutAsync();
+                return Redirect("/");
+            }
 
 
 
@@ -323,24 +459,6 @@ namespace Projet2.Controllers
 
 
 
-
-
-
-
-
-
-            public ActionResult Deconnexion()
-        {
-            HttpContext.SignOutAsync();
-            return Redirect("/");
+            /////////////////////////////END
         }
-
-
-
-
-
-
-
-        /////////////////////////////END
-    }
-}
+    } 

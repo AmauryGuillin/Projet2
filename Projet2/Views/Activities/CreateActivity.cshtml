@@ -45,8 +45,8 @@
             <div class="image">
               <label>Image</label>
             </div>
-                @Html.TextBoxFor(model => model.Activity.ActivityImage, new { placeholder = "Description", @type = "file",accept=".png, .jpg, .jpeg,.gif" })
-                @Html.ValidationMessageFor(m => m.Event.Theme)
+                @Html.TextBoxFor(model => model.Activity.ActivityImage, new { placeholder = "Description", @type = "file",accept=".png,.jpg,.jpeg,.gif" })
+                @*@Html.ValidationMessageFor(m => m.Event.Theme)*@
           </div>
         </div>
         <div class="description">
