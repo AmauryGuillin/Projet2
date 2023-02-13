@@ -153,8 +153,7 @@ form input[type=submit] {
     font-weight: bold;
     justify-self: end;
     font-size: 0.9rem;
-    margin-top: 10px;
-    margin-bottom: 0;
+    margin: 0;
 }
 
     form input[type=submit]:hover {
@@ -166,15 +165,13 @@ form input[type=submit] {
 #decline {
     color: black;
     padding: 14px 20px;
-    margin: 8px 0;
     border: none;
     cursor: pointer;
     justify-self: end;
     border-radius: 20px;
     font-weight: bold;
     font-size: 0.9rem;
-    margin-top: 10px;
-    margin-bottom: 0;
+    margin: 0;
 }
 
     #decline:hover {
@@ -185,20 +182,18 @@ form input[type=submit] {
 
 #return {
     color: black;
-    padding: 14px 20px;
-    margin: 8px 0;
     justify-self: start;
+    width: 20rem;
     border: none;
     cursor: pointer;
     border-radius: 10px;
     font-weight: bold;
     font-size: 0.9rem;
-    margin-top: 30px;
-    margin-bottom: 0;
+    margin : 0;
 }
 
     #return:hover {
         color: white;
-        background-color: #e0b907;
+        background-color: #b400ff;
         transition: 0.2s;
     }

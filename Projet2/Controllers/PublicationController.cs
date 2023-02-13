@@ -73,7 +73,8 @@ namespace Projet2.Controllers
                 userAccount.Id,
                 model.Publication.Content,
                 model.Publication.Name,
-                model.Publication.PublicationType
+                model.Publication.PublicationType,
+                model.Publication.Date
                     );
                     //dal.EditCreatePublication(model.Publication.Id, model.Account.Id);
                     model.Publication = publi;

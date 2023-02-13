@@ -9,9 +9,13 @@ namespace Projet2.Models
 
     public enum Role
     {
+        [Display(Name = "Administrateur")]
         Admin,
-        Salarié,
+        [Display(Name = "Salarié")]
+        Salarie,
+        [Display(Name = "Bénévole")]
         Benevole,
+        [Display(Name = "Adhérent")]
         Adherent
     }
     public class Account

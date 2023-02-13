@@ -63,6 +63,7 @@ form {
     margin-bottom: 1rem;
     margin-top: 0.5rem;
     border-radius: 15px;
+    text-align: center;
 
 }
 
@@ -92,6 +93,7 @@ form input[type=text] {
     border: 1px solid #ccc;
     box-sizing: border-box;
     border-radius: 20px;
+    text-align: center;
 }
 
 form textarea {

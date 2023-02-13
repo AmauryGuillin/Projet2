@@ -5,15 +5,21 @@ namespace Projet2.Models
 {
     public enum ContributionType
     {
+        [Display(Name = "Annuel")]
         Annuel,
+        [Display(Name = "Trimestriel")]
         Trimestriel,
+        [Display(Name = "Mensuel")]
         Mensuel
     }
 
     public enum PrelevementDate
     {
+        [Display(Name = "5 du mois")]
         CinqDuMois,
+        [Display(Name = "15 du mois")]
         QuinzeDuMoi,
+        [Display(Name = "20 du mois")]
         VingtCingDuMois
     }
 

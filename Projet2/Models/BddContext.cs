@@ -221,7 +221,7 @@ namespace Projet2.Models
                 PlanningId = 3,
                 ProfileId = 3,
                 MessagerieId = 3,
-                role = Role.Salarié
+                role = Role.Salarie
             });
             this.Profils.Add(new Profile()
             {
