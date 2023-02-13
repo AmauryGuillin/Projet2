@@ -2,9 +2,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-form {
     margin-top: 4%;
     width: 65%;
     padding: 30px;
@@ -20,6 +17,24 @@ form {
         "image attributs description"
         "reason reason reason"
         "button1 button2 button3";
+}
+
+form {
+/*    margin-top: 4%;
+    width: 65%;
+    padding: 30px;
+    border: 1px solid #0000001e;
+    background: #0000001e;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    margin-bottom: 40px;
+    display: grid;
+    grid-template-columns: 20% 20% 60%;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "h1 h1 h1"
+        "image attributs description"
+        "reason reason reason"
+        "button1 button2 button3";*/
 }
 
 
@@ -95,8 +110,8 @@ form {
     margin-bottom: 30px;
     padding: 2%;
     display: flex;
-    justify-content: center;
     align-items: center;
+    min-width: 73rem;
 }
 
 .description {

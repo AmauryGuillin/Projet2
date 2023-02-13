@@ -5,7 +5,7 @@
 }
 
 
-@*<div class="content">
+<div class="content">
     @using (Html.BeginForm())
 {
         @Html.HiddenFor(m=>m.Stuff.Id)
@@ -53,21 +53,41 @@
                 </p>
             </label>
         </div>
-        <input type="submit" id="submit" value="Accepter" />*@
-    @*    <input type="button" id="decline" value="Refuser" />
+        <input type="submit" id="submit" value="Accepter" />
+        @*<input type="button" id="decline" value="Refuser" />
         <input type="button" id="return" value="Retour" />*@
-@*}
+}
+
+
+
+<div id="decline">
+    @using (Html.BeginForm("CancelationBookStuff", "Stuff", new { Model.Stuff.Id }, FormMethod.Post))
+    {
+        @Html.HiddenFor(m=>m.Stuff.Id)
+
+        <input type="submit" value="Refuser ">
+    }
+</div>
+<div id="return">
+@using (Html.BeginForm("CancelationBookStuff", "Stuff", new { Model.Stuff.Id }, FormMethod.Post))
+{
+    @Html.HiddenFor(m=>m.Stuff.Id)
+
+
+    <input type="submit" value="Retour ">
+}
+</div>
 </div>
 
 
 @section ExtraCss{
     <link rel="stylesheet" href="~/css/VueAcceptationReservation.css" />
-                }*@
+                }
 
 
 
 
-@using (Html.BeginForm())
+@*@using (Html.BeginForm())
 {
 <h2>Reservation Stuff</h2>
 
@@ -87,7 +107,7 @@
     
   
 
-}
+}*@
 
 @*<div>
     @Html.ActionLink("Refuser","CancelationBookStuff","Stuff", new {id =Model.Stuff.Id})
@@ -97,18 +117,18 @@
 </div>*@
 
 
-@using (Html.BeginForm("CancelationBookStuff","Stuff", new { Model.Stuff.Id},FormMethod.Post))
+@*@using (Html.BeginForm("CancelationBookStuff","Stuff", new { Model.Stuff.Id},FormMethod.Post))
 {
     @Html.HiddenFor(m=>m.Stuff.Id)
 
     <input type="submit" value="Refuser ">
-}
+}*@
 
-@using (Html.BeginForm("CancelationBookStuff", "Stuff", new { Model.Stuff.Id }, FormMethod.Post))
+@*@using (Html.BeginForm("CancelationBookStuff", "Stuff", new { Model.Stuff.Id }, FormMethod.Post))
 {
     @Html.HiddenFor(m=>m.Stuff.Id)
     
 
     <input type="submit" value="Retour ">
-}
+}*@
 

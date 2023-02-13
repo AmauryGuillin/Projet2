@@ -86,7 +86,7 @@ namespace Projet2.Controllers
         public IActionResult EditStuff(StuffViewModel model, int id)
         {
 
-            if (model.Authentificate == true)
+            if (HttpContext.User.Identity.IsAuthenticated == true)
             {
                 string accountId = (HttpContext.User.Identity.Name);
 
