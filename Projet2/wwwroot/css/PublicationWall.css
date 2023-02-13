@@ -1,0 +1,73 @@
+﻿.content {
+    border-radius: 20px;
+    min-height: 100vh;
+    padding: 10px 150px 10px 150px;
+    margin-bottom: 20px;
+}
+
+.table-title {
+    grid-area: title;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom left,#ea03ff27, #8c00ff31) no-repeat;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+}
+
+.catalog {
+    background: rgba(0, 0, 0, 0.151);
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+input[type=button] {
+    width: 5rem;
+    height: 2rem;
+    font-weight: bold;
+    background: white;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+}
+
+    input[type=button]:hover {
+        background: rgb(17, 214, 122);
+        transition: 0.5s;
+        border: none;
+        color: rgb(0, 0, 0);
+    }
+
+    .catalog table {
+        width: 100%;
+        table-layout: fixed;
+        border-collapse: collapse;
+        text-align: center;
+    }
+
+        .catalog table tbody tr {
+            border-top: 2px solid rgba(255, 255, 255, 0.418);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.418);
+        }
+
+            .catalog table tbody tr:hover {
+                background: rgba(0, 0, 0, 0.438);
+                cursor: pointer;
+                transition: 0.5s;
+            }
+
+
+            .catalog table tbody tr td img {
+                width: 10rem;
+                height: 10rem;
+            }
+
+.description-content {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 60rem;
+    text-align: center;
+    overflow: hidden;
+}

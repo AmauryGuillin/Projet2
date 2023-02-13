@@ -3,11 +3,57 @@
     Layout = "_LayoutGeneral";
 }
 
-<h2>Mur des publications</h2>
 
-@Html.ActionLink("Créer", "CreatePublication", "Publication")
+<div class="content">
+    <div class="table-title">
+        <h1>Publications</h1>
+    </div>
+    <div class="catalog">
+        <button onclick="location.href='@Url.Action("CreatePublication", "Publication")'">Ajouter</button>
+        @*@Html.ActionLink("Créer", "CreatePublication", "Publication")*@
+        <table>
+            <thead>
+                <tr>
+                    <th width="200px"><h3>Nom</h3></th>
+                    <th width="150px"><h3>Type</h3></th>
+                    <th width="800px"><h3>Description</h3></th>
+                    <th width="200px"><h3>Date</h3></th>
+                    <th><h3>Auteur</h3></th>
+                </tr>
+            </thead>
+            <tbody>
+                 @foreach (var publication in Model.Publications)
+                {
+                    <tr height="70px" onclick="location.href = '@Url.Action("OnePublication", "Publication", new { @id= publication.Id} )'">
+                    @*<tr height="70px" onclick="location.href='@Html.ActionLink("Consulter", "OnePublication","Publication",new {@id= publication.Id})'">*@
+                        <td width="200px">@Html.DisplayFor(mPublications => publication.Name)</td>
+                        <td>@Html.DisplayFor(mPublications => publication.PublicationType)</td>
+                        <td class="description-content">@Html.DisplayFor(mPublications => publication.Content)</td>
+                        <td>@Html.DisplayFor(mPublications => publication.Date)</td>
+                        <td>@Html.DisplayFor(mAccount => publication.Account.Username)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
 
-<div>
+
+@section ExtraCSS {
+    <link rel="stylesheet" href="~/css/PublicationWall.css" />
+}
+
+
+
+
+
+
+
+@*<h2>Mur des publications</h2>*@
+
+@*@Html.ActionLink("Créer", "CreatePublication", "Publication")*@
+
+@*<div>
     <table border="1">
         <tr>
             <th></th>
@@ -22,9 +68,9 @@
 
         </tr>
         @foreach (var publication in Model.Publications)
-        {
+        {*@
            @* var Account = Model.Account;*@
-            <tr>
+@*            <tr>
 
                 <td><img src="@publication.ImagePath" height="100" width="100" alt="" class="" /></td>
                 <td>@Html.DisplayFor(mPublications => publication.Name)</td>
@@ -41,4 +87,4 @@
         }
     </table>
 
-</div>
+</div>*@
