@@ -39,7 +39,7 @@ namespace Projet2.Models
 
     public enum Reservation
     {
-        [Display(Name = "Livre")]
+        [Display(Name = "Libre")]
         libre,
         [Display(Name = "En Attente")]
         enAttente,

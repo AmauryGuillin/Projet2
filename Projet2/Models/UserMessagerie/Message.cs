@@ -14,7 +14,7 @@ namespace Projet2.Models.Messagerie
         public int? ConversationId { get; set; }
         public Conversation UserConversation { get; set; }
         
-        public DateTime MessageTimeStamp { get; set; }
+        public string MessageTimeStamp { get; set; }
         [Display(Name="Veuillez Ecrire votre message")]
         public string Body { get; set; }
         public Boolean isRead { get; set; }
