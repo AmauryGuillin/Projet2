@@ -252,9 +252,11 @@ namespace Projet2.Controllers
         public ActionResult ProfileViewAdherent()
         {
             InscriptionViewModel inscriptionViewModel = new InscriptionViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
-            if (inscriptionViewModel.Authentificate== true)
+            string accountId = (HttpContext.User.Identity.Name);
+            Account account= dal.GetAccount(accountId); 
+
+            if (account!=null)
             {
-                string accountId = (HttpContext.User.Identity.Name);
                 inscriptionViewModel.Account = dal.GetAccount(accountId);
                 Account accountUser = inscriptionViewModel.Account;
                 inscriptionViewModel.Profile = dal.GetProfiles().Where(r => r.Id == accountUser.ProfileId).FirstOrDefault();
