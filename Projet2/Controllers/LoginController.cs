@@ -59,11 +59,12 @@ namespace Projet2.Controllers
                     switch (account.role)
                     {
                         case Role.Admin:
-                            return Redirect("Index");
+                            return RedirectToAction("Index", new {id =account.Id});
                         //break;
-                        case Role.Salarie:
-                     return View("Index");
-                          
+
+                        case Role.Salarié:
+                     return RedirectToAction("Index", new { id = account.Id }); 
+            
                         //break;
                         case Role.Benevole:
                             

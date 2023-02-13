@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Projet2.Models;
 using Projet2.ViewModels;
@@ -50,6 +51,15 @@ namespace Projet2.Controllers
             return RedirectToAction("Login", "Login");
 
         }
+
+
+
+        public ActionResult Deconnexion()
+        {
+            HttpContext.SignOutAsync();
+            return Redirect("/");
+        }
+
 
         /////////////////////END
     }

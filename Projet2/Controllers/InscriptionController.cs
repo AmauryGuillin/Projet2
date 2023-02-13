@@ -213,7 +213,7 @@ namespace Projet2.Controllers
 
 
 
-        public ActionResult ProfileViewBenevole()// NOOOPE
+        public ActionResult ProfileViewBenevole()
         {
             InscriptionViewModel inscriptionViewModel= new InscriptionViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
             Account accountUser = dal.GetAccount(HttpContext.User.Identity.Name);
