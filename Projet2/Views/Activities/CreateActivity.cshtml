@@ -2,15 +2,97 @@
 @{
     Layout = "_LayoutGeneral";
 }
-<h2>Creation d'activité</h2>
+
+<div class="content">
+      <form action="" method="POST">
+        <h1>Création d'une activité</h1>
+
+        <div class="attributs">
+          <div class="activity-type">
+            <label>Type d'activité</label>
+                @Html.DropDownListFor(m => m.Activity.activityType,Html.GetEnumSelectList<Projet2.Models.ActivityType>(),"Selectionnez le type d'activité")
+                @Html.ValidationMessageFor(m => m.Activity.activityType)
+          </div>
+
+          <div class="activity-evenement-type">
+            <label>Type d'évenement</label>
+                @Html.DropDownListFor(m => m.Activity.ActivityEventType, Html.GetEnumSelectList<Projet2.Models.EventType>(), "Selectionnez le type d'evenement")
+                @Html.ValidationMessageFor(m => m.Activity.ActivityEventType)
+          </div>
+
+          <div class="place">
+            <label>Lieu</label>
+                @Html.TextBoxFor(m=>m.Activity.Place)
+                @Html.ValidationMessageFor(m => m.Activity.Place)
+          </div>
+
+          <div class="start-date">
+            <label>Date de début</label>
+                @Html.TextBoxFor(m=>m.Activity.StartDate, new { @type = "datetime-local"})
+                @Html.ValidationMessageFor(m => m.Activity.StartDate)
+          </div>
+          <div class="end-date">
+            <label>Date de fin</label>
+                @Html.TextBoxFor(m=>m.Activity.EndDate, new { @type = "datetime-local"})
+                @Html.ValidationMessageFor(m => m.Activity.EndDate)
+
+            <div class="nulber-of-participants">
+              <label>Nombre de participants</label>
+                @Html.TextBoxFor(m=>m.Activity.NumberOfParticipants)
+                @Html.ValidationMessageFor(m => m.Activity.NumberOfParticipants)
+            </div>
+
+            <div class="image">
+              <label>Image</label>
+            </div>
+                @Html.TextBoxFor(model => model.Activity.ActivityImage, new { placeholder = "Description", @type = "file",accept=".png, .jpg, .jpeg,.gif" })
+                @Html.ValidationMessageFor(m => m.Event.Theme)
+          </div>
+        </div>
+        <div class="description">
+          <div class="label">
+            <label>Contenu</label>
+          </div>
+            @Html.TextAreaFor(m=>m.Activity.Description)
+            @Html.ValidationMessageFor(m => m.Activity.Description)
+        </div>
+
+        <input type="submit" id="submit" value="Publier" />
+      </form>
+    </div>
+
+
+@section ExtraCSS {
+        <link rel="stylesheet" href="~/css/CreateActivity.css" />
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<h2>Creation d'activité</h2>
 
 @using (Html.BeginForm(FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
+{*@
 
     @*@Html.HiddenFor(m=>m.Account.Id)
     @Html.HiddenFor(n=>n.Inventory.Id)*@
 
-    <div>
+    @*<div>
         @Html.LabelFor(m => m.Activity.activityType)
         @Html.DropDownListFor(m => m.Activity.activityType,Html.GetEnumSelectList<Projet2.Models.ActivityType>(),"Selectionnez le type d'activité")
         @Html.ValidationMessageFor(m => m.Activity.activityType)
@@ -52,4 +134,4 @@
 
     <input type="submit" value="Créer" />
 
-}
+}*@
