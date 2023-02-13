@@ -61,7 +61,7 @@ namespace Projet2.Controllers
                         case Role.Admin:
                             return Redirect("Index");
                         //break;
-                        case Role.Salarié:
+                        case Role.Salarie:
                      return View("Index");
                           
                         //break;

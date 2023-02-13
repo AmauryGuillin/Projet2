@@ -1,10 +1,14 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.Xml.Linq;
 
 namespace Projet2.Models
 {
     public enum AdhesionStatus
     {
+        [Display(Name = "Vérifié")]
         Verfie,
+        [Display(Name = "En cours")]
         EnCours
     }
 

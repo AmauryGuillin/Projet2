@@ -1,18 +1,27 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Xml.Linq;
 
 namespace Projet2.Models
 {
 
     public enum PublicationTypes
     {
+        [Display(Name = "Article Informatif")]
         ArticleInformatif,
+        [Display(Name = "Vidéo")]
         Video,
+        [Display(Name = "Infographie")]
         Infographie,
+        [Display(Name = "Podcast")]
         Podcast,
+        [Display(Name = "Newsletter")]
         Newsletter,
+        [Display(Name = "FAQ")]
         FAQ,
+        [Display(Name = "Résultat")]
         Resultat
     }
 
