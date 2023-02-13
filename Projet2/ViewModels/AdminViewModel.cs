@@ -1,4 +1,5 @@
-﻿using Projet2.Models;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Projet2.Models;
 using Projet2.Models.Informations;
 using Projet2.Models.UserMessagerie;
 using System.Collections.Generic;
@@ -11,10 +12,14 @@ namespace Projet2.ViewModels
         public List<Employee> Employees { get; set; }
         public Account Account { get; set; }
         public List<Account> Accounts { get; set; }
+        public string selectedAccount { get; set; }
         public Benevole Benevole { get; set; }
         public List<Benevole>Benevoles { get; set; }
         public Adherent Adherent { get; set; }
         public List <Adherent> Adherents { get; set; }
+        public List<SelectListItem> ListAccountsAdherent { get; set; }
+        public List<SelectListItem> ListAccountsBenevole { get; set; }
+        public List<SelectListItem> ListAccountsEmployee { get; set; }
         public Contact Contact { get; set; }
         public Profile Profile { get; set; }
         public InfoPerso Infos { get; set; }

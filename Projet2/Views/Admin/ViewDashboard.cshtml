@@ -1,32 +1,30 @@
-
-﻿
+@model Projet2.ViewModels.AdminViewModel
+@{
+    Layout = "_LayoutGeneral";
+}﻿
 
     <link rel="stylesheet" href="~/css/DashboardAdmin.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
 
-    <header>
-        <nav>
-            <h1>Play4Us</h1>
-            <div class="menu">
-                <a href="#Accueil">Accueil</a>
-                <a href="#Apropos">À propos</a>
-                <a href="#Materiels">Materiels</a>
-                <a href="#Coaching">Coaching</a>
-                <a href="#Jeux">Jeux</a>
-                <a href="#Benevolat">Benevolat</a>
-                <a href="#Forum">Forum</a>
-                <a href="#Contact">Contact</a>
-
-                <input type="submit" value="Se déconnecter">
-            </div>
-        </nav>
-    </header>
+    
     <main>
         <div class="content">
             <div class="listes">
                 <h2>Membres</h2>
                 <!-- <a href="Liste"></a> -->
+            @using (Html.BeginForm("DeleteAccountAdherent", "Admin", FormMethod.Post))
+            {
+            @Html.DropDownListFor(m => m.selectedAccount, Model.ListAccountsAdherent,"Selectionnez un adherent")
+
+            <input type="submit" value="supprimer">
+            }
+
+            @Html.DropDownListFor(m => m.selectedAccount, Model.ListAccountsBenevole,"Selectionnez un benevole")
+            @Html.DropDownListFor(m => m.selectedAccount, Model.ListAccountsEmployee,"Selectionnez un salarié")
+
+
+
             </div>
             <div class="admin">
                 <h3>Admin</h3>

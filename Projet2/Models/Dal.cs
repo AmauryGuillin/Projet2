@@ -1572,16 +1572,11 @@ namespace Projet2.Models
             return activitySlot;
 
         }
-
-        //public Slot AddCoachingToSlot(Coaching coaching, Account account)
-        //{
-        //    Slot coachingSlot= new Slot()
-        //    {
-
-        //    }
-
-        //}
-
+ public void RemoveSlot(Slot slot)
+        {
+            _bddContext.Slots.Remove(slot);
+            _bddContext.SaveChanges();
+        }
 
         /////////////////STUFF
 
@@ -1989,7 +1984,47 @@ namespace Projet2.Models
             return _bddContext.VolunteeringActivities.ToList();
         }
 
+        ////////////////REMOVE
+        ///
 
+        public void RemovePlanning(Planning planning)
+        {
+            _bddContext.Planning.Remove(planning);
+            _bddContext.SaveChanges();
+        }
+
+        public void RemoveContact(Contact contact)
+        {
+            _bddContext.Contact.Remove(contact);
+            _bddContext.SaveChanges();
+        }
+
+        public void RemoveInfos(InfoPerso infos)
+        {
+            _bddContext.PersonnalInfo.Remove(infos);
+            _bddContext.SaveChanges();
+        }
+        public void RemoveConversation(Conversation conversation)
+        {
+            _bddContext.Conversations.Remove(conversation);
+            _bddContext.SaveChanges();
+        }
+        public void RemoveMessagerie(MessagerieA messagerie)
+        {
+            _bddContext.Messageries.Remove(messagerie);
+            _bddContext.SaveChanges();
+        }
+        public void RemoveProfile(Profile profile)
+        {
+            _bddContext.Profils.Remove(profile);
+            _bddContext.SaveChanges();
+        }
+        public void RemoveAccount(Account Account)
+        {
+            _bddContext.Account.Remove(Account);
+            _bddContext.SaveChanges();
+        }
+       
 
 
 

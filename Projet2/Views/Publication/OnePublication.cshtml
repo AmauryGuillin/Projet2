@@ -16,7 +16,7 @@
         <div class="date">le @Model.Publication.Date</div>
         <div class="author">par <em>@*@Model.Account.Username*@</em></div>
         <div class="buttons">
-          <button onclick="location.href='@Url.Action("EditPublication", "Publication")'">Modifier</button>
+          <button onclick="location.href='@Url.Action("EditPublication", "Publication" ,new {id=Model.Publication.Id})'">Modifier</button>
           <button onclick="location.href='@Url.Action("PublicationWall", "Publication")'">Retour</button>
         </div>
       </div>

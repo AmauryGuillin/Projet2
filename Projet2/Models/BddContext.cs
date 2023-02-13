@@ -294,7 +294,7 @@ namespace Projet2.Models
             this.Profils.Add(new Profile()
             {
                 Id = 4,
-                ImagePath = "/images/ProfileAdmin",
+                ImagePath = "/images/ProfileAdmin.png",
                 Bio = " Chef de la Mishima Zaibatsu , j'ai crée les tournois de King of Iron Rist. Voyons comment vous allez vous en tirer face à mon poing d'acier !",
                 Games = "Final Fantasy VII",
 
@@ -344,6 +344,11 @@ namespace Projet2.Models
                 Content = " Et n’oubliez jamais que même si votre barre de vie est proche de zéro, rien n’est jamais perdu, le mode rage peut encore vous permettre de renverser la situation !",
                 AccountId = 4,
             });
+
+
+            //////////////////ADD ACTIVITIES
+            ///
+
 
 
 
