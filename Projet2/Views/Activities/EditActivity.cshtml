@@ -38,8 +38,8 @@
 
             <div class="nulber-of-participants">
               <label>Nombre de participants</label>
-                @Html.TextBoxFor(m=>m.Activity.NumberOfParticipants)
-                @Html.ValidationMessageFor(m => m.Activity.NumberOfParticipants)
+                    @Html.TextBoxFor(m=>m.Activity.NumberOfParticipants)
+                    @Html.ValidationMessageFor(m => m.Activity.NumberOfParticipants)
             </div>
 
             <div class="image">
@@ -56,82 +56,22 @@
             @Html.TextAreaFor(m=>m.Activity.Description)
             @Html.ValidationMessageFor(m => m.Activity.Description)
         </div>
-
-        <input type="submit" id="submit" value="Publier" />
+        <input type="submit" id="submit" value="Sauvegarder" />
       </form>
+
+      <div>
+        @using (Html.BeginForm("RemovePublication", "Publication", new { Model.Activity.Id }, FormMethod.Post))
+        {
+            @Html.HiddenFor(m=>m.Activity.Id)
+
+    <input type="submit" id="delete" value="Supprimer la publication">
+        }
+     </div>
     </div>
 
 
 @section ExtraCSS {
-        <link rel="stylesheet" href="~/css/CreateActivity.css" />
+            <link rel="stylesheet" href="~/css/EditActivity.css" />
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@*<h2>Creation d'activité</h2>
-
-@using (Html.BeginForm(FormMethod.Post, new { enctype = "multipart/form-data" }))
-{*@
-
-    @*@Html.HiddenFor(m=>m.Account.Id)
-    @Html.HiddenFor(n=>n.Inventory.Id)*@
-
-    @*<div>
-        @Html.LabelFor(m => m.Activity.activityType)
-        @Html.DropDownListFor(m => m.Activity.activityType,Html.GetEnumSelectList<Projet2.Models.ActivityType>(),"Selectionnez le type d'activité")
-        @Html.ValidationMessageFor(m => m.Activity.activityType)
-    </div>
-    
-    <div>
-        @Html.LabelFor(m => m.Activity.ActivityEventType)
-        @Html.DropDownListFor(m => m.Activity.ActivityEventType, Html.GetEnumSelectList<Projet2.Models.EventType>(), "Selectionnez le type d'evenement")
-        @Html.ValidationMessageFor(m => m.Activity.ActivityEventType)
-    </div>
-    <div>
-        @Html.LabelFor(m => m.Activity.Theme)
-        @Html.TextBoxFor(m => m.Activity.Theme)
-        @Html.ValidationMessageFor(m => m.Event.Theme)
-    </div>
-    <div>
-        @Html.LabelFor(m => m.Activity.Description)
-        @Html.TextBoxFor(m=>m.Activity.Description)
-        @Html.ValidationMessageFor(m => m.Activity.Description)
-    </div>
-
-    <div>
-        @Html.LabelFor(m => m.Activity.Place)
-        @Html.TextBoxFor(m=>m.Activity.Place)
-        @Html.ValidationMessageFor(m => m.Activity.Place)
-    </div>
-
-    <div>
-        @Html.LabelFor(m => m.Activity.ActivityImage)
-        @Html.TextBoxFor(model => model.Activity.ActivityImage, new { placeholder = "Description", @type = "file",accept=".png, .jpg, .jpeg,.gif" })
-        @Html.ValidationMessageFor(m => m.Event.Theme)
-    </div>
-    
-
-
-
-
-
-
-    <input type="submit" value="Créer" />
-
-}*@

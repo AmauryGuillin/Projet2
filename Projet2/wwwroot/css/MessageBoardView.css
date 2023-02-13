@@ -1,20 +1,69 @@
-﻿.body{
-    background: #f5f5f5
+﻿.content {
+    min-height: 100vh;
+    padding: 0 20% 0 20%;
 }
 
-.text-white-50 {
-    color: rgba(255, 255, 255, .5);
+.global-box {
+/*    border: 1px solid rgb(255, 0, 0);*/
+    background: rgba(0, 0, 0, 0.466);
+    border-radius: 20px;
+    padding: 1rem;
+    height: fit-content;
 }
 
-.bg-blue {
-    background-color: #00b5ec;
+.upper-section {
+    display: flex;
+    justify-content: space-between;
 }
 
-.border-bottom {
-    border-bottom: 1px solid #e5e5e5;
+.image {
+    width: 20%;
+    padding-left: 3rem;
 }
 
-.box-shadow {
-    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+    .image .mr-3 {
+        width: 200px;
+        height: 200px;
+        clip-path: circle();
+        justify-self: center;
+        object-fit: cover;
+    }
+
+.text {
+    width: 80%;
+    margin-left: 1rem;
 }
 
+.welcome-message {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.lower-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.nb-conversation {
+    font-size: 1rem;
+}
+
+/*.conversation-now-sender {
+    background: rgba(255, 255, 255, 0.300);
+    padding:2%;
+    margin:2%;
+}*/
+
+.first-message {
+    background: rgba(255, 255, 255, 0.300);
+    padding: 1%;
+    margin-bottom: 0.5rem;
+    border: 2px solid black;
+    border-radius: 20px;
+    width: 30%
+}
+
+.first-message p {
+    padding-bottom: 0.7rem;
+    margin: 0;
+}
