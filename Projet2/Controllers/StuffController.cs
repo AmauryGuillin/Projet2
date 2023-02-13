@@ -35,37 +35,38 @@ namespace Projet2.Controllers
         [HttpPost]
         public IActionResult CreateStuff(StuffViewModel model)
         {
-                string accountId = (HttpContext.User.Identity.Name);
-                string uploads = Path.Combine(_webEnv.WebRootPath, "images");
-                string filePath = Path.Combine(uploads, model.Stuff.StuffImage.FileName);
-                using (Stream fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    model.Stuff.StuffImage.CopyTo(fileStream);
-                }
-                //dal.CreateStuff(
-                //    model.Name, "/images/" + model.StuffImage.FileName, model.Type, model.State);
-                model.Account = dal.GetAccount(accountId);
-                Account userAccount = model.Account;
-                model.Stuff = dal.CreateStuff(
-                    "/images/" + model.Stuff.StuffImage.FileName,
-                    userAccount.Id,
-                    model.Stuff.Name,
-                    model.Stuff.Description,
-                    model.Stuff.Type,
-                    model.Stuff.State
-                    );
-                Stuff stuffCreated = new Stuff();
-                stuffCreated= model.Stuff;
-                //dal.EditStuffCreate(stuffCreated.Id, userAccount.Id, "/images/" + model.Stuff.StuffImage.FileName);
-                if (model.Account.role == Role.Adherent)
-                {
-                    return RedirectToAction("ProfileViewAdherent", "Inscription");
-                }else if (model.Account.role == Role.Benevole)
-                {
-                    return RedirectToAction("ProfileViewBenevole", "Inscription");
-                }    
-            
-            return RedirectToAction("Login","Login");
+            string accountId = (HttpContext.User.Identity.Name);
+            string uploads = Path.Combine(_webEnv.WebRootPath, "images");
+            string filePath = Path.Combine(uploads, model.Stuff.StuffImage.FileName);
+            using (Stream fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                model.Stuff.StuffImage.CopyTo(fileStream);
+            }
+            //dal.CreateStuff(
+            //    model.Name, "/images/" + model.StuffImage.FileName, model.Type, model.State);
+            model.Account = dal.GetAccount(accountId);
+            Account userAccount = model.Account;
+            model.Stuff = dal.CreateStuff(
+                "/images/" + model.Stuff.StuffImage.FileName,
+                userAccount.Id,
+                model.Stuff.Name,
+                model.Stuff.Description,
+                model.Stuff.Type,
+                model.Stuff.State
+                );
+            Stuff stuffCreated = new Stuff();
+            stuffCreated = model.Stuff;
+            //dal.EditStuffCreate(stuffCreated.Id, userAccount.Id, "/images/" + model.Stuff.StuffImage.FileName);
+            if (model.Account.role == Role.Adherent)
+            {
+                return RedirectToAction("ProfileViewAdherent", "Inscription");
+            }
+            else if (model.Account.role == Role.Benevole)
+            {
+                return RedirectToAction("ProfileViewBenevole", "Inscription");
+            }
+
+            return RedirectToAction("Login", "Login");
         }
 
         public IActionResult EditStuff(int id)
@@ -90,7 +91,7 @@ namespace Projet2.Controllers
                 string accountId = (HttpContext.User.Identity.Name);
 
                 model.Account = dal.GetAccount(accountId);
-                
+
                 dal.EditStuff(id, model.Stuff.Name, model.Stuff.Description, model.Stuff.Type, model.Stuff.State);
 
                 if (model.Account.role == Role.Adherent)
@@ -141,19 +142,20 @@ namespace Projet2.Controllers
 
         public IActionResult StuffCatalog()
         {
-            
+
             StuffViewModel model = new StuffViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
-            
-            if (model.Authentificate == true) {
+
+            if (model.Authentificate == true)
+            {
                 string accountId = (HttpContext.User.Identity.Name);
                 model.Account = dal.GetAccount(accountId);
-                    if (model.Account != null)
-                    {
-                     Account account = model.Account;
-                     model.stuffs = dal.GetStuffs();
-                     List<Stuff> listStuff = model.stuffs.ToList();
-                     return View(model);
-            }
+                if (model.Account != null)
+                {
+                    Account account = model.Account;
+                    model.stuffs = dal.GetStuffs();
+                    List<Stuff> listStuff = model.stuffs.ToList();
+                    return View(model);
+                }
                 return View(model);
             }
             return RedirectToAction("Login", "Login");
@@ -169,6 +171,7 @@ namespace Projet2.Controllers
                 Stuff stuff = model.Stuff;
                 model.Account = dal.GetAccount(accountId);
                 Account userAccount = model.Account;
+                model.Stuff.AccountOwner = dal.GetAccounts().Where(r => r.Id == stuff.AccountOwnerId).FirstOrDefault();
                 model.Stuff.AccountBorrowerId = userAccount.Id;
                 model.Account = dal.GetAccounts().Where(r => r.Id == stuff.AccountOwnerId).FirstOrDefault();
                 return View(model);
@@ -194,15 +197,15 @@ namespace Projet2.Controllers
                 model.AllConversations = dal.GetConversations();
                 var conversations = model.AllConversations;
                 string messageauto = "Vous avez une demande de reservation de materiel en attente.Vous pouvez aller la consulter a tout moment";
-                
-                
+
+
                 if (conversations != null)
                 {
                     foreach (var conversation in conversations)
                     {
                         if (conversation.FirstSenderId == (int)StuffOwner.Id && conversation.ReceiverId == userAccount.Id)
                         {
-                            Conversation Conversation= dal.CreateConversation(userAccount.Id, StuffOwner.Id);
+                            Conversation Conversation = dal.CreateConversation(userAccount.Id, StuffOwner.Id);
                             model.Conversation = Conversation;
                             Message message1 = dal.MessageReply(
                             Conversation.Id,
@@ -232,13 +235,14 @@ namespace Projet2.Controllers
                             Conversation.Id,
                             userAccount.Id,
                             (int)StuffOwner.Id,
-                             messageauto );
+                             messageauto);
                             model.Message = message1;
                             return RedirectToAction("StuffCatalog", model);
                         }
 
                     }
                 }
+
                     Conversation newConversation = dal.CreateConversation(userAccount.Id, StuffOwner.Id);
                     model.Conversation= newConversation;
                     Message message= dal.FirstMessage(
@@ -248,6 +252,7 @@ namespace Projet2.Controllers
                     messageauto);
                     model.Message= message;
                     return RedirectToAction("StuffCatalog", model);
+
             }
             return RedirectToAction("Login", "Login");
 
@@ -262,8 +267,14 @@ namespace Projet2.Controllers
                 model.Stuff = dal.GetOneStuff(id);
                 Stuff stuff = model.Stuff;
                 model.ReservationStuff = dal.GetReservations().Where(r => r.StuffId == stuff.Id).FirstOrDefault();
+
+
+                model.Stuff.AccountOwner = dal.GetAccounts().Where(r => r.Id == stuff.AccountOwnerId).FirstOrDefault();
                 model.Stuff.AccountBorrower = dal.GetAccounts().Where(r => r.Id == stuff.AccountBorrowerId).FirstOrDefault();
+
                 //model.Account = dal.GetAccounts().Where(r => r.Id == stuff.AccountBorrowerId).FirstOrDefault();
+
+
                 //model.Account = dal.GetAccount(accountId);
                 //Account userAccount = model.Account;
                 //model.Stuff.AccountBorrowerId = userAccount.Id;
@@ -279,7 +290,9 @@ namespace Projet2.Controllers
         {
             Account account = dal.GetAccount(HttpContext.User.Identity.Name);
             model.Account = account;
+
             if (account!=null)
+
             {
                 //string accountId = (HttpContext.User.Identity.Name);
                 //model.Account = dal.GetAccount(accountId);
@@ -301,22 +314,15 @@ namespace Projet2.Controllers
             StuffViewModel model = new StuffViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
             if (model.Authentificate == true)
             {
+
                 string accountId = (HttpContext.User.Identity.Name);
 
                 model.Stuff = dal.GetOneStuff(id);
                 Stuff stuff = model.Stuff;
 
                 model.ReservationStuff = dal.GetReservations().Where(r => r.StuffId == stuff.Id).FirstOrDefault();
-                model.Account = dal.GetAccounts().Where(r => r.Id == stuff.AccountBorrowerId).FirstOrDefault();
+                model.Stuff.AccountBorrower = dal.GetAccounts().Where(r => r.Id == stuff.AccountBorrowerId).FirstOrDefault();
 
-                //model.Account = dal.GetAccount(accountId);
-                //Account userAccount = model.Account;
-                //model.Stuff.AccountBorrowerId = userAccount.Id;
-                //model.Account = dal.GetAccounts().Where(r => r.Id == stuff.AccountOwnerId).FirstOrDefault();
-                //dal.EditStuffCancelation(id);
-
-                //int borrowerId = (int)model.Stuff.AccountBorrowerId;
-                //Account borrowerAccount = dal.GetAccount(borrowerId);
                 return View(model);
             }
             return RedirectToAction("Login", "Login");
@@ -326,12 +332,12 @@ namespace Projet2.Controllers
         [HttpPost]
         public IActionResult CancelationBookStuff(StuffViewModel model, int id)
         {
-            
-            if (model.Authentificate == true)
+
+            Account account = dal.GetAccount(HttpContext.User.Identity.Name);
+            model.Account = account;
+            if (account != null)
             {
 
-                string accountId = (HttpContext.User.Identity.Name);
-                model.Account = dal.GetAccount(accountId);
                 dal.EditStuffCancelation(id);
                 if (model.Account.role == Role.Adherent)
                 {

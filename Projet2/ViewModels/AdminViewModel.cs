@@ -21,6 +21,7 @@ namespace Projet2.ViewModels
         public Inventory Inventory { get; set; }
         public MessagerieA Messagerie { get; set; }
         public bool Authentificate { get; set; }
+
         public List<Stuff> Stuffs { get; set; }
         public ReservationStuff ReservationStuff { get; set; }
         public List<ReservationStuff> ReservationStuffs { get; set; }
@@ -30,6 +31,13 @@ namespace Projet2.ViewModels
 
         public Publication Publication { get; set; }
         public IEnumerable<Publication> Publications { get; set; }
+
+        public Stuff Stuff { get; set; }
+       
+       
+
+
         //public Stuff Stuff { get; set; }
     }
+
 }

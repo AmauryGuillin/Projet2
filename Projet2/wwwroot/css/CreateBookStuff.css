@@ -16,10 +16,10 @@ form {
     grid-template-columns: 20% 20% 60%;
     grid-template-rows: auto;
     grid-template-areas:
-    "h1 h1 h1"
-    "image attributs description"
-    "reservation-reason reservation-reason reservation-reason"
-    "button button button";
+        "h1 h1 h1"
+        "image attributs description"
+        "reservation-reason reservation-reason reservation-reason"
+        "button button button";
 }
 
 
@@ -38,6 +38,7 @@ form h1 {
     grid-area: image;
     justify-self: center;
     margin-bottom: 30px;
+    align-self:center
 }
 
 .image img {
@@ -93,9 +94,8 @@ form h1 {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     margin-bottom: 30px;
-    padding: 2%;
+    min-width: 43rem;
     display: flex;
-    justify-content: center;
     align-items: center;
 }
 

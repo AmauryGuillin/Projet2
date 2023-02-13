@@ -13,7 +13,7 @@
 
             <h1>Réserver du matériel</h1>
             <div class="image">
-                <img src="Assets/Image/1.PNG" alt="image du materiel à réserver" />
+            <img src="@Model.Stuff.ImagePath" alt="Photo du Stuff à réserver" />
             </div>
 
             <div class="attributs">
@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="owner">
-                    <label><em>Skyouuuh</em></label>
+                    <label><em>@Model.Stuff.AccountOwner.Username</em></label>
                 </div>
             </div>
 
@@ -57,23 +57,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @*<h2>Reservation Stuff</h2>
 
 @using (Html.BeginForm())
@@ -85,7 +68,7 @@
 <p>Type : @Model.Stuff.Type</p>
 <p>Type : @Model.Stuff.State</p>
 <p>Proprio : @Model.Account.Username</p>
-*@
+
 @*<div>
 @Html.LabelFor(m => m.ReservationStuff.StartDate)
 @Html.TextBoxFor(m => m.ReservationStuff.StartDate, new { @type = "datetime-local"})

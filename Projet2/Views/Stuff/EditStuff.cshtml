@@ -54,6 +54,15 @@
         <input type="submit" id="submit" value="Sauvegarder" />
     
     }
+
+<div>
+    @using (Html.BeginForm("RemoveStuff", "Stuff", new { Model.Stuff.Id }, FormMethod.Post))
+    {
+        @Html.HiddenFor(m=>m.Stuff.Id)
+
+        <input type="submit" id="delete" value="Supprimer ">
+    }
+</div>
 </div>
 
 @section ExtraCss{

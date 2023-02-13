@@ -2,7 +2,79 @@
 @{
     Layout = "_LayoutGeneral";
 }
-<h2>Edit Publication</h2>
+
+<div class="content">
+
+    <div>
+        @using (Html.BeginForm("RemovePublication", "Publication", new { Model.Publication.Id }, FormMethod.Post))
+        {
+            @Html.HiddenFor(m=>m.Publication.Id)
+
+            <input type="submit" id="delete" value="Supprimer la publication">
+        }
+     </div>
+
+    @using (Html.BeginForm(FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <h1>Modification d'une publication</h1>
+
+
+        <div class="attributs">
+            <div class="name">
+                <label><b>Titre</b></label>
+                @Html.TextBoxFor(m => m.Publication.Name)
+                @Html.ValidationMessageFor(m => m.Publication.Name)
+            </div>
+
+            <div class="type">
+                <label><b>Type</b></label>
+                @Html.DropDownListFor(m => m.Publication.PublicationType, Html.GetEnumSelectList<Projet2.Models.PublicationTypes>(), "Selectionner un Type")
+                @Html.ValidationMessageFor(m => m.Publication.PublicationType)
+            </div>
+
+
+            <div class="date">
+                <label><b>Date</b></label>
+                @Html.TextBoxFor(m => m.Publication.Date)
+                @Html.ValidationMessageFor(m => m.Publication.Date)
+            </div>
+
+            <div class="image">
+                <label><b>Image</b></label>
+                @Html.TextBoxFor(model => model.Publication.PubliImage, new { @type = "file" })
+                @Html.ValidationMessageFor(m => m.Publication.PubliImage)
+            </div>
+
+        </div>
+
+        <div class="description">
+            <div>
+                <label><b>Contenu</b></label>
+            </div>
+            @Html.TextAreaFor(m => m.Publication.Content)
+            @Html.ValidationMessageFor(m => m.Publication.Content)
+        </div>
+
+        <input type="submit" id="submit" value="Sauvegarder" />
+    }
+    
+
+</div>
+
+@section ExtraCss{
+    <link rel="stylesheet" href="~/css/VueEditPublication.css" />
+}
+
+
+
+
+
+
+
+
+
+
+@*<h2>Edit Publication</h2>
 
 @using (Html.BeginForm())
 {
@@ -39,7 +111,7 @@
     @Html.HiddenFor(m=>m.Publication.Id)
 
     <input type="submit" value="Supprimer">
-}
+}*@
 
 
 

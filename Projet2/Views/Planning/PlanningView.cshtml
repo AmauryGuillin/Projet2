@@ -1,23 +1,67 @@
 ﻿@model Projet2.ViewModels.PlanningViewModel
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 @{
     Layout = "_LayoutGeneral";
 }
 
-<link rel=" stylesheet" href="~/css/PlanningView.css"/>
 @Html.HiddenFor(m=>m.Account.Id)
 @Html.HiddenFor(m=>m.Account.role)
 @Html.HiddenFor(m=>m.Account.PlanningId)
 @Html.HiddenFor(m=>m.Slot.Id)
-@*@Html.HiddenFor(m=>m.Account.Id)*@
-@*@Html.HiddenFor(m=>m.Account.role)
+@*@Html.HiddenFor(m=>m.Account.Id)
+@Html.HiddenFor(m=>m.Account.role)
 @Html.HiddenFor(m=>m.Account.ProfileId)*@
 
-<section>
 
 
-</section>
+<div class="content">
+    <div class="banner-region">
+        <div class="banner">
+            <div class="nav-links-profile">
+                <ul>
+                <li><a href="#">Paramètres du compte</a></li>
+                <li>@Html.ActionLink("Ajouter du materiel", "CreateStuff", "Stuff", new {accountId = Model.Account.Id})</li>
+                <li>@Html.ActionLink("Consulter le planning", "PlanningView", "Planning", new {accountId = Model.Account.Id})</li>
+                <li>@Html.ActionLink("Messagerie", "MessageBoardView", "Messagerie", new {accountId = Model.Account.Id})</li>
+            </ul>
+            </div>
+            <img src="~/Assets/Hamburger/transparent-hd-white-menu-burger-icon-31634946136ufll2pj5eo-removebg-preview.png"
+                 alt="menu hamburger"
+                 class="menu-hamburger-profile" />
+            <div class="side-section-top">
+                <div class="profile-pic">
+                    <img src="@Model.Profile.ImagePath" alt="Photo de profil" ,height="400" width="400" />
+                </div>
+            </div>
+        </div>
+        <div class="title">Planning</div>
+        <div class="main-content">
+            @foreach(var Slot in Model.slots)
+        {
+            <div class="box">
+                <h3>@Html.DisplayFor(mSlot=>Slot.Activity.activityType)</h3>
+                <img src="Assets/Profile/general_-_Discord.jpg" alt="" />
+                <p id="dates">@Html.DisplayFor(mSlot=>Slot.Activity.StartDate) - @Html.DisplayFor(mSlot=>Slot.Activity.EndDate)</p>
+                <p id="place">@Html.DisplayFor(mSlot=>Slot.Activity.Place)</p>
+                <p id="description">@Html.DisplayFor(mSlot=>Slot.Activity.Description)</p>
+                <p id="organizer"><em>@Html.DisplayFor(mSlot=>Slot.Activity.Organizer)</em></p>
+            </div>
+        }
+        </div>
+    </div>
+</div>
 
-<section class="Planning">
+@section ExtraCSS {
+        <link rel=" stylesheet" href="~/css/PlanningView.css"/>
+    }
+
+@section ExtraJS {
+        <script src="~/JS/BurgerMenuProfile.js"></script>
+    }
+
+
+
+@*<section class="Planning">
   
     @Html.ActionLink("Profil","ProfileViewBenevole","Inscription",new{
     accountId=Model.Account.Id
@@ -58,4 +102,4 @@
 }
     
 
-    </section>
+    </section>*@
