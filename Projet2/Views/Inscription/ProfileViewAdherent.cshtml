@@ -11,6 +11,7 @@
     @Html.HiddenFor(n=>n.Inventory.Id)
     @Html.HiddenFor(model=>model.Profile.ImagePath)
     @Html.HiddenFor(m=>m.Account.role)
+
 <div class="content">
 <div class="banner-region">
     <div class="banner">
@@ -100,7 +101,8 @@
    
                                         <tr>
                                             <td>@Html.DisplayFor(mStuffs => Stuff.Name)</td>
-                                            <td>@Html.ActionLink("Modification", "EditStuff","Stuff", new { id = Stuff.Id })</td>
+                                            <td>@Html.DisplayFor(mStuffs => Stuff.Reservation)</td>
+                                            <td>@Html.ActionLink("Modif", "EditStuff","Stuff", new { id = Stuff.Id })</td>
                                             <td>@Html.ActionLink("Réservation", "AcceptationBookStuff","Stuff", new { id = Stuff.Id })</td>
                                         </tr>
                                     }

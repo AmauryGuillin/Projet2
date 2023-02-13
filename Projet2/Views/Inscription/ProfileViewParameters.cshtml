@@ -1,0 +1,131 @@
+﻿@model Projet2.ViewModels.InscriptionViewModel
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+@{
+    Layout = "_LayoutGeneral";
+}
+
+@Html.HiddenFor(m=>m.Account.Id)
+@Html.HiddenFor(m=>m.Account.ProfileId)
+@Html.HiddenFor(m=>m.Account.ContactId)
+@Html.HiddenFor(m=>m.Account.InfoPersoId)
+@Html.HiddenFor(n=>n.Inventory.Id)
+@Html.HiddenFor(model=>model.Profile.ImagePath)
+@Html.HiddenFor(m=>m.Account.role)
+
+<div class="content">
+      <div class="banner-region">
+        <div class="banner">
+          <div class="nav-links-profile">
+            <ul>
+                <li><a href="#">Paramètres du compte</a></li>
+                <li>@Html.ActionLink("Ajouter du materiel", "CreateStuff", "Stuff", new {accountId = Model.Account.Id})</li>
+                <li>@Html.ActionLink("Consulter le planning", "PlanningView", "Planning", new {accountId = Model.Account.Id})</li>
+                <li>@Html.ActionLink("Messagerie", "MessageBoardView", "Messagerie", new {accountId = Model.Account.Id})</li>
+            </ul>
+          </div>
+          <img
+            src="~/Assets/Hamburger/transparent-hd-white-menu-burger-icon-31634946136ufll2pj5eo-removebg-preview.png"
+            alt="menu hamburger"
+            class="menu-hamburger-profile"
+          />
+          <div class="side-section-top">
+            <div class="profile-pic">
+              <img src="@Model.Profile.ImagePath" alt="Photo de profil" ,height="400" width="400" />
+            </div>
+          </div>
+        </div>
+        <div class="main-content">
+          <div class="side-section">
+                <div class="pseudo1">@Model.Account.Username</div>
+            <hr />
+            <div class="about">
+              <h3>A propos</h3>
+                    <p>@Model.Profile.Bio</p>
+            </div>
+            <hr />
+            <div class="firstname1">
+              <h3>Prenom</h3>
+                    @Model.Infos.FirstName
+            </div>
+            <hr />
+            <div class="lastname1">
+              <h3>Nom</h3>
+                    @Model.Infos.LastName
+            </div>
+            <hr />
+            <div class="birthday1">
+              <h3>Date de naissance</h3>
+                    @Model.Infos.Birthday
+            </div>
+            <hr />
+            <div class="games1">
+              <h3>Jeux favoris</h3>
+                    @Model.Profile.Games
+            </div>
+          </div>
+          <div class="mid-section">
+            <div class="part1">
+              <div class="pseudo">
+                <label>Pseudo</label>
+              </div>
+              @Html.TextBoxFor(model => model.Account.Username)
+              @Html.ValidationMessageFor(model => model.Account.Username)
+
+              <div class="password">
+                <label>Mot de passe</label>
+              </div>
+              @Html.TextBoxFor(model => model.Account.Password)
+              @Html.ValidationMessageFor(model => model.Account.Password)
+
+              <div class="firstname">
+                <label>Prenom</label>
+              </div>
+              @Html.TextBoxFor(model => model.Infos.FirstName)
+              @Html.ValidationMessageFor(model => model.Infos.FirstName)
+
+              <div class="lastname">
+                <label>Nom</label>
+              </div>
+              @Html.TextBoxFor(model => model.Infos.LastName)
+              @Html.ValidationMessageFor(model => model.Infos.LastName)
+
+              <div class="email">
+                <label>Email</label>
+              </div>
+              @Html.TextBoxFor(model => model.Contact.EmailAdress)
+              @Html.ValidationMessageFor(model => model.Contact.EmailAdress)
+
+              <div class="telnumber">
+                <label>N° de telephone</label>
+              </div>
+              @Html.TextBoxFor(model => model.Contact.TelephoneNumber)
+              @Html.ValidationMessageFor(model => model.Contact.TelephoneNumber)
+            </div>
+
+            <div class="part2">
+              <div class="profilePic">
+                <label>Image de profil</label>
+              </div>
+              @Html.TextBoxFor(model => model.Profile.ProfilImage, new { placeholder = "Description", @type = "file" ,accept=".png, .jpg, .jpeg,.gif"})
+
+              <div class="bio">
+                <label>Biographie</label>
+              </div>
+              @Html.TextAreaFor(model => model.Profile.Bio)
+              @Html.ValidationMessageFor(model => model.Profile.Bio)
+
+              <div class="games">
+                <label>Genre de jeux préférés ?</label>
+              </div>
+              @Html.TextAreaFor(model => model.Profile.Games)
+              @Html.ValidationMessageFor(model => model.Profile.Games)
+            </div>
+          </div>
+        </div>
+      </div>
+     </div>
+
+
+@section ExtraCSS {
+    <link href="~/css/ProfileViewParameters.css" rel="stylesheet" />
+    }
