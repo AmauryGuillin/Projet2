@@ -62,11 +62,13 @@ namespace Projet2.Controllers
             string uploads = Path.Combine(_webEnv.WebRootPath, "images");
             string filePath = Path.Combine(uploads, model.Publication.PubliImage.FileName);
             using (Stream fileStream = new FileStream(filePath, FileMode.Create))
-
-                if (HttpContext.User.Identity.IsAuthenticated == true)
+            {
+                model.Publication.PubliImage.CopyTo(fileStream);
+            }
+            if (HttpContext.User.Identity.IsAuthenticated == true)
             {
                 string accountId = (HttpContext.User.Identity.Name);
-                model.Account = dal.GetAccount(accountId);
+                model.Account = dal.GetAccount(accountId);   
                 Account userAccount = model.Account;
                 Publication publi = dal.CreatePublication(
                 "/images/" + model.Publication.PubliImage.FileName,
@@ -94,6 +96,9 @@ namespace Projet2.Controllers
             {
                 model.Publication = dal.GetOnePublication(id);
                 Publication publication = model.Publication;
+
+                model.Publication.Account = dal.GetAccounts().Where(r => r.Id == publication.AccountId).FirstOrDefault();
+                
                 return View(model);
             }
             return RedirectToAction("Login", "Login");
