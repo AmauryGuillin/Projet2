@@ -60,9 +60,12 @@
             <div id="description" class="description">
                 <h3>Description</h3>
                 <p id="description-text"></p>
-                <div class="inscription-button">
-                    <input type="button" value="S'inscrire" />
-                </div>
+                @if (Model.Account.role == Projet2.Models.Role.Adherent)
+                {
+                    <div class="inscription-button">
+                        <input type="button" value="S'inscrire" />
+                    </div>
+                }
             </div>
         </div>
     </div>
