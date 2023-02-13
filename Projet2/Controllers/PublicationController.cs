@@ -115,7 +115,7 @@ namespace Projet2.Controllers
         public IActionResult EditPublication(int id)
         {
             PublicationViewModel model = new PublicationViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
-            if (model.Authentificate == true)
+            if (HttpContext.User.Identity.IsAuthenticated == true)
             {
                 string accountId = (HttpContext.User.Identity.Name);
                 model.Account = dal.GetAccount(accountId);
@@ -128,7 +128,7 @@ namespace Projet2.Controllers
         [HttpPost]
         public IActionResult EditPublication(PublicationViewModel model, int id)
         {
-            if (model.Authentificate == true)
+            if (HttpContext.User.Identity.IsAuthenticated)
             {
                 string accountId = (HttpContext.User.Identity.Name);
                 model.Account = dal.GetAccount(accountId);
@@ -138,7 +138,33 @@ namespace Projet2.Controllers
             return RedirectToAction("Login", "Login");
         }
 
-        
+        public IActionResult RemovePublication(int id)
+        {
+            PublicationViewModel model = new PublicationViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
+            if (HttpContext.User.Identity.IsAuthenticated == true)
+            {
+                string accountId = (HttpContext.User.Identity.Name);
+                model.Account = dal.GetAccount(accountId);
+                model.Publication = dal.GetOnePublication(id);
+                return View(model);
+            }
+            return RedirectToAction("Login", "Login");
+        }
+
+        [HttpPost]
+        public IActionResult RemovePublication(PublicationViewModel model, int id)
+        {
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                string accountId = (HttpContext.User.Identity.Name);
+                model.Account = dal.GetAccount(accountId);
+                dal.RemovePublication(id);
+                return RedirectToAction("PublicationWall");
+            }
+            return RedirectToAction("Login", "Login");
+        }
+
+
 
         public ActionResult Deconnexion()
         {

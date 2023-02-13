@@ -4,7 +4,89 @@
     Layout = "_LayoutGeneral";
 }
 
-@using (Html.BeginForm())
+
+<div class="content">
+
+    @using (Html.BeginForm("CancelationBookStuff", "Stuff", new { Model.Stuff.Id }, FormMethod.Post))
+    {
+        @Html.HiddenFor(m=>m.Stuff.Id)
+
+
+        <input type="submit" id="return" value="Retour ">
+    }
+
+    @using (Html.BeginForm())
+{
+        @Html.HiddenFor(m=>m.Stuff.Id)
+        @Html.HiddenFor(m=>m.Stuff.AccountBorrowerId)
+
+        <h1>Demande de réservation</h1>
+        <div class="image">
+            <img src="@Model.Stuff.ImagePath" alt="Photo du Stuff" />
+        </div>
+
+        <div class="attributs">
+            <div class="name">
+                <label><b>@Model.Stuff.Name</b></label>
+            </div>
+
+            <div class="type">
+                -
+                <label>@Model.Stuff.Type</label>
+            </div>
+
+            <div class="state">
+                -
+                <label>@Model.Stuff.State</label>
+            </div>
+
+            <div class="owner">
+                <label><em>@Model.Stuff.AccountOwner.Username</em></label>
+            </div>
+        </div>
+
+        <div class="description">
+            <label>
+                <b>Description</b>
+                <p>
+                    @Model.Stuff.Description
+                </p>
+            </label>
+        </div>
+
+        <div class="reason">
+            <label>
+                <b>Les raisons de <b>@Model.Stuff.AccountBorrower.Username</b></b>
+                <p>
+                    @Model.ReservationStuff.ReservationArgument
+                </p>
+            </label>
+        </div>
+        <input type="submit" id="submit" value="Accepter" />
+        @*<input type="button" id="decline" value="Refuser" />
+        <input type="button" id="return" value="Retour" />*@
+}
+
+
+
+
+@using (Html.BeginForm("CancelationBookStuff", "Stuff", new { Model.Stuff.Id }, FormMethod.Post))
+{
+    @Html.HiddenFor(m=>m.Stuff.Id)
+
+        <input type="submit" id="decline" value="Refuser ">
+}
+</div>
+
+
+@section ExtraCss{
+    <link rel="stylesheet" href="~/css/VueAcceptationReservation.css" />
+                }
+
+
+
+
+@*@using (Html.BeginForm())
 {
 <h2>Reservation Stuff</h2>
 
@@ -17,13 +99,15 @@
     <p>Type : @Model.Stuff.Type</p>
     <p>Etat : @Model.Stuff.State</p>
     <p>Reservation : @Model.Stuff.Reservation</p>
-    <p>Emprunteur : @Model.Account.Username</p>
+    <p>Emprunteur : @Model.Stuff.AccountBorrower.Username</p>
     <p>Argument : @Model.ReservationStuff.ReservationArgument</p>
 
     <input type="submit" value="Accepter" />
     
-    
-}
+  
+
+}*@
+
 @*<div>
     @Html.ActionLink("Refuser","CancelationBookStuff","Stuff", new {id =Model.Stuff.Id})
 </div>
@@ -31,18 +115,19 @@
     @Html.ActionLink("Retour","ReturnStuff","Stuff", new {id =Model.Stuff.Id})
 </div>*@
 
-@using (Html.BeginForm("CancelationBookStuff","Stuff", new { Model.Stuff.Id},FormMethod.Post))
+
+@*@using (Html.BeginForm("CancelationBookStuff","Stuff", new { Model.Stuff.Id},FormMethod.Post))
 {
     @Html.HiddenFor(m=>m.Stuff.Id)
 
     <input type="submit" value="Refuser ">
-}
+}*@
 
-@using (Html.BeginForm("CancelationBookStuff", "Stuff", new { Model.Stuff.Id }, FormMethod.Post))
+@*@using (Html.BeginForm("CancelationBookStuff", "Stuff", new { Model.Stuff.Id }, FormMethod.Post))
 {
     @Html.HiddenFor(m=>m.Stuff.Id)
     
 
     <input type="submit" value="Retour ">
-}
+}*@
 
