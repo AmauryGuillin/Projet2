@@ -4,7 +4,65 @@
     Layout = "_LayoutGeneral";
 }
 
-@using (Html.BeginForm())
+<div class="content">
+    @using (Html.BeginForm())
+    {
+
+        @Html.HiddenFor(m=>m.Stuff.Id)
+        @Html.HiddenFor(m=>m.Stuff.AccountBorrowerId)
+
+
+        <h1>Consultation de ma réservation</h1>
+        <div class="image">
+            <img src="@Model.Stuff.ImagePath" alt="Photo du Stuff à réserver" />
+        </div>
+
+        <div class="attributs">
+            <div class="name">
+                <label><b>@Model.Stuff.Name</b></label>
+            </div>
+
+            <div class="type">
+                -
+                <label>@Model.Stuff.Type</label>
+            </div>
+
+            <div class="state">
+                -
+                <label>@Model.Stuff.State</label>
+            </div>
+
+            <div class="owner">
+                <label><em>@Model.Stuff.AccountOwner.Username</em></label>
+            </div>
+        </div>
+
+        <div class="description">
+            <label>
+                <b>Description</b>
+                <p>@Model.Stuff.Description</p>
+            </label>
+        </div>
+        @Html.TextAreaFor(m => m.ReservationStuff.ReservationArgument, new {placeholder = "Pourquoi avez-vous besoin de ce matériel :"})
+        @Html.ValidationMessageFor(m => m.ReservationStuff.ReservationArgument)
+
+
+        
+
+        <input type="submit" id="submit" value="Réserver" />
+    }
+</div>
+
+@section ExtraCSS {
+    <link rel="stylesheet" href="~/css/CreateBookStuff.css" />
+}
+
+
+
+
+
+
+@*@using (Html.BeginForm())
 {
     <h2>Consultation Réservation</h2>
 
@@ -23,4 +81,4 @@
         <input type="submit" value="Annuler la réservation" />
 
 
-}
+}*@

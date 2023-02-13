@@ -1,0 +1,134 @@
+﻿.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    margin-top: 4%;
+    width: 65%;
+    padding: 30px;
+    border: 1px solid #0000001e;
+    background: #0000001e;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    margin-bottom: 40px;
+    display: grid;
+    grid-template-columns: 20% 20% 60%;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "h1 h1 h1"
+        "image attributs description"
+        "reservation-reason reservation-reason reservation-reason"
+        "button button button";
+}
+
+
+    form h1 {
+        grid-area: h1;
+        width: 100%;
+        margin-top: 0;
+        margin-bottom: 30px;
+        padding-bottom: 10px;
+        color: white;
+        text-align: center;
+        border-bottom: 2px solid #7e259e;
+    }
+
+.image {
+    grid-area: image;
+    justify-self: center;
+    margin-bottom: 30px;
+}
+
+    .image img {
+        width: 200px;
+        height: 200px;
+        border-radius: 20px;
+    }
+
+.attributs {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    grid-area: attributs;
+    margin-bottom: 30px;
+    padding: 2%;
+    margin-right: 20px;
+    border: 2px solid #7e259e;
+    border-radius: 20px 30px 30px 20px;
+    /* background: rgba(0, 0, 0, 0.158); */
+    border-right: none;
+}
+
+    .attributs .name {
+        grid-area: attributs;
+        text-transform: uppercase;
+        color: white;
+        padding-top: 8%;
+        margin-bottom: 20px;
+        align-self: center;
+        font-size: 1.3rem;
+    }
+
+.type, .state, .owner {
+    color: white;
+    justify-self: start;
+    margin-bottom: 10px;
+}
+
+.attributs .owner {
+    padding-top: 50px;
+    padding-right: 15px;
+    align-self: end;
+}
+
+.description {
+    grid-area: description;
+    justify-self: center;
+    border-top: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    margin-bottom: 30px;
+    padding: 2%;
+    display: flex;
+    min-width: 73rem;
+}
+
+
+textarea::-webkit-input-placeholder {
+    font-family: 'Montserrat', sans-serif;
+    /* padding-top: 5px;
+    padding-left: 5px; */
+    color: #7e259e;
+}
+
+form textarea:hover {
+    border: 2px solid #7e259e;
+}
+
+
+form input[type=submit] {
+    grid-area: button;
+    color: black;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 25%;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-top: 30px;
+    margin-bottom: 0;
+    justify-self: end;
+}
+
+    form input[type=submit]:hover {
+        color: white;
+        background-color: #4b2df1;
+        transition: 0.2s;
+    }
