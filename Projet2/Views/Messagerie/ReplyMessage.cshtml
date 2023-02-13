@@ -26,7 +26,7 @@
             @using (Html.BeginForm(FormMethod.Post))
           {
             <div class="conversation-content">
-                @Html.TextAreaFor(m=>m.Message.Body,htmlAttributes: new { @style = "width: 450px;", @placeholder = "Ecrivez votre message ici ..." })
+                @Html.TextAreaFor(m=>m.Message.Body,htmlAttributes: new {@placeholder = "Ecrivez votre message ici ..." })
               </div>
               <div class="button-send">
                 <input type="submit" value="Envoyer" />
