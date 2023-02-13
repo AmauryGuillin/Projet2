@@ -11,7 +11,7 @@ namespace Projet2.Models
         public int? BenevoleId { get; set; }
         public virtual Benevole Benevole { get; set; }
         //[Required]
-        public int NumAdherent { get; set; }
+        public long NumAdherent { get; set; }
         //[Required]
         public DateTime InscriptionDate { get; set; }
         public Double Contribution { get; set; }

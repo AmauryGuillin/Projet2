@@ -18,7 +18,7 @@ namespace Projet2.Models
 
         //public byte[] UserPhoto { get; set; }
 
-        [MaxLength(50)]
+        //[MaxLength(50)]
         //[Required]
 
         [Display(Name = "Présentez vous en quelques lignes")]

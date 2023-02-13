@@ -85,7 +85,7 @@ namespace Projet2.Controllers
         public IActionResult EditStuff(StuffViewModel model, int id)
         {
 
-            if (model.Authentificate == true)
+            if (HttpContext.User.Identity.IsAuthenticated == true)
             {
                 string accountId = (HttpContext.User.Identity.Name);
 
@@ -239,8 +239,6 @@ namespace Projet2.Controllers
 
                     }
                 }
-                
-                
                     Conversation newConversation = dal.CreateConversation(userAccount.Id, StuffOwner.Id);
                     model.Conversation= newConversation;
                     Message message= dal.FirstMessage(
@@ -260,28 +258,31 @@ namespace Projet2.Controllers
             StuffViewModel model = new StuffViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
             if (model.Authentificate == true)
             {
-
                 string accountId = (HttpContext.User.Identity.Name);
                 model.Stuff = dal.GetOneStuff(id);
                 Stuff stuff = model.Stuff;
                 model.ReservationStuff = dal.GetReservations().Where(r => r.StuffId == stuff.Id).FirstOrDefault();
-                model.Account = dal.GetAccounts().Where(r => r.Id == stuff.AccountBorrowerId).FirstOrDefault();
+                model.Stuff.AccountBorrower = dal.GetAccounts().Where(r => r.Id == stuff.AccountBorrowerId).FirstOrDefault();
+                //model.Account = dal.GetAccounts().Where(r => r.Id == stuff.AccountBorrowerId).FirstOrDefault();
                 //model.Account = dal.GetAccount(accountId);
                 //Account userAccount = model.Account;
                 //model.Stuff.AccountBorrowerId = userAccount.Id;
                 //model.Account = dal.GetAccounts().Where(r => r.Id == stuff.AccountOwnerId).FirstOrDefault();
-            return View(model);
+                return View(model);
             }
             return RedirectToAction("Login", "Login");
         }
 
+
         [HttpPost]
         public IActionResult AcceptationBookStuff(StuffViewModel model, int id)
         {
-            if (model.Authentificate==true)
+            Account account = dal.GetAccount(HttpContext.User.Identity.Name);
+            model.Account = account;
+            if (account!=null)
             {
-                string accountId = (HttpContext.User.Identity.Name);
-                model.Account = dal.GetAccount(accountId);
+                //string accountId = (HttpContext.User.Identity.Name);
+                //model.Account = dal.GetAccount(accountId);
                 dal.EditStuffAcceptation(id);
                 if (model.Account.role == Role.Adherent)
                 {

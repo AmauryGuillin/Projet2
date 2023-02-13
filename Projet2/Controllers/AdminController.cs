@@ -81,14 +81,48 @@ namespace Projet2.Controllers
             var ClaimIdentity = new ClaimsIdentity(userClaims, "User Identity");
             var userPrincipal = new ClaimsPrincipal(new[] { ClaimIdentity });
             HttpContext.SignInAsync(userPrincipal);
-
+            model.Stuffs = dal.GetStuffs();
+            List<Stuff> Stuffs = model.Stuffs;
+            model.ReservationStuffs = dal.GetReservations();
+            List<ReservationStuff> ListReservations = model.ReservationStuffs;
             return RedirectToAction("ViewDashboard", model);
 
         }
 
         public IActionResult ViewDashboard()
         {
-            return View();
+            AdminViewModel model = new AdminViewModel() { Authentificate = HttpContext.User.Identity.IsAuthenticated };
+            Account accountUser = dal.GetAccount(HttpContext.User.Identity.Name);
+            model.Account = accountUser;
+            if (accountUser != null&& model.Account.role==Role.Admin)
+            {
+                model.Accounts = dal.GetAccounts();
+                List<Account> accounts = model.Accounts;
+
+                List<Employee> employees = dal.GetEmployees();
+                model.Employees = employees;
+
+                List<Benevole> benevole = dal.GetBenevoles();
+                model.Benevoles = benevole;
+
+                List<Adherent> adherents = dal.GetAdherents();
+                model.Adherents = adherents;
+
+                model.Stuffs = dal.GetStuffs();
+                List<Stuff> Stuffs = model.Stuffs;
+  
+                List<ReservationStuff> ListReservations = dal.GetReservations();
+                model.ReservationStuffs = ListReservations;
+
+                List <Publication>publications= dal.GetPublications();
+                model.Publications = publications;
+
+                return View(model);
+            }
+
+
+
+            return RedirectToAction("Login", "Login");
         }
 
         public ActionResult Deconnexion()

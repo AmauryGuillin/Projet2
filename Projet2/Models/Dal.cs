@@ -276,19 +276,34 @@ namespace Projet2.Models
             return activity.Id;
         }
 
-        public void EditActivity(int id, DateTime startDate, DateTime endDate)
+        public void EditActivity(int id, DateTime startDate, DateTime endDate, string theme,string description,string Place, string imagePath)
         {
             Activity activity = _bddContext.Activities.Find(id);
             if (activity != null)
             {
                 activity.StartDate = startDate;
                 activity.EndDate = endDate;
+                activity.Theme = theme;
+                
+                activity.Description = description;
+                activity.Place = Place;
+                activity.ImagePath = imagePath;
                
                 _bddContext.SaveChanges();
             }
 
         }
-
+        public void EditEvent(int id, string theme, int numberOfParticipants, int ActivityId)
+        {
+            Event ev = _bddContext.Events.Find(id);
+            if (ev != null)
+            {
+                ev.Theme = theme;
+                ev.NumberOfParticipants = numberOfParticipants;
+                ev.ActivityId = ActivityId;
+                _bddContext.SaveChanges();
+            }
+        }
         public void EditActivity(Activity activity)
         {
             _bddContext.Activities.Update(activity);
@@ -952,12 +967,17 @@ namespace Projet2.Models
         }
 
         /////////////////CONTRIBUTION
-     
+
 
 
         /////////////////EMPLOYEE
         ///
 
+
+        public List<Employee> GetEmployees()
+        {
+            return _bddContext.Employees.ToList();
+        }
         public int CreateEmployee(string serialNumber, string jobName, DateTime dateOfEmployement, int accountId)
 
         {
@@ -1042,17 +1062,17 @@ namespace Projet2.Models
             return ev.Id;
         }
 
-        public void EditEvent(int id, string theme, int numberOfParticipants, int ActivityId)
-        {
-            Event ev = _bddContext.Events.Find(id);
-            if (ev != null)
-            {
-                ev.Theme = theme;
-                ev.NumberOfParticipants = numberOfParticipants;
-                ev.ActivityId = ActivityId;
-                _bddContext.SaveChanges();
-            }
-        }
+        //public void EditEvent(int id, string theme, int numberOfParticipants, int ActivityId)
+        //{
+        //    Event ev = _bddContext.Events.Find(id);
+        //    if (ev != null)
+        //    {
+        //        ev.Theme = theme;
+        //        ev.NumberOfParticipants = numberOfParticipants;
+        //        ev.ActivityId = ActivityId;
+        //        _bddContext.SaveChanges();
+        //    }
+        //}
 
         public void EditEvent(Event ev)
         {
@@ -1060,25 +1080,28 @@ namespace Projet2.Models
             _bddContext.SaveChanges();
         }
 
+        //public void RemoveEvent(int id)
+        //{
+        //    Event ev = _bddContext.Events.Find(id);
+        //    if (ev != null)
+        //    {
+        //        _bddContext.Events.Remove(ev);
+        //        _bddContext.SaveChanges();
+        //    }
+        //}
+
         public void RemoveEvent(int id)
         {
-            Event ev = _bddContext.Events.Find(id);
-            if (ev != null)
-            {
-                _bddContext.Events.Remove(ev);
-                _bddContext.SaveChanges();
-            }
-        }
+            Activity ev=GetEvents().Where(e => e.Id == id).FirstOrDefault();
 
-        public void RemoveEvent(Event ev)
-        {
-            _bddContext.Events.Remove(ev);
+            _bddContext.Activities.Remove(ev);
             _bddContext.SaveChanges();
         }
 
-        public List<Event> GetEvents()
+        public List<Activity> GetEvents()
         {
-            return _bddContext.Events.ToList();
+          List <Activity>Events=  GetActivities().Where(r=>r.activityType==ActivityType.Evenement).ToList();
+        return Events;
         }
 
         /////////////////FORUM
@@ -1501,13 +1524,13 @@ namespace Projet2.Models
             return slot.Id;
         }
 
-        public void EditSlot(int id, DateTime date, DateTime startHour, DateTime endHour)
+        public void EditSlot(int id, DateTime startHour, DateTime endHour)
         {
             Slot slot = _bddContext.Slots.Find(id);
             if (slot != null)
             {
                 slot.Id = id;
-                slot.Date = date;
+                
                 slot.StartHour = startHour;
                 slot.EndHour = endHour;
                 _bddContext.SaveChanges();
