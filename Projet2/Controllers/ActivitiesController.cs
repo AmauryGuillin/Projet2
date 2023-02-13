@@ -38,10 +38,12 @@ namespace Projet2.Controllers
             string uploads = Path.Combine(_webEnv.WebRootPath, "images");
             string filePath = Path.Combine(uploads, activitiesVM.Activity.ActivityImage.FileName);
             using (Stream fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                activitiesVM.Activity.ActivityImage.CopyTo(fileStream);
+            }
 
 
-
-                activitiesVM.Account = dal.GetAccount(HttpContext.User.Identity.Name);
+            activitiesVM.Account = dal.GetAccount(HttpContext.User.Identity.Name);
             if (activitiesVM.Account != null)
             {
                 activitiesVM.Activity =

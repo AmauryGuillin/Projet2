@@ -103,7 +103,10 @@
                                         <td>@Html.DisplayFor(mStuffs => Stuff.Name)</td>
                                         <td>@Html.DisplayFor(mStuffs => Stuff.Reservation)</td>
                                         <td>@Html.ActionLink("Modif", "EditStuff","Stuff", new { id = Stuff.Id })</td>
+                                        @if (Stuff.AccountBorrowerId != null)
+                                        {
                                         <td>@Html.ActionLink("Réservation", "AcceptationBookStuff","Stuff", new { id = Stuff.Id })</td>
+                                        }
                                     </tr>
                                 }
                             }

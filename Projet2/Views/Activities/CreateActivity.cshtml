@@ -4,7 +4,8 @@
 }
 
 <div class="content">
-      <form action="" method="POST">
+    @using (Html.BeginForm(FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
         <h1>Création d'une activité</h1>
 
         <div class="attributs">
@@ -46,7 +47,7 @@
               <label>Image</label>
             </div>
                 @Html.TextBoxFor(model => model.Activity.ActivityImage, new { placeholder = "Description", @type = "file",accept=".png, .jpg, .jpeg,.gif" })
-                @Html.ValidationMessageFor(m => m.Event.Theme)
+                @Html.ValidationMessageFor(m => m.Activity.ActivityImage)
           </div>
         </div>
         <div class="description">
@@ -58,7 +59,7 @@
         </div>
 
         <input type="submit" id="submit" value="Publier" />
-      </form>
+      }
     </div>
 
 

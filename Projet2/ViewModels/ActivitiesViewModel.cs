@@ -22,5 +22,9 @@ namespace Projet2.ViewModels
         public EventType activityEventType { get; set; }
 
         public List<Activity> activities { get; set;}
+
+        public Role role { get; set; }
+
+        public List<Account> accounts { get; set; }
     }
 }
