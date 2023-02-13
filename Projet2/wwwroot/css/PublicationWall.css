@@ -23,7 +23,7 @@
     padding: 2rem;
 }
 
-input[type=button] {
+button {
     width: 5rem;
     height: 2rem;
     font-weight: bold;
@@ -33,7 +33,7 @@ input[type=button] {
     border: none;
 }
 
-    input[type=button]:hover {
+    button:hover {
         background: rgb(17, 214, 122);
         transition: 0.5s;
         border: none;

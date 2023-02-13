@@ -11,5 +11,6 @@ namespace Projet2.ViewModels
         public List<Publication> Publications { get; set; }
         public bool Authentificate { get; set; }
 
+
     }
 }
