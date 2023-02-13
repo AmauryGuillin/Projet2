@@ -40,5 +40,7 @@ namespace Projet2.Models
         public string ImagePath { get; set; }
         [NotMapped]
         public IFormFile PubliImage { get; set; }
+
+
     }
 }

@@ -28,12 +28,12 @@
 
           <div class="start-date">
             <label>Date de début</label>
-                @Html.TextBoxFor(m=>m.Activity.StartDate, new { @type = "datetime-local"})
+                @Html.TextBoxFor(m=>m.Activity.StartDate, new { @type = "date"})
                 @Html.ValidationMessageFor(m => m.Activity.StartDate)
           </div>
           <div class="end-date">
             <label>Date de fin</label>
-                @Html.TextBoxFor(m=>m.Activity.EndDate, new { @type = "datetime-local"})
+                @Html.TextBoxFor(m=>m.Activity.EndDate, new { @type = "date"})
                 @Html.ValidationMessageFor(m => m.Activity.EndDate)
 
             <div class="nulber-of-participants">
