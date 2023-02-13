@@ -20,7 +20,9 @@ namespace Projet2.Models
             PeripheriquePC,
             PeripheriqueConsole,
             AccessoireBureau,
-            Salle
+            Salle, 
+            Cosplay, 
+            Autre
         }
 
     public enum Reservation

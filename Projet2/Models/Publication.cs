@@ -22,7 +22,7 @@ namespace Projet2.Models
         public string Name { get; set; }
         public PublicationTypes PublicationType { get; set; }
         public string Content { get; set; }
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
         //public string Author { get; set; }
         
         public int? AccountId { get; set; }
@@ -31,7 +31,5 @@ namespace Projet2.Models
         public string ImagePath { get; set; }
         [NotMapped]
         public IFormFile PubliImage { get; set; }
-
-        public string Dateplus { get; set; }
     }
 }
