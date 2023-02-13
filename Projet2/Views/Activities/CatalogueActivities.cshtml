@@ -18,12 +18,12 @@
                 <thead>
         <tr>
             <th></th>
-            <th><h2>Type de l'activité</h2></th>
-            <th><h2>Description</h2></th>
-            <th><h2>Place</h2></th>
-            <th><h2>Organizer</h2></th>
-            <th><h2>StartDate</h2></th>
-            <th><h2>EndDate</h2></th>
+            <th><h2>Type</h2></th>
+            <th><h2>Résumé</h2></th>
+            <th><h2>Lieu</h2></th>
+            <th><h2>Auteur</h2></th>
+            <th><h2>Début</h2></th>
+            <th><h2>Fin</h2></th>
     
         </tr>
                 </thead>
@@ -38,7 +38,7 @@
                 <td>@Html.DisplayFor(mActivity=>Activity.Organizer)</td>
                 <td>@Html.DisplayFor(mActivity=>Activity.StartDate)</td>
                 <td>@Html.DisplayFor(mActivity=>Activity.EndDate)</td>
-@if(Model.Account!=null){
+        @if(Model.Account!=null){
                 <td> 
                     @*@Html.BeginForm("Book","Activities",FormMethod.Post, new {id= Activity.Id})
                         {     

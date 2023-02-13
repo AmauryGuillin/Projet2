@@ -1,0 +1,91 @@
+﻿.content {
+    min-height: 100vh;
+    padding: 10px 150px 10px 150px;
+    margin-bottom: 20px;
+}
+
+.window {
+    border-radius: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.336);
+}
+
+.name {
+    grid-area: title;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom left,#ea03ff54, #8c00ff31) no-repeat;
+    margin-bottom: 10px;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    width: 100%;
+}
+
+.window img {
+    margin-top: 2rem;
+    width: 500px;
+}
+
+.publication-type {
+    align-self: center;
+}
+
+.description {
+    border-top: 2px solid rgba(195, 0, 255, 0.644);
+    border-bottom: 2px solid rgb(195, 0, 255, 0.644);
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding: 1rem 0 1rem 0;
+    margin-top: 2rem;
+    width: 80%;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.date {
+    align-self: flex-end;
+    margin-right: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.author {
+    align-self: flex-end;
+    margin-right: 1rem;
+    font-size: 1.1rem;
+}
+
+.buttons {
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+    margin-left: 3rem;
+    margin-bottom: 1.3rem;
+}
+
+input[type=button] {
+    align-self: flex-start;
+    margin-right: 1rem;
+    height: 2.5rem;
+    width: 6rem;
+    border-radius: 15px;
+    font-weight: bold;
+}
+
+#edit:hover {
+    background: rgb(10, 218, 10);
+    transition: 0.5s;
+}
+
+#back:hover {
+    background-color: rgb(200, 255, 0);
+    transition: 0.5s;
+}
