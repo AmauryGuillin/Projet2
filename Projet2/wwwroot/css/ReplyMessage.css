@@ -13,9 +13,15 @@
 }
 
 .upper-section {
+    width:100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
+}
+
+.scroller {
+    width: 100%;
+    height: 500px;
+    overflow-y: scroll;
+    scrollbar-width: thin;
 }
 
     .upper-section table {
@@ -40,10 +46,6 @@
 
 #date {
     font-size: 0.7rem;
-}
-
-.lower-section {
-    margin-top: 11rem;
 }
 
 .conversation-content {
