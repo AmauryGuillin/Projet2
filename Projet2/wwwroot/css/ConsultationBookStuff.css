@@ -85,7 +85,6 @@ form {
 
 .description {
     grid-area: description;
-    justify-self: center;
     border-top: 2px solid #ffffff;
     border-bottom: 2px solid #ffffff;
     border-bottom-left-radius: 20px;
