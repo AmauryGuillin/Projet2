@@ -1,0 +1,76 @@
+﻿.content {
+    min-height: 100vh;
+    padding: 0 30% 0 30%;
+}
+
+.global-box {
+    background: rgba(0, 0, 0, 0.466);
+    border-radius: 20px;
+    padding-left: 1rem;
+    padding-top: 1rem;
+    height: 35rem;
+}
+
+.upper-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image {
+    margin-right: 1rem;
+}
+
+    .image img {
+        width: 200px;
+        height: 200px;
+        clip-path: circle();
+        justify-self: center;
+        align-self: center;
+        object-fit: cover;
+    }
+
+
+
+.welcome-message {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.lower-section {
+    display: flex;
+    justify-content: start;
+    align-items: start;
+}
+
+.select-receiver {
+    margin-top: 3rem;
+    margin-left: 1.6rem;
+}
+
+#selectedAccount {
+    width: 15rem;
+    height: 1.6rem;
+    margin-bottom: 1rem;
+}
+
+.conversation-content {
+    justify-content: center;
+    align-items: center;
+}
+
+textarea {
+    width: 41rem;
+    height: 13rem;
+    resize: none;
+}
+
+.button-send {
+    display: flex;
+    justify-content: end;
+    align-items: end;
+}
+
+input[type=submit] {
+    height: 2rem;
+}
