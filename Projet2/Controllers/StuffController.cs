@@ -171,6 +171,7 @@ namespace Projet2.Controllers
                 Stuff stuff = model.Stuff;
                 model.Account = dal.GetAccount(accountId);
                 Account userAccount = model.Account;
+                model.Stuff.AccountOwner = dal.GetAccounts().Where(r => r.Id == stuff.AccountOwnerId).FirstOrDefault();
                 model.Stuff.AccountBorrowerId = userAccount.Id;
                 model.Account = dal.GetAccounts().Where(r => r.Id == stuff.AccountOwnerId).FirstOrDefault();
                 return View(model);
@@ -268,6 +269,7 @@ namespace Projet2.Controllers
                 Stuff stuff = model.Stuff;
                 model.ReservationStuff = dal.GetReservations().Where(r => r.StuffId == stuff.Id).FirstOrDefault();
 
+                model.Stuff.AccountOwner = dal.GetAccounts().Where(r => r.Id == stuff.AccountOwnerId).FirstOrDefault();
                 model.Stuff.AccountBorrower = dal.GetAccounts().Where(r => r.Id == stuff.AccountBorrowerId).FirstOrDefault();
 
                 //model.Account = dal.GetAccounts().Where(r => r.Id == stuff.AccountBorrowerId).FirstOrDefault();
