@@ -29,6 +29,9 @@ namespace Projet2.Models
 
         public int NumberOfParticipants { get; set; }
         public string Theme { get; set; }
+
+        public int? PublisherId { get; set; }
+        public Account Publisher { get; set; }
     }
 
     public enum ActivityType

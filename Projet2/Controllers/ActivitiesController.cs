@@ -39,6 +39,8 @@ namespace Projet2.Controllers
             string filePath = Path.Combine(uploads, activitiesVM.Activity.ActivityImage.FileName);
             using (Stream fileStream = new FileStream(filePath, FileMode.Create))
 
+
+
                 activitiesVM.Account = dal.GetAccount(HttpContext.User.Identity.Name);
             if (activitiesVM.Account != null)
             {
@@ -51,7 +53,8 @@ namespace Projet2.Controllers
                 activitiesVM.Activity.activityType,
                 activitiesVM.Activity.ActivityEventType,
                 activitiesVM.Account.Username,
-                "/images/" + activitiesVM.Activity.ActivityImage.FileName
+                "/images/" + activitiesVM.Activity.ActivityImage.FileName,
+                activitiesVM.Account.Id
                 );
 
                 List<Activity> CatActivities = new List<Activity>();

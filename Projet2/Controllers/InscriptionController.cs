@@ -221,7 +221,6 @@ namespace Projet2.Controllers
             
             if (accountUser!=null)
             {
-               
                 inscriptionViewModel.Profile = dal.GetProfiles().Where(r => r.Id == accountUser.ProfileId ).FirstOrDefault();
                 inscriptionViewModel.Infos = dal.GetInformations().Where(r => r.Id == accountUser.InfoPersoId).FirstOrDefault();
                 inscriptionViewModel.Contact=dal.GetContacts().Where(r => r.Id== accountUser.ContactId).FirstOrDefault();
@@ -229,13 +228,10 @@ namespace Projet2.Controllers
                 List<Stuff> Stuffs = inscriptionViewModel.Stuffs;
                 inscriptionViewModel.ReservationStuffs = dal.GetReservations();
                 List<ReservationStuff> ListReservations = inscriptionViewModel.ReservationStuffs;
-
                 IEnumerable<Activity> lastactivities = dal.GetActivities();
                 inscriptionViewModel.Activities = lastactivities.Reverse<Activity>().Take(3);
-
                 IEnumerable<Publication> lastpublications = dal.GetPublications();
                 inscriptionViewModel.Publications = lastpublications.Reverse<Publication>().Take(3);
-
                 foreach (var Publication in inscriptionViewModel.Publications)
                 {
                     Account AuthorPubli = dal.GetAccounts().Where(r => r.Id == Publication.AccountId).FirstOrDefault();
@@ -262,18 +258,14 @@ namespace Projet2.Controllers
                 inscriptionViewModel.Profile = dal.GetProfiles().Where(r => r.Id == accountUser.ProfileId).FirstOrDefault();
                 inscriptionViewModel.Infos = dal.GetInformations().Where(r => r.Id == accountUser.InfoPersoId).FirstOrDefault();
                 inscriptionViewModel.Contact = dal.GetContacts().Where(r => r.Id == accountUser.ContactId).FirstOrDefault();
-                
                 inscriptionViewModel.Stuffs = dal.GetStuffs();
                 List<Stuff> Stuffs = inscriptionViewModel.Stuffs;
                 inscriptionViewModel.ReservationStuffs = dal.GetReservations();
                 List<ReservationStuff> ListReservations = inscriptionViewModel.ReservationStuffs;
-
                 IEnumerable <Activity> lastactivities = dal.GetActivities();
                 inscriptionViewModel.Activities= lastactivities.Reverse<Activity>().Take(3);
-
                 IEnumerable<Publication> lastpublications = dal.GetPublications();
                 inscriptionViewModel.Publications = lastpublications.Reverse<Publication>().Take(3);
-
                 foreach (var Publication in inscriptionViewModel.Publications)
                 {
                     Account AuthorPubli = dal.GetAccounts().Where(r => r.Id == Publication.AccountId).FirstOrDefault();
@@ -285,27 +277,59 @@ namespace Projet2.Controllers
 
         }
 
-        public IActionResult EditProfilePIC()
+
+        public IActionResult ProfileViewParamsBenevole()
         {
-            InscriptionViewModel ivm = new InscriptionViewModel();
-            return View(ivm);
+
+            InscriptionViewModel inscriptionViewModel = new InscriptionViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
+            string accountId = (HttpContext.User.Identity.Name);
+            Account account = dal.GetAccount(accountId);
+
+            if (account != null)
+            {
+                inscriptionViewModel.Account = account;
+                inscriptionViewModel.Profile = dal.GetProfiles().Where(r => r.Id == account.ProfileId).FirstOrDefault();
+                inscriptionViewModel.Contact = dal.GetContacts().Where(r => r.Id == account.ContactId).FirstOrDefault();
+                inscriptionViewModel.Infos = dal.GetInformations().Where(r => r.Id == account.InfoPersoId).FirstOrDefault();
+                return View(inscriptionViewModel);
+            }
+
+            return RedirectToAction("Login", "Login");
         }
+
 
         [HttpPost]
-        public IActionResult EditProfilePIC(InscriptionViewModel ivm)
+        public IActionResult ProfileViewParamsBenevole(InscriptionViewModel inscriptionViewModel)
         {
-             
-            string uploads = Path.Combine(_webEnv.WebRootPath, "images");
-            string filePath = Path.Combine(uploads, ivm.Profile.ProfilImage.FileName);
-            using (Stream fileStream = new FileStream(filePath, FileMode.Create))
+            string accountId = (HttpContext.User.Identity.Name);
+            Account account = dal.GetAccount(accountId);
+            if (account != null)
             {
-                ivm.Profile.ProfilImage.CopyTo(fileStream);
-            }
-            dal.EditProfilePIC("/images/" + ivm.Profile.ProfilImage.FileName, ivm.Profile.Id);
 
-            return View();
+
+
+                return RedirectToAction("ProfileViewBenevole", inscriptionViewModel);
+            }
+
+            return RedirectToAction("Login", "Login");
         }
-        public ActionResult Deconnexion()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            public ActionResult Deconnexion()
         {
             HttpContext.SignOutAsync();
             return Redirect("/");

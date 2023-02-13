@@ -14,15 +14,16 @@
                 <h2>Membres</h2>
                 <!-- <a href="Liste"></a> -->
             @using (Html.BeginForm("DeleteAccountAdherent", "Admin", FormMethod.Post))
-            {
-            @Html.DropDownListFor(m => m.selectedAccount, Model.ListAccountsAdherent,"Selectionnez un adherent")
+            {@Html.DropDownListFor(m => m.selectedAccount, Model.ListAccountsAdherent,"Selectionnez un adherent")
+             <input type="submit" value="supprimer">}
+            
+             @using (Html.BeginForm("DeleteAccountBenevole", "Admin", FormMethod.Post))
+            {@Html.DropDownListFor(m => m.selectedAccount, Model.ListAccountsBenevole,"Selectionnez un benevole")
+                <input type="submit" value="supprimer"> }
 
-            <input type="submit" value="supprimer">
-            }
-
-            @Html.DropDownListFor(m => m.selectedAccount, Model.ListAccountsBenevole,"Selectionnez un benevole")
-            @Html.DropDownListFor(m => m.selectedAccount, Model.ListAccountsEmployee,"Selectionnez un salarié")
-
+            @using (Html.BeginForm("DeleteAccountEmployee", "Admin", FormMethod.Post))
+            { @Html.DropDownListFor(m => m.selectedAccount, Model.ListAccountsEmployee,"Selectionnez un salarié")
+                <input type="submit" value="supprimer">}
 
 
             </div>
