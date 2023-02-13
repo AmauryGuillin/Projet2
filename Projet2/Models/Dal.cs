@@ -251,7 +251,7 @@ namespace Projet2.Models
             return activity.Id;
         }
 
-        public Activity CreateNewActivity(DateTime startDate, DateTime endDate, string place, string description,ActivityType activityType,EventType eventType,string organizer,string filepath,int accountId)
+        public Activity CreateNewActivity(DateTime startDate, DateTime endDate, string description, string place, ActivityType activityType,EventType eventType,string organizer,string filepath,int accountId, int nb)
         {
             Activity activity = new Activity() { 
                 StartDate = startDate, 
@@ -262,7 +262,8 @@ namespace Projet2.Models
                 ActivityEventType=eventType,
                 Organizer=organizer,
                 ImagePath=filepath,
-                PublisherId=accountId
+                PublisherId=accountId,
+                NumberOfParticipants=nb,
             };
             _bddContext.Activities.Add(activity);
             _bddContext.SaveChanges();
@@ -277,7 +278,7 @@ namespace Projet2.Models
             return activity.Id;
         }
 
-        public void EditActivity(int id, DateTime startDate, DateTime endDate, string theme,string description,string Place, string imagePath)
+        public void EditActivity(int id, DateTime startDate, DateTime endDate, string theme,string description,string Place, string imagePath, int nb)
         {
             Activity activity = _bddContext.Activities.Find(id);
             if (activity != null)
@@ -289,6 +290,7 @@ namespace Projet2.Models
                 activity.Description = description;
                 activity.Place = Place;
                 activity.ImagePath = imagePath;
+                activity.NumberOfParticipants = nb;
                
                 _bddContext.SaveChanges();
             }

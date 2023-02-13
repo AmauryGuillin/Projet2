@@ -6,6 +6,8 @@
 <div class="content">
     @using (Html.BeginForm(FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
+       @Html.HiddenFor(m=>m.Account.Id)
+
         <h1>Création d'une activité</h1>
 
         <div class="attributs">
