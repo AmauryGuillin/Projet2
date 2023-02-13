@@ -12,7 +12,9 @@
             <button onclick="location.href='@Url.Action("EditPublication", "Publication" ,new {id=Model.Publication.Id})'">Modifier la publication</button>
     </div>
         <div class="image">
+
             <img src="@Model.Publication.ImagePath" alt="Image de l'article" />
+
         </div>
         
         <div class="publication-type"><h2>@Model.Publication.PublicationType</h2></div>

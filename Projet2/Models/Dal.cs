@@ -251,7 +251,7 @@ namespace Projet2.Models
             return activity.Id;
         }
 
-        public Activity CreateNewActivity(DateTime startDate, DateTime endDate, string place, string description,ActivityType activityType,EventType eventType,string organizer,string filepath)
+        public Activity CreateNewActivity(DateTime startDate, DateTime endDate, string place, string description,ActivityType activityType,EventType eventType,string organizer,string filepath,int accountId)
         {
             Activity activity = new Activity() { 
                 StartDate = startDate, 
@@ -261,7 +261,8 @@ namespace Projet2.Models
                 activityType=activityType,
                 ActivityEventType=eventType,
                 Organizer=organizer,
-                ImagePath=filepath
+                ImagePath=filepath,
+                PublisherId=accountId
             };
             _bddContext.Activities.Add(activity);
             _bddContext.SaveChanges();
@@ -2026,7 +2027,14 @@ namespace Projet2.Models
             _bddContext.Account.Remove(Account);
             _bddContext.SaveChanges();
         }
-       
+
+
+        public void RemoveActivities(Activity activity)
+        {
+            _bddContext.Activities.Remove(activity);
+            _bddContext.SaveChanges();
+        }
+
 
 
 

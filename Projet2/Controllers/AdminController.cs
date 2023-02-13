@@ -107,8 +107,28 @@ namespace Projet2.Controllers
                     });
                 };
 
-                model.ListAccountsBenevole = GetAllAccountsBenevole();
-                model.ListAccountsAdherent = GetAllAccountsAdherents();
+               var ListAccountsBenevole = GetAllAccountsBenevole();
+                model.ListAccountsBenevole = new List<SelectListItem>();
+                foreach (var account in ListAccountsBenevole)
+                {
+                    model.ListAccountsBenevole.Add(new SelectListItem
+                    {
+                        Text = account.Text,
+                        Value = account.Value,
+                    });
+                };
+
+
+                var ListAccountsAdherent = GetAllAccountsAdherents();
+                model.ListAccountsAdherent = new List<SelectListItem>();
+                foreach (var account in ListAccountsAdherent)
+                {
+                    model.ListAccountsAdherent.Add(new SelectListItem
+                    {
+                        Text = account.Text,
+                        Value = account.Value,
+                    });
+                };
 
                 model.Stuffs = dal.GetStuffs();
                 List<Stuff> Stuffs = model.Stuffs;
@@ -194,8 +214,118 @@ namespace Projet2.Controllers
         }
 
 
+        [HttpPost]
+        public IActionResult DeleteAccountBenevole(string selectedaccount)
+        {
+            AdminViewModel model = new AdminViewModel() { Authentificate = HttpContext.User.Identity.IsAuthenticated };
+            int idSelected = int.Parse(selectedaccount);
+            ///////////GET
+            Benevole aToDelete = dal.GetBenevoles().Where(r => r.AccountId == idSelected).FirstOrDefault();
+            Account toDelete = dal.GetAccounts().Where(r => r.Id == idSelected).FirstOrDefault();
+            Contact contact = dal.GetContacts().Where(r => r.Id == toDelete.ContactId).FirstOrDefault();
+            InfoPerso infos = dal.GetInformations().Where(r => r.Id == (int)toDelete.InfoPersoId).FirstOrDefault();
+            Profile profile = dal.GetProfiles().Where(r => r.Id == toDelete.ProfileId).FirstOrDefault();
+            MessagerieA messagerie = dal.GetMessageries().Where(r => r.Id == toDelete.MessagerieId).FirstOrDefault();
+            List<Conversation> conversationS = dal.GetUserConversationsStarter(toDelete.Id);
+            List<Conversation> conversationR = dal.GetUserConversationsReplier(toDelete.Id);
+            IEnumerable<Publication> publications = dal.GetPublications().Where(r => r.AccountId == toDelete.Id);
+            Planning planning = dal.GetPlannings().Where(r => r.Id == toDelete.PlanningId).FirstOrDefault();
+            List<Stuff> stuffs = dal.GetOwnedStuff(toDelete.Id);
+            IEnumerable<Slot> slots = dal.GetSlots().Where(r => r.PlanningId == planning.Id);
 
-            public IActionResult ProfileViewAdmin()
+            ///////REMOVE
+            foreach (var slot in slots)
+            {
+                dal.RemoveSlot(slot);
+            }
+            foreach (var stuff in stuffs)
+            {
+                dal.RemoveStuff(stuff);
+            }
+            foreach (var publication in publications)
+            {
+                dal.RemovePublication(publication.Id);
+            }
+            dal.RemovePlanning(planning);
+            dal.RemoveContact(contact);
+            dal.RemoveInfos(infos);
+            foreach (var conversation in conversationS)
+            {
+                dal.RemoveConversation(conversation);
+            }
+            foreach (var conversation in conversationR)
+            {
+                dal.RemoveConversation(conversation);
+            }
+            dal.RemoveMessagerie(messagerie);
+            dal.RemoveProfile(profile);
+            dal.RemoveAccount(toDelete);
+            dal.RemoveBenevole(aToDelete);
+
+            return RedirectToAction("ViewDashboard", model);
+        }
+
+
+
+        [HttpPost]
+        public IActionResult DeleteAccountEmployee(string selectedaccount)
+        {
+            AdminViewModel model = new AdminViewModel() { Authentificate = HttpContext.User.Identity.IsAuthenticated };
+            int idSelected = int.Parse(selectedaccount);
+            ///////////GET
+            Employee aToDelete = dal.GetEmployees().Where(r => r.AccountId == idSelected).FirstOrDefault();
+            Account toDelete = dal.GetAccounts().Where(r => r.Id == idSelected).FirstOrDefault();
+            Contact contact = dal.GetContacts().Where(r => r.Id == toDelete.ContactId).FirstOrDefault();
+            InfoPerso infos = dal.GetInformations().Where(r => r.Id == (int)toDelete.InfoPersoId).FirstOrDefault();
+            Profile profile = dal.GetProfiles().Where(r => r.Id == toDelete.ProfileId).FirstOrDefault();
+            MessagerieA messagerie = dal.GetMessageries().Where(r => r.Id == toDelete.MessagerieId).FirstOrDefault();
+            List<Conversation> conversationS = dal.GetUserConversationsStarter(toDelete.Id);
+            List<Conversation> conversationR = dal.GetUserConversationsReplier(toDelete.Id);
+            IEnumerable<Publication> publications = dal.GetPublications().Where(r => r.AccountId == toDelete.Id);
+            Planning planning = dal.GetPlannings().Where(r => r.Id == toDelete.PlanningId).FirstOrDefault();
+            List<Stuff> stuffs = dal.GetOwnedStuff(toDelete.Id);
+            IEnumerable<Slot> slots = dal.GetSlots().Where(r => r.PlanningId == planning.Id);
+            IEnumerable<Activity> activities = dal.GetActivities().Where(r => r.PublisherId == toDelete.Id);
+            ///////REMOVE
+            foreach (var slot in slots)
+            {
+                dal.RemoveSlot(slot);
+            }
+            foreach (var stuff in stuffs)
+            {
+                dal.RemoveStuff(stuff);
+            }
+            foreach (var publication in publications)
+            {
+                dal.RemovePublication(publication.Id);
+            }
+            foreach (var activity in activities)
+            {
+                dal.RemoveActivities(activity);
+            }
+            dal.RemovePlanning(planning);
+            dal.RemoveContact(contact);
+            dal.RemoveInfos(infos);
+            foreach (var conversation in conversationS)
+            {
+                dal.RemoveConversation(conversation);
+            }
+            foreach (var conversation in conversationR)
+            {
+                dal.RemoveConversation(conversation);
+            }
+            dal.RemoveMessagerie(messagerie);
+            dal.RemoveProfile(profile);
+            dal.RemoveAccount(toDelete);
+            dal.RemoveEmployee(aToDelete);
+
+            return RedirectToAction("ViewDashboard", model);
+        }
+
+
+
+        ////////////////////////////////////////////////////////////////
+        public IActionResult ProfileViewAdmin()
         {
             AdminViewModel avm = new AdminViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
             Account accountUser = dal.GetAccount(HttpContext.User.Identity.Name);
@@ -266,12 +396,15 @@ namespace Projet2.Controllers
             
             foreach (Employee employee in employees)
             {
-                var accountsemployees = dal.GetAccounts().Where(r => r.Id == employee.AccountId);
 
-                foreach (Account account1 in accountsemployees)
-                {
-                    SelectionAccountsEmployee.Add(new SelectListItem { Text = account1.Username, Value = account1.Id.ToString() });
-                }
+                Account account = employee.Account;
+                SelectionAccountsEmployee.Add(new SelectListItem { Text = account.Username, Value = account.Id.ToString() });
+                //var accountsemployees = dal.GetAccounts().Where(r => r.Id == employee.AccountId);
+
+                //foreach (Account account1 in accountsemployees)
+                //{
+                //    SelectionAccountsEmployee.Add(new SelectListItem { Text = account1.Username, Value = account1.Id.ToString() });
+                //}
             }
             return SelectionAccountsEmployee;
         }
