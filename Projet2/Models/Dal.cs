@@ -838,7 +838,7 @@ namespace Projet2.Models
             _bddContext.SaveChanges();
         }
 
-        public void EditPublication(int id, string name, PublicationTypes type, string content, string date)
+        public void EditPublication(int id, string name, PublicationTypes type, string content, string date, string imagePath)
         {
             Publication publi = _bddContext.Publications.Find(id);
             if (publi != null)
@@ -847,6 +847,7 @@ namespace Projet2.Models
                 publi.PublicationType = type;
                 publi.Content = content;
                 publi.Date = date;
+                publi.ImagePath = imagePath;
                 _bddContext.SaveChanges();
             }
         }
