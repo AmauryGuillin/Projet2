@@ -117,9 +117,11 @@ namespace Projet2.Models
             this.Publications.Add(new Publication()
             {
                 Id=1,
-                Name="Un truc chiant.....",
+                Name= "Passionnés de jeux vidéo, comment devenir pro-gamer ?",
                 PublicationType=PublicationTypes.FAQ,
-                Content= "puceau moi ? serieusement ^^ haha on me l avait pas sortie celle la depuis loooongtemps  demande a mes potes si je suis puceau tu vas voir les reponses que tu vas te prendre XD rien que la semaine passee j ai niquer donc chuuuuut ferme la puceau de merde car oui toi tu m as tout l air d un bon puceau de merde car souvent vous etes frustrer de ne pas BAISER  ses agreable de se faire un missionnaire ou un amazone avec une meuf hein? tu peux pas repondre car tu ne sais pas ce que c ou alors tu le sais mais tu as du taper dans ta barre de recherche \"missionnaire sexe\" ou \"amazone sexe\" pour comprendre ce que c etait mdddrrr !! c est grave quoiquil en soit.... pour revenir a moi, je pense que je suis le mec le moins puceau de ma bande de 11 meilleurs amis pas psk j ai eu le plus de rapport intime mais psk j ai eu les plus jolie femme que mes amis ses pas moi qui le dit, ses eux qui commente sous mes photos insta \"trop belle la fille que tu as coucher avec hier en boite notamment!\" donc apres si tu veux que sa parte plus loi sa peut partir vraiment loi j habite dans la banlieue de niort sa te parle steven sanchez ? ses juste un cousin donc OKLM hahaha on verra si tu parles encore le puceau de merde mdddrrr pk insulter qd on est soi meme puceau tu me feras toujour marrer!! ",
+                Date= "2023-02-13",
+                ImagePath= "/images/Gamer-ok.png",
+                Content = "Un métier qui nécessite rigueur et détermination\r\n \r\n Il serait illusoire de penser qu’on peut devenir pro-gamer sans travailler dur pour y parvenir. Au même titre que pour les carrières sportives de haut niveau, il est indispensable de fournir beaucoup de rigueur et de détermination pour arriver à ses fins.\r\n \r\n Pour commencer, il est impératif de choisir un jeu spécifique et de passer du temps à s’entraîner dessus (entre 35 et 50 heures hebdomadaires). L’objectif de cet entraînement est de parfaitement maîtriser le jeu et son univers. Ces heures de jeu n’incarnent donc plus un loisir quelconque, mais un travail à temps plein, exigeant une totale concentration de la part du joueur.\r\n \r\n La charge mentale liée à cet entraînement intensif est très élevée. C’est pourquoi le joueur souhaitant devenir pro-gamer doit également veiller à conserver une bonne hygiène de vie (régime alimentaire équilibré, pratique d’activité physique, etc.).\r\n \r\n Contrairement aux idées reçues, le pro-gamer doit également posséder une certaine aisance relationnelle car il est quotidiennement confronté à ses coéquipiers dans le cadre de ses entraînements. Selon le type de jeu dans lequel il souhaite se professionnaliser, le futur pro-gamer doit parfois choisir à quel rôle il va se consacrer au sein sa team (midlaner, bruiser, etc…).\r\n \r\n  \r\n \r\n Quelles sont les qualités d’un pro-gamer ?\r\n \r\n Le pro-gamer doit impérativement être passionné par le jeu dans lequel il est spécialisé ainsi que par l’univers du jeu vidéo en général. Il possède l’esprit de compétition, mais sait aussi se montrer fair-play en cas de défaite. Il doit également posséder un réel esprit d’équipe et savoir s’adapter rapidement aux changements. En effet, certaines modalités des jeux en ligne sont parfois amenées à être modifiées par les équipes de développeurs, ce qui contraint le pro-gamer à revoir certaines de ses stratégies et à redoubler ses entraînements.\r\n \r\n Le fait d’avoir suivi un cursus d’études spécialisé dans l’univers du jeu vidéo incarne un avantage non-négligeable pour devenir pro-gamer. A ce titre, de plus en plus d’établissement ouvrent des formations exclusivement consacrées à l’univers du jeu vidéo et à ses professions : c’est par exemple\r\n \r\n le cas de l’ICAN, qui propose un parcours exclusivement consacré au Game Design. Accessible dès le niveau bac, ce parcours peut être suivi sur un cycle court (le cycle Bachelor, de niveau bac+3), ou un cycle long (le cycle Mastère, de niveau bac +5). Cette formation inclut l’enseignement de nombreuses disciplines fondamentales qui permettent à l’étudiant d’acquérir toutes les connaissances requises pour faire carrière dans l’univers du jeu vidéo : culture anglaise du jeu vidéo, histoire du jeu vidéo, intelligence artificielle….\r\n \r\n Il est difficile de définir le salaire moyen d’un pro-gamer car il varie énormément en fonction de ses différents sponsors, de sa popularité et de son niveau de jeu. Les professionnels les plus populaires au monde jouissent toutefois d’une rémunération colossale : on peut par exemple citer le cas du spécialiste de Fortnite, Nickmercs, qui a gagné plus de 6 millions de dollars en 2019.\r\n \r\n  \r\n \r\n Dans un contexte où le e-sport se démocratise à toute vitesse, il est aujourd’hui parfaitement possible d’envisager de devenir pro-gamer. Très exigeant, ce type de carrière nécessite toutefois un entraînement intensif et une bonne connaissance de l’univers du gaming.",
                 AccountId=1,
             });
 
@@ -202,10 +204,15 @@ namespace Projet2.Models
             this.Publications.Add(new Publication()
             {
                 Id = 2,
-                Name = "Infos",
+                Name = "Costume emblématique de l'Agent 47",
                 PublicationType = PublicationTypes.ArticleInformatif,
-                Content = "Ce costume porte l'adjectif emblématique car c'est le costume qui était souvent utilisé dans les opus précédents notamment Hitman : Tueur à gages, Hitman 2: Silent Assassin et Hitman: Contracts, c'est-à-dire un costume noir, une chemise blanche et une cravate rouge.\r\nOn peut voir si les illustrations de ces trois jeux que la cravate est rayée mais apparaît sans cette caractéristique, suggérant qu'il y avait à cette époque des limitations techniques. ",
+                Date = "2023-01-01",
+                ImagePath = "/images/agent_47_hitman_costume_by_misteralterego-d5opjei.webp",
+                Content = "Le costume emblématique de 47 est un costume disponible dans la trilogie du Monde de l'Assassinat et sert de costume par défaut pour 47.\r\n \r\n DESCRIPTION\r\n Un costume sur-mesure moderne porté avec une chemise blanche avec un col en pointe et une cravate bordeaux.\r\n Acquisition\r\n Costume par défaut automatiquement présent dans l'inventaire.\r\n \r\n ACQUISITION PARTICULIERE\r\n HITMAN™ III\r\n Déguisement de départ sur une destination : il s'agit du costume automatiquement mis lorsqu'on choisit le lieu de départ « Reflet » ou lorsqu'on la lance pour la première fois.\r\n \r\n CARACTERISTIQUE\r\n Déguisemen : Permet de se camoufler dans certains endroits.\r\n \r\n ANECDOTE\r\n Ce costume porte l'adjectif emblématique car c'est le costume qui était souvent utilisé dans les opus précédents notamment Hitman : Tueur à gages, Hitman 2: Silent Assassin et Hitman: Contracts, c'est-à-dire un costume noir, une chemise blanche et une cravate rouge.\r\n On peut voir si les illustrations de ces trois jeux que la cravate est rayée mais apparaît sans cette caractéristique, suggérant qu'il y avait à cette époque des limitations techniques.\r\n Le costume a été légèrement réajusté dans la trilogie.\r\n Dans HITMAN™ 2, la cravate a été éclairée et rendue plus fine.\r\n Dans HITMAN™ III, la cravate a été rendue sensiblement plus sombre, le nœud a été refait et le col ainsi que la cravate ont été rendus plus larges. Le noir du costume a lui aussi été éclairci.\r\n \r\n \r\n ",
                 AccountId = 2,
+
+
+               
             });
 
             ///////////////////////////EMPLOYEE
@@ -273,9 +280,11 @@ namespace Projet2.Models
                 Id = 3,
                 Name = "FFVII",
                 PublicationType = PublicationTypes.Resultat,
+                Date= "2023 - 12 - 31",
+                ImagePath= "/images/ffvii_sephiroth_zack_by_falconfliesalone.webp",
                 Content = " Competition Final Fantasy Crisis Core: Zack VS Sephiroth = 1-0 ... ",
                 AccountId = 3,
-            });
+            });;
 
             ///////////////////////ADMIN
             this.Admins.Add(new Admin() { AccountId = 4 });
@@ -341,6 +350,8 @@ namespace Projet2.Models
                 Id = 4,
                 Name = "Techniques de combat.",
                 PublicationType = PublicationTypes.Infographie,
+                Date= "2022-12-31",
+                ImagePath= "/images/3195ac2fcaaa1922b1e1f4d4c7472e4b.webp",
                 Content = " Et n’oubliez jamais que même si votre barre de vie est proche de zéro, rien n’est jamais perdu, le mode rage peut encore vous permettre de renverser la situation !",
                 AccountId = 4,
             });

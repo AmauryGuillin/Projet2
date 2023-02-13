@@ -6,38 +6,38 @@
 }
 
 .table-title {
-    grid-area: title;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background: linear-gradient(to bottom left,#ea03ff27, #8c00ff31) no-repeat;
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .catalog {
-    background: rgba(0, 0, 0, 0.151);
-    border-bottom-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-    min-height: 100vh;
-    padding: 2rem;
+background: rgba(0, 0, 0, 0.151);
+border-bottom-right-radius: 20px;
+border-bottom-left-radius: 20px;
+min-height: 100vh;
+padding: 2rem;
 }
 
 button {
-    width: 5rem;
     height: 2rem;
     font-weight: bold;
     background: white;
     border-radius: 10px;
     cursor: pointer;
     border: none;
+    width: 13rem;
+    margin-bottom: 2rem;
 }
 
     button:hover {
-        background: rgb(17, 214, 122);
+        background: #4b2df1;
+        color: white;
         transition: 0.5s;
         border: none;
-        color: rgb(0, 0, 0);
     }
 
     .catalog table {

@@ -8,20 +8,23 @@
 <div class="content">
       <div class="window">
         <div class="name"><h1>@Model.Publication.Name</h1></div>
+        <div class="buttons">
+            <button onclick="location.href='@Url.Action("EditPublication", "Publication" ,new {id=Model.Publication.Id})'">Modifier la publication</button>
+    </div>
         <div class="image">
-          <img src="@Model.Publication.ImagePath" alt="Image de l'article" />
+
+            <img src="@Model.Publication.ImagePath" alt="Image de l'article" />
+
         </div>
+        
         <div class="publication-type"><h2>@Model.Publication.PublicationType</h2></div>
         <div class="description">@Model.Publication.Content</div>
-        <div class="date">le @Model.Publication.Date</div>
-        <div class="author">par <em>@*@Model.Account.Username*@</em></div>
-        <div class="buttons">
+        <div class="date">@Model.Publication.Date</div>
+        <div class="author"><em>@Model.Publication.Account.Username</em></div>
+        <button onclick="location.href='@Url.Action("PublicationWall", "Publication")'">Retour</button>
 
-          <button onclick="location.href='@Url.Action("EditPublication", "Publication" ,new {id=Model.Publication.Id})'">Modifier</button>
-          <button onclick="location.href='@Url.Action("PublicationWall", "Publication")'">Retour</button>
-
-        </div>
       </div>
+
     </div>
 
 @section ExtraCSS {
@@ -45,10 +48,9 @@
 
 
 
+@*    <h2>PUBLICATION</h2>
 
-    <h2>PUBLICATION</h2>
-
-  @*  @Html.HiddenFor(m=>m.Publication.Id)*@
+    @Html.HiddenFor(m=>m.Publication.Id)
 
 
     <h1>@Model.Publication.Name</h1>
@@ -60,3 +62,4 @@
 @Html.ActionLink("Modifier", "EditPublication", "Publication", new { id = Model.Publication.Id })
 @Html.ActionLink("Retour", "PublicationWall", "Publication")
 
+*@
