@@ -838,7 +838,7 @@ namespace Projet2.Models
             _bddContext.SaveChanges();
         }
 
-        public void EditPublication(int id, string name, PublicationTypes type, string content, DateTime date)
+        public void EditPublication(int id, string name, PublicationTypes type, string content, string date)
         {
             Publication publi = _bddContext.Publications.Find(id);
             if (publi != null)
@@ -978,7 +978,7 @@ namespace Projet2.Models
         {
             return _bddContext.Employees.ToList();
         }
-        public int CreateEmployee(string serialNumber, string jobName, DateTime dateOfEmployement, int accountId)
+        public int CreateEmployee(string serialNumber, string jobName, string dateOfEmployement, int accountId)
 
         {
             Employee employee = new Employee() { SerialNumber = serialNumber, JobName = jobName, DateOfEmployement = dateOfEmployement, AccountId = accountId };
@@ -1001,7 +1001,7 @@ namespace Projet2.Models
             Employee employee = new Employee()
             {
                 AccountId= accountId,
-                DateOfEmployement= DateTime.Now,
+                DateOfEmployement= DateTime.Now.ToString("dd/mm/yyyy"),
                 JobName=jobname,
                 SerialNumber=matricule
             };
@@ -1011,7 +1011,7 @@ namespace Projet2.Models
             return employee;
         }
 
-        public void EditEmployee(int id, string serialNumber, string jobName, DateTime dateOfEmployement, int accountId)
+        public void EditEmployee(int id, string serialNumber, string jobName, string dateOfEmployement, int accountId)
         {
             Employee employee = _bddContext.Employees.Find(id);
             if (employee != null)
@@ -1310,13 +1310,14 @@ namespace Projet2.Models
         //    return publication;
         //}
 
-        public Publication CreatePublication(string profilImage, int authorid,string body,string name,PublicationTypes publicationTypes)
+        public Publication CreatePublication(string profilImage, int authorid,string body,string name,PublicationTypes publicationTypes, string date)
         {
             Publication publi = new Publication()
             {
                 ImagePath = profilImage,
                 AccountId= authorid,
                 Content=body,
+                Date= date,
                 Name= name,
                 PublicationType= publicationTypes
 

@@ -10,7 +10,7 @@ namespace Projet2.Models
 
         public string JobName { get; set; }
 
-        public DateTime DateOfEmployement { get; set; }
+        public string DateOfEmployement { get; set; }
 
         public int? AccountId { get; set; }
 

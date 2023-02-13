@@ -41,8 +41,8 @@ namespace Projet2.Models
 
         void RemoveBenevole(int id);
 
-        int CreateEmployee(string serialNumber, string jobName, DateTime dateOfEmployement, int accountId);
-        void EditEmployee(int id, string serialNumber, string jobName, DateTime dateOfEmployement, int accountId);
+        int CreateEmployee(string serialNumber, string jobName, string dateOfEmployement, int accountId);
+        void EditEmployee(int id, string serialNumber, string jobName, string dateOfEmployement, int accountId);
         void RemoveEmployee(int id);
 
 

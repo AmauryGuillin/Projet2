@@ -46,6 +46,14 @@ form #Stuff_StuffImage {
     text-align: start;
 }
 
+#typelist {
+    height: 30px;
+    border: none;
+    border-radius: 10px;
+    align-self: start;
+    margin-bottom:1rem;
+}
+
 #Stuff_Type {
     align-self: start;
     height:2rem;

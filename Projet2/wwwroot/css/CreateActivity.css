@@ -5,7 +5,7 @@
 }
 
 form {
-    margin-top: 0;
+    margin-top: 4%;
     width: 65%;
     padding: 30px;
     border: 1px solid #0000001e;
@@ -13,12 +13,13 @@ form {
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     margin-bottom: 40px;
     display: grid;
-    grid-template-columns: 25% 75%;
+    grid-template-columns: auto 75%;
     grid-template-rows: auto;
     grid-template-areas:
         "h1 h1"
         "attributs description"
         "button button";
+    align-items: center
 }
 
 
@@ -38,35 +39,45 @@ form {
 .attributs {
     grid-area: attributs;
     margin-bottom: 30px;
-    padding: 2%;
     margin-right: 20px;
     border: 2px solid #ffffff;
     border-radius: 20px 30px 30px 20px;
     border-right: none;
-    padding-top: 2px;
+    padding-top: 10px;
+    padding-left: 10px;
     padding-bottom: 2px;
     padding-right: 15px;
     align-self: end;
 }
 
-
-.type, .date, .name{
-    color: white;
-    margin-top: 0.5rem;
-    justify-self: start;
-
-}
-
-#Publication_PublicationType, #Publication_Date, #Publication_PubliImage{
+#Activity_activityType, #Activity_ActivityEventType {
+    height: 2rem;
     width: 16rem;
-    height: 2.5rem;
     margin-bottom: 1rem;
-    margin-top: 0.5rem;
-    border-radius: 15px;
-    text-align: center;
-
+    margin-top: 1rem;
+    border-radius: 10px;
+    cursor: pointer;
 }
 
+.start-date, .end-date {
+    color: white;
+    justify-self: start;
+    grid-area: attributs;
+}
+
+input[type=datetime-local] {
+    height: 2rem;
+    width: 15.6rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    cursor:pointer;
+}
+
+
+.image {
+    margin-bottom: 1rem;
+}
 
 
 .description {
@@ -84,6 +95,10 @@ form {
     align-items: center;
 }
 
+.description .label {
+    margin-bottom: 1rem;
+}
+
 form input[type=text] {
     width: 100%;
     padding: 12px 20px;
@@ -93,15 +108,14 @@ form input[type=text] {
     border: 1px solid #ccc;
     box-sizing: border-box;
     border-radius: 20px;
-    text-align: center;
 }
+
 
 form textarea {
     grid-area: description;
-    height: 17rem;
-    width:54rem;
+    height: 500px;
+    width: 600px;
     resize: none;
-    margin-top: 0.5rem;
     border-radius: 10px;
     font-family: 'Montserrat', sans-serif;
     padding-top: 5px;
@@ -152,4 +166,10 @@ input::file-selector-button {
     height: 30px;
     border: none;
     border-radius: 10px;
+    cursor:pointer;
+    margin-bottom: 1rem;
+}
+
+input::file-selector-button:hover {
+    border: 1px solid black;
 }

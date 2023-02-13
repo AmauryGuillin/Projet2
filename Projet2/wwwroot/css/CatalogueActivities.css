@@ -6,6 +6,7 @@
 }
 
 .planning {
+    position: relative;
     border: 2px solid rgba(0, 0, 0, 0.151);
     background: linear-gradient(to bottom left,#ffffff27, #00000031) no-repeat;
     border-radius: 20px;
@@ -62,11 +63,11 @@ table {
     }
 
 .button-add-activities {
-    margin-top: 10px;
-    display: flex;
-    justify-content: end;
-    align-items: end;
-    padding-right: 10px;
+    position: absolute;
+    top: 7.8rem;
+    right: 0;
+    left: 56.5rem;
+    bottom: 0;
 }
 
     .button-add-activities input[type=button] {
