@@ -6,7 +6,7 @@
 }
 
 <div class="content">
-    @using (Html.BeginForm())
+    @using (Html.BeginForm(new { id = "save" }))
 {
 
         @Html.HiddenFor(m=>m.Stuff.AccountOwnerId)
@@ -55,7 +55,7 @@
     
     }
 
-<div>
+<div id="remove">
     @using (Html.BeginForm("RemoveStuff", "Stuff", new { Model.Stuff.Id }, FormMethod.Post))
     {
         @Html.HiddenFor(m=>m.Stuff.Id)
