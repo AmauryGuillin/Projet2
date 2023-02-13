@@ -15,7 +15,7 @@
         <div class="name">
             <label><b>Nom</b></label>
         </div>
-        @Html.TextBoxFor(m => m.Stuff.Name)
+        @Html.TextBoxFor(m => m.Stuff.Name, new {placeholder = "Entrer le nom du matériel"})
         @Html.ValidationMessageFor(m => m.Stuff.Name)
 
         <div class="description">
@@ -27,7 +27,7 @@
         <div class="type">
             <label><b>Type</b></label>
         </div>
-        @Html.DropDownListFor(m => m.Stuff.Type, Html.GetEnumSelectList<Projet2.Models.Type>(), "Selectionner un Type")
+        @Html.DropDownListFor(m => m.Stuff.Type, Html.GetEnumSelectList<Projet2.Models.Type>(), "Selectionner un Type", new{id="typelist"})
         @Html.ValidationMessageFor(m => m.Stuff.Type)
 
         <div class="StuffPic">
