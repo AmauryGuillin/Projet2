@@ -1,25 +1,26 @@
 ﻿.content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-form {
-    margin-top: 4%;
+    justify-items: center;
+    margin: auto;
     width: 65%;
     padding: 30px;
     border: 1px solid #0000001e;
     background: #0000001e;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     margin-bottom: 40px;
+}
+
+
+form {
     display: grid;
+    margin-bottom: 2rem;
+    align-items: center;
     grid-template-columns: 20% 20% 60%;
     grid-template-rows: auto;
     grid-template-areas:
         "h1 h1 h1"
         "image attributs description"
-        "reservation-reason reservation-reason reservation-reason"
-        "button button button";
+        "reason reason reason"
+        "button1 button1 button1"
 }
 
 
@@ -53,6 +54,7 @@ form {
     align-items: start;
     grid-area: attributs;
     margin-bottom: 30px;
+    min-height: 14rem;
     padding: 2%;
     margin-right: 20px;
     border: 2px solid #7e259e;
@@ -83,8 +85,9 @@ form {
     align-self: end;
 }
 
-.description {
-    grid-area: description;
+.reason {
+    grid-area: reason;
+    justify-self: center;
     border-top: 2px solid #ffffff;
     border-bottom: 2px solid #ffffff;
     border-bottom-left-radius: 20px;
@@ -97,6 +100,34 @@ form {
     min-width: 73rem;
 }
 
+.description {
+    grid-area: description;
+    justify-self: center;
+    min-height: 14rem;
+    border-top: 2px solid #7e259e;
+    border-bottom: 2px solid #7e259e;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    margin-bottom: 30px;
+    padding: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+form textarea {
+    grid-area: reservation-reason;
+    align-self: flex-start;
+    resize: none;
+    border-radius: 10px;
+    font-family: 'Montserrat', sans-serif;
+    padding-top: 10px;
+    padding-left: 10px;
+    color: #7e259e;
+}
 
 textarea::-webkit-input-placeholder {
     font-family: 'Montserrat', sans-serif;
@@ -111,23 +142,63 @@ form textarea:hover {
 
 
 form input[type=submit] {
-    grid-area: button;
+    grid-area: button1;
+    color: black;
+    padding: 14px 20px;
+    margin: 8px 0;
+    width: 20%;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    font-weight: bold;
+    justify-self: end;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+    form input[type=submit]:hover {
+        color: white;
+        background-color: #02f50ea8;
+        transition: 0.2s;
+    }
+
+#decline {
     color: black;
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 25%;
+    justify-self: end;
     border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+    #decline:hover {
+        color: white;
+        background-color: #C21111;
+        transition: 0.2s;
+    }
+
+#return {
+    color: black;
+    padding: 14px 20px;
+    margin: 8px 0;
+    justify-self: start;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
     font-weight: bold;
     font-size: 0.9rem;
     margin-top: 30px;
     margin-bottom: 0;
-    justify-self: end;
 }
 
-    form input[type=submit]:hover {
+    #return:hover {
         color: white;
-        background-color: #4b2df1;
+        background-color: #e0b907;
         transition: 0.2s;
     }

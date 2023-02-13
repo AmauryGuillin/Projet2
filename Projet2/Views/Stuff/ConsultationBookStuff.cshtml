@@ -5,16 +5,15 @@
 }
 
 <div class="content">
+
     @using (Html.BeginForm())
     {
-
         @Html.HiddenFor(m=>m.Stuff.Id)
         @Html.HiddenFor(m=>m.Stuff.AccountBorrowerId)
 
-
-        <h1>Consultation de ma réservation</h1>
+        <h1>Consultation Réservation</h1>
         <div class="image">
-            <img src="@Model.Stuff.ImagePath" alt="Photo du Stuff à réserver" />
+            <img src="@Model.Stuff.ImagePath" alt="Photo du Stuff" />
         </div>
 
         <div class="attributs">
@@ -30,6 +29,7 @@
             <div class="state">
                 -
                 <label>@Model.Stuff.State</label>
+                <label>Reservation : @Model.Stuff.Reservation</label>
             </div>
 
             <div class="owner">
@@ -40,24 +40,25 @@
         <div class="description">
             <label>
                 <b>Description</b>
-                <p>@Model.Stuff.Description</p>
+                <p>
+                    @Model.Stuff.Description
+                </p>
             </label>
         </div>
-        @Html.TextAreaFor(m => m.ReservationStuff.ReservationArgument, new {placeholder = "Pourquoi avez-vous besoin de ce matériel :"})
-        @Html.ValidationMessageFor(m => m.ReservationStuff.ReservationArgument)
 
+        <div class="reason">
+            <label>
+                <b>Les raisons de <b>@Model.Stuff.AccountBorrower.Username</b></b>
+                <p>
+                    @Model.ReservationStuff.ReservationArgument
+                </p>
+            </label>
+        </div>
+        <input type="submit" id="submit" value="Annuler la réservation" />
 
-        
-
-        <input type="submit" id="submit" value="Annuler la Réservation" />
     }
+
 </div>
-
-@section ExtraCSS {
-    <link rel="stylesheet" href="~/css/CreateBookStuff.css" />
-}
-
-
 
 
 
