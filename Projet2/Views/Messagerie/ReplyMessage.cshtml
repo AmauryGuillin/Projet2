@@ -5,8 +5,44 @@
 @Html.HiddenFor(m=>m.Account.Id)
 @Html.HiddenFor(m=>m.Account.role)
 
+<div class="content">
+      <div class="global-box">
+        <div class="upper-section">
+          <table>
+          @foreach(var Message in Model.Messages)
+          {
+            <tr>
+              <td id="image" width="10%">
+                <img id="profilpic" src="@Message.Sender.Profile.ImagePath" height="100" width="100" alt="" class=""/>
+                @Html.DisplayFor(mMessage=>Message.Sender.Username)
+              </td>
+              <td id="message" width="80%">@Html.DisplayFor(mMessage=>Message.Body)</td>
+              <td id="date" width="10%">@Html.DisplayFor(mMessage=>Message.MessageTimeStamp)</td>
+            </tr>
+          }
+          </table>
+        </div>
+        <div class="lower-section">
+            @using (Html.BeginForm(FormMethod.Post))
+          {
+            <div class="conversation-content">
+                @Html.TextAreaFor(m=>m.Message.Body,htmlAttributes: new { @style = "width: 450px;", @placeholder = "Ecrivez votre message ici ..." })
+              </div>
+              <div class="button-send">
+                <input type="submit" value="Envoyer" />
+              </div>
+          }
+        </div>
+      </div>
+    </div>
 
-<div>
+
+@section ExtraCSS {
+    <link rel="stylesheet" href="~/css/ReplyMessage.css" />
+}
+
+
+@*<div>
     <h1>Votre conversation :</h1>
 <table>
     <tbody>
@@ -33,13 +69,13 @@
 
 </div>
 
-@using (Html.BeginForm(FormMethod.Post))
-{
+@using (Html.BeginForm(FormMethod.Post))*@
+@*{*@
     
 
-    @Html.TextAreaFor(m=>m.Message.Body,htmlAttributes: new { @style = "width: 450px;", @placeholder = "Ecrivez votre message ici ..." })
+   @* @Html.TextAreaFor(m=>m.Message.Body,htmlAttributes: new { @style = "width: 450px;", @placeholder = "Ecrivez votre message ici ..." })*@
 @*<textarea placeholder="Ecrivez votre message ici">
 
 </textarea>*@
-<input type="submit" value="Envoyer" />
-}
+@*<input type="submit" value="Envoyer" />
+}*@
