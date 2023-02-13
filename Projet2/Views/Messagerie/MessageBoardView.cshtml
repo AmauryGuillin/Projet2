@@ -2,9 +2,76 @@
 @{
     Layout = "_LayoutGeneral";
 }
-<link rel=" stylesheet" href="~/css/MessageBoardView.css" />
 
-<section>
+
+<div class="content">
+    <div class="global-box">
+        <div class="upper-section">
+            <div class="image">
+                <img class="mr-3" src="@Model.Profile.ImagePath" alt="image de profil">
+            </div>
+            <div class="text">
+                <div class="welcome-message">
+                    <p>Bonjour @Model.Account.Username !</p>
+                </div>
+                <div class="introductive-messages">
+                    <p><h4>Bienvenue sur votre messagerie.</h4></p>
+                    <p>
+                        Vous pouvez interragir avec les aurtes membres de l'association
+                        ainsi qu'avec notre équipe !
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="lower-section">
+            <div class="nb-conversation">
+                <p>Vous avez : @Model.Messagerie.NbConversations conversation(s) en cours</p>
+            </div>
+            <div class="conversation-now-sender">
+                @foreach (var Conversation in Model.UserConversationsStarter)
+                {
+                    <div class="first-message">
+                        <div class="media text-muted pt-3">
+                            <img src="~/images/av2.png" alt="" class="mr-2 rounded" width="32" height="32">
+                            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                                <strong class="d-block text-gray-dark"> Conversation avec : @Conversation.ReceiverAccount.Username</strong>
+                            </p>
+                            <div></div>
+                            @Html.ActionLink("Cliquez ici pour acceder a la discussion","ReplyMessage","Messagerie", new{id=Conversation.Id});
+                        </div>
+                    </div>
+
+                }
+            </div>
+            <div class="conversation-now-receiver">
+                @foreach (var Conversation in Model.UserConversationsReceiver)
+                {
+                    <div class="first-message">
+                        <div class="media text-muted pt-3">
+                            <img src="~/images/av2.png" alt="" class="mr-2 rounded" width="32" height="32">
+                            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                                <strong class="d-block text-gray-dark"> Conversation avec: @Conversation.SenderAccount.Username</strong>
+                            </p>
+                            @Html.ActionLink("Cliquez ici pour acceder a la discussion","ReplyMessage","Messagerie",new{id=Conversation.Id});
+                        </div>
+                    </div>
+
+                }
+            </div>
+            <div class="new-conversation">
+                <p>Pour commencer une nouvelle conversation, cliquez @Html.ActionLink("ICI","NewMessageConversationView","Messagerie")</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section ExtraCSS {
+        <link rel=" stylesheet" href="~/css/MessageBoardView.css" />
+}
+
+
+
+@*<section>
     <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-blue rounded box-shadow">
         <img class="mr-3" src="@Model.Profile.ImagePath" alt="" width="48" height="48">
         <div class="lh-100">
@@ -17,9 +84,9 @@
 
 </section>
 <section>
-<p>
+<p>*@
 
-    @foreach (var Conversation in Model.UserConversationsStarter)
+    @*@foreach (var Conversation in Model.UserConversationsStarter)
     {
         <div class="my-3 p-3 bg-white rounded box-shadow">
         <h6 class="border-bottom border-gray pb-2 mb-0">Recent updates</h6>
@@ -33,9 +100,9 @@
         </div>
         </div>
         
-    }
+    }*@
 
-    @foreach (var Conversation in Model.UserConversationsReceiver)
+@*    @foreach (var Conversation in Model.UserConversationsReceiver)
     {
         <div class="my-3 p-3 bg-white rounded box-shadow">
             <h6 class="border-bottom border-gray pb-2 mb-0">Recent updates</h6>
@@ -48,11 +115,11 @@
             </div>
         </div>
 
-    }
+    }*@
 
 
 
-    </p>
+@*    </p>
 </section>
 <section>
         <div>
@@ -61,4 +128,4 @@
             </p>
             @Html.ActionLink("ICI","NewMessageConversationView","Messagerie")
         </div>
-</section>
+</section>*@
