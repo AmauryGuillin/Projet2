@@ -70,7 +70,7 @@ namespace Projet2.Models
 
         //int CreateSlot(DateTime date, DateTime startHour, DateTime endHour);
         int CreateSlot(Slot slot);
-        void EditSlot(int id, DateTime date, DateTime startHour, DateTime endHour);
+        //void EditSlot(int id, DateTime date, DateTime startHour, DateTime endHour);
         void EditSlot(Slot slot);
         void RemoveSlot(int id);
 
@@ -102,11 +102,11 @@ namespace Projet2.Models
         List<Tournament> GetTournaments();
 
         int CreateEvent(string theme, int numberOfParticipants, int associationActivityId);
-        void EditEvent(int id, string theme, int numberOfParticipants, int associationActivityId);
-        void EditEvent(Event ev);
+        //void EditEvent(int id, string theme, int numberOfParticipants, int associationActivityId);
+        //void EditEvent(Event ev);
         void RemoveEvent(int id);
-        void RemoveEvent(Event ev);
-        List<Event> GetEvents();
+        //void RemoveEvent(Event ev);
+        //List<Event> GetEvents();
 
 
 

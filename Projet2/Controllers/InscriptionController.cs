@@ -216,11 +216,12 @@ namespace Projet2.Controllers
         public ActionResult ProfileViewBenevole()// NOOOPE
         {
             InscriptionViewModel inscriptionViewModel= new InscriptionViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
-            if (inscriptionViewModel.Authentificate == true)
+            Account accountUser = dal.GetAccount(HttpContext.User.Identity.Name);
+            inscriptionViewModel.Account= accountUser;
+            
+            if (accountUser!=null)
             {
-                string accountId = (HttpContext.User.Identity.Name);
-                inscriptionViewModel.Account = dal.GetAccount(accountId);
-                Account accountUser = inscriptionViewModel.Account;
+               
                 inscriptionViewModel.Profile = dal.GetProfiles().Where(r => r.Id == accountUser.ProfileId ).FirstOrDefault();
                 inscriptionViewModel.Infos = dal.GetInformations().Where(r => r.Id == accountUser.InfoPersoId).FirstOrDefault();
                 inscriptionViewModel.Contact=dal.GetContacts().Where(r => r.Id== accountUser.ContactId).FirstOrDefault();
@@ -238,7 +239,7 @@ namespace Projet2.Controllers
                 foreach (var Publication in inscriptionViewModel.Publications)
                 {
                     Account AuthorPubli = dal.GetAccounts().Where(r => r.Id == Publication.AccountId).FirstOrDefault();
-                    if (AuthorPubli != null) { inscriptionViewModel.Account = AuthorPubli; }
+                    if (AuthorPubli != null) { Publication.Account = AuthorPubli; }
                 }
 
                 return View(inscriptionViewModel);
@@ -274,7 +275,7 @@ namespace Projet2.Controllers
                 foreach (var Publication in inscriptionViewModel.Publications)
                 {
                     Account AuthorPubli = dal.GetAccounts().Where(r => r.Id == Publication.AccountId).FirstOrDefault();
-                    if (AuthorPubli != null) { inscriptionViewModel.Account = AuthorPubli; }
+                    if (AuthorPubli != null) { Publication.Account = AuthorPubli; }
                 }
                 return View(inscriptionViewModel);
             }

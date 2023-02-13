@@ -9,6 +9,7 @@ namespace Projet2.ViewModels
         public Account Account { get; set; }
         public bool Authentificate { get; set; }
         public Slot Slot { get; set; }
+        public List<Slot> slots { get; set; }
         public Planning Planning { get; set; }
 
         public Activity Activity { get; set; }

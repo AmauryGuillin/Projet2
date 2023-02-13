@@ -122,6 +122,74 @@ namespace Projet2.Controllers
         }
 
 
+        public IActionResult DeleteActivity(int id)
+        {
+
+            ActivitiesViewModel activitiesVM = new ActivitiesViewModel();
+            activitiesVM.Account = dal.GetAccount(HttpContext.User.Identity.Name);
+
+            Account account = activitiesVM.Account;
+
+            if (account != null)
+            {
+            int planningid = (int)account.PlanningId;
+             Planning planning = account.Planning;
+            activitiesVM.activities = dal.GetActivities();
+            List<Activity> activities = activitiesVM.activities;
+            Activity selected = dal.GetActivities().Where(a => a.Id == id).FirstOrDefault();
+            List<Slot> selectedSlots = dal.GetSlots().Where(a => a.ActivityId ==selected.Id ).ToList();
+            activitiesVM.slots = selectedSlots;
+                foreach ( var slot in selectedSlots )
+                {
+                    dal.RemoveSlot(slot.Id);
+                }
+                dal.RemoveActivity(selected.Id);
+                   
+            return RedirectToAction("CatalogueActivities", activitiesVM);
+        }
+            return RedirectToAction("Login", "Login");
+        }
+
+
+        public IActionResult EditActivity(int id)
+        {
+
+            ActivitiesViewModel activitiesVM = new ActivitiesViewModel();
+            activitiesVM.Account = dal.GetAccount(HttpContext.User.Identity.Name);
+
+            Account account = activitiesVM.Account;
+
+            if (account != null)
+            {
+                int planningid = (int)account.PlanningId;
+                Planning planning = account.Planning;
+                activitiesVM.activities = dal.GetActivities();
+                List<Activity> activities = activitiesVM.activities;
+                Activity selected = dal.GetActivities().Where(a => a.Id == id).FirstOrDefault();
+                List<Slot> selectedSlots = dal.GetSlots().Where(a => a.ActivityId == selected.Id).ToList();
+                activitiesVM.slots = selectedSlots;
+                foreach (var slot in selectedSlots)
+                {
+                    dal.EditSlot(slot.Id,
+                        activitiesVM.Activity.StartDate,
+                        activitiesVM.Activity.EndDate
+                        );
+                }
+                dal.EditActivity(selected.Id,
+                    activitiesVM.Activity.StartDate,
+                    activitiesVM.Activity.EndDate,
+                    activitiesVM.Activity.Theme,
+                    activitiesVM.Activity.Description,
+                    activitiesVM.Activity.Place,
+                    activitiesVM.Activity.ImagePath
+                    
+                    );
+
+                return RedirectToAction("CatalogueActivities", activitiesVM);
+            }
+            return RedirectToAction("PlanningView", "Planning");
+        }
+
 
 
         public ActionResult Deconnexion()

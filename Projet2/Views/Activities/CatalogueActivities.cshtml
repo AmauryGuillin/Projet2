@@ -40,13 +40,17 @@
                 <td>@Html.DisplayFor(mActivity=>Activity.EndDate)</td>
         @if(Model.Account!=null){
                 <td> 
-                    @*@Html.BeginForm("Book","Activities",FormMethod.Post, new {id= Activity.Id})
-                        {     
-                            <input type="submit" value="S'inscrire'" class="BoutonValidationFormulaire" onclick="Selection" />     
-                        }*@
-                        @Html.ActionLink("S'inscrire","Book","Activities",new {id= Activity.Id});
+                 @Html.ActionLink("S'inscrire","Book","Activities",new {id= Activity.Id});
                 </td>
+                  <td>
+                      if(Model.Account.role== Role.Admin || Model.Account.role==Role.Salarié){
+                 @Html.ActionLink("S'inscrire","Book","Activities",new {id= Activity.Id});
+                 </td>
+                <td>
+                 @Html.ActionLink("S'inscrire","Book","Activities",new {id= Activity.Id});
+                 </td>
                  }
+                   }
     </tr>
 }
 

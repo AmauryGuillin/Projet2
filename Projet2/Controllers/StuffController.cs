@@ -243,16 +243,16 @@ namespace Projet2.Controllers
                     }
                 }
 
+                    Conversation newConversation = dal.CreateConversation(userAccount.Id, StuffOwner.Id);
+                    model.Conversation= newConversation;
+                    Message message= dal.FirstMessage(
+                    newConversation.Id,
+                    userAccount.Id,
+                    (int)StuffOwner.Id,
+                    messageauto);
+                    model.Message= message;
+                    return RedirectToAction("StuffCatalog", model);
 
-                Conversation newConversation = dal.CreateConversation(userAccount.Id, StuffOwner.Id);
-                model.Conversation = newConversation;
-                Message message = dal.FirstMessage(
-                newConversation.Id,
-                userAccount.Id,
-                (int)StuffOwner.Id,
-                messageauto);
-                model.Message = message;
-                return RedirectToAction("StuffCatalog", model);
             }
             return RedirectToAction("Login", "Login");
 
@@ -263,16 +263,17 @@ namespace Projet2.Controllers
             StuffViewModel model = new StuffViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
             if (model.Authentificate == true)
             {
-
                 string accountId = (HttpContext.User.Identity.Name);
                 model.Stuff = dal.GetOneStuff(id);
                 Stuff stuff = model.Stuff;
                 model.ReservationStuff = dal.GetReservations().Where(r => r.StuffId == stuff.Id).FirstOrDefault();
 
+
                 model.Stuff.AccountOwner = dal.GetAccounts().Where(r => r.Id == stuff.AccountOwnerId).FirstOrDefault();
                 model.Stuff.AccountBorrower = dal.GetAccounts().Where(r => r.Id == stuff.AccountBorrowerId).FirstOrDefault();
 
                 //model.Account = dal.GetAccounts().Where(r => r.Id == stuff.AccountBorrowerId).FirstOrDefault();
+
 
                 //model.Account = dal.GetAccount(accountId);
                 //Account userAccount = model.Account;
@@ -283,12 +284,15 @@ namespace Projet2.Controllers
             return RedirectToAction("Login", "Login");
         }
 
+
         [HttpPost]
         public IActionResult AcceptationBookStuff(StuffViewModel model, int id)
         {
             Account account = dal.GetAccount(HttpContext.User.Identity.Name);
             model.Account = account;
-            if (account != null)
+
+            if (account!=null)
+
             {
                 //string accountId = (HttpContext.User.Identity.Name);
                 //model.Account = dal.GetAccount(accountId);
