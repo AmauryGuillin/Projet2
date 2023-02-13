@@ -104,6 +104,8 @@ input::file-selector-button {
     padding: 5px 5px;
     margin-top: 10px;
     margin-bottom: 20px;
+    height: 30px;
+    border-radius: 10px;
 }
 
 form input[type=text]:hover,
