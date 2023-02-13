@@ -137,14 +137,28 @@ form input[type=submit] {
     margin-bottom: 0;
 }
 
-#save input[type=submit]:hover {
+input[type=submit]:hover {
     color: white;
     background-color: #02f50ea8;
     transition: 0.2s;
 }
 
-#delete input[type=submit]:hover {
-    color: white;
-    background-color: #C21111;
-    transition: 0.2s;
+#delete {
+    color: black;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    justify-self: end;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    margin-bottom: 0;
 }
+
+    #delete:hover {
+        color: white;
+        background-color: #C21111;
+        transition: 0.2s;
+    }

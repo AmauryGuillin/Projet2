@@ -6,6 +6,15 @@
 
 
 <div class="content">
+
+    @using (Html.BeginForm("CancelationBookStuff", "Stuff", new { Model.Stuff.Id }, FormMethod.Post))
+    {
+        @Html.HiddenFor(m=>m.Stuff.Id)
+
+
+        <input type="submit" id="return" value="Retour ">
+    }
+
     @using (Html.BeginForm())
 {
         @Html.HiddenFor(m=>m.Stuff.Id)
@@ -60,23 +69,13 @@
 
 
 
-<div id="decline">
-    @using (Html.BeginForm("CancelationBookStuff", "Stuff", new { Model.Stuff.Id }, FormMethod.Post))
-    {
-        @Html.HiddenFor(m=>m.Stuff.Id)
 
-        <input type="submit" value="Refuser ">
-    }
-</div>
-<div id="return">
 @using (Html.BeginForm("CancelationBookStuff", "Stuff", new { Model.Stuff.Id }, FormMethod.Post))
 {
     @Html.HiddenFor(m=>m.Stuff.Id)
 
-
-    <input type="submit" value="Retour ">
+        <input type="submit" id="decline" value="Refuser ">
 }
-</div>
 </div>
 
 
