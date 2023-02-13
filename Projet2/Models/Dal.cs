@@ -2035,9 +2035,37 @@ namespace Projet2.Models
             _bddContext.SaveChanges();
         }
 
+        public void EditProfileS(int id, string path,string games,string Bio )
+        {
+            Profile profile = _bddContext.Profils.Find(id);
+            if (profile != null)
+            {
+                profile.ImagePath = path;
+                profile.Games = games;
+                profile.Bio = Bio;
+                
+                _bddContext.SaveChanges();
+            }
+        }
 
+        public void EditContacts(int id, string email,string tel)
+        {
+            Contact contact = _bddContext.Contact.Find(id);
+            if (contact != null)
+            {
+                contact.EmailAdress = email;
+                contact.TelephoneNumber = tel;
+                
 
+                _bddContext.SaveChanges();
+            }
 
+        }
+
+        public void EditInfos(int id, string name, PublicationTypes type, string content, string date)
+        {
+
+        }
 
 
 
