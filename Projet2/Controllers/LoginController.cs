@@ -62,7 +62,7 @@ namespace Projet2.Controllers
                             return RedirectToAction("Index", new {id =account.Id});
                         //break;
 
-                        case Role.Salarié:
+                        case Role.Salarie:
                      return RedirectToAction("Index", new { id = account.Id }); 
             
                         //break;
