@@ -12,6 +12,9 @@ using System;
 
 namespace Projet2.Controllers
 {
+    /// <summary>
+    /// Controller for Profile.
+    /// </summary>
     public class ProfileController : Controller
     {
 

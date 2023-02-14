@@ -7,14 +7,18 @@ using System.Linq;
 
 namespace Projet2.Controllers
 {
+    /// <summary>
+    /// Controller for Planning.
+    /// </summary>
     public class PlanningController : Controller
     {
 
-        private Dal dal;
+        private Dal dal;//An instance of the "Dal" class
         public PlanningController()
         {
             dal = new Dal();
         }
+
         public IActionResult PlanningView()
         {
             PlanningViewModel model = new PlanningViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
@@ -36,12 +40,15 @@ namespace Projet2.Controllers
                 return RedirectToAction("Login","Login");
             
         }
+
+        /// <summary>
+        /// Logs the user out by deleting the authentication cookies and redirects him to the login page.
+        /// </summary> 
+        /// <returns>Redirect to login page</returns>
         public ActionResult Deconnexion()
         {
             HttpContext.SignOutAsync();
             return RedirectToAction("LOgin", "Login");
         }
-
-        /////////////////////////////END
     }
 }
