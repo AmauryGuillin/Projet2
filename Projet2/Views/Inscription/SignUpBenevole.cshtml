@@ -20,13 +20,13 @@
             <div class="pseudo">
                 <label>Pseudo</label>
             </div>
-            @Html.TextBoxFor(m => m.Account.Username, new {placeholder = "Entrez votre pseudo"})
+            @Html.TextBoxFor(m => m.Account.Username, new {placeholder = "Entrez votre pseudo",required="required"})
             @Html.ValidationMessageFor(m =>  m.Account.Username)
 
             <div class="password">
                 <label>Mot de passe</label>
             </div>
-            @Html.PasswordFor(m =>m.Account.Password, new {placeholder = "Entrez votre mot de passe"})
+            @Html.PasswordFor(m =>m.Account.Password, new {placeholder = "Entrez votre mot de passe",required="required"})
             @Html.ValidationMessageFor(m =>m.Account.Password)
 
             <div class="firstname">
@@ -64,7 +64,7 @@
             <div class="profilePic">
                 <label>Image de profil</label>
             </div>
-            @Html.TextBoxFor(model => model.Profile.ProfilImage, new { placeholder = "Description", @type = "file" ,accept=".png, .jpg, .jpeg,.gif"})
+            @Html.TextBoxFor(model => model.Profile.ProfilImage, new { placeholder = "Description", @type = "file" ,accept=".png, .jpg, .jpeg,.gif",required="required"})
 
             <div class="bio">
                 <label>Biographie</label>

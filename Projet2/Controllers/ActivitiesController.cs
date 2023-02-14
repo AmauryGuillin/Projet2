@@ -119,18 +119,7 @@ namespace Projet2.Controllers
         }
 
 
-        //public  IActionResult Book ( int id)
-        //{
-        //    ActivitiesViewModel activitiesVM = new ActivitiesViewModel();
-        //    activitiesVM.Account = dal.GetAccount(HttpContext.User.Identity.Name);
-        //    Account account = activitiesVM.Account;
-        //    activitiesVM.activities = dal.GetActivities();
-        //    Activity selected = dal.GetActivities().Where(a => a.Id == id).FirstOrDefault();
-
-
-
-        //    return View("CatalogueActivities");
-        //}
+       
 
 
 
@@ -216,22 +205,7 @@ namespace Projet2.Controllers
                 activitiesVM.Activity = selected; 
                 List<Slot> selectedSlots = dal.GetSlots().Where(a => a.ActivityId == selected.Id).ToList();
                 activitiesVM.slots = selectedSlots;
-                //foreach (var slot in selectedSlots)
-                //{
-                //    dal.EditSlot(slot.Id,
-                //        activitiesVM.Activity.StartDate,
-                //        activitiesVM.Activity.EndDate
-                //        );
-                //}
-                //dal.EditActivity(selected.Id,
-                //    activitiesVM.Activity.StartDate,
-                //    activitiesVM.Activity.EndDate,
-                //    activitiesVM.Activity.Theme,
-                //    activitiesVM.Activity.Description,
-                //    activitiesVM.Activity.Place,
-                //    activitiesVM.Activity.ImagePath
-                    
-                //    );
+               
 
                 return View(activitiesVM);
             }

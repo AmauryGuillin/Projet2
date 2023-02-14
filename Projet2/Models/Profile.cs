@@ -58,7 +58,7 @@ namespace Projet2.Models
         /// <returns>Returns the created profile</returns>
         public static Profile CreateProfile()
         {
-            Profile profil = new Profile {};
+            Profile profil = new Profile { };
 
             return profil;
         }

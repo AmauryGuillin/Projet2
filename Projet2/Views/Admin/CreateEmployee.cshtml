@@ -35,13 +35,13 @@
               ><b>Nom d'utilisateur <sup>*</sup></b></label
             >
           </div>
-            @Html.TextBoxFor(m => m.CreatedEmployee.Username)
+            @Html.TextBoxFor(m => m.CreatedEmployee.Username, new{required="required"})
                 @Html.ValidationMessageFor(m =>m.CreatedEmployee.Username)
 
         <div class="password">
             <label><b>Mot de passe <sup>*</sup></b></label>
         </div>
-            @Html.PasswordFor(m => m.CreatedEmployee.Password)
+                @Html.PasswordFor(m => m.CreatedEmployee.Password, new{required="required"})
                 @Html.ValidationMessageFor(m => m.CreatedEmployee.Password)
 
             <div class="firstname">
@@ -49,7 +49,7 @@
               ><b>Prenom <sup>*</sup></b></label
             >
           </div>
-            @Html.TextBoxFor(m =>m.CreatedEmployee.infoPerso.FirstName)
+                @Html.TextBoxFor(m =>m.CreatedEmployee.infoPerso.FirstName, new{required="required"})
                 @Html.ValidationMessageFor(m =>m.CreatedEmployee.infoPerso.FirstName)
 
             <div class="lastname">
@@ -57,7 +57,7 @@
               ><b>Nom <sup>*</sup></b></label
             >
           </div>
-                @Html.TextBoxFor(m =>m.CreatedEmployee.infoPerso.LastName)
+                @Html.TextBoxFor(m =>m.CreatedEmployee.infoPerso.LastName, new{required="required"})
                 @Html.ValidationMessageFor(m =>m.CreatedEmployee.infoPerso.LastName)
 
 

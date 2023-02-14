@@ -60,8 +60,7 @@ namespace Projet2.Controllers
             {
                 model.Stuff.StuffImage.CopyTo(fileStream);
             }
-            //dal.CreateStuff(
-            //    model.Name, "/images/" + model.StuffImage.FileName, model.Type, model.State);
+            
             model.Account = dal.GetAccount(accountId);
             Account userAccount = model.Account;
             model.Stuff = dal.CreateStuff(
@@ -74,7 +73,7 @@ namespace Projet2.Controllers
                 );
             Stuff stuffCreated = new Stuff();
             stuffCreated = model.Stuff;
-            //dal.EditStuffCreate(stuffCreated.Id, userAccount.Id, "/images/" + model.Stuff.StuffImage.FileName);
+
             if (model.Account.role == Role.Adherent)
             {
                 return RedirectToAction("ProfileViewAdherent", "Inscription");
@@ -82,6 +81,14 @@ namespace Projet2.Controllers
             else if (model.Account.role == Role.Benevole)
             {
                 return RedirectToAction("ProfileViewBenevole", "Inscription");
+            }
+            else if (model.Account.role == Role.Salarie)
+            {
+                return RedirectToAction("ProfileViewEmployee", "Employee");
+            }
+            else if (model.Account.role == Role.Admin)
+            {
+                return RedirectToAction("ProfileViewAdmin", "Admin");
             }
 
             return RedirectToAction("Login", "Login");
@@ -181,6 +188,14 @@ namespace Projet2.Controllers
                 else if (model.Account.role == Role.Benevole)
                 {
                     return RedirectToAction("ProfileViewBenevole", "Inscription");
+                }
+                else if (model.Account.role == Role.Salarie)
+                {
+                    return RedirectToAction("ProfileViewEmployee", "Employee");
+                }
+                else if (model.Account.role == Role.Admin)
+                {
+                    return RedirectToAction("ProfileViewAdmin", "Admin");
                 }
             }
 
@@ -341,13 +356,7 @@ namespace Projet2.Controllers
                 model.Stuff.AccountOwner = dal.GetAccounts().Where(r => r.Id == stuff.AccountOwnerId).FirstOrDefault();
                 model.Stuff.AccountBorrower = dal.GetAccounts().Where(r => r.Id == stuff.AccountBorrowerId).FirstOrDefault();
 
-                //model.Account = dal.GetAccounts().Where(r => r.Id == stuff.AccountBorrowerId).FirstOrDefault();
-
-
-                //model.Account = dal.GetAccount(accountId);
-                //Account userAccount = model.Account;
-                //model.Stuff.AccountBorrowerId = userAccount.Id;
-                //model.Account = dal.GetAccounts().Where(r => r.Id == stuff.AccountOwnerId).FirstOrDefault();
+                
                 return View(model);
             }
             return RedirectToAction("Login", "Login");
@@ -368,8 +377,6 @@ namespace Projet2.Controllers
             if (account!=null)
 
             {
-                //string accountId = (HttpContext.User.Identity.Name);
-                //model.Account = dal.GetAccount(accountId);
                 dal.EditStuffAcceptation(id);
                 if (model.Account.role == Role.Adherent)
                 {
@@ -378,6 +385,14 @@ namespace Projet2.Controllers
                 else if (model.Account.role == Role.Benevole)
                 {
                     return RedirectToAction("ProfileViewBenevole", "Inscription");
+                }
+                else if (model.Account.role == Role.Salarie)
+                {
+                    return RedirectToAction("ProfileViewEmployee", "Employee");
+                }
+                else if (model.Account.role == Role.Admin)
+                {
+                    return RedirectToAction("ProfileViewAdmin", "Admin");
                 }
             }
             return RedirectToAction("Login", "Login");
@@ -427,6 +442,14 @@ namespace Projet2.Controllers
                 {
                     return RedirectToAction("ProfileViewBenevole", "Inscription");
                 }
+                else if (model.Account.role == Role.Salarie)
+                {
+                    return RedirectToAction("ProfileViewEmployee", "Employee");
+                }
+                else if (model.Account.role == Role.Admin)
+                {
+                    return RedirectToAction("ProfileViewAdmin", "Admin");
+                }
             }
             return RedirectToAction("Login", "Login");
         }
@@ -472,6 +495,14 @@ namespace Projet2.Controllers
                 else if (model.Account.role == Role.Benevole)
                 {
                     return RedirectToAction("ProfileViewBenevole", "Inscription");
+                }
+                else if (model.Account.role == Role.Salarie)
+                {
+                    return RedirectToAction("ProfileViewEmployee", "Employee");
+                }
+                else if (model.Account.role == Role.Admin)
+                {
+                    return RedirectToAction("ProfileViewAdmin", "Admin");
                 }
             }
             return RedirectToAction("Login", "Login");

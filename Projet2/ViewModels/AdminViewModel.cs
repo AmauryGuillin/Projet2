@@ -42,9 +42,7 @@ namespace Projet2.ViewModels
         public Account CreatedEmployee { get; set; }
        
        
-
-
-        //public Stuff Stuff { get; set; }
+      
     }
 
 }

@@ -19,6 +19,7 @@ namespace Projet2.Models
         /// </summary>
         [MaxLength(30)]
         [Display(Name = "Nom :")]
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Le champ ne peut contenir que des lettres ")]
         public string LastName { get; set; }
 
         /// <summary>
@@ -26,6 +27,7 @@ namespace Projet2.Models
         /// </summary>
         [MaxLength(30)]
         [Display(Name = "Prénom : ")]
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Le champ ne peut contenir que des lettres ")]
         public string FirstName { get; set; }
 
         /// <summary>
