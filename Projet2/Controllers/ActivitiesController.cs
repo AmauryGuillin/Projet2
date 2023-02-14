@@ -23,10 +23,11 @@ namespace Projet2.Controllers
         public IActionResult CreateActivity()
         {
             ActivitiesViewModel activitiesVM = new ActivitiesViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
-            if (activitiesVM.Authentificate == true)
+            activitiesVM.Account = dal.GetAccount(HttpContext.User.Identity.Name);
+            Account account = activitiesVM.Account;
+            if (account!=null)
             {
-                activitiesVM.Account = dal.GetAccount(HttpContext.User.Identity.Name);
-                if (activitiesVM.Account.role == Projet2.Models.Role.Admin || activitiesVM.Account.role == Projet2.Models.Role.Admin)
+                if (account.role == Projet2.Models.Role.Admin || account.role == Projet2.Models.Role.Salarie)
                 {
                     return View(activitiesVM);
                 }
@@ -84,18 +85,15 @@ namespace Projet2.Controllers
     public IActionResult CatalogueActivities()
         {
             ActivitiesViewModel activitiesVM = new ActivitiesViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
-            if (activitiesVM.Authentificate == true)
+            Account account = dal.GetAccount(HttpContext.User.Identity.Name);
+            activitiesVM.Account=account;
+            if (account != null)
             {
-                string accountId = (HttpContext.User.Identity.Name);
-                activitiesVM.Account = dal.GetAccount(accountId);
-                Account account = activitiesVM.Account;
-                if (account != null)
-                {
                     List <Activity> CatActivities= new List<Activity>();
                     CatActivities = dal.GetActivities();
                     activitiesVM.activities = CatActivities;
                     return View(activitiesVM);
-                }
+                
             }
                 return RedirectToAction("Login", "Login");
         }

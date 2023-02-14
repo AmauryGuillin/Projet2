@@ -47,24 +47,29 @@
                 <td> 
                  @Html.ActionLink("S'inscrire", "Book", "Activities", new { id = Activity.Id });
                 </td>
-                                <td>
-                                    @if (Model.Account.role == Role.Admin || Model.Account.role == Role.Salarie)
-                                    {
-                                        @Html.ActionLink("Modifier", "EditActivity", "Activities", new { id = Activity.Id })
-                                        ; }
-                                </td>
-                <td>
+
+                       
+                           @if (Model.Account.role == Role.Admin || Model.Account.role == Role.Salarie)
+                           {
+                                    <td>
+                                        @Html.ActionLink("Modifier","EditActivity","Activities",new {id= Activity.Id})
+                            </td>
+                                ;}
+                         
+               
                 @if (Model.Account.role == Role.Admin || Model.Account.role == Role.Salarie)
-                {
-                                        @Html.ActionLink("Modifier", "CreateActivity", "Activities", new { id = Activity.Id })
-                    ; }
-                 </td>
+                                {
+                                    <td>
+                     @Html.ActionLink("Créer une activité","CreateActivity","Activities",new {id= Activity.Id})
+                     </td>
+            ;}
+                 
+                 }
+                   
+    </tr>
+               
+               
         }
-                   }
-    
-
-
-
 
          </tbody>
 </table>

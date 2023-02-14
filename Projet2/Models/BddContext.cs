@@ -376,11 +376,13 @@ namespace Projet2.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+
             // optionsBuilder.UseMySql(ConnexionSQL.connexion);
 			
 			if (System.Diagnostics.Debugger.IsAttached)
             {
-				optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");            
+				optionsBuilder.UseMySql("server=localhost;user id=root;password=" + System.Environment.GetEnvironmentVariable("dbPassword")
+            +";database=projet2groupe2");           
 			}
             else
             {
@@ -390,6 +392,7 @@ namespace Projet2.Models
                 .Build();
                 optionsBuilder.UseMySql(configuration.GetConnectionString("DefaultConnection"));
             }
+
         }
 ///////////////////////////////////////////////
     }

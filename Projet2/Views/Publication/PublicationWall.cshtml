@@ -31,7 +31,7 @@
             <tbody>
                  @foreach (var publication in Model.Publications)
                 {
-                    <tr height="70px" onclick="location.href = '@Url.Action("OnePublication", "Publication", new { @id= publication.Id} )'">
+                    <tr height="70px" onclick="location.href = '@Url.Action("OnePublication", "Publication", new { id= publication.Id} )'">
                     @*<tr height="70px" onclick="location.href='@Html.ActionLink("Consulter", "OnePublication","Publication",new {@id= publication.Id})'">*@
                         <td width="200px">@Html.DisplayFor(mPublications => publication.Name)</td>
                         <td>@Html.DisplayFor(mPublications => publication.PublicationType)</td>
