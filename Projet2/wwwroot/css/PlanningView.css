@@ -103,8 +103,8 @@
 .main-content {
     background: rgba(0, 0, 0, 0.137);
     display: flex;
-    justify-content: center;
-    align-items: center;
+/*    justify-content: center;
+    align-items: center;*/
     flex-wrap: wrap;
     border-top: none;
     min-height: 100vh;

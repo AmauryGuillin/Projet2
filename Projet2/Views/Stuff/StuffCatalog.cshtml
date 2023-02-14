@@ -38,6 +38,7 @@
 
                                 <td id="row-end" style="text-align : center">@stuff.Type</td>
                                 <td id="reservation" style="text-align : center">@stuff.State</td>
+
                     
                                 @*<td><img src="@stuff.ImagePath" height="400" width="400" /></td>*@
                                 @*<td><a asp-controller="Stuff" asp-action="CreateBookStuff" asp-route-id="@stuff.Id">Réserver</a></td>*@
@@ -46,6 +47,7 @@
                                     <td>@Html.ActionLink("Réserver", "CreateBookStuff", "Stuff", new { id = stuff.Id })</td>
                                 }
                                
+
                             </tr>
                         }
                     }

@@ -64,7 +64,8 @@ namespace Projet2.Controllers
                 activitiesVM.Activity.ActivityEventType,
                 activitiesVM.Account.Username,
                 "/images/" + activitiesVM.Activity.ActivityImage.FileName,
-                activitiesVM.Account.Id
+                activitiesVM.Account.Id,
+                activitiesVM.Activity.NumberOfParticipants
                 );
 
                 List<Activity> CatActivities = new List<Activity>();
@@ -179,7 +180,45 @@ namespace Projet2.Controllers
                 activitiesVM.activities = dal.GetActivities();
                 List<Activity> activities = activitiesVM.activities;
                 Activity selected = dal.GetActivities().Where(a => a.Id == id).FirstOrDefault();
+                activitiesVM.Activity = selected; 
                 List<Slot> selectedSlots = dal.GetSlots().Where(a => a.ActivityId == selected.Id).ToList();
+                activitiesVM.slots = selectedSlots;
+                //foreach (var slot in selectedSlots)
+                //{
+                //    dal.EditSlot(slot.Id,
+                //        activitiesVM.Activity.StartDate,
+                //        activitiesVM.Activity.EndDate
+                //        );
+                //}
+                //dal.EditActivity(selected.Id,
+                //    activitiesVM.Activity.StartDate,
+                //    activitiesVM.Activity.EndDate,
+                //    activitiesVM.Activity.Theme,
+                //    activitiesVM.Activity.Description,
+                //    activitiesVM.Activity.Place,
+                //    activitiesVM.Activity.ImagePath
+                    
+                //    );
+
+                return View(activitiesVM);
+            }
+            return RedirectToAction("PlanningView", "Planning");
+        }
+
+        [HttpPost]
+        public IActionResult EditActivity(ActivitiesViewModel activitiesVM, int id)
+        {
+            activitiesVM.Account = dal.GetAccount(HttpContext.User.Identity.Name);
+            Account account = activitiesVM.Account;
+
+            if (account != null)
+            {
+                int planningid = (int)account.PlanningId;
+                Planning planning = account.Planning;
+                activitiesVM.activities = dal.GetActivities();
+                List<Activity> activities = activitiesVM.activities;
+                List<Slot> selectedSlots = dal.GetSlots().Where(a => a.ActivityId == activitiesVM.Activity.Id).ToList();
+                Activity activity = activitiesVM.Activity;
                 activitiesVM.slots = selectedSlots;
                 foreach (var slot in selectedSlots)
                 {
@@ -188,19 +227,20 @@ namespace Projet2.Controllers
                         activitiesVM.Activity.EndDate
                         );
                 }
-                dal.EditActivity(selected.Id,
+                dal.EditActivity(id,
                     activitiesVM.Activity.StartDate,
                     activitiesVM.Activity.EndDate,
                     activitiesVM.Activity.Theme,
                     activitiesVM.Activity.Description,
                     activitiesVM.Activity.Place,
-                    activitiesVM.Activity.ImagePath
-                    
+                    activitiesVM.Activity.ImagePath,
+                    activitiesVM.Activity.NumberOfParticipants
+
                     );
 
                 return RedirectToAction("CatalogueActivities", activitiesVM);
             }
-            return RedirectToAction("PlanningView", "Planning");
+            return RedirectToAction("login", "login");
         }
 
 
@@ -208,7 +248,7 @@ namespace Projet2.Controllers
         public ActionResult Deconnexion()
         {
             HttpContext.SignOutAsync();
-            return RedirectToAction("LOgin", "Login");
+            return RedirectToAction("Login", "Login");
         }
 
         ////////////////////////END

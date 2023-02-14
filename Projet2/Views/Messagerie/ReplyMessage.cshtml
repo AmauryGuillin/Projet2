@@ -8,6 +8,7 @@
 <div class="content">
       <div class="global-box">
         <div class="upper-section">
+            <div class="scroller">
           <table>
           @foreach(var Message in Model.Messages)
           {
@@ -21,12 +22,13 @@
             </tr>
           }
           </table>
+          </div>
         </div>
         <div class="lower-section">
             @using (Html.BeginForm(FormMethod.Post))
           {
             <div class="conversation-content">
-                @Html.TextAreaFor(m=>m.Message.Body,htmlAttributes: new { @style = "width: 450px;", @placeholder = "Ecrivez votre message ici ..." })
+                @Html.TextAreaFor(m=>m.Message.Body,htmlAttributes: new {@placeholder = "Ecrivez votre message ici ..." })
               </div>
               <div class="button-send">
                 <input type="submit" value="Envoyer" />

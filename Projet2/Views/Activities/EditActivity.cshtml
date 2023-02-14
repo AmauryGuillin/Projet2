@@ -4,7 +4,8 @@
 }
 
 <div class="content">
-      <form action="" method="POST">
+      @using (Html.BeginForm(FormMethod.Post, new { enctype = "multipart/form-data" }))
+      {
         <h1>Création d'une activité</h1>
 
         <div class="attributs">
@@ -28,12 +29,12 @@
 
           <div class="start-date">
             <label>Date de début</label>
-                @Html.TextBoxFor(m=>m.Activity.StartDate, new { @type = "datetime-local"})
+                @Html.TextBoxFor(m=>m.Activity.StartDate)
                 @Html.ValidationMessageFor(m => m.Activity.StartDate)
           </div>
           <div class="end-date">
             <label>Date de fin</label>
-                @Html.TextBoxFor(m=>m.Activity.EndDate, new { @type = "datetime-local"})
+                @Html.TextBoxFor(m=>m.Activity.EndDate)
                 @Html.ValidationMessageFor(m => m.Activity.EndDate)
 
             <div class="nulber-of-participants">
@@ -57,16 +58,7 @@
             @Html.ValidationMessageFor(m => m.Activity.Description)
         </div>
         <input type="submit" id="submit" value="Sauvegarder" />
-      </form>
-
-      <div>
-        @using (Html.BeginForm("RemovePublication", "Publication", new { Model.Activity.Id }, FormMethod.Post))
-        {
-            @Html.HiddenFor(m=>m.Activity.Id)
-
-    <input type="submit" id="delete" value="Supprimer la publication">
-        }
-     </div>
+      }
     </div>
 
 
