@@ -3,12 +3,53 @@
     Layout = "_LayoutGeneral";
 }﻿
 
-    <link rel="stylesheet" href="~/css/DashboardAdmin.css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="~/css/DashboardAdmin.css" />
+
+<div class="content">
+    <div class="list">
+        <div class="title-main"><h1>DashBoard Administrateur</h1></div>
+        <div class="title1"><h2>Membres</h2></div>
+        <div class="member-section">
+            <div class="benevole">
+               @using (Html.BeginForm("DeleteAccountBenevole", "Admin", FormMethod.Post))
+                {
+                    @Html.DropDownListFor(m => m.selectedAccount, Model.ListAccountsBenevole,"Selectionnez un benevole")
+                    <input type="submit" value="supprimer"> 
+                }
+            </div>
+            <div class="adherent">
+                @using (Html.BeginForm("DeleteAccountAdherent", "Admin", FormMethod.Post))
+                {
+                    @Html.DropDownListFor(m => m.selectedAccount, Model.ListAccountsAdherent,"Selectionnez un adherent")
+                    <input type="submit" value="supprimer">
+                }
+            </div>
+            <div class="employee">
+                @using (Html.BeginForm("DeleteAccountEmployee", "Admin", FormMethod.Post))
+                {
+                    @Html.DropDownListFor(m => m.selectedAccount, Model.ListAccountsEmployee,"Selectionnez un salarié")
+                    <input type="submit" value="supprimer">
+                }
+            </div>
+            <div class="adding-employee">
+                @Html.ActionLink("Ajoutez un nouveau membre de l'équipe","CreateEmployee","Admin")
+            </div>
+        </div>
+    </div>
+</div>
+
+@section ExtraCSS {
+    
+}
+
+
+
+
+
 
 
     
-    <main>
+@*    <main>
         <div class="content">
             <div class="listes">
                 <h2>Membres</h2>
@@ -63,13 +104,8 @@
 
 
         
-    </main>
+    </main>*@
 
 
-
-@section ExtraCss{
-    <link rel="stylesheet" href="~/css/DashboardAdmin.css" />
-                }
-
-                <script src="/_framework/aspnetcore-browser-refresh.js"></script>
+                @*<script src="/_framework/aspnetcore-browser-refresh.js"></script>*@
 
