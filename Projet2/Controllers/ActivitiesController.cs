@@ -11,15 +11,29 @@ using System.Threading.Tasks;
 
 namespace Projet2.Controllers
 {
+    /// <summary>
+    /// Controller for activities.
+    /// </summary>
     public class ActivitiesController : Controller
     {
-        private Dal dal;
-        private IWebHostEnvironment _webEnv;
+        private Dal dal;//An instance of the "Dal" class
+
+        private IWebHostEnvironment _webEnv;//An instance of the "IWebHostEnvironment" interface
+
+        /// <summary>
+        /// Initializes a new instance of the ActivitiesController class.
+        /// </summary>
+        /// <param name="environment"></param>
         public ActivitiesController(IWebHostEnvironment environment)
         {
             _webEnv = environment;
             this.dal = new Dal();
         }
+
+        /// <summary>
+        /// Create a new activity.
+        /// </summary>
+        /// <returns>A view for creating an activity</returns>
         public IActionResult CreateActivity()
         {
             ActivitiesViewModel activitiesVM = new ActivitiesViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
@@ -36,12 +50,15 @@ namespace Projet2.Controllers
             }
             return RedirectToAction("Login", "Login");
         }
-            
-    
 
 
+
+        /// <summary>
+        /// Processes POST data from the create view of an activity.
+        /// </summary>
+        /// <param name="activitiesVM">The data of the activity to create.</param>
+        /// <returns>Redirects to the activity catalog page if the activity was created successfully</returns>
         [HttpPost]
-
         public IActionResult CreateActivity(ActivitiesViewModel activitiesVM)
         {
             string uploads = Path.Combine(_webEnv.WebRootPath, "images");
@@ -81,8 +98,11 @@ namespace Projet2.Controllers
             }
         }
 
-
-    public IActionResult CatalogueActivities()
+        /// <summary>
+        /// Displays the activity catalog for the authenticated user.
+        /// </summary>
+        /// <returns>Returns the activity catalog view if the user is authenticated, otherwise redirects to the login page.</returns>
+        public IActionResult CatalogueActivities()
         {
             ActivitiesViewModel activitiesVM = new ActivitiesViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
             Account account = dal.GetAccount(HttpContext.User.Identity.Name);
@@ -98,7 +118,7 @@ namespace Projet2.Controllers
                 return RedirectToAction("Login", "Login");
         }
 
-        
+
         //public  IActionResult Book ( int id)
         //{
         //    ActivitiesViewModel activitiesVM = new ActivitiesViewModel();
@@ -106,12 +126,19 @@ namespace Projet2.Controllers
         //    Account account = activitiesVM.Account;
         //    activitiesVM.activities = dal.GetActivities();
         //    Activity selected = dal.GetActivities().Where(a => a.Id == id).FirstOrDefault();
-            
 
-            
+
+
         //    return View("CatalogueActivities");
         //}
-       
+
+
+
+        /// <summary>
+        /// Reserves an activity for the authenticated user, i.e. registers for the event.
+        /// </summary>
+        /// <param name="id">The ID of the activity to book, to register.</param>
+        /// <returns>Redirects to the authenticated user's schedule view.</returns>
         public IActionResult Book( int id)
         {
 
@@ -133,7 +160,11 @@ namespace Projet2.Controllers
                     return RedirectToAction("PlanningView","Planning");
         }
 
-
+        /// <summary>
+        /// Deletes an activity and all associated time slots from the provided activity ID.
+        /// </summary>
+        /// <param name="id">The ID of the activity to delete.</param>
+        /// <returns>Returns the activity catalog view if the user is authenticated, otherwise redirects to the login page.</returns>
         public IActionResult DeleteActivity(int id)
         {
 
@@ -162,7 +193,11 @@ namespace Projet2.Controllers
             return RedirectToAction("Login", "Login");
         }
 
-
+        /// <summary>
+        /// Displays the edit page of an activity.
+        /// </summary>
+        /// <param name="id">The identifier of the activity to edit.</param>
+        /// <returns>The view containing the activity edit form.</returns>
         public IActionResult EditActivity(int id)
         {
 
@@ -203,6 +238,12 @@ namespace Projet2.Controllers
             return RedirectToAction("PlanningView", "Planning");
         }
 
+        /// <summary>
+        /// Action called when the user submits the edit form of an activity.
+        /// </summary>
+        /// <param name="activitiesVM">The view model representing the activity to edit.</param>
+        /// <param name="id">The identifier of the activity to edit</param>
+        /// <returns>Redirects to the activity catalog page if the user is authenticated, otherwise redirects to the login page</returns>
         [HttpPost]
         public IActionResult EditActivity(ActivitiesViewModel activitiesVM, int id)
         {
@@ -242,7 +283,10 @@ namespace Projet2.Controllers
         }
 
 
-
+        /// <summary>
+        /// Logs the user out by deleting the authentication cookies and redirects him to the login page.
+        /// </summary> 
+        /// <returns>Redirect to login page</returns>
         public ActionResult Deconnexion()
         {
             HttpContext.SignOutAsync();
