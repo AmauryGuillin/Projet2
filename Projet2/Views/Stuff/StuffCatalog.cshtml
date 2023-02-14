@@ -41,7 +41,11 @@
                     
                                 @*<td><img src="@stuff.ImagePath" height="400" width="400" /></td>*@
                                 @*<td><a asp-controller="Stuff" asp-action="CreateBookStuff" asp-route-id="@stuff.Id">Réserver</a></td>*@
-                                <td>@Html.ActionLink("Réserver", "CreateBookStuff", "Stuff", new { id = stuff.Id })</td>
+                                @if (Model.Account.role != Projet2.Models.Role.Benevole)
+                                {
+                                    <td>@Html.ActionLink("Réserver", "CreateBookStuff", "Stuff", new { id = stuff.Id })</td>
+                                }
+                               
                             </tr>
                         }
                     }
