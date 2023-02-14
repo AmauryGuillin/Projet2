@@ -6,6 +6,8 @@ using System.Security.AccessControl;
 using System.Xml.Linq;
 using  Projet2.Models.UserMessagerie;
 using System.Security.Policy;
+using Microsoft.Extensions.Configuration;
+
 
 namespace Projet2.Models
 {
@@ -374,7 +376,20 @@ namespace Projet2.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySql(ConnexionSQL.connexion);
+            // optionsBuilder.UseMySql(ConnexionSQL.connexion);
+			
+			if (System.Diagnostics.Debugger.IsAttached)
+            {
+				optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");            
+			}
+            else
+            {
+                IConfiguration configuration = new ConfigurationBuilder()
+                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                .AddJsonFile("appsettings.json")
+                .Build();
+                optionsBuilder.UseMySql(configuration.GetConnectionString("DefaultConnection"));
+            }
         }
 ///////////////////////////////////////////////
     }

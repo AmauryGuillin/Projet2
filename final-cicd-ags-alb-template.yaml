@@ -48,23 +48,23 @@ Parameters:
   GitRepo:
     Type: String
     Description: ...
-    Default: keduskiff
+    Default: Projet2
   GithubUser:
     Type: String
     Description: ...
-    Default: shmils
+    Default: AmauryGuillin
   ApplicationName:
     Type: String
     Description: ...
-    Default: KeduSkiff
+    Default: projet2
   DllToStart:
     Type: String
     Description: ...
-    Default: KeduSkiff.dll
+    Default: Projet2.dll
   Client:
     Type: String
     Description: ...
-    Default: gr1
+    Default: gr2
   CertificateArn:
     Type: String
     Description: ...

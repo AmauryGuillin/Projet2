@@ -36,44 +36,45 @@
             var Account = Model.accounts;
                 <tr>
                 <td><img src="@Activity.ImagePath" height="100" width="100" /></td>
-                <td>@Html.DisplayFor(mActivity=>Activity.activityType)</td>
-                <td class="preview-description">@Html.DisplayFor(mActivity=>Activity.Description)</td>
-                <td>@Html.DisplayFor(mActivity=>Activity.Place)</td>
-                <td>@Html.DisplayFor(mActivity=>Activity.Organizer)</td>
-                <td>@Html.DisplayFor(mActivity=>Activity.StartDate)</td>
-                <td>@Html.DisplayFor(mActivity=>Activity.EndDate)</td>
+                <td>@Html.DisplayFor(mActivity => Activity.activityType)</td>
+                <td class="preview-description">@Html.DisplayFor(mActivity => Activity.Description)</td>
+                <td>@Html.DisplayFor(mActivity => Activity.Place)</td>
+                <td>@Html.DisplayFor(mActivity => Activity.Organizer)</td>
+                <td>@Html.DisplayFor(mActivity => Activity.StartDate)</td>
+                <td>@Html.DisplayFor(mActivity => Activity.EndDate)</td>
 
-        @if(Model.Account!=null){
+        @if (Model.Account != null) {
                 <td> 
-                 @Html.ActionLink("S'inscrire","Book","Activities",new {id= Activity.Id});
+                 @Html.ActionLink("S'inscrire", "Book", "Activities", new { id = Activity.Id });
                 </td>
                                 <td>
                                     @if (Model.Account.role == Role.Admin || Model.Account.role == Role.Salarie)
                                     {
-                                        @Html.ActionLink("Modifier","EditActivity","Activities",new {id= Activity.Id})
-                                        ;}
+                                        @Html.ActionLink("Modifier", "EditActivity", "Activities", new { id = Activity.Id })
+                                        ; }
                                 </td>
                 <td>
                 @if (Model.Account.role == Role.Admin || Model.Account.role == Role.Salarie)
-                                    {
-                                        @Html.ActionLink("Modifier","CreateActivity","Activities",new {id= Activity.Id})
-                                        ;}
+                {
+                                        @Html.ActionLink("Modifier", "CreateActivity", "Activities", new { id = Activity.Id })
+                    ; }
                  </td>
-                 }
+        }
                    }
-    </tr>
-}
+    
+
 
 
                 @if (Model.Account.role == Projet2.Models.Role.Adherent)
                 {
-                <td>@Html.ActionLink("S'inscrire","Book","Activities",new {id= Activity.Id})</td>
+                <td>@Html.ActionLink("S'inscrire", "Book", "Activities", new { id = Activity.Id })</td>
                 }
                 @if (Model.Account.role == Projet2.Models.Role.Salarie || Model.Account.role == Projet2.Models.Role.Admin)
                 {
-                <td>@Html.ActionLink("Modifier","EditActivity","Activities",new {id= Activity.Id})</td>
+                <td>@Html.ActionLink("Modifier", "EditActivity", "Activities", new { id = Activity.Id })</td>
                 }
                 </tr>
+            }
         }
          </tbody>
 </table>
