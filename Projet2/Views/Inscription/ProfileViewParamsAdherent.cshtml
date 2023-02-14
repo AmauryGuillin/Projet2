@@ -28,7 +28,7 @@
                  class="menu-hamburger-profile" />
             <div class="side-section-top">
                 <div class="profile-pic">
-                    <img src="@Model.Profile.ImagePath" alt="Photo de profil" ,height="400" width="400" />
+                    <img id="profile-pic" src="@Model.Profile.ImagePath" alt="Photo de profil" ,height="400" width="400" />
                 </div>
             </div>
         </div>
@@ -126,7 +126,7 @@
 
 
                 </div>
-                <input type= "submit" value="Modifier"/>
+                <input id="edit-button" type= "submit" value="Modifier"/>
                 }
             </div>
         </div>
@@ -135,5 +135,10 @@
 
 
 @section ExtraCSS {
-    <link href="~/css/ProfileViewParameters.css" rel="stylesheet" />
+    <link href="~/css/ProfileViewAdherentParameters.css" rel="stylesheet" />
+    }
+
+@section ExtraJS {
+        <script src="~/JS/ProfileViewBenevole.js"></script>
+        <script src="~/JS/BurgerMenuProfile.js"></script>
     }

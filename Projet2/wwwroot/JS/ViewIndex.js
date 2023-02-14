@@ -8,32 +8,32 @@ let precedent = document.querySelector('.precedent');
 let suivant = document.querySelector('.suivant');
 
 function enleverActiveImages() {
-    for(let i = 0 ; i < nbr__img ; i++) {
+    for (let i = 0; i < nbr__img; i++) {
         img__slider[i].classList.remove('active');
     }
 }
 
-suivant.addEventListener('click', function() {
+suivant.addEventListener('click', function () {
     etape++;
-    if(etape >= nbr__img) {
+    if (etape >= nbr__img) {
         etape = 0;
     }
     enleverActiveImages();
     img__slider[etape].classList.add('active');
 })
 
-precedent.addEventListener('click', function() {
+precedent.addEventListener('click', function () {
     etape--;
-    if(etape < 0) {
+    if (etape < 0) {
         etape = nbr__img - 1;
     }
     enleverActiveImages();
     img__slider[etape].classList.add('active');
 })
 
-setInterval(function() {
+setInterval(function () {
     etape++;
-    if(etape >= nbr__img) {
+    if (etape >= nbr__img) {
         etape = 0;
     }
     enleverActiveImages();

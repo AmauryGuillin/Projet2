@@ -52,9 +52,9 @@
                            @if (Model.Account.role == Role.Admin || Model.Account.role == Role.Salarie)
                            {
                                     <td>
-                                        @Html.ActionLink("Modifier","EditActivity","Activities",new {id= Activity.Id})
+                                        @Html.ActionLink("Modifier","EditActivity","Activities",new {id= Activity.Id});
                             </td>
-                                ;}
+                           }
                          
                
                 @if (Model.Account.role == Role.Admin || Model.Account.role == Role.Salarie)
