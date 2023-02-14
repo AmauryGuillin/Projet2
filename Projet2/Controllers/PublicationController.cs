@@ -77,7 +77,7 @@ namespace Projet2.Controllers
         /// Process an HTTP POST request to create a new Publication object.
         /// </summary>
         /// <param name="model">The PublicationViewModel containing the information about the new Publication object.</param>
-        /// <returns>Return to a different profile view depending on the user: Adherent, Benevole, Employee, Admin</returns>
+        /// <returns>The ID of the stuff item whose reservation is being cancelled</returns>
         [HttpPost]
         public IActionResult CreatePublication(PublicationViewModel model)
         {
@@ -167,7 +167,7 @@ namespace Projet2.Controllers
         /// </summary>
         /// <param name="model">A PublicationViewModel object containing the updated Publication object information.</param>
         /// <param name="id">The identifier of the Stuff object to modify.</param>
-        /// <returns>Return to a different profile view depending on the user: Adherent, Benevole, Employee, Admin</returns>
+        /// <returns>The ID of the stuff item whose reservation is being cancelled</returns>
         [HttpPost]
         public IActionResult EditPublication(PublicationViewModel model, int id)
         {
@@ -210,7 +210,7 @@ namespace Projet2.Controllers
         /// </summary>
         /// <param name="model">The view model containing the account and publication item</param>
         /// <param name="id">The id of the publication item to be removed</param>
-        /// <returns>Return to a different profile view depending on the user: Adherent, Benevole, Employee, Admin</returns>
+        /// <returns>The ID of the stuff item whose reservation is being cancelled</returns>
         [HttpPost]
         public IActionResult RemovePublication(PublicationViewModel model, int id)
         {
