@@ -374,7 +374,8 @@ namespace Projet2.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySql(ConnexionSQL.connexion);
+            optionsBuilder.UseMySql("server=localhost;user id=root;password=" + System.Environment.GetEnvironmentVariable("dbPassword")
+            +";database=projet2groupe2");
         }
 ///////////////////////////////////////////////
     }
