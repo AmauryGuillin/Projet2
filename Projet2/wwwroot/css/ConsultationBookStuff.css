@@ -159,46 +159,6 @@ form input[type=submit] {
 
     form input[type=submit]:hover {
         color: white;
-        background-color: #02f50ea8;
-        transition: 0.2s;
-    }
-
-#decline {
-    color: black;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    justify-self: end;
-    border-radius: 20px;
-    font-weight: bold;
-    font-size: 0.9rem;
-    margin-top: 10px;
-    margin-bottom: 0;
-}
-
-    #decline:hover {
-        color: white;
         background-color: #C21111;
-        transition: 0.2s;
-    }
-
-#return {
-    color: black;
-    padding: 14px 20px;
-    margin: 8px 0;
-    justify-self: start;
-    border: none;
-    cursor: pointer;
-    border-radius: 10px;
-    font-weight: bold;
-    font-size: 0.9rem;
-    margin-top: 30px;
-    margin-bottom: 0;
-}
-
-    #return:hover {
-        color: white;
-        background-color: #e0b907;
         transition: 0.2s;
     }
