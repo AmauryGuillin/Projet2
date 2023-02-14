@@ -7,7 +7,7 @@ namespace Projet2.Models
 {
     /// <summary>
     /// This class represents a member
-    ///It is connected to the account class
+    /// It is connected to the account class
     /// </summary>
     public class Adherent
     {
