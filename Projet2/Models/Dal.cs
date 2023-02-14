@@ -743,7 +743,7 @@ namespace Projet2.Models
                 ConversationId = conversationId,
                 SenderId = account1,
                 ReceiverId = account2,
-                MessageTimeStamp = new DateTime(),
+                MessageTimeStamp = DateTime.Now.ToString("dd/mm/yyyy"),
                 isRead = false,
                 
             };
@@ -760,7 +760,7 @@ namespace Projet2.Models
                 ConversationId = conversationId,
                 SenderId = account1,
                 ReceiverId = account2,
-                MessageTimeStamp = new DateTime(),
+                MessageTimeStamp = DateTime.Now.ToString("dd/mm/yyyy"),
                 isRead= false,
             };
             //List<Message> conversation = new List<Message>();
