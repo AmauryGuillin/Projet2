@@ -327,7 +327,7 @@ namespace Projet2.Models
 
             });
             this.Adherents.Add(new Adherent() { Id = 2, AccountId = 5, BenevoleId = 3, AdhesionId = 2, NumAdherent = 640503340147, Contribution = 350, DocPath = "/AdherentsDocuments/DocIdExemple" });
-            this.Benevoles.Add(new Benevole() { Id = 3, AccountId = 2, NbActionVolunteering = 1 });
+            this.Benevoles.Add(new Benevole() { Id = 3, AccountId = 5, NbActionVolunteering = 1 });
             this.Account.Add(new Models.Account()
             {
                 Id = 5,
