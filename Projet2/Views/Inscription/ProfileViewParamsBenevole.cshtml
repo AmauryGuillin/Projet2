@@ -11,7 +11,6 @@
 @Html.HiddenFor(n=>n.Inventory.Id)
 @Html.HiddenFor(model=>model.Profile.ImagePath)
 @Html.HiddenFor(m=>m.Account.role)
-
 <div class="content">
       <div class="banner-region">
         <div class="banner">
@@ -30,7 +29,7 @@
           />
           <div class="side-section-top">
             <div class="profile-pic">
-              <img src="@Model.Profile.ImagePath" alt="Photo de profil" ,height="400" width="400" />
+              <img id="profile-pic" src="@Model.Profile.ImagePath" alt="Photo de profil" ,height="400" width="400" />
             </div>
           </div>
         </div>
@@ -121,4 +120,9 @@
 
 @section ExtraCSS {
     <link href="~/css/ProfileViewParameters.css" rel="stylesheet" />
+    }
+
+@section ExtraJS {
+        <script src="~/JS/ProfileViewBenevole.js"></script>
+        <script src="~/JS/BurgerMenuProfile.js"></script>
     }

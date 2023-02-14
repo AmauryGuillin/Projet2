@@ -14,7 +14,7 @@
 
 .banner {
     background: rgba(255, 0, 0, 0.247);
-    background-image: url('../Assets/Banner/PrtScr capture.png');
+    background-image: url('../Assets/Profile/bannerAdherent.jpg');
     background-repeat: no-repeat;
     background-size: auto auto;
     border-top-right-radius: 20px;
@@ -159,17 +159,17 @@ form {
     justify-items: center;
 }
 
-form .part1 {
-    grid-area: part1;
-    justify-self: center;
-    width: 90%;
-}
+    form .part1 {
+        grid-area: part1;
+        justify-self: center;
+        width: 90%;
+    }
 
-form .part2 {
-    grid-area: part2;
-    justify-self: center;
-    width: 90%;
-}
+    form .part2 {
+        grid-area: part2;
+        justify-self: center;
+        width: 90%;
+    }
 
 .pseudo {
     color: white;
@@ -237,17 +237,17 @@ textarea:hover {
 }
 
 input[type=submit] {
-    grid-area:button;
-    height:3rem;
-    width:6rem;
-    border-radius:20px;
-    justify-self:end;
-    margin-right:2rem;
-    font-weight:bold;
+    grid-area: button;
+    height: 3rem;
+    width: 6rem;
+    border-radius: 20px;
+    justify-self: end;
+    margin-right: 2rem;
+    font-weight: bold;
 }
 
-input[type=submit]:hover {
-    cursor:pointer;
-    background-color: lightgray;
-    transition:0.3s
-}
+    input[type=submit]:hover {
+        cursor: pointer;
+        background-color: lightgray;
+        transition: 0.3s
+    }

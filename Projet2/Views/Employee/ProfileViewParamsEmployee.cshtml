@@ -1,10 +1,8 @@
 ﻿@model Projet2.ViewModels.EmployeeViewModel
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 @{
     Layout = "_LayoutGeneral";
 }
-
 
 @Html.HiddenFor(m=>m.Account.Id)
 @Html.HiddenFor(m=>m.Account.ProfileId)
@@ -12,6 +10,7 @@
 @Html.HiddenFor(m=>m.Account.InfoPersoId)
 @Html.HiddenFor(n=>n.Inventory.Id)
 @Html.HiddenFor(model=>model.Profile.ImagePath)
+@Html.HiddenFor(m=>m.Account.role)
 
 <div class="content">
     <div class="banner-region">
@@ -29,7 +28,7 @@
                  class="menu-hamburger-profile" />
             <div class="side-section-top">
                 <div class="profile-pic">
-                    <img src="@Model.Profile.ImagePath" alt="Photo de profil" ,height="400" width="400" />
+                    <img id="profile-pic" src="@Model.Profile.ImagePath" alt="Photo de profil" ,height="400" width="400" />
                 </div>
             </div>
         </div>
@@ -62,38 +61,38 @@
                     @Model.Profile.Games
                 </div>
             </div>
-            <div class="part1">
- @using (Html.BeginForm("ProfileViewParamsEmployee", "Employee", FormMethod.Post, new { enctype = "multipart/form-data"  }))
-    {
-       
-                <div class="username">
-                    <label><b>Nom d'utilisateur <sup>*</sup></b></label>
-                </div>
-                @Html.TextBoxFor(m => m.Account.Username)
-                @Html.ValidationMessageFor(m => m.Account.Username)
 
-                <div class="password">
-                    <label><b>Mot de passe </b></label>
-                </div>
-                @Html.TextBoxFor(m=> Model.Account.Password)
-                @Html.ValidationMessageFor(m => Model.Account.Password)
+            <div class="mid-section">
+
+                @using (Html.BeginForm("ProfileViewParamsEmployee", "Employee", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <div class="part1">
+                        <div class="pseudo">
+                            <label>Pseudo</label>
+                        </div>
+                        @Html.TextBoxFor(model => model.Account.Username)
+                        @Html.ValidationMessageFor(model => model.Account.Username)
+
+                        <div class="password">
+                            <label>Mot de passe</label>
+                        </div>
+                        @Html.TextBoxFor(model => model.Account.Password)
+                        @Html.ValidationMessageFor(model => model.Account.Password)
 
 
-            <div class="part2">
+                        <div class="email">
+                            <label>Email</label>
+                        </div>
+                        @Html.TextBoxFor(model => model.Contact.EmailAdress)
+                        @Html.ValidationMessageFor(model => model.Contact.EmailAdress)
 
-                <div class="email">
-                    <label><b>Email <sup>*</sup></b></label>
-                </div>
-                @Html.TextBoxFor(m =>m.Contact.EmailAdress)
-                @Html.ValidationMessageFor(m =>m.Contact.EmailAdress)
+                        <div class="telnumber">
+                            <label>N° de telephone</label>
+                        </div>
+                        @Html.TextBoxFor(model => model.Contact.TelephoneNumber)
+                        @Html.ValidationMessageFor(model => model.Contact.TelephoneNumber)
+                    </div>
 
-                <div class="telephone">
-                    <label><b>Telephone <sup>*</sup></b></label>
-                </div>
-                @Html.TextBoxFor(m =>m.Contact.TelephoneNumber)
-                @Html.ValidationMessageFor(m =>m.Contact.TelephoneNumber)
-
-            </div>
                     <div class="part2">
                         <div class="profilePic">
                             <label>Image de profil</label>
@@ -112,13 +111,19 @@
                         @Html.TextAreaFor(model => model.Profile.Games)
                         @Html.ValidationMessageFor(model => model.Profile.Games)
                     </div>
-
                     <input type="submit" value="Modifier" />
                 }
+            </div>
+        </div>
+    </div>
 </div>
-</div>
-</div>
-</div>
+
+
 @section ExtraCSS {
-    <link href="~/css/ProfileViewParameters.css" rel="stylesheet" />
+    <link href="~/css/ProfileViewEmployeeParameters.css" rel="stylesheet" />
+    }
+
+@section ExtraJS {
+    <script src="~/JS/ProfileViewBenevole.js"></script>
+    <script src="~/JS/BurgerMenuProfile.js"></script>
     }
