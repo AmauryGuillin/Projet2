@@ -75,18 +75,18 @@ namespace Projet2.Models
         /// /// <param name="profileid">account's associated profile Id </param>
         /// <returns>account.Id</returns>
 
-        public int CreateAccount(int id, string username, string password)/// Dans le create Account, Profile Id= createProfile();
-        {
+        //public int CreateAccount(int id, string username, string password)/// Dans le create Account, Profile Id= createProfile();
+        //{
 
-            Account account = new Account() { Id = id, Username = username, Password = password, ProfileId = CreateProfile(), InventoryId =  CreateInventory()};
+        //    Account account = new Account() { Id = id, Username = username, Password = password, ProfileId = CreateProfile(), InventoryId =  CreateInventory()};
 
 
-            _bddContext.Account.Add(account);
-            _bddContext.SaveChanges();
+        //    _bddContext.Account.Add(account);
+        //    _bddContext.SaveChanges();
 
-            return account.Id;
+        //    return account.Id;
 
-        }
+        //}
         /// <summary>
         /// This method returns a list that contains all accounts
         /// </summary>
@@ -108,13 +108,7 @@ namespace Projet2.Models
             return null;
         }
 
-        public Role GetAccountRole(int id)
-        {
-            Account account= this._bddContext.Account.Find(id);
-            Role role=account.role;
-
-            return role;
-        }
+       
        
         public List<Account> GetAccounts()
         {
@@ -1098,6 +1092,13 @@ namespace Projet2.Models
         public void RemoveConversation(Conversation conversation)
         {
             _bddContext.Conversations.Remove(conversation);
+            _bddContext.SaveChanges();
+        }
+
+        public void RemoveMessages (List<Message> messages,int accountId)
+        {
+            messages = _bddContext.Messages.Where(r => r.SenderId == accountId).ToList();
+            _bddContext.Messages.RemoveRange(messages);
             _bddContext.SaveChanges();
         }
         public void RemoveMessagerie(MessagerieA messagerie)

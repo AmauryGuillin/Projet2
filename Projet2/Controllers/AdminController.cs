@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
 using Projet2.Models;
 using Projet2.Models.Informations;
 using Projet2.Models.Messagerie;
@@ -205,6 +206,7 @@ namespace Projet2.Controllers
             InfoPerso infos=dal.GetInformations().Where(r => r.Id == (int)toDelete.InfoPersoId).FirstOrDefault();
             Profile profile= dal.GetProfiles().Where(r => r.Id == toDelete.ProfileId).FirstOrDefault();
             MessagerieA messagerie =dal.GetMessageries().Where(r => r.Id == toDelete.MessagerieId).FirstOrDefault();
+            List < Projet2.Models.Messagerie.Message> messages = dal.GetMessages().Where(r => r.SenderId == toDelete.Id).ToList();
             List <Conversation> conversationS = dal.GetUserConversationsStarter(toDelete.Id);
             List<Conversation> conversationR = dal.GetUserConversationsReplier(toDelete.Id);
             Adhesion adhesion = dal.GetAdhesions().Where(r => r.Id == aToDelete.AdhesionId).FirstOrDefault();
@@ -237,7 +239,8 @@ namespace Projet2.Controllers
             dal.RemoveAdhesion(adhesion);
             dal.RemoveContact(contact);
             dal.RemoveInfos(infos);
-            foreach(var conversation in conversationS)
+            dal.RemoveMessages(messages, toDelete.Id);
+            foreach (var conversation in conversationS)
             {
                 dal.RemoveConversation(conversation);
             }
@@ -273,6 +276,7 @@ namespace Projet2.Controllers
             MessagerieA messagerie = dal.GetMessageries().Where(r => r.Id == toDelete.MessagerieId).FirstOrDefault();
             List<Conversation> conversationS = dal.GetUserConversationsStarter(toDelete.Id);
             List<Conversation> conversationR = dal.GetUserConversationsReplier(toDelete.Id);
+            List<Projet2.Models.Messagerie.Message> messages = dal.GetMessages().Where(r => r.SenderId == toDelete.Id).ToList();
             IEnumerable<Publication> publications = dal.GetPublications().Where(r => r.AccountId == toDelete.Id);
             Planning planning = dal.GetPlannings().Where(r => r.Id == toDelete.PlanningId).FirstOrDefault();
             List<Stuff> stuffs = dal.GetOwnedStuff(toDelete.Id);
@@ -294,6 +298,7 @@ namespace Projet2.Controllers
             dal.RemovePlanning(planning);
             dal.RemoveContact(contact);
             dal.RemoveInfos(infos);
+            dal.RemoveMessages(messages, toDelete.Id);
             foreach (var conversation in conversationS)
             {
                 dal.RemoveConversation(conversation);
@@ -330,6 +335,7 @@ namespace Projet2.Controllers
             MessagerieA messagerie = dal.GetMessageries().Where(r => r.Id == toDelete.MessagerieId).FirstOrDefault();
             List<Conversation> conversationS = dal.GetUserConversationsStarter(toDelete.Id);
             List<Conversation> conversationR = dal.GetUserConversationsReplier(toDelete.Id);
+            List <Projet2.Models.Messagerie.Message> messages = dal.GetMessages().Where(r=>r.SenderId==toDelete.Id).ToList();
             IEnumerable<Publication> publications = dal.GetPublications().Where(r => r.AccountId == toDelete.Id);
             Planning planning = dal.GetPlannings().Where(r => r.Id == toDelete.PlanningId).FirstOrDefault();
             List<Stuff> stuffs = dal.GetOwnedStuff(toDelete.Id);
@@ -355,6 +361,8 @@ namespace Projet2.Controllers
             dal.RemovePlanning(planning);
             dal.RemoveContact(contact);
             dal.RemoveInfos(infos);
+
+            dal.RemoveMessages(messages,toDelete.Id);
             foreach (var conversation in conversationS)
             {
                 dal.RemoveConversation(conversation);
@@ -444,21 +452,20 @@ namespace Projet2.Controllers
         public List<SelectListItem> GetAllAccountsBenevole()
         {
             List<SelectListItem> SelectionAccountsBenevole = new List<SelectListItem>();
-           var benevoles = dal.GetBenevoles();
-
-            foreach (Benevole benevole in benevoles)
+            
+            var benevoles = dal.GetBenevoles();
+           foreach(var benevole in benevoles)
             {
                 Account account = benevole.Account;
-
+                SelectionAccountsBenevole.Add(new SelectListItem { Text = account.Username, Value = account.Id.ToString() });
+            }
                 var adherents = dal.GetAdherents();
                 foreach(var adherent in adherents)
-                {
-                    if (benevole.AccountId!=adherent.AccountId)
-                    {
-                        SelectionAccountsBenevole.Add(new SelectListItem { Text = account.Username, Value = account.Id.ToString() });
-                    }
+                { var benevole = dal.GetBenevoles().Where(r=>r.Id==adherent.BenevoleId).FirstOrDefault();
+                  Account toRemove = dal.GetAccount((int)adherent.AccountId);
+                  SelectionAccountsBenevole.RemoveAll(c=>c.Value == toRemove.Id.ToString() );
                 } 
-            }
+            
             return SelectionAccountsBenevole;
         }
 
@@ -473,15 +480,8 @@ namespace Projet2.Controllers
             
             foreach (Employee employee in employees)
             {
-
                 Account account = employee.Account;
                 SelectionAccountsEmployee.Add(new SelectListItem { Text = account.Username, Value = account.Id.ToString() });
-                //var accountsemployees = dal.GetAccounts().Where(r => r.Id == employee.AccountId);
-
-                //foreach (Account account1 in accountsemployees)
-                //{
-                //    SelectionAccountsEmployee.Add(new SelectListItem { Text = account1.Username, Value = account1.Id.ToString() });
-                //}
             }
             return SelectionAccountsEmployee;
         }
