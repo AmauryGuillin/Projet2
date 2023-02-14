@@ -23,7 +23,7 @@ namespace Projet2.Controllers
         /// <summary>
         /// Initializes a new instance of the ActivitiesController class.
         /// </summary>
-        /// <param name="environment"></param>
+        /// <param name="environment">The application's WebHost environment.</param>
         public ActivitiesController(IWebHostEnvironment environment)
         {
             _webEnv = environment;
@@ -292,8 +292,5 @@ namespace Projet2.Controllers
             HttpContext.SignOutAsync();
             return RedirectToAction("Login", "Login");
         }
-
-        ////////////////////////END
-
     }
 }
