@@ -102,15 +102,6 @@ namespace Projet2.Models
 
         public Role role { get; set; }
 
-
-
-        ///////////////////A SUPPRIMER ???
-        //public int? SportAssociationId { get; set; }
-        //public virtual SportAssociation SportAssociation { get; set; }
-
-
-
-
     }
 
     /// <summary>
