@@ -61,7 +61,11 @@
                     @Model.Profile.Games
                 </div>
             </div>
+
             <div class="mid-section">
+
+@using (Html.BeginForm("ProfileViewParamsAdherent", "Inscription", FormMethod.Post, new { enctype = "multipart/form-data"  }))
+    {
                 <div class="part1">
                     <div class="pseudo">
                         <label>Pseudo</label>
@@ -111,7 +115,7 @@
                 <label>Document d'identité</label>
                 <p>Veuillez fournir un justificatif d'identité en format PDF</p>
             </div>
-                    @Html.TextBoxFor(m => m.Adherent.DocAdherent , new { placeholder = "Description", @type = "file" ,accept=".pdf"})
+                    @Html.TextBoxFor(model => model.Adherent.DocAdherent , new { placeholder = "Description", @type = "file" ,accept=".pdf"})
                     @Html.ValidationMessageFor(m =>m.Adherent.DocAdherent)
           
                     <div class="iban">
@@ -122,6 +126,8 @@
 
 
                 </div>
+                <input type= "submit" value="Modifier"/>
+                }
             </div>
         </div>
     </div>

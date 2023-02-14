@@ -1,5 +1,6 @@
 ﻿@model Projet2.ViewModels.EmployeeViewModel
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 @{
     Layout = "_LayoutGeneral";
 }
@@ -62,16 +63,19 @@
                 </div>
             </div>
             <div class="part1">
+ @using (Html.BeginForm("ProfileViewParamsEmployee", "Employee", FormMethod.Post, new { enctype = "multipart/form-data"  }))
+    {
+       
                 <div class="username">
                     <label><b>Nom d'utilisateur <sup>*</sup></b></label>
                 </div>
-                @Html.TextBoxFor(m => Model.Account.Username)
-                @Html.ValidationMessageFor(m => Model.Account.Username)
+                @Html.TextBoxFor(m => m.Account.Username)
+                @Html.ValidationMessageFor(m => m.Account.Username)
 
                 <div class="password">
-                    <label><b>Mot de passe <sup>*</sup></b></label>
+                    <label><b>Mot de passe </b></label>
                 </div>
-                @Html.PasswordFor(m => Model.Account.Password)
+                @Html.TextBoxFor(m=> Model.Account.Password)
                 @Html.ValidationMessageFor(m => Model.Account.Password)
 
 
@@ -89,9 +93,32 @@
                 @Html.TextBoxFor(m =>m.Contact.TelephoneNumber)
                 @Html.ValidationMessageFor(m =>m.Contact.TelephoneNumber)
 
-
             </div>
+                    <div class="part2">
+                        <div class="profilePic">
+                            <label>Image de profil</label>
+                        </div>
+                        @Html.TextBoxFor(model => model.Profile.ProfilImage, new { placeholder = "Description", @type = "file" ,accept=".png, .jpg, .jpeg,.gif"})
+
+                        <div class="bio">
+                            <label>Biographie</label>
+                        </div>
+                        @Html.TextAreaFor(model => model.Profile.Bio)
+                        @Html.ValidationMessageFor(model => model.Profile.Bio)
+
+                        <div class="games">
+                            <label>Genre de jeux préférés ?</label>
+                        </div>
+                        @Html.TextAreaFor(model => model.Profile.Games)
+                        @Html.ValidationMessageFor(model => model.Profile.Games)
+                    </div>
+
+                    <input type="submit" value="Modifier" />
+                }
 </div>
 </div>
 </div>
 </div>
+@section ExtraCSS {
+    <link href="~/css/ProfileViewParameters.css" rel="stylesheet" />
+    }

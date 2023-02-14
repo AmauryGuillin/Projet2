@@ -35,37 +35,37 @@
               ><b>Nom d'utilisateur <sup>*</sup></b></label
             >
           </div>
-            @Html.TextBoxFor(m => Model.Account.Username)
-            @Html.ValidationMessageFor(m => Model.Account.Username)
+            @Html.TextBoxFor(m => m.CreatedEmployee.Username)
+            @Html.ValidationMessageFor(m => m.Account.Username)
 
         <div class="password">
             <label><b>Mot de passe <sup>*</sup></b></label>
         </div>
-            @Html.PasswordFor(m => Model.Account.Password)
-            @Html.ValidationMessageFor(m => Model.Account.Password)
+            @Html.PasswordFor(m => m.CreatedEmployee.Password)
+            @Html.ValidationMessageFor(m => m.Account.Password)
 
             <div class="firstname">
             <label
               ><b>Prenom <sup>*</sup></b></label
             >
           </div>
-            @Html.TextBoxFor(m =>m.Infos.FirstName)
-            @Html.ValidationMessageFor(m =>m.Infos.FirstName)
+            @Html.TextBoxFor(m =>m.CreatedEmployee.infoPerso.FirstName)
+                @Html.ValidationMessageFor(m =>m.CreatedEmployee.infoPerso.FirstName)
 
             <div class="lastname">
             <label
               ><b>Nom <sup>*</sup></b></label
             >
           </div>
-            @Html.TextBoxFor(m =>m.Infos.LastName)
-            @Html.ValidationMessageFor(m =>m.Infos.LastName)
+                @Html.TextBoxFor(m =>m.CreatedEmployee.infoPerso.LastName)
+                @Html.ValidationMessageFor(m =>m.CreatedEmployee.infoPerso.LastName)
 
 
         <div class="birthdate">
             <label><b>Date de naissance <sup>*</sup></b></label>
         </div>
-            @Html.TextBoxFor(m =>m.Infos.Birthday, new { @type = "date"})
-            @Html.ValidationMessageFor(m =>m.Infos.Birthday)
+                @Html.TextBoxFor(m =>m.CreatedEmployee.infoPerso.Birthday, new { @type = "date"})
+                @Html.ValidationMessageFor(m =>m.CreatedEmployee.infoPerso.Birthday)
 
                 </div>
 
@@ -77,32 +77,32 @@
               ><b>Type de poste <sup>*</sup></b></label
             >
           </div>
-            @Html.TextBoxFor(m => Model.Employee.JobName)
-            @Html.ValidationMessageFor(m => Model.Employee.JobName)
+            @Html.TextBoxFor(m => m.Employee.JobName)
+            @Html.ValidationMessageFor(m => m.Employee.JobName)
 
             <div class="matricule">
             <label
               ><b>Matricule <sup>*</sup></b></label
             >
           </div>
-            @Html.TextBoxFor(m => Model.Employee.SerialNumber)
-            @Html.ValidationMessageFor(m => Model.Employee.SerialNumber)
+            @Html.TextBoxFor(m =>m.Employee.SerialNumber)
+            @Html.ValidationMessageFor(m => m.Employee.SerialNumber)
 
             <div class="email">
             <label
               ><b>Email <sup>*</sup></b></label
             >
           </div>
-            @Html.TextBoxFor(m =>m.Contact.EmailAdress)
-            @Html.ValidationMessageFor(m =>m.Contact.EmailAdress)
+                @Html.TextBoxFor(m =>m.CreatedEmployee.Contact.EmailAdress)
+                @Html.ValidationMessageFor(m =>m.CreatedEmployee.Contact.EmailAdress)
 
             <div class="telephone">
             <label
               ><b>Telephone <sup>*</sup></b></label
             >
           </div>
-            @Html.TextBoxFor(m =>m.Contact.TelephoneNumber)
-            @Html.ValidationMessageFor(m =>m.Contact.TelephoneNumber)
+                @Html.TextBoxFor(m =>m.CreatedEmployee.Contact.TelephoneNumber)
+                @Html.ValidationMessageFor(m =>m.CreatedEmployee.Contact.TelephoneNumber)
 
 
                 </div>

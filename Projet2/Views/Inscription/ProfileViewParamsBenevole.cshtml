@@ -64,6 +64,8 @@
             </div>
           </div>
           <div class="mid-section">
+ @using (Html.BeginForm("ProfileViewParamsBenevole", "Inscription", FormMethod.Post, new { enctype = "multipart/form-data"  }))
+    {
             <div class="part1">
               <div class="pseudo">
                 <label>Pseudo</label>
@@ -109,6 +111,8 @@
               @Html.TextAreaFor(model => model.Profile.Games)
               @Html.ValidationMessageFor(model => model.Profile.Games)
             </div>
+                    <input type= "submit" value="Modifier"/>
+                }
           </div>
         </div>
       </div>

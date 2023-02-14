@@ -423,21 +423,17 @@ namespace Projet2.Models
         /// <param name="numAdherent"></param>
         /// <param name="inscriptiondate"></param>
         /// <param name="idDocuments"></param>
-        public void EditAdherent(int id, int benevoleId, int numAdherent, DateTime inscriptiondate, Double contribution, string idDocuments, int teamId, int adhesionId, int coachingId)
+        public Adherent EditAdherent(int id,string docsPath)
         {
             Adherent adherent = _bddContext.Adherents.Find(id);
             if (adherent != null)
             {
-                adherent.BenevoleId = benevoleId;
-                adherent.NumAdherent = numAdherent;
-                adherent.InscriptionDate = inscriptiondate;
-                adherent.Contribution = contribution;
-                adherent.DocPath = idDocuments;
-                adherent.TeamId = teamId;
-                adherent.AdhesionId = adhesionId;
+                adherent.DocPath = docsPath;
                 
                 _bddContext.SaveChanges();
+                return adherent;
             }
+            return null;
         }
 
         /// <summary>
@@ -2037,7 +2033,7 @@ namespace Projet2.Models
             _bddContext.SaveChanges();
         }
 
-        public void EditProfileS(int id, string path,string games,string Bio )
+        public Profile EditProfileS(int id,string path,string games,string Bio )
         {
             Profile profile = _bddContext.Profils.Find(id);
             if (profile != null)
@@ -2047,10 +2043,12 @@ namespace Projet2.Models
                 profile.Bio = Bio;
                 
                 _bddContext.SaveChanges();
+                return profile;
             }
+            return null;
         }
 
-        public void EditContacts(int id, string email,string tel)
+        public Contact EditContacts( int id, string email,string tel)
         {
             Contact contact = _bddContext.Contact.Find(id);
             if (contact != null)
@@ -2060,13 +2058,23 @@ namespace Projet2.Models
                 
 
                 _bddContext.SaveChanges();
+                return contact;
             }
-
+            return null;
         }
 
-        public void EditInfos(int id, string name, PublicationTypes type, string content, string date)
+        public Account EditAccount(int id,string username, string password)
         {
-
+            Account account = _bddContext.Account.Find(id);
+            if (account != null)
+            {
+                account.Username = username;
+                    account.Password=password; ;
+                _bddContext.SaveChanges();
+                return account;
+            
+            }
+            return null;
         }
 
 

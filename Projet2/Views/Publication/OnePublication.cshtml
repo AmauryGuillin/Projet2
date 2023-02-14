@@ -9,8 +9,11 @@
       <div class="window">
         <div class="name"><h1>@Model.Publication.Name</h1></div>
         <div class="buttons">
+             @if (Model.Account.role == Projet2.Models.Role.Admin || Model.Account.role == Projet2.Models.Role.Salarie)
+        {
             <button onclick="location.href='@Url.Action("EditPublication", "Publication" ,new {id=Model.Publication.Id})'">Modifier la publication</button>
-    </div>
+        }
+        </div>
         <div class="image">
 
             <img src="@Model.Publication.ImagePath" alt="Image de l'article" />

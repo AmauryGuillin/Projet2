@@ -22,14 +22,22 @@ namespace Projet2.Controllers
         }
         public IActionResult CreateActivity()
         {
-            ActivitiesViewModel activitiesVM = new ActivitiesViewModel
-            { Authentificate = HttpContext.User.Identity.IsAuthenticated};
-            if (activitiesVM.Authentificate == true) { 
-            activitiesVM.Account = dal.GetAccount(HttpContext.User.Identity.Name);
-            return View(activitiesVM); 
+            ActivitiesViewModel activitiesVM = new ActivitiesViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
+            if (activitiesVM.Authentificate == true)
+            {
+                activitiesVM.Account = dal.GetAccount(HttpContext.User.Identity.Name);
+                if (activitiesVM.Account.role == Projet2.Models.Role.Admin || activitiesVM.Account.role == Projet2.Models.Role.Admin)
+                {
+                    return View(activitiesVM);
+                }
+                else { RedirectToAction("Index", "Login"); }
+               
             }
-            else { return RedirectToAction("Login", "Login"); }
+            return RedirectToAction("Login", "Login");
         }
+            
+    
+
 
         [HttpPost]
 

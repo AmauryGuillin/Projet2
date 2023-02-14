@@ -171,10 +171,14 @@ namespace Projet2.Controllers
                 Stuff stuff = model.Stuff;
                 model.Account = dal.GetAccount(accountId);
                 Account userAccount = model.Account;
+                if (userAccount.role != Projet2.Models.Role.Benevole)
+                { 
                 model.Stuff.AccountOwner = dal.GetAccounts().Where(r => r.Id == stuff.AccountOwnerId).FirstOrDefault();
                 model.Stuff.AccountBorrowerId = userAccount.Id;
                 model.Account = dal.GetAccounts().Where(r => r.Id == stuff.AccountOwnerId).FirstOrDefault();
                 return View(model);
+                }
+                return RedirectToAction("Index", "Login");
             }
             return RedirectToAction("Login", "Login");
         }
