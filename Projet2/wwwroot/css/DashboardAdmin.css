@@ -29,6 +29,12 @@
     width: fit-content;
 }
 
+#selectedAccount {
+    margin-bottom: 0.5rem;
+    width: 15rem;
+    height: 1.5rem;
+}
+
 input[type=text] {
     margin-bottom: 0.5rem;
     width: 15rem;

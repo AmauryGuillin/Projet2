@@ -3,18 +3,16 @@
     Layout = "_LayoutGeneral";
 }﻿
 
-<link rel="stylesheet" href="~/css/DashboardAdmin.css" />
-
 <div class="content">
     <div class="list">
         <div class="title-main"><h1>DashBoard Administrateur</h1></div>
         <div class="title1"><h2>Membres</h2></div>
         <div class="member-section">
             <div class="benevole">
-               @using (Html.BeginForm("DeleteAccountBenevole", "Admin", FormMethod.Post))
+                @using (Html.BeginForm("DeleteAccountBenevole", "Admin", FormMethod.Post))
                 {
                     @Html.DropDownListFor(m => m.selectedAccount, Model.ListAccountsBenevole,"Selectionnez un benevole")
-                    <input type="submit" value="supprimer"> 
+                    <input type="submit" value="supprimer">
                 }
             </div>
             <div class="adherent">
@@ -38,8 +36,8 @@
     </div>
 </div>
 
-@section ExtraCSS {
-    
+@section ExtraCss {
+    <link rel="stylesheet" href="~/css/DashboardAdmin.css" />
 }
 
 
@@ -48,8 +46,12 @@
 
 
 
-    
-@*    <main>
+
+
+
+
+
+   @* <main>
         <div class="content">
             <div class="listes">
                 <h2>Membres</h2>
@@ -104,8 +106,13 @@
 
 
         
-    </main>*@
+    </main>
 
+
+
+@section ExtraCss{
+    <link rel="stylesheet" href="~/css/DashboardAdmin.css" />
+                }*@
 
                 @*<script src="/_framework/aspnetcore-browser-refresh.js"></script>*@
 
