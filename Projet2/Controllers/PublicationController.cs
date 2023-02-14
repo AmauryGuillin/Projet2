@@ -13,16 +13,29 @@ using Microsoft.AspNetCore.Hosting;
 
 namespace Projet2.Controllers
 {
+    /// <summary>
+    /// Controller for Publication.
+    /// </summary>
     public class PublicationController : Controller
     {
-        private Dal dal;
-        private IWebHostEnvironment _webEnv;
+        private Dal dal;//An instance of the "Dal" class
 
+        private IWebHostEnvironment _webEnv;//An instance of the "IWebHostEnvironment" interface
+
+        /// <summary>
+        /// Initializes a new instance of the PublicationController class.
+        /// </summary>
+        /// <param name="environment">The application's WebHost environment.</param>
         public PublicationController(IWebHostEnvironment environment)
         {
             _webEnv = environment;
             this.dal = new Dal();
         }
+
+        /// <summary>
+        /// Displays a catalog of available publication to users that are authenticated.
+        /// </summary>
+        /// <returns>Returns the PublicationWall view with a list of all the available stuff.</returns>
         public IActionResult PublicationWall()
         {
             PublicationViewModel model = new PublicationViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
@@ -44,8 +57,11 @@ namespace Projet2.Controllers
             return RedirectToAction("Login", "Login");
         }
 
-
-    public IActionResult CreatePublication()
+        /// <summary>
+        /// Create a view to display a form to create a Publication object.
+        /// </summary>
+        /// <returns>An IActionResult representing the view</returns>
+        public IActionResult CreatePublication()
         {
             PublicationViewModel model = new PublicationViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
             if (model.Authentificate == true)
@@ -56,6 +72,12 @@ namespace Projet2.Controllers
             }
             return RedirectToAction("Login", "Login");
         }
+
+        /// <summary>
+        /// Process an HTTP POST request to create a new Publication object.
+        /// </summary>
+        /// <param name="model">The PublicationViewModel containing the information about the new Publication object.</param>
+        /// <returns>The ID of the stuff item whose reservation is being cancelled</returns>
         [HttpPost]
         public IActionResult CreatePublication(PublicationViewModel model)
         {
@@ -86,7 +108,11 @@ namespace Projet2.Controllers
             return RedirectToAction("Login", "Login");
         }
 
-
+        /// <summary>
+        /// Displays the details of a single publication.
+        /// </summary>
+        /// <param name="id">The ID of the publication to display.</param>
+        /// <returns>Returns the view of the single post</returns>
         public IActionResult OnePublication(int id)
         {
             PublicationViewModel model = new PublicationViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
@@ -118,6 +144,11 @@ namespace Projet2.Controllers
         //    return RedirectToAction("Login", "Login");
         //}
 
+        /// <summary>
+        /// Process an HTTP GET request to display the edit form of an existing Publication object.
+        /// </summary>
+        /// <param name="id">The identifier of the Publication object to modify.</param>
+        /// <returns>Publication object edit view.</returns>
         public IActionResult EditPublication(int id)
         {
             PublicationViewModel model = new PublicationViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
@@ -131,6 +162,12 @@ namespace Projet2.Controllers
             return RedirectToAction("Login", "Login");
         }
 
+        /// <summary>
+        /// Process an HTTP POST request to modify the information of an existing Publication object.
+        /// </summary>
+        /// <param name="model">A PublicationViewModel object containing the updated Publication object information.</param>
+        /// <param name="id">The identifier of the Stuff object to modify.</param>
+        /// <returns>The ID of the stuff item whose reservation is being cancelled</returns>
         [HttpPost]
         public IActionResult EditPublication(PublicationViewModel model, int id)
         {
@@ -160,6 +197,11 @@ namespace Projet2.Controllers
             return RedirectToAction("Login", "Login");
         }
 
+        /// <summary>
+        /// Displays the confirmation page for removing a publication item
+        /// </summary>
+        /// <param name="id">The id of the publication item to be removed</param>
+        /// <returns>The view to confirm the removal of the publication item</returns>
         public IActionResult RemovePublication(int id)
         {
             PublicationViewModel model = new PublicationViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
@@ -173,6 +215,12 @@ namespace Projet2.Controllers
             return RedirectToAction("Login", "Login");
         }
 
+        /// <summary>
+        /// Removes a publication item from the database
+        /// </summary>
+        /// <param name="model">The view model containing the account and publication item</param>
+        /// <param name="id">The id of the publication item to be removed</param>
+        /// <returns>The ID of the stuff item whose reservation is being cancelled</returns>
         [HttpPost]
         public IActionResult RemovePublication(PublicationViewModel model, int id)
         {
@@ -187,13 +235,15 @@ namespace Projet2.Controllers
         }
 
 
-
+        /// <summary>
+        /// Logs the user out by deleting the authentication cookies and redirects him to the login page.
+        /// </summary> 
+        /// <returns>Redirect to login page</returns>
         public ActionResult Deconnexion()
         {
             HttpContext.SignOutAsync();
             return RedirectToAction("LOgin", "Login");
         }
-        /////////////////////////END
 
     }
 

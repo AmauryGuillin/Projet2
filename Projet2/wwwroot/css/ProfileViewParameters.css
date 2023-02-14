@@ -14,7 +14,7 @@
 
 .banner {
     background: rgba(255, 0, 0, 0.247);
-    background-image: url("Assets/Banner/PrtScr\ capture.png");
+    background-image: url('../Assets/Banner/PrtScr capture.png');
     background-repeat: no-repeat;
     background-size: auto auto;
     border-top-right-radius: 20px;
@@ -86,6 +86,7 @@
         object-fit: cover;
     }
 
+
 .main-content {
     background: rgba(0, 0, 0, 0.137);
     display: flex;
@@ -144,21 +145,27 @@ hr {
 .mid-section {
     min-width: 79.1%;
     min-height: 100vh;
+}
+
+form {
+    width: 100%;
+    height: fit-content;
     display: grid;
-    grid-template-columns: 50%;
-    grid-template-rows: 50%;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto;
     grid-template-areas:
-        "part1 part2";
+        "part1 part2"
+        "button button";
     justify-items: center;
 }
 
-.part1 {
+form .part1 {
     grid-area: part1;
     justify-self: center;
     width: 90%;
 }
 
-.part2 {
+form .part2 {
     grid-area: part2;
     justify-self: center;
     width: 90%;
@@ -210,6 +217,7 @@ textarea {
     box-sizing: border-box;
     border-radius: 20px;
     resize: none;
+    height: 7rem;
 }
 
 input::file-selector-button {
@@ -217,6 +225,7 @@ input::file-selector-button {
     padding: 5px 5px;
     margin-top: 10px;
     margin-bottom: 20px;
+    cursor: pointer;
 }
 
 input[type=text]:hover,
@@ -226,3 +235,19 @@ input[type=date]:hover,
 textarea:hover {
     border: 2px solid #4b2df1;
 }
+
+#edit-button {
+    grid-area: button;
+    height: 3rem;
+    width: 6rem;
+    border-radius: 20px;
+    justify-self: end;
+    margin-right: 2rem;
+    font-weight: bold;
+}
+
+    #edit-button:hover {
+        cursor: pointer;
+        background-color: lightgray;
+        transition: 0.3s
+    }

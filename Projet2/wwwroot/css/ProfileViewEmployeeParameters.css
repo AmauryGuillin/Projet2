@@ -1,0 +1,253 @@
+﻿.content {
+    border-radius: 20px;
+    min-height: 100vh;
+    padding-left: 200px;
+    padding-right: 200px;
+}
+
+.banner-region {
+    background: rgba(0, 0, 0, 0.137);
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    min-height: 100vh;
+}
+
+.banner {
+    background: rgba(255, 0, 0, 0.247);
+    background-image: url('../Assets/Profile/bannerAdherent.jpg');
+    background-repeat: no-repeat;
+    background-size: auto auto;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    min-height: 200px;
+    padding-top: 40px;
+    padding-left: 20px;
+    position: relative;
+}
+
+    .banner .nav-links-profile {
+        position: absolute;
+        top: 10px;
+        right: 70px;
+        text-align: end;
+        opacity: 0%;
+        transition: 0.5s;
+    }
+
+        .banner .nav-links-profile ul li {
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+            list-style-type: none;
+            margin-bottom: 12px;
+        }
+
+            .banner .nav-links-profile ul li a {
+                color: rgb(255, 255, 255);
+                text-decoration: none;
+            }
+
+    .banner .menu-hamburger-profile {
+        position: absolute;
+        width: 50px;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+
+    .banner .nav-links-profile.mobile-menu-profile {
+        opacity: 100%;
+        transition: 0.5s;
+    }
+
+
+.side-section-top {
+    background: rgba(254, 254, 255, 0.452);
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    width: 20.9%;
+    min-height: 200px;
+    border-bottom: none;
+    box-shadow: 5px 3px 20px 0 rgb(0 0 0 / 65%), 0 5px 5px 0 rgb(0 0 0 / 24%);
+}
+
+.profile-pic {
+    padding-top: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+}
+
+    .profile-pic #profile-pic {
+        width: 200px;
+        height: 200px;
+        clip-path: circle();
+        justify-self: center;
+        object-fit: cover;
+    }
+
+
+.main-content {
+    background: rgba(0, 0, 0, 0.137);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 20px;
+    border-top: none;
+    min-height: 100vh;
+}
+
+.side-section {
+    background: rgba(254, 254, 255, 0.452);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    min-height: 900px;
+    width: 300px;
+    border-top: none;
+    align-self: flex-start;
+    box-shadow: 5px 3px 20px 0 rgb(0 0 0 / 65%), 0 5px 5px 0 rgb(0 0 0 / 24%);
+}
+
+hr {
+    height: 1px;
+    background-color: black;
+    border: none;
+}
+
+.pseudo1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    font-weight: bold;
+    font-size: 2vw;
+    color: black;
+}
+
+.side-section h3 {
+    color: black;
+}
+
+.about {
+    margin-top: 35px;
+    padding-left: 10px;
+    font-size: 0.8vw;
+    color: black;
+    font-weight: bolder;
+}
+
+.firstname1, .lastname1, .birthday1, .games1 {
+    padding-left: 10px;
+    color: black;
+    font-size: 0.8vw;
+}
+
+.mid-section {
+    min-width: 79.1%;
+    min-height: 100vh;
+}
+
+form {
+    width: 100%;
+    height: fit-content;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "part1 part2"
+        "button button";
+    justify-items: center;
+}
+
+    form .part1 {
+        grid-area: part1;
+        justify-self: center;
+        width: 90%;
+    }
+
+    form .part2 {
+        grid-area: part2;
+        justify-self: center;
+        width: 90%;
+    }
+
+.pseudo {
+    color: white;
+    margin-bottom: 10px;
+    margin-top: 50px
+}
+
+.profilePic {
+    color: white;
+    margin-bottom: 10px;
+    margin-top: 50px
+}
+
+.password, .firstname, .lastname, .email, .telnumber, .birthday, .bio, .games {
+    color: white;
+    margin-bottom: 10px;
+}
+
+
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=date] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    margin-bottom: 12px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 20px;
+}
+
+.biographie {
+    margin-top: 10px;
+}
+
+textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    margin-bottom: 12px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 20px;
+    resize: none;
+    height: 7rem;
+}
+
+input::file-selector-button {
+    font-weight: bold;
+    padding: 5px 5px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+input[type=text]:hover,
+input[type=password]:hover,
+input[type=email]:hover,
+input[type=date]:hover,
+textarea:hover {
+    border: 2px solid #4b2df1;
+}
+
+#edit-button {
+    grid-area: button;
+    height: 3rem;
+    width: 6rem;
+    border-radius: 20px;
+    justify-self: end;
+    margin-right: 2rem;
+    font-weight: bold;
+}
+
+    #edit-button:hover {
+        cursor: pointer;
+        background-color: lightgray;
+        transition: 0.3s
+    }

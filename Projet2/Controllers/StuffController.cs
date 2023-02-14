@@ -14,16 +14,29 @@ using System.Xml.Linq;
 
 namespace Projet2.Controllers
 {
+    /// <summary>
+    /// Controller for Stuff.
+    /// </summary>
     public class StuffController : Controller
     {
-        private Dal dal;
-        private IWebHostEnvironment _webEnv;
+        private Dal dal;//An instance of the "Dal" class
+
+        private IWebHostEnvironment _webEnv;//An instance of the "IWebHostEnvironment" interface
+
+        /// <summary>
+        /// Initializes a new instance of the StuffController class.
+        /// </summary>
+        /// <param name="environment">The application's WebHost environment.</param>
         public StuffController(IWebHostEnvironment environment)
         {
             _webEnv = environment;
             this.dal = new Dal();
         }
 
+        /// <summary>
+        /// Create a view to display a form to create a Stuff object.
+        /// </summary>
+        /// <returns>An IActionResult representing the view</returns>
         public IActionResult CreateStuff()
         {
             StuffViewModel model = new StuffViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
@@ -32,6 +45,11 @@ namespace Projet2.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Process an HTTP POST request to create a new Stuff object.
+        /// </summary>
+        /// <param name="model">The StuffViewModel containing the information about the new Stuff object.</param>
+        /// <returns>The ID of the stuff item whose reservation is being cancelled</returns>
         [HttpPost]
         public IActionResult CreateStuff(StuffViewModel model)
         {
@@ -68,7 +86,11 @@ namespace Projet2.Controllers
 
             return RedirectToAction("Login", "Login");
         }
-
+        /// <summary>
+        /// Process an HTTP GET request to display the edit form of an existing Stuff object.
+        /// </summary>
+        /// <param name="id">The identifier of the Stuff object to modify.</param>
+        /// <returns>Stuff object edit view.</returns>
         public IActionResult EditStuff(int id)
         {
             StuffViewModel model = new StuffViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
@@ -82,6 +104,12 @@ namespace Projet2.Controllers
             return RedirectToAction("Login", "Login");
         }
 
+        /// <summary>
+        /// Process an HTTP POST request to modify the information of an existing Stuff object.
+        /// </summary>
+        /// <param name="model">A StuffViewModel object containing the updated Stuff object information.</param>
+        /// <param name="id">The identifier of the Stuff object to modify.</param>
+        /// <returns>The ID of the stuff item whose reservation is being cancelled</returns>
         [HttpPost]
         public IActionResult EditStuff(StuffViewModel model, int id)
         {
@@ -114,6 +142,11 @@ namespace Projet2.Controllers
             return RedirectToAction("Login", "Login");
         }
 
+        /// <summary>
+        /// Displays the confirmation page for removing a stuff item
+        /// </summary>
+        /// <param name="id">The id of the stuff item to be removed</param>
+        /// <returns>The view to confirm the removal of the stuff item</returns>
         public IActionResult RemoveStuff(int id)
         {
             ProfileViewModel model = new ProfileViewModel();
@@ -127,6 +160,12 @@ namespace Projet2.Controllers
             return RedirectToAction("Login", "Login");
         }
 
+        /// <summary>
+        /// Removes a stuff item from the database
+        /// </summary>
+        /// <param name="model">The view model containing the account and stuff item</param>
+        /// <param name="id">The id of the stuff item to be removed</param>
+        /// <returns>Returns the PublicationWall view with a list of all the available stuff.</returns>
         [HttpPost]
         public IActionResult RemoveStuff(ProfileViewModel model, int id)
         {
@@ -148,6 +187,10 @@ namespace Projet2.Controllers
             return RedirectToAction("Login", "Login");
         }
 
+        /// <summary>
+        /// Displays a catalog of available stuff to users that are authenticated.
+        /// </summary>
+        /// <returns>Returns the StuffCatalog view with a list of all the available stuff.</returns>
         public IActionResult StuffCatalog()
         {
 
@@ -168,7 +211,11 @@ namespace Projet2.Controllers
             }
             return RedirectToAction("Login", "Login");
         }
-
+        /// <summary>
+        /// Display the view to create a stuff reservation and thus be able to borrow a stuff
+        /// </summary>
+        /// <param name="id">ID of the stuff to create the reservation.</param>
+        /// <returns>The view to create the booking request.</returns>
         public IActionResult CreateBookStuff(int id)
         {
             StuffViewModel model = new StuffViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
@@ -191,6 +238,12 @@ namespace Projet2.Controllers
             return RedirectToAction("Login", "Login");
         }
 
+        /// <summary>
+        /// Process an HTTP POST request to create a new stuff reservation.
+        /// </summary>
+        /// <param name="model">The StuffViewModel containing the information about the new reservation.</param>
+        /// <param name="id">The id of the stuff to modify it following the reservation request.</param></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult CreateBookStuff(StuffViewModel model, int id)
         {
@@ -269,7 +322,11 @@ namespace Projet2.Controllers
             return RedirectToAction("Login", "Login");
 
         }
-
+        /// <summary>
+        /// Display the view to accept a reservation for stuff
+        /// </summary>
+        /// <param name="id">ID of reserved stuff.</param>
+        /// <return>The view to accept the reservation.</return>
         public IActionResult AcceptationBookStuff(int id)
         {
             StuffViewModel model = new StuffViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
@@ -296,7 +353,12 @@ namespace Projet2.Controllers
             return RedirectToAction("Login", "Login");
         }
 
-
+        /// <summary>
+        /// Action to accept a material reservation.
+        /// </summary>
+        /// <param name="model">The view model containing the reservation data.</param>
+        /// <param name="id">The id of the stuff in question.</param>
+        /// <returns>A redirection to the user's profile page</returns>
         [HttpPost]
         public IActionResult AcceptationBookStuff(StuffViewModel model, int id)
         {
@@ -321,6 +383,7 @@ namespace Projet2.Controllers
             return RedirectToAction("Login", "Login");
         }
 
+        //inutile ????
         public IActionResult CancelationBookStuff(int id)
         {
             StuffViewModel model = new StuffViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
@@ -340,7 +403,12 @@ namespace Projet2.Controllers
             return RedirectToAction("Login", "Login");
         }
 
-
+        /// <summary>
+        /// Action method for cancelling a stuff reservation
+        /// </summary>
+        /// <param name="model">Stuff view model</param>
+        /// <param name="id">ID of the stuff</param>
+        /// <returns>A redirection to the user's profile page</returns>
         [HttpPost]
         public IActionResult CancelationBookStuff(StuffViewModel model, int id)
         {
@@ -363,7 +431,11 @@ namespace Projet2.Controllers
             return RedirectToAction("Login", "Login");
         }
 
-
+        /// <summary>
+        /// Action method for displaying the details of a borrowed stuff.
+        /// </summary>
+        /// <param name="id">The id of the stuff to display.</param>
+        /// <returns>The view displaying the details of the borrowed stuff.</returns>
         public IActionResult ConsultationBookStuff(int id)
         {
             ProfileViewModel model = new ProfileViewModel();
@@ -379,6 +451,12 @@ namespace Projet2.Controllers
             return RedirectToAction("Login", "Login");
         }
 
+        /// <summary>
+        /// Handles POST requests for cancelling the reservation of a stuff item, and redirects the user to their profile page
+        /// </summary>
+        /// <param name="model">The ProfileViewModel containing information about the user's profile</param>
+        /// <param name="id">The ID of the stuff item whose reservation is being cancelled</param>
+        /// <returns>A redirection to the user's profile page</returns>
         [HttpPost]
         public IActionResult ConsultationBookStuff(ProfileViewModel model, int id)
         {
@@ -400,14 +478,16 @@ namespace Projet2.Controllers
         }
 
 
-
+        /// <summary>
+        /// Logs the user out by deleting the authentication cookies and redirects him to the login page.
+        /// </summary> 
+        /// <returns>Redirect to login page</returns>
         public ActionResult Deconnexion()
         {
             HttpContext.SignOutAsync();
             return RedirectToAction("LOgin", "Login");
         }
 
-        ////////////////////RND    
 
     }
 }

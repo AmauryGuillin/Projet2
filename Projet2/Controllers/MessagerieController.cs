@@ -13,15 +13,29 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authentication;
 namespace Projet2.Controllers
 {
+    /// <summary>
+    /// Controller for Messagerie.
+    /// </summary>
     public class MessagerieController : Controller
     {
-        private Dal dal;
-        private IWebHostEnvironment _webEnv;
+        private Dal dal;//An instance of the "Dal" class
+
+        private IWebHostEnvironment _webEnv;//An instance of the "IWebHostEnvironment" interface
+
+        /// <summary>
+        /// Initializes a new instance of the MessagerieController class.
+        /// </summary>
+        /// <param name="environment">The application's WebHost environment.</param>
         public MessagerieController(IWebHostEnvironment environment)
         {
             _webEnv = environment;
             this.dal = new Dal();
         }
+
+        /// <summary>
+        /// Returns the view for the message board.
+        /// </summary>
+        /// <returns>Returns a view that displays the message board for authenticated users.</returns>
         public IActionResult MessageBoardView()
         {
             MessagerieViewModel mvm = new MessagerieViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
@@ -68,7 +82,10 @@ namespace Projet2.Controllers
                 return RedirectToAction("Login","Login");
         }
 
-
+        /// <summary>
+        /// Displays the view for creating a new message conversation.
+        /// </summary>
+        /// <returns>The view for creating a new message conversation.</returns>
         public IActionResult NewMessageConversationView()
         {
             MessagerieViewModel mvm = new MessagerieViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
@@ -96,7 +113,11 @@ namespace Projet2.Controllers
             }
                 return View("Login","Login");
         }
-
+        /// <summary>
+        /// Handles the HTTP POST request for creating a new message conversation.
+        /// </summary>
+        /// <param name="mvm">The MessagerieViewModel object containing the conversation details.</param>
+        /// <returns>The view for the message board.</returns>
         [HttpPost]
         public IActionResult NewMessageConversationView(MessagerieViewModel mvm)
         {
@@ -119,6 +140,12 @@ namespace Projet2.Controllers
         }
 
 
+
+        /// <summary>
+        /// Displays the view to reply to a message in a conversation.
+        /// </summary>
+        /// <param name="id">The ID of the conversation.</param>
+        /// <returns>The view to reply to the message.</returns>
         public IActionResult ReplyMessage(int id)
         {
             MessagerieViewModel mvm = new MessagerieViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
@@ -145,6 +172,13 @@ namespace Projet2.Controllers
             }
             return RedirectToAction("Login", "Login");
         }
+
+        /// <summary>
+        /// Handles the HTTP POST request for replying to a message in a conversation
+        /// </summary>
+        /// <param name="mvm">The MessagerieViewModel containing the reply message</param>
+        /// <param name="id">The ID of the conversation being replied to</param>
+        /// <returns>A redirect to the MessageBoardView with the updated conversation</returns>
         [HttpPost]
         public IActionResult ReplyMessage(MessagerieViewModel mvm,int id)
         {
@@ -174,7 +208,11 @@ namespace Projet2.Controllers
             return RedirectToAction("MessageBoardView", mvm);
         }
 
-            public List<SelectListItem> GetAllAccounts()
+        /// <summary>
+        /// Get a list of SelectListItem objects for all registered accounts.
+        /// </summary>
+        /// <returns>A list of SelectListItem objects for all registered accounts.</returns>
+        public List<SelectListItem> GetAllAccounts()
         {
             List<SelectListItem> SelectionAccounts = new List<SelectListItem>();
             foreach (Account account in dal.GetAccounts())
@@ -182,6 +220,7 @@ namespace Projet2.Controllers
                 SelectionAccounts.Add(new SelectListItem{Text= account.Username, Value =account.Id.ToString() }); }
             return SelectionAccounts;
         }
+
 
 
         //private SelectList GetSelectedAccount(Account selectedAccount)
@@ -192,11 +231,18 @@ namespace Projet2.Controllers
         //    return new SelectList(selectedAccounts,selectedAccount);
         //}
 
+
+
+
+
+        /// <summary>
+        /// Logs the user out by deleting the authentication cookies and redirects him to the login page.
+        /// </summary> 
+        /// <returns>Redirect to login page</returns>
         public ActionResult Deconnexion()
         {
             HttpContext.SignOutAsync();
             return RedirectToAction("LOgin", "Login");
         }
-        ///////////////////////////END//////////
     }
 }

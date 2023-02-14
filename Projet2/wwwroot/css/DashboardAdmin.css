@@ -1,195 +1,41 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap');
-
-:root {
-    --violet: #d33bfd;
-}
-
-body {
-    margin: 0;
-    font-family: 'Montserrat', sans-serif;
-    color: white;
-    background: linear-gradient(#13181d, #20212e, #341b47);
-    min-height: 100vh;
-}
-
-    body::-webkit-scrollbar {
-        width: 10px;
-    }
-
-    body::-webkit-scrollbar-track {
-        background-color: #e5e5e5;
-    }
-
-    body::-webkit-scrollbar-thumb {
-        border-radius: 15px;
-        background-color: #5c2a9d;
-    }
-
-        body::-webkit-scrollbar-thumb:hover {
-            background-color: #b5076b;
-        }
-
-header nav {
-    padding: 30px 5% 0px 5%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-}
-
-    header nav h1 {
-        margin: 0;
-        text-transform: uppercase;
-        color: #d33bfd;
-    }
-
-    header nav .menu {
-        display: flex;
-        align-items: center;
-    }
-
-        header nav .menu a {
-            margin: 0 15px 0 0;
-            color: #ccc;
-            text-decoration: none;
-        }
-
-            header nav .menu a:hover {
-                color: white;
-                cursor: pointer;
-            }
-
-        header nav .menu input {
-            padding: 5px 15px;
-            font-size: 16px;
-            background-color: inherit;
-            border: 1px solid #d33bfd;
-            border-radius: 5px;
-            color: #d33bfd;
-            cursor: pointer;
-            transition: color 0.5s, background-color 0.5s;
-        }
-
-            header nav .menu input:hover {
-                color: inherit;
-                background-color: #d33bfd;
-            }
-
-main {
-    margin: 10px;
-}
-
-.content {
-    /*border: 2px solid red;*/
+﻿.content {
+    min-height: 500px;
     border-radius: 20px;
-    min-height: 100vh;
-    padding: 20px;
-    margin-top: 20px;
+    background: rgba(0, 0, 0, 0.329);
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+.list {
     display: flex;
-}
-
-.listes {
-    margin-top: 20px;
-    margin-right: 300px;
-    border-radius: 20px;
-    /*border: 2px solid blue;*/
-    min-height: 75vh;
-    width: 100%;
-    box-shadow: 0 0 6px 2px #9279c1;
-    font-size: 10.5px;
-    text-align: left;
-    padding-left: 20px;
-    opacity: 0.45;
-}
-
-.admin {
-    margin-top: 100px;
-    border-radius: 40px;
-    box-shadow: 0 0 6px 2px #9279c1;
-    height: 170px;
-    width: 200%;
-    padding-left: 20px;
-    opacity: 0.45;
-}
-
-.gestion {
-    /* border: 2px solid green;*/
-    position: absolute;
-    top: 0px;
-    bottom: 0px;
-    right: 0px;
-    width: 60%;
-    height: 45%;
-    margin-top: 35%;
-    margin-right: 20px;
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: 0 0 6px 2px #9279c1;
-    font-size: 20 px;
-    opacity: 0.45;
-    order: 2px solidyellow;
-    display: flex;
-    justify-content: baseline;
-    align-items: center;
-}
-
-.icon {
-    /* border: 2px solid red;*/
-    width: 65px;
-    height: 65px;
-    margin: 20px;
-    cursor: pointer;
-    border-radius: 50px;
-    transition: all .4s;
-}
-
-.center {
-    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.icon:nth-child(1):hover {
-    box-shadow: 0 0 0 10px #ccd2d9;
+.title-main {
+    align-self: flex-start;
+    margin-left: 1.5rem;
 }
 
-.icon:nth-child(2):hover {
-    box-shadow: 0 0 0 10px #c32aa3;
+.title1 {
+    margin-left: 1rem;
 }
 
-.icon:nth-child(3):hover {
-    box-shadow: 0 0 0 10px #ba3aed;
+.member-section {
+    margin-left: 2rem;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
 }
 
-.icon:nth-child(4):hover {
-    box-shadow: 0 0 0 10px #1da1fe;
+#selectedAccount {
+    margin-bottom: 0.5rem;
+    width: 15rem;
+    height: 1.5rem;
 }
 
-.icon:nth-child(5):hover {
-    box-shadow: 0 0 0 10px #1da1fe;
-}
-
-.fa-user-gamepad {
-    color: #97999b;
-    filter: drop-shadow(0 0 10px #97999b);
-}
-
-.fa-user {
-    color: #c32aa3;
-    filter: drop-shadow(0 0 10px #c32aa3);
-}
-
-.fa-calendar-week {
-    color: #25d366;
-    filter: drop-shadow(0 0 10px #25d366);
-}
-
-.fa-desktop {
-    color: #1da1f2;
-    filter: drop-shadow(0 0 10px #1da1f2);
-}
-
-.fa-money-bill {
-    color: #1da1f2;
-    filter: drop-shadow(0 0 10px #1da1f2);
+input[type=text] {
+    margin-bottom: 0.5rem;
+    width: 15rem;
 }

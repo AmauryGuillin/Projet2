@@ -15,17 +15,30 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace Projet2.Controllers
 {
+    /// <summary>
+    /// Controller for admin.
+    /// </summary>
     public class AdminController : Controller
     {
 
-        private Dal dal;
-        private IWebHostEnvironment _webEnv;
+        private Dal dal;//An instance of the "Dal" class
+
+        private IWebHostEnvironment _webEnv;//An instance of the "IWebHostEnvironment" interface
+
+        /// <summary>
+        /// Initializes a new instance of the AdminController class.
+        /// </summary>
+        /// <param name="environment">The application's WebHost environment.</param>
         public AdminController(IWebHostEnvironment environment)
         {
             _webEnv = environment;
             this.dal = new Dal();
         }
 
+        /// <summary>
+        /// Returns a view for creating an employee with the logged in user's information.
+        /// </summary>
+        /// <returns>An employee creation view if the user is an authenticated administrator, otherwise a redirect to the login page.</returns>
         public IActionResult CreateEmployee()
         {
             AdminViewModel model = new AdminViewModel() { Authentificate = HttpContext.User.Identity.IsAuthenticated };
@@ -48,6 +61,11 @@ namespace Projet2.Controllers
            return  RedirectToAction("Login", "Login");
         }
 
+        /// <summary>
+        /// Process the data submitted by the create employee form and add a new employee in the data base.
+        /// </summary>
+        /// <param name="model">The AdminViewModel containing the data submitted by the form.</param>
+        /// <returns>A redirect to the Dashboard view if the employee addition was successful, otherwise a create employee view with validation errors.</returns>
         [HttpPost]
         public IActionResult CreateEmployee(AdminViewModel model)
         {
@@ -103,6 +121,10 @@ namespace Projet2.Controllers
 
         }
 
+        /// <summary>
+        /// Displays the admin dashboard with information of accounts, bookings, posts and drop-downs for selecting different account types.
+        /// </summary>
+        /// <returns>A view containing the admin dashboard information or redirects to the login page if the user is not logged in or is not an admin.</returns>
         public IActionResult ViewDashboard()
         {
             AdminViewModel model = new AdminViewModel() { Authentificate = HttpContext.User.Identity.IsAuthenticated };
@@ -165,7 +187,11 @@ namespace Projet2.Controllers
             return RedirectToAction("Login", "Login");
         }
 
-
+        /// <summary>
+        /// HTTP Post method to delete a member account.
+        /// </summary>
+        /// <param name="selectedaccount">The identifier of the account selected for deletion.</param>
+        /// <returns>Redirects to admin dashboard.</returns>
         [HttpPost]
         public IActionResult DeleteAccountAdherent (string selectedaccount)
         {
@@ -231,7 +257,11 @@ namespace Projet2.Controllers
             return RedirectToAction("ViewDashboard", model);
         }
 
-
+        /// <summary>
+        /// HTTP Post method to delete a volunteer account.
+        /// </summary>
+        /// <param name="selectedaccount">The identifier of the account selected for deletion.</param>
+        /// <returns>Redirects to admin dashboard.</returns>
         [HttpPost]
         public IActionResult DeleteAccountBenevole(string selectedaccount)
         {
@@ -284,7 +314,11 @@ namespace Projet2.Controllers
         }
 
 
-
+        /// <summary>
+        /// HTTP Post method to delete a emplloyee account.
+        /// </summary>
+        /// <param name="selectedaccount">The identifier of the account selected for deletion.</param>
+        /// <returns>Redirects to admin dashboard.</returns>
         [HttpPost]
         public IActionResult DeleteAccountEmployee(string selectedaccount)
         {
@@ -343,6 +377,11 @@ namespace Projet2.Controllers
 
 
         ////////////////////////////////////////////////////////////////
+
+        /// <summary>
+        /// Method to show admin profile view
+        /// </summary>
+        /// <returns>The admin profile view</returns>
         public IActionResult ProfileViewAdmin()
         {
             AdminViewModel avm = new AdminViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
@@ -378,10 +417,13 @@ namespace Projet2.Controllers
 
         }
 
-       
 
-      
 
+
+        /// <summary>
+        /// Retrieve all members accounts as a list of selectable items.
+        /// </summary>
+        /// <returns>List of members accounts as selectable items</returns>
         public List<SelectListItem> GetAllAccountsAdherents()
         {
             List<SelectListItem> SelectionAccountsAdherents = new List<SelectListItem>();
@@ -397,6 +439,11 @@ namespace Projet2.Controllers
             }
             return SelectionAccountsAdherents;
         }
+
+        /// <summary>
+        /// Retrieve all volonteers accounts as a list of selectable items.
+        /// </summary>
+        /// <returns>List of volonteers accounts as selectable items</returns>
         public List<SelectListItem> GetAllAccountsBenevole()
         {
             List<SelectListItem> SelectionAccountsBenevole = new List<SelectListItem>();
@@ -418,6 +465,10 @@ namespace Projet2.Controllers
             return SelectionAccountsBenevole;
         }
 
+        /// <summary>
+        /// Retrieve all employees accounts as a list of selectable items.
+        /// </summary>
+        /// <returns>List of employees accounts as selectable items</returns>
         public List<SelectListItem> GetAllAccountsEmployee()
         {
             List<SelectListItem> SelectionAccountsEmployee = new List<SelectListItem>();
@@ -438,6 +489,10 @@ namespace Projet2.Controllers
             return SelectionAccountsEmployee;
         }
 
+        /// <summary>
+        /// Logs the user out by deleting the authentication cookies and redirects him to the login page.
+        /// </summary> 
+        /// <returns>Redirect to login page</returns>
         public ActionResult Deconnexion()
         {
             HttpContext.SignOutAsync();
