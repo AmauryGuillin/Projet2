@@ -263,41 +263,22 @@ hr {
 
 .table table {
     table-layout: fixed;
-    border-collapse: collapse;
     text-align: center;
     width: 25rem;
+    height: fit-content;
+    border-bottom: 3px solid rgba(190, 32, 32, 0.479);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 .table .table-content1 {
     grid-area: table1;
     justify-self: center;
-    border-bottom-left-radius: 20px;
-    border-bottom: 3px solid rgba(190, 32, 32, 0.479);
-    border-bottom-right-radius: 20px;
-    height:fit-content;
 }
 
 .table-content1 table h3 {
     text-align: start;
     padding-left: 1rem;
-}
-
-.table .table-content2 {
-    grid-area: table2;
-    justify-self: center;
-    border-bottom-left-radius: 20px;
-    border-bottom: 3px solid rgba(190, 32, 32, 0.479);
-    border-bottom-right-radius: 20px;
-    height: fit-content;
-}
-
-.table-content2 table h3 {
-    text-align: start;
-    padding-left: 1rem;
-}
-
-.table .table-content2 table {
-    margin-bottom: 2rem;
 }
 
 .pop-up-description {
