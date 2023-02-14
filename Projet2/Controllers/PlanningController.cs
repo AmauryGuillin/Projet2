@@ -19,6 +19,10 @@ namespace Projet2.Controllers
             dal = new Dal();
         }
 
+        /// <summary>
+        /// Displays the view for the user's planning.
+        /// </summary>
+        /// <returns>Returns the planning view.</returns>
         public IActionResult PlanningView()
         {
             PlanningViewModel model = new PlanningViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
