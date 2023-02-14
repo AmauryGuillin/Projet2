@@ -7,7 +7,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Play4Us</title>
     <link rel="stylesheet" href="~/css/LayoutGeneral.css" />
     <link rel="shortcut icon"
           href="Assets/Gif/ezgif-5-9ea2c6cf60-unscreen.gif"
@@ -25,8 +25,6 @@
             <a href="/Login/Index">Accueil</a>
             <a href="#Apropos">À propos</a>
             <a href="#Contact">Contact</a>
-            <a href="#Jeux">Jeux</a>
-            <a href="#Benevolat">Benevolat</a>
             
             
             @if (Model.Authentificate == true)
@@ -72,12 +70,39 @@
             <ul>
                 <li><a href="/Inscription/Index">Accueil</a></li>
                 <li><a href="#">À propos</a></li>
-                <li><a href="#">Materiels</a></li>
-                <li><a href="#">Coaching</a></li>
-                <li><a href="#">Jeux</a></li>
-                <li><a href="#">Benevolat</a></li>
-                <li><a href="#">Publications</a></li>
                 <li><a href="#">Contact</a></li>
+
+                @if (Model.Authentificate == true)
+                {
+                    <li><a href='@Url.Action("StuffCatalog", "Stuff")'>Materiels</a></li>
+                    <li><a href='@Url.Action("CatalogueActivities", "Activities")'>Activités et Coaching</a></li>
+                    <li><a href='@Url.Action("PublicationWall","Publication")'>Publications</a></li>
+
+                    if (Model.Account != null)
+                    {
+                        if (Model.Account.role == Projet2.Models.Role.Benevole)
+                        {
+                            <li><a href='@Url.Action("ProfileViewBenevole", "Inscription")'> Profil</a></li>
+                        }
+                        if (Model.Account.role == Projet2.Models.Role.Adherent)
+                        {
+                            <li><a href='@Url.Action("ProfileViewAdherent", "Inscription")'> Profil</a></li>
+                        }
+                        if (Model.Account.role == Projet2.Models.Role.Salarie)
+                        {
+                            <li><a href='@Url.Action("ProfileViewEmployee", "Employee")'> Profil</a></li>
+                        }
+                        if (Model.Account.role == Projet2.Models.Role.Admin)
+                        {
+                            <li><a href='@Url.Action("ProfileViewAdmin", "Admin")'> Profil</a></li>
+                        }
+                    }
+                    <input type="submit" value="Se Deconnecter" onclick="location.href='@Url.Action("Deconnexion")'" />
+                }
+                else
+                {
+                    <input type="submit" value="Se Connecter/S'inscrire" onclick="location.href='@Url.Action("Login", "Login")'" />
+                }             
             </ul>
         </div>
         <img src="~/Assets/Hamburger/transparent-hd-white-menu-burger-icon-31634946136ufll2pj5eo-removebg-preview.png"
