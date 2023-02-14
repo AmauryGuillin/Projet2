@@ -18,13 +18,25 @@ namespace Projet2.Controllers
     public class ProfileController : Controller
     {
 
-        private Dal dal;
-        private IWebHostEnvironment _webEnv;
+        private Dal dal;//An instance of the "Dal" class
+
+        private IWebHostEnvironment _webEnv;//An instance of the "IWebHostEnvironment" interface
+
+        /// <summary>
+        /// Initializes a new instance of the ProfileController class.
+        /// </summary>
+        /// <param name="environment">The application's WebHost environment.</param>
         public ProfileController(IWebHostEnvironment environment)
         {
             _webEnv = environment;
             this.dal = new Dal();
         }
+
+        /// <summary>
+        /// Action method to display the view to edit a profile
+        /// </summary>
+        /// <param name="id">The id of the profile to edit</param>
+        /// <returns>The view to edit a profile</returns>
         public IActionResult EditProfile(int id)
         {
             ProfileViewModel profilevm=new ProfileViewModel();
@@ -39,8 +51,11 @@ namespace Projet2.Controllers
             return View(profilevm);
         }
 
-
-
+        /// <summary>
+        /// Action to edit a user profile
+        /// </summary>
+        /// <param name="profilevm">Profile view model containing the user's profile, contact, information and inventory</param>
+        /// <returns>Returns the user's profile view</returns>
         [HttpPost]
         public IActionResult EditProfile(ProfileViewModel profilevm)
         {
@@ -52,12 +67,21 @@ namespace Projet2.Controllers
             return View("ProfileView",profilevm);
         }
 
+        /// <summary>
+        /// Displays the view for editing the user's profile picture.
+        /// </summary>
+        /// <returns>The EditProfilePIC view with an empty ProfileViewModel.</returns>
         public IActionResult EditProfilePIC()
         {
             ProfileViewModel profilevm = new ProfileViewModel();
             return View(profilevm);
         }
 
+        /// <summary>
+        /// Updates the profile picture of the current user with the uploaded image.
+        /// </summary>
+        /// <param name="profilevm">The ProfileViewModel containing the profile and the uploaded image.</param>
+        /// <returns>The updated profile view.</returns>
         [HttpPost]
         public IActionResult EditProfilePIC(ProfileViewModel profilevm)
         {
@@ -69,15 +93,6 @@ namespace Projet2.Controllers
             return View(profilevm);
         }
 
-
-
-
-        public ActionResult Deconnexion()
-        {
-            HttpContext.SignOutAsync();
-            return RedirectToAction("LOgin","Login");
-        }
-
         public IActionResult ProfileView()
         {
             //    ProfileViewModel pvm= new ProfileViewModel();
@@ -86,9 +101,14 @@ namespace Projet2.Controllers
 
         }
 
-       
-
-
-        //////////////////////////////END
+        /// <summary>
+        /// Logs the user out by deleting the authentication cookies and redirects him to the login page.
+        /// </summary> 
+        /// <returns>Redirect to login page</returns>
+        public ActionResult Deconnexion()
+        {
+            HttpContext.SignOutAsync();
+            return RedirectToAction("LOgin", "Login");
+        }
     }
 }
