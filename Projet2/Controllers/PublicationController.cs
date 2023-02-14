@@ -94,9 +94,9 @@ namespace Projet2.Controllers
             Account userAccount= dal.GetAccount(accountId);
             if (userAccount!=null)
             {
-                model.Publication = dal.GetOnePublication(id);
-                Publication publication = model.Publication;
-
+                Publication publication = dal.GetOnePublication(id);
+                 model.Publication= publication;
+                model.Account= userAccount;
                 model.Publication.Account = dal.GetAccounts().Where(r => r.Id == publication.AccountId).FirstOrDefault();
                 
                 return View(model);

@@ -47,33 +47,27 @@
                 <td> 
                  @Html.ActionLink("S'inscrire","Book","Activities",new {id= Activity.Id});
                 </td>
-                                <td>
-                                    @if (Model.Account.role == Role.Admin || Model.Account.role == Role.Salarie)
-                                    {
+                       
+                           @if (Model.Account.role == Role.Admin || Model.Account.role == Role.Salarie)
+                           {
+                                    <td>
                                         @Html.ActionLink("Modifier","EditActivity","Activities",new {id= Activity.Id})
-                                        ;}
-                                </td>
-                <td>
+                            </td>
+                                ;}
+                         
+               
                 @if (Model.Account.role == Role.Admin || Model.Account.role == Role.Salarie)
-                                    {
-                                        @Html.ActionLink("Modifier","CreateActivity","Activities",new {id= Activity.Id})
-                                        ;}
-                 </td>
+                                {
+                                    <td>
+                     @Html.ActionLink("Créer une activité","CreateActivity","Activities",new {id= Activity.Id})
+                     </td>
+            ;}
+                 
                  }
-                   }
+                   
     </tr>
-}
-
-
-                @if (Model.Account.role == Projet2.Models.Role.Adherent)
-                {
-                <td>@Html.ActionLink("S'inscrire","Book","Activities",new {id= Activity.Id})</td>
-                }
-                @if (Model.Account.role == Projet2.Models.Role.Salarie || Model.Account.role == Projet2.Models.Role.Admin)
-                {
-                <td>@Html.ActionLink("Modifier","EditActivity","Activities",new {id= Activity.Id})</td>
-                }
-                </tr>
+               
+               
         }
          </tbody>
 </table>
