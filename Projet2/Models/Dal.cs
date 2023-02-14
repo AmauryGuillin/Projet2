@@ -341,7 +341,6 @@ namespace Projet2.Models
         /// <param name="Echeance"></param>
         /// <param name="adhesionStatus"></param>
         /// <returns>adhesion.Id</returns>
-       
         public Adhesion CreateNewAdhesion(int contributionId, DateTime Echeance, AdhesionStatus adhesionStatus)
         {
             Adhesion adhesion = new Adhesion()
@@ -939,23 +938,6 @@ namespace Projet2.Models
 
 
         /////////////////SLOTS
-
-
-        /// <summary>
-        /// Create a new activity with the provided information.
-        /// </summary>
-        /// <param name="startDate">The start date of the activity.</param>
-        /// <param name="endDate">The end date of the activity.</param>
-        /// <param name="description">The description of the activity.</param>
-        /// <param name="place">The place where the activity takes place.</param>
-        /// <param name="activityType">The activity type.</param>
-        /// <param name="eventType">The type of event associated with the activity.</param>
-        /// <param name="organizer">The name of the activity organizer.</param>
-        /// <param name="filepath">The path to the image associated with the activity.</param>
-        /// <param name="accountId">The ID of the user account creating the activity.</param>
-        /// <param name="nb">The number of participants expected for the activity.</param>
-        /// <returns>The Activity object representing the new activity added to the database.</returns>
-
 
         /// <summary>
         /// Create a new slot with the provided information.

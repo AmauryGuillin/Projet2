@@ -12,7 +12,6 @@ namespace Projet2.Models
         void DeleteCreateDatabase();
         public void Dispose();
         public Account Authentificate(string username, string password);
-        public static string EncodeMD5(string password);
         public Account GetAccount(int id);
         public Account GetAccount(string idStr);
         public List<Account> GetAccounts();
@@ -93,6 +92,8 @@ namespace Projet2.Models
         public Profile EditProfileS(int id, string path, string games, string Bio);
         public Contact EditContacts(int id, string email, string tel);
         public Account EditAccount(int id, string username, string password);
+    }
+}
 
 
 
