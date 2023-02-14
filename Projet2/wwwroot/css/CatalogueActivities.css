@@ -32,10 +32,11 @@
 
 .activities {
     grid-area: table;
-    padding: 10px 10px 0 10px;
+    padding: 10px 10px 20px 10px;
     border-right: 2px solid rgba(241, 211, 146, 0.479);
     border-radius: 15px;
     height: fit-content;
+    width:100%;
 }
 
     .activities table {
@@ -62,12 +63,14 @@ table {
         padding: 10px 0 10px 0;
     }
 
+.preview-description {
+    cursor: pointer;
+}
+
 .button-add-activities {
-    position: absolute;
-    top: 7.8rem;
-    right: 0;
-    left: 56.5rem;
-    bottom: 0;
+    position:absolute;
+    top:80px;
+    left:20px;
 }
 
     .button-add-activities input[type=button] {
@@ -87,7 +90,11 @@ table {
 
 .description-content {
     grid-area: description;
-    padding: 30px;
+    padding-top: 1.8rem;
+    padding-right: 1rem;
+    width:80%;
+    justify-self:end;
+    word-break: break-word;
 }
 
     .description-content .description {
@@ -98,6 +105,7 @@ table {
         border-radius: 20px;
         min-height: fit-content;
         padding: 10px;
+        word-break: break-word;
     }
 
 .inscription-button {

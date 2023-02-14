@@ -41,7 +41,8 @@ form {
     align-self: start;
     height: 2rem;
     margin-bottom: 1rem;
-    border-radius:10px;
+    border-radius: 10px;
+    cursor: pointer;
 }
 
 form #Stuff_StuffImage {
@@ -106,6 +107,7 @@ form input[type=password] {
 
 form input[type=text]:hover, input[type=password]:hover {
     border: 2px solid #4b2df1;
+    cursor: pointer;
 }
 
 input::file-selector-button {
@@ -118,6 +120,10 @@ input::file-selector-button {
 
 form input[type=radio] {
     margin-right: 20px;
+}
+
+form input[type=radio]:hover {
+    cursor:pointer;
 }
 
 form input[type=submit] {
@@ -136,7 +142,7 @@ form input[type=submit] {
     margin-bottom: 0;
 }
 
-input[type=submit]:hover {
+#submit:hover {
     color: white;
     background-color: #02f50ea8;
     transition: 0.2s;
