@@ -197,9 +197,6 @@ namespace Projet2.Controllers
         {
             AdminViewModel model = new AdminViewModel() { Authentificate = HttpContext.User.Identity.IsAuthenticated };
             
-            
-            //var selectedAccount = model.selectedAccount;
-            
             int idSelected = int.Parse(selectedaccount);
             ///////////GET
             Adherent aToDelete=dal.GetAdherents().Where(r => r.AccountId == idSelected).FirstOrDefault();

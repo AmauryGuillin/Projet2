@@ -17,41 +17,23 @@ namespace Projet2.Models
         public DbSet<Activity> Activities { get; set; }   
         public DbSet<Adhesion> Adhesions { get; set; }// ajout d'un 's' à la fin
         public DbSet<Adherent> Adherents { get; set; } //ajout d'un 's' à la fin
-        public DbSet<AssociationActivity> AssociationActivities { get; set; }
         public DbSet<Benevole> Benevoles { get; set; } //ajout d'un 's' à la fin
         public DbSet<MessagerieA> Messageries { get; set; }
-        public DbSet<Comment> Comments { get; set; }
         public DbSet<Contact> Contact { get; set; }
-        public DbSet<Contribution> Contributions { get; set; }//ajout d'un 's' à la fin
+        public DbSet<Contribution> Contributions { get; set; }
         public DbSet<Conversation> Conversations { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Admin> Admins { get; set; }
-        public DbSet<Forum> Forums { get; set; }
-        public DbSet<Game> Games { get; set; }
         public DbSet<Inventory> Inventory { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<InfoPerso> PersonnalInfo { get; set; }
         public DbSet<Planning> Planning { get; set; }
-        public DbSet<Post> Posts { get; set; }
         public DbSet<Profile> Profils { get; set; }
         public DbSet<Slot> Slots { get; set; }
-        public DbSet<SportAssociation> SportAssociation { get; set; }
-
-        public DbSet<Team> Teams { get; set; }
         public DbSet<Coaching> Training { get; set; } 
         public DbSet<Stuff> Stuffs { get; set; }
-
         public DbSet<ReservationStuff> ReservationsStuffs { get; set; }
-
-
         public DbSet<Publication> Publications { get; set; }
-        public DbSet<VolunteeringActivity> VolunteeringActivities { get; set; }
-        public DbSet<Tournament> Tournaments { get; set; }
-        public DbSet<Event> Events { get; set; }
-
-
-
-
         public void InitializeDb()
         {
             this.Database.EnsureDeleted();
@@ -193,19 +175,7 @@ namespace Projet2.Models
                 Name = "Le planning de Waluigi",
                 nbSlots = 0
             });
-            //this.Stuffs.Add(new Stuff()
-            //{
-            //    Id = 9,
-            //    Name = "Pc",
-            //    ImagePath = "/images/angrycat1.jpg",
-            //    Description = "PC Gamer en excellent etat à recuperer à domicile.",
-            //    Type = Type.Ordinateur,
-            //    State = State.Bon,
-            //    Reservation = Reservation.libre,
-            //    AccountOwnerId = 7,
-
-
-            //});
+           
 
             this.Stuffs.Add(new Stuff()
             {
@@ -780,7 +750,6 @@ namespace Projet2.Models
             /////////////////////////////
             this.SaveChanges();
 
-        ///////////
         }
 
 

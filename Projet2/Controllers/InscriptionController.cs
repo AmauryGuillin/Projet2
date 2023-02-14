@@ -119,16 +119,7 @@ namespace Projet2.Controllers
 
 
         }
-        //    //  {
-        //    @id =
-
-        //            inscriptionViewModel.Account.ProfileId,
-        //            inscriptionViewModel.Account.ContactId,
-        //            inscriptionViewModel.Account.InfoPersoId,
-        //            inscriptionViewModel.Account.InventoryId
-
-        //}
-
+       
 
         /// <summary>
         /// Displays the SignUpAdheren view.
@@ -227,7 +218,6 @@ namespace Projet2.Controllers
             var ClaimIdentity = new ClaimsIdentity(userClaims, "User Identity");
             var userPrincipal = new ClaimsPrincipal(new[] { ClaimIdentity });
             HttpContext.SignInAsync(userPrincipal);
-            //inscriptionViewModel.Account = dal.GetAccounts().Where(r => r.Id == inscriptionViewModel.Account.Id).FirstOrDefault();
 
             inscriptionViewModel.Stuffs = dal.GetStuffs();
             List<Stuff> Stuffs = inscriptionViewModel.Stuffs;

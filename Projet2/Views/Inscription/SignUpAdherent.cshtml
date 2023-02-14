@@ -23,13 +23,13 @@
             <div class="pseudo">
                 <label>Pseudo</label>
             </div>
-            @Html.TextBoxFor(m => m.Account.Username, new { placeholder = "Entrez votre pseudo"})
+            @Html.TextBoxFor(m => m.Account.Username, new { placeholder = "Entrez votre pseudo",required="required"})
             @Html.ValidationMessageFor(m =>  m.Account.Username)
 
             <div class="password">
                 <label>Mot de passe</label>
             </div>
-            @Html.PasswordFor(m =>m.Account.Password , new { placeholder = "Entrez votre mot de passe"})
+            @Html.PasswordFor(m =>m.Account.Password , new { placeholder = "Entrez votre mot de passe",required="required"})
             @Html.ValidationMessageFor(m =>m.Account.Password)
 
             <div class="firstname">
@@ -67,7 +67,7 @@
             <div class="profilePic">
                 <label>Image de profil</label>
             </div>
-            @Html.TextBoxFor(model => model.Profile.ProfilImage, new { placeholder = "Description", @type = "file" ,accept=".png, .jpg, .jpeg,.gif"})
+            @Html.TextBoxFor(model => model.Profile.ProfilImage, new { placeholder = "Description", @type = "file" ,accept=".png, .jpg, .jpeg,.gif",required="required"})
 
             <div class="bio">
                 <label>Biographie</label>
@@ -85,7 +85,7 @@
                 <label>Document d'identité</label>
                 <p>Veuillez fournir un justificatif d'identité en format PDF</p>
             </div>
-            @Html.TextBoxFor(m => m.Adherent.DocAdherent , new { placeholder = "Description", @type = "file" ,accept=".pdf"})
+            @Html.TextBoxFor(m => m.Adherent.DocAdherent , new { placeholder = "Description", @type = "file" ,accept=".pdf",required="required"})
             @Html.ValidationMessageFor(m =>m.Adherent.DocAdherent)
             <div class="iban">
                 <label>IBAN/RIB</label>

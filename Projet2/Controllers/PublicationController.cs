@@ -100,7 +100,7 @@ namespace Projet2.Controllers
                 model.Publication.PublicationType,
                 model.Publication.Date
                     );
-                    //dal.EditCreatePublication(model.Publication.Id, model.Account.Id);
+                 
                     model.Publication = publi;
                 return RedirectToAction("PublicationWall",model);
             }
@@ -130,19 +130,7 @@ namespace Projet2.Controllers
             return RedirectToAction("Login", "Login");
         }
 
-        //[HttpPost]
-        //public IActionResult OnePublication(PublicationViewModel model, )
-        //{
-        //    string accountId = (HttpContext.User.Identity.Name);
-        //    Account account = dal.GetAccount(accountId);
-        //    if (account!=null)
-        //    {
-        //        model.Publication = dal.GetOnePublication(id);
-        //        Publication publication = model.Publication;
-        //        return View("EditPublication", model);
-        //    }
-        //    return RedirectToAction("Login", "Login");
-        //}
+       
 
         /// <summary>
         /// Process an HTTP GET request to display the edit form of an existing Publication object.

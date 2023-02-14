@@ -223,18 +223,6 @@ namespace Projet2.Controllers
 
 
 
-        //private SelectList GetSelectedAccount(Account selectedAccount)
-        //{
-        //    var selectedAccounts = dal.GetAccounts();
-
-
-        //    return new SelectList(selectedAccounts,selectedAccount);
-        //}
-
-
-
-
-
         /// <summary>
         /// Logs the user out by deleting the authentication cookies and redirects him to the login page.
         /// </summary> 

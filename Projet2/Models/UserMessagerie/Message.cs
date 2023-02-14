@@ -56,7 +56,7 @@ namespace Projet2.Models.Messagerie
         /// <summary>
         /// Gets or sets the message content.
         /// </summary>
-        [Display(Name="Veuillez Ecrire votre message")]
+        [Display(Name="Veuillez écrire votre message")]
         public string Body { get; set; }
 
         /// <summary>

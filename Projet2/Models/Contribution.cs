@@ -40,6 +40,7 @@ namespace Projet2.Models
         ///The different types of possible contribution are provided in an enumeration.
         /// </summary>
         [Display(Name = "Veuillez choisir la frequence de votre paiement :")]
+        [RegularExpression(@"\b[A-Z]{2}[0-9]{2}(?:[ ]?[0-9]{4}){4}(?!(?:[ ]?[0-9]){3})(?:[ ]?[0-9]{1,2})?\b", ErrorMessage = "Le numéro RIB doit contenir 34 chiffres et commencer par FR !")]
         public ContributionType ContributionType { get; set;}
  
     }

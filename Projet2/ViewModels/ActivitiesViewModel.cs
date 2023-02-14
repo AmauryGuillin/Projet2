@@ -13,7 +13,6 @@ namespace Projet2.ViewModels
         public Planning Planning { get; set; }
 
         public Activity Activity { get; set; }
-        public Event Event { get; set; }
 
         [Display (Name ="Choisissez le type d'activité")]
         public ActivityType activityType { get; set; }
