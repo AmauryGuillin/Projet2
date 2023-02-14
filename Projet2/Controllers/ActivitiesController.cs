@@ -22,14 +22,22 @@ namespace Projet2.Controllers
         }
         public IActionResult CreateActivity()
         {
-            ActivitiesViewModel activitiesVM = new ActivitiesViewModel
-            { Authentificate = HttpContext.User.Identity.IsAuthenticated};
-            if (activitiesVM.Authentificate == true) { 
-            activitiesVM.Account = dal.GetAccount(HttpContext.User.Identity.Name);
-            return View(activitiesVM); 
+            ActivitiesViewModel activitiesVM = new ActivitiesViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
+            if (activitiesVM.Authentificate == true)
+            {
+                activitiesVM.Account = dal.GetAccount(HttpContext.User.Identity.Name);
+                if (activitiesVM.Account.role == Projet2.Models.Role.Admin || activitiesVM.Account.role == Projet2.Models.Role.Admin)
+                {
+                    return View(activitiesVM);
+                }
+                else { RedirectToAction("Index", "Login"); }
+               
             }
-            else { return RedirectToAction("Login", "Login"); }
+            return RedirectToAction("Login", "Login");
         }
+            
+    
+
 
         [HttpPost]
 
@@ -38,10 +46,12 @@ namespace Projet2.Controllers
             string uploads = Path.Combine(_webEnv.WebRootPath, "images");
             string filePath = Path.Combine(uploads, activitiesVM.Activity.ActivityImage.FileName);
             using (Stream fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                activitiesVM.Activity.ActivityImage.CopyTo(fileStream);
+            }
 
 
-
-                activitiesVM.Account = dal.GetAccount(HttpContext.User.Identity.Name);
+            activitiesVM.Account = dal.GetAccount(HttpContext.User.Identity.Name);
             if (activitiesVM.Account != null)
             {
                 activitiesVM.Activity =

@@ -24,5 +24,6 @@ namespace Projet2.ViewModels
 
         public Publication Publication { get; set; }
         public IEnumerable<Publication> Publications { get; set; }
+       
     }
 }

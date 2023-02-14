@@ -38,6 +38,8 @@ namespace Projet2.ViewModels
         public IEnumerable<Publication> Publications { get; set; }
 
         public Stuff Stuff { get; set; }
+
+        public Account CreatedEmployee { get; set; }
        
        
 
