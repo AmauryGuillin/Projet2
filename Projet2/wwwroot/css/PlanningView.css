@@ -6,6 +6,10 @@
     padding-right: 200px;
 }
 
+p {
+    word-wrap: break-word;
+}
+
 .banner-region {
     background: rgba(0, 0, 0, 0.137);
     border-top-right-radius: 20px;
@@ -123,28 +127,39 @@
         border: 2px solid rgba(190, 32, 32, 0.185);
         border-radius: 20px;
         background: linear-gradient(to bottom left,#1D083B, #531760) no-repeat;
+        word-break: break-word;
     }
 
-        .main-content .box h3 {
-            text-transform: uppercase;
-        }
+.main-content .box h3 {
+    text-transform: uppercase;
+    word-break: break-word;
+}
+       
 
-        .main-content .box img {
-            width: 230px;
-            height: 170px;
-        }
+    .main-content .box img {
+        width: 230px;
+        height: 170px;
+        word-break: break-word;
+    }
+               
 
         .main-content .box #dates {
             align-self: center;
+            word-break: break-word;
         }
+       
 
 
-        .main-content .box p {
-            align-self: flex-start;
-            padding-left: 0.3rem;
-        }
+            .main-content .box p {
+                align-self: flex-start;
+                padding-left: 0.3rem;
+                width: fit-content;
+                word-break: break-word;
+            }
+        
 
-        .main-content .box #organizer {
-            align-self: flex-end;
-            padding-right: 1rem;
-        }
+                .main-content .box #organizer {
+                    align-self: flex-end;
+                    padding-right: 1rem;
+                    word-wrap: break-word;
+                }

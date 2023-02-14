@@ -10,7 +10,7 @@
     <title>Play4Us</title>
     <link rel="stylesheet" href="~/css/LayoutGeneral.css" />
     <link rel="shortcut icon"
-          href="Assets/Gif/ezgif-5-9ea2c6cf60-unscreen.gif"
+          href="~/Assets/Gif/blue-fire-burning.gif"
           type="image/gif" />
           @RenderSection("ExtraCss", required:false)
 </head>
@@ -23,8 +23,8 @@
         <h1>Play4Us</h1>
         <div class="menu">
             <a href="/Login/Index">Accueil</a>
-            <a href="#Apropos">À propos</a>
-            <a href="#Contact">Contact</a>
+            <a href="/Login/about">À propos</a>
+            <a href="/Login/contact">Contact</a>
             
             
             @if (Model.Authentificate == true)
@@ -68,9 +68,9 @@
         <h1>Play4Us</h1>
         <div class="nav-links">
             <ul>
-                <li><a href="/Inscription/Index">Accueil</a></li>
-                <li><a href="#">À propos</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="/login/Index">Accueil</a></li>
+                <li><a href="/login/about">À propos</a></li>
+                <li><a href="/login/contact">Contact</a></li>
 
                 @if (Model.Authentificate == true)
                 {
