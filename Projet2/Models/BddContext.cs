@@ -116,6 +116,23 @@ namespace Projet2.Models
 
 
             });
+
+            this.Stuffs.Add(new Stuff()
+            {
+                Id = 8,
+                Name = "Clavier personalisé",
+                ImagePath = "/images/angrycat1.jpg",
+                Description = "Clavier stylysé mis a disposition a partir de février. Pour toute question hesitez pas a me contacter!!",
+                Type = Type.PeripheriquePC,
+                State = State.Neuf,
+                Reservation = Reservation.libre,
+                AccountOwnerId = 1,
+
+
+            });
+
+
+
             this.Publications.Add(new Publication()
             {
                 Id=1,
@@ -129,7 +146,83 @@ namespace Projet2.Models
 
 
 
-            //ADHERENT
+            //////////////////////////
+
+            this.Benevoles.Add(new Benevole() { Id = 5, AccountId = 7, NbActionVolunteering = 2 });
+            this.Account.Add(new Models.Account()
+            {
+                Id = 7,
+                Username = "Waluigi",
+                Password = "AC-35-7E-4A-EA-CC-F4-8C-70-AB-7D-59-12-69-02-FA",// 123
+                InfoPersoId = 7,
+                ContactId = 7,
+                PlanningId = 7,
+                ProfileId = 7,
+                MessagerieId = 7,
+                role = Role.Benevole
+            });
+            this.Profils.Add(new Profile()
+            {
+                Id = 7,
+                ImagePath = "/images/Waluigi.png",
+                Bio = "Luigi est mon pire ennemi...",
+                Games = "Mario",
+
+            });
+            this.Contact.Add(new Informations.Contact()
+            {
+                Id = 7,
+                EmailAdress = "waluigi@gmail.com",
+                TelephoneNumber = "0505050505"
+            });
+            this.PersonnalInfo.Add(new InfoPerso()
+            {
+                Id = 7,
+                LastName = "Nintendo",
+                FirstName = "Waluigi",
+                Birthday = "02-11-2002"
+            });
+            this.Messageries.Add(new MessagerieA()
+            {
+                Id = 7,
+                NbConversations = 0,
+            });
+            this.Planning.Add(new Models.Planning
+            {
+                Id = 7,
+                Name = "Le planning de Waluigi",
+                nbSlots = 0
+            });
+            //this.Stuffs.Add(new Stuff()
+            //{
+            //    Id = 9,
+            //    Name = "Pc",
+            //    ImagePath = "/images/angrycat1.jpg",
+            //    Description = "PC Gamer en excellent etat à recuperer à domicile.",
+            //    Type = Type.Ordinateur,
+            //    State = State.Bon,
+            //    Reservation = Reservation.libre,
+            //    AccountOwnerId = 7,
+
+
+            //});
+
+            this.Stuffs.Add(new Stuff()
+            {
+                Id = 7,
+                Name = "Clavier personalisé",
+                ImagePath = "/images/Clavier.jpg",
+                Description = "Clavier mis à disposition à partir de février. Pour toute question n'hesitez pas à me contacter!!",
+                Type = Type.PeripheriquePC,
+                State = State.Neuf,
+                Reservation = Reservation.libre,
+                AccountOwnerId = 7,
+
+
+            });
+
+
+            //ADHERENTs
             this.Contributions.Add(new Contribution() { Id=1,
             ContributionType=ContributionType.Trimestriel,
             PrelevementDate=PrelevementDate.CinqDuMois,
@@ -187,7 +280,7 @@ namespace Projet2.Models
             this.Planning.Add(new Models.Planning
             {
                 Id = 2,
-                Name = "Le planning de Bene Vole",
+                Name = "Le planning du meilleur Agent",
                 nbSlots = 0
             });
             this.Stuffs.Add(new Stuff()
@@ -213,9 +306,166 @@ namespace Projet2.Models
                 Content = "Le costume emblématique de 47 est un costume disponible dans la trilogie du Monde de l'Assassinat et sert de costume par défaut pour 47.\r\n \r\n DESCRIPTION\r\n Un costume sur-mesure moderne porté avec une chemise blanche avec un col en pointe et une cravate bordeaux.\r\n Acquisition\r\n Costume par défaut automatiquement présent dans l'inventaire.\r\n \r\n ACQUISITION PARTICULIERE\r\n HITMAN™ III\r\n Déguisement de départ sur une destination : il s'agit du costume automatiquement mis lorsqu'on choisit le lieu de départ « Reflet » ou lorsqu'on la lance pour la première fois.\r\n \r\n CARACTERISTIQUE\r\n Déguisemen : Permet de se camoufler dans certains endroits.\r\n \r\n ANECDOTE\r\n Ce costume porte l'adjectif emblématique car c'est le costume qui était souvent utilisé dans les opus précédents notamment Hitman : Tueur à gages, Hitman 2: Silent Assassin et Hitman: Contracts, c'est-à-dire un costume noir, une chemise blanche et une cravate rouge.\r\n On peut voir si les illustrations de ces trois jeux que la cravate est rayée mais apparaît sans cette caractéristique, suggérant qu'il y avait à cette époque des limitations techniques.\r\n Le costume a été légèrement réajusté dans la trilogie.\r\n Dans HITMAN™ 2, la cravate a été éclairée et rendue plus fine.\r\n Dans HITMAN™ III, la cravate a été rendue sensiblement plus sombre, le nœud a été refait et le col ainsi que la cravate ont été rendus plus larges. Le noir du costume a lui aussi été éclairci.\r\n \r\n \r\n ",
                 AccountId = 2,
 
-
-               
             });
+
+            /////////////////////
+
+            this.Contributions.Add(new Contribution()
+            {
+                Id = 2,
+                ContributionType = ContributionType.Annuel,
+                PrelevementDate = PrelevementDate.CinqDuMois,
+                RIB = "FR133456251011",
+                PaymentStatus = true,
+
+            });
+            this.Adhesions.Add(new Adhesion()
+            {
+                Id = 2,
+                AdhesionStatus = AdhesionStatus.Verfie,
+                ContributionId = 2,
+
+            });
+            this.Adherents.Add(new Adherent() { Id = 2, AccountId = 5, BenevoleId = 3, AdhesionId = 2, NumAdherent = 640503340147, Contribution = 350, DocPath = "/AdherentsDocuments/DocIdExemple" });
+            this.Benevoles.Add(new Benevole() { Id = 3, AccountId = 5, NbActionVolunteering = 1 });
+            this.Account.Add(new Models.Account()
+            {
+                Id = 5,
+                Username = "Nate",
+                Password = "AC-35-7E-4A-EA-CC-F4-8C-70-AB-7D-59-12-69-02-FA",// 123
+                InfoPersoId = 5,
+                ContactId = 5,
+                PlanningId = 5,
+                ProfileId = 5,
+                MessagerieId = 5,
+                role = Role.Adherent
+            });
+            this.Profils.Add(new Profile()
+            {
+                Id = 5,
+                ImagePath = "/images/NathanDrake.png",
+                Bio = "Il existe des endroits qu'on ne trouve pas sur une carte, ils n'ont pas disparu, ils sont seulement oubliés.",
+                Games = "Tous les Uncharted",
+
+            });
+            this.Contact.Add(new Informations.Contact()
+            {
+                Id = 5,
+                EmailAdress = "uncharted@gmail.com",
+                TelephoneNumber = "05034050505"
+            });
+            this.PersonnalInfo.Add(new InfoPerso()
+            {
+                Id = 5,
+                LastName = "Drake",
+                FirstName = "Nathan",
+                Birthday = "05-09-1994"
+            });
+            this.Messageries.Add(new MessagerieA()
+            {
+                Id = 5,
+                NbConversations = 0,
+            });
+            this.Planning.Add(new Models.Planning
+            {
+                Id = 5,
+                Name = "Le planning de Bene Vole",
+                nbSlots = 0
+            });
+            this.Stuffs.Add(new Stuff()
+            {
+                Id = 5,
+                Name = "Manettes PS4 avec chargeur inclus",
+                ImagePath = "/images/manette.jpg",
+                Description = "Un set de manettes DualShock quasi neuves ",
+                Type = Type.PeripheriqueConsole,
+                State = State.TrèsBon,
+                Reservation = Reservation.libre,
+                AccountOwnerId = 5,
+
+
+            });
+            /////////////////////////
+
+            this.Contributions.Add(new Contribution()
+            {
+                Id = 3,
+                ContributionType = ContributionType.Annuel,
+                PrelevementDate = PrelevementDate.CinqDuMois,
+                RIB = "FR133456251011",
+                PaymentStatus = true,
+
+            });
+            this.Adhesions.Add(new Adhesion()
+            {
+                Id = 3,
+                AdhesionStatus = AdhesionStatus.Verfie,
+                ContributionId = 3,
+
+            });
+            this.Adherents.Add(new Adherent() { Id = 3, AccountId = 6, BenevoleId = 4, AdhesionId = 3, NumAdherent = 640503340147, Contribution = 350, DocPath = "/AdherentsDocuments/DocIdExemple" });
+            this.Benevoles.Add(new Benevole() { Id = 4, AccountId = 6, NbActionVolunteering = 10 });
+            this.Account.Add(new Models.Account()
+            {
+                Id = 6,
+                Username = "Joel",
+                Password = "AC-35-7E-4A-EA-CC-F4-8C-70-AB-7D-59-12-69-02-FA",// 123
+                InfoPersoId = 6,
+                ContactId = 6,
+                PlanningId = 6,
+                ProfileId = 6,
+                MessagerieId = 6,
+                role = Role.Adherent
+            });
+            this.Profils.Add(new Profile()
+            {
+                Id = 6,
+                ImagePath = "/images/Joel.jpg",
+                Bio = "Quel est l’inconvénient de manger une horloge ?",
+                Games = "The Last of Us",
+
+            });
+            this.Contact.Add(new Informations.Contact()
+            {
+                Id = 6,
+                EmailAdress = "tlou@gmail.com",
+                TelephoneNumber = "08034050505"
+            });
+            this.PersonnalInfo.Add(new InfoPerso()
+            {
+                Id = 6,
+                LastName = "Joel",
+                FirstName = "Miller",
+                Birthday = "05-09-1994"
+            });
+            this.Messageries.Add(new MessagerieA()
+            {
+                Id = 6,
+                NbConversations = 0,
+            });
+            this.Planning.Add(new Models.Planning
+            {
+                Id = 6,
+                Name = "Le planning de Bene Vole",
+                nbSlots = 0
+            });
+            this.Stuffs.Add(new Stuff()
+            {
+                Id = 6,
+                Name = "Manuel Comptétences",
+                ImagePath = "/images/Manuel.jpg",
+                Description = "Un manuel complet qui permet de gagner en compétences.. ",
+                Type = Type.Autre,
+                State = State.TrèsBon,
+                Reservation = Reservation.libre,
+                AccountOwnerId = 6,
+
+
+            });
+
+
+
+
 
             ///////////////////////////EMPLOYEE
 
@@ -331,7 +581,7 @@ namespace Projet2.Models
             this.Planning.Add(new Models.Planning
             {
                 Id = 4,
-                Name = "Le planning du boss",
+                Name = "Le planning Administrateur",
                 nbSlots = 0
             });
             this.Stuffs.Add(new Stuff()
@@ -362,9 +612,169 @@ namespace Projet2.Models
             //////////////////ADD ACTIVITIES
             ///
 
+            this.Activities.Add(new Activity()
+            {
+                Id = 1,
+                Description = "Coaching StreetFighter niveau Galadriel! Rendez vous sur Zoom a 17h! Les liens de connexion vous seront envoyés par mail",
+                NumberOfParticipants = 5,
+                Organizer = "Votre Coach Favori",
+                Place = "Paris",
+                Theme = "L'efficacité des attaques: Street Fighter",
+                ImagePath = "/images/Coaching1.jpg",
+                StartDate = new DateTime(2023,02,15),
+                EndDate= new DateTime(2023, 02, 15),
+                ActivityEventType = Projet2.Models.EventType.Coaching,
+                activityType=ActivityType.Evenement,
+                PublisherId= 3,
+            }) ;
+
+            this.Activities.Add(new Activity()
+            {
+                Id = 2,
+                Description = "Coaching League of Legends niveau Gandalf Le Blanc! Rendez vous sur Zoom a 17h! Les liens de connexion vous seront envoyés par mail",
+                NumberOfParticipants = 3,
+                Organizer = "Votre Coach Favori",
+                Place = "Paris",
+                Theme = "Mieux aborder les Challenges: League of Legends",
+                ImagePath = "/images/CoachingLeague.jpg",
+                StartDate = new DateTime(2023, 02 ,18),
+                EndDate = new DateTime(2023, 02, 18),
+                ActivityEventType = Projet2.Models.EventType.Coaching,
+                activityType = ActivityType.Evenement,
+                PublisherId = 3,
+            });
+            this.Activities.Add(new Activity()
+            {
+                Id = 3,
+                Description = "Coaching MarioKart niveau Sauron (attention vous allez souffrir)! Rendez vous sur Zoom a 14h! Les liens de connexion vous seront envoyés par mail",
+                NumberOfParticipants = 4,
+                Organizer = "Votre Coach Favori",
+                Place = "Paris",
+                Theme = "L'efficacité des attaques",
+                ImagePath = "/images/CoachingMarioKart.png",
+                StartDate = new DateTime(2023, 02, 20),
+                EndDate = new DateTime(2023, 02, 20),
+                ActivityEventType = Projet2.Models.EventType.Coaching,
+                activityType = ActivityType.Evenement,
+                PublisherId = 3,
+            });
 
 
+            this.Activities.Add(new Activity()
+            {
+                Id = 6,
+                Description = "Resultats compétition du 10/02",
+                NumberOfParticipants = 10,
+                Organizer = "Votre Coach Favori",
+                Place = "Paris",
+                Theme = "Resultats compétition du 10/02",
+                ImagePath = "/images/Compet1.jpg",
+                StartDate = new DateTime(2023, 02, 10),
+                EndDate = new DateTime(2023, 02, 13),
+                ActivityEventType = Projet2.Models.EventType.Resultats_competition,
+                activityType = ActivityType.Evenement,
+                PublisherId = 3,
+            });
 
+
+            this.Activities.Add(new Activity()
+            {
+                Id = 4,
+                Description = "Resultats compétition du 08/01",
+                NumberOfParticipants = 10,
+                Organizer = "Play4US",
+                Place = "Paris",
+                Theme = "Resultats compétition du 08/01",
+                ImagePath = "/images/ResComp3.jpg",
+                StartDate = new DateTime(2023 ,01, 08),
+                EndDate = new DateTime(2023, 01, 08),
+                ActivityEventType = Projet2.Models.EventType.Resultats_competition,
+                activityType = ActivityType.Evenement,
+                PublisherId = 3,
+            });
+
+
+            this.Activities.Add(new Activity()
+            {
+                Id = 7,
+                Description = "Resultats compétition du 02/02, l'équipe Insidious a remporté la victoire contre l'équipe Kiwis avec un score de 3 a 1.",
+                NumberOfParticipants = 10,
+                Organizer = "Play4US",
+                Place = "Paris",
+                Theme = "Resultats compétition du 08/01",
+                ImagePath = "/images/ResCompt2.jpg",
+                StartDate = new DateTime(2023, 02, 02),
+                EndDate = new DateTime(2023, 02, 02),
+                ActivityEventType = Projet2.Models.EventType.Resultats_competition,
+                activityType = ActivityType.Evenement,
+                PublisherId = 3,
+            });
+
+
+            this.Activities.Add(new Activity()
+            {
+                Id = 9,
+                Description = " BLAST.tv Paris Major 2023 sera organisé à Paris mais sillonnera aussi les villes de France, une annonce faite  durant le Z Event 2022, dans un message enregistré et publié sur ses réseaux pour féliciter les 58 streamers présents sur place et les donateurs pour le climat. Du 8 au 21 mai, l’organisateur BLAST sera en France pour cette compétition majeure de fin de segment sur la scène CS. Robbie Douek, le patron du BLAST explique:",
+                NumberOfParticipants = 10,
+                Organizer = "Blast",
+                Place = "Paris",
+                Theme = "BLAST.tv Paris Major 2023 ",
+                ImagePath = "/images/Comp2.jpg",
+                StartDate = new DateTime(2023, 07, 08), // 8 au 21 mai
+                EndDate = new DateTime(2023, 07, 19),
+                ActivityEventType = Projet2.Models.EventType.Resultats_competition,
+                activityType = ActivityType.Evenement,
+                PublisherId = 3,
+            });
+
+            this.Activities.Add(new Activity()
+            {
+                Id = 8,
+                Description = " Avis aux fans d'eSport ! La finale 2023 de la Major de Counter-Strike Global Offensive (CS:GO) se tiendra à l'Accor Arena le 21 mai prochain, pour une compétition débutant dès le 8 mai. On fait le point !",
+                NumberOfParticipants = 10,
+                Organizer = "Votre Coach Favori",
+                Place = "Accor Arena Paris",
+                Theme = "final de la Major CS:GO ",
+                ImagePath = "/images/CounterStrike.png",
+                StartDate = new DateTime(2023, 05, 08), // 8 au 21 mai
+                EndDate = new DateTime(2023, 05, 21),
+                ActivityEventType = Projet2.Models.EventType.Autre,
+                activityType = ActivityType.Evenement,
+                PublisherId = 3,
+            });
+
+
+            this.Activities.Add(new Activity()
+            {
+                Id = 5,
+                Description = " Avis aux fans de cosplay! A l'initiative de nos adherents nous vous proposons de nous retrouver le 18/02 pour une soirée Cosplay! Venez nous montrer vous plus belles présentations et peut etre recevrez vous un prix... ",
+                NumberOfParticipants = 10,
+                Organizer = "Play4US",
+                Place = "Dans les locaus de l'association",
+                Theme = "Soirée Cosplay",
+                ImagePath = "/images/Fete1.png",
+                StartDate = new DateTime(2023, 02, 18), // 8 au 21 mai
+                EndDate = new DateTime(2023, 02, 18),
+                ActivityEventType = Projet2.Models.EventType.Autre,
+                activityType = ActivityType.Evenement,
+                PublisherId = 3,
+            });
+
+            this.Activities.Add(new Activity()
+            {
+                Id = 10,
+                Description = " Avis aux fans de zombies walks! A l'initiative de nos adherents nous vous proposons de nous retrouver le 18/02 pour une zombie walk! Venez nous montrer vous plus belles présentations et peut etre recevrez vous un prix... ",
+                NumberOfParticipants = 10,
+                Organizer = "Play4US",
+                Place = "Depart dans les locaux de l'association",
+                Theme = "Zombie Walk",
+                ImagePath = "/images/Zombie.jpg",
+                StartDate = new DateTime(2023, 03, 02), // 8 au 21 mai
+                EndDate = new DateTime(2023, 03, 02),
+                ActivityEventType = Projet2.Models.EventType.Autre,
+                activityType = ActivityType.Evenement,
+                PublisherId = 3,
+            });
 
 
             /////////////////////////////

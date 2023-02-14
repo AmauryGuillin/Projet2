@@ -201,7 +201,7 @@ namespace Projet2.Controllers
         public IActionResult EditActivity(int id)
         {
 
-            ActivitiesViewModel activitiesVM = new ActivitiesViewModel();
+            ActivitiesViewModel activitiesVM = new ActivitiesViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
             activitiesVM.Account = dal.GetAccount(HttpContext.User.Identity.Name);
 
             Account account = activitiesVM.Account;
@@ -247,21 +247,40 @@ namespace Projet2.Controllers
         [HttpPost]
         public IActionResult EditActivity(ActivitiesViewModel activitiesVM, int id)
         {
-            activitiesVM.Account = dal.GetAccount(HttpContext.User.Identity.Name);
-            Account account = activitiesVM.Account;
+            string imagepath;
+            Account account = dal.GetAccount(HttpContext.User.Identity.Name);
+            
 
             if (account != null)
             {
+                activitiesVM.Account = account;
                 int planningid = (int)account.PlanningId;
                 Planning planning = account.Planning;
                 activitiesVM.activities = dal.GetActivities();
                 List<Activity> activities = activitiesVM.activities;
                 List<Slot> selectedSlots = dal.GetSlots().Where(a => a.ActivityId == activitiesVM.Activity.Id).ToList();
-                Activity activity = activitiesVM.Activity;
+                Activity activity =dal.GetActivities().Where(r=>r.Id==id).FirstOrDefault();
                 activitiesVM.slots = selectedSlots;
+
+                string uploads = Path.Combine(_webEnv.WebRootPath, "images");
+
+                if (activitiesVM.Activity.ActivityImage != null)
+                {
+                    string filePath = Path.Combine(uploads, activitiesVM.Activity.ActivityImage.FileName);
+                    using (Stream fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        activitiesVM.Activity.ActivityImage.CopyTo(fileStream);
+                    }
+                    imagepath = "/images/" + activitiesVM.Activity.ActivityImage.FileName;
+                }
+                else { imagepath = activity.ImagePath; }
+
+
+
                 foreach (var slot in selectedSlots)
                 {
-                    dal.EditSlot(slot.Id,
+                    dal.EditSlot(
+                        slot.Id,
                         activitiesVM.Activity.StartDate,
                         activitiesVM.Activity.EndDate
                         );
@@ -272,10 +291,10 @@ namespace Projet2.Controllers
                     activitiesVM.Activity.Theme,
                     activitiesVM.Activity.Description,
                     activitiesVM.Activity.Place,
-                    activitiesVM.Activity.ImagePath,
+                    imagepath,
                     activitiesVM.Activity.NumberOfParticipants
 
-                    );
+                    ); ;
 
                 return RedirectToAction("CatalogueActivities", activitiesVM);
             }

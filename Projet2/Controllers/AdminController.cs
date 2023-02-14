@@ -71,27 +71,29 @@ namespace Projet2.Controllers
         {
             Account newEmployee= new Account();
             newEmployee = model.CreatedEmployee;
+            Employee employee= new Employee();
 
-            model.Contact =
+
+            model.CreatedEmployee.Contact =
                  dal.AddContact(
                      model.CreatedEmployee.Contact.EmailAdress,
                      model.CreatedEmployee.Contact.TelephoneNumber
                      );
-            model.Infos =
+            model.CreatedEmployee.infoPerso =
                  dal.AddInfoPerso(
                      model.CreatedEmployee.infoPerso.FirstName,
                      model.CreatedEmployee.infoPerso.LastName,
                      model.CreatedEmployee.infoPerso.Birthday
                      );
 
-            model.Profile =
+            model.CreatedEmployee.Profile =
                 dal.CreateProfileEmployee(
-                    "",
-                    ""
+                    "Lorem ipsus",
+                    "Lorem ipsus"
                     );
-           model.Messagerie =
+           model.CreatedEmployee.Messagerie =
               dal.AddMessagerie();
-            model.Account =
+            model.CreatedEmployee =
             dal.AddAccount(
                  model.CreatedEmployee.Username,
                  model.CreatedEmployee.Password,

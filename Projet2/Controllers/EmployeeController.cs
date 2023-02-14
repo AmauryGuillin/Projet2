@@ -110,7 +110,7 @@ namespace Projet2.Controllers
 
 
                 string uploads = Path.Combine(_webEnv.WebRootPath, "images");
-                if (evm.Profile.ImagePath != null)
+                if (evm.Profile.ProfilImage != null)
                 {
                     string filePath = Path.Combine(uploads, evm.Profile.ProfilImage.FileName);
                     using (Stream fileStream = new FileStream(filePath, FileMode.Create))

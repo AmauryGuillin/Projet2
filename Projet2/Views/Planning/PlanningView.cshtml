@@ -40,7 +40,7 @@
         {
             <div class="box">
                 <h3>@Html.DisplayFor(mSlot=>Slot.Activity.activityType)</h3>
-                <img src="Assets/Profile/general_-_Discord.jpg" alt="" />
+                <img src="@Slot.Activity.ImagePath" />
                 <p id="dates">@Html.DisplayFor(mSlot=>Slot.Activity.StartDate) - @Html.DisplayFor(mSlot=>Slot.Activity.EndDate)</p>
                 <p id="place">@Html.DisplayFor(mSlot=>Slot.Activity.Place)</p>
                 <p id="description">@Html.DisplayFor(mSlot=>Slot.Activity.Description)</p>

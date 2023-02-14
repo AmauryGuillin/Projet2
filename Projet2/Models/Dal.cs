@@ -58,6 +58,11 @@ namespace Projet2.Models
             return BitConverter.ToString(new MD5CryptoServiceProvider().ComputeHash(ASCIIEncoding.Default.GetBytes(selectedPassword)));
         }
 
+        public static string DecodeMD5(string password)
+        {
+            string selectedPassword = "UserChoice" + password + "ASP.NET MVC";
+            return BitConverter.ToString(new MD5CryptoServiceProvider().ComputeHash(ASCIIEncoding.Default.GetBytes(selectedPassword)));
+        }
         /////////////////ACCOUNT
         ///
         /// <summary>
@@ -291,7 +296,9 @@ namespace Projet2.Models
                 activity.Place = Place;
                 activity.ImagePath = imagePath;
                 activity.NumberOfParticipants = nb;
-               
+                activity.ImagePath = imagePath;
+
+
                 _bddContext.SaveChanges();
             }
 

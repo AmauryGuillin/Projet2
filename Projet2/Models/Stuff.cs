@@ -20,7 +20,7 @@ namespace Projet2.Models
         /// <summary>
         /// Gets or sets the stuff's name.
         /// </summary>
-        [MaxLength(30)]
+        [MaxLength(60)]
         public string Name { get; set; }
 
         /// <summary>
