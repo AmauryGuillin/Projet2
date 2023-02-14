@@ -369,7 +369,6 @@ namespace Projet2.Models
                 InscriptionDate = inscriptiondate,
                 Contribution = contribution,
                 DocPath = idDocuments,
-                TeamId = teamId,
                 AdhesionId = adhesionId,
                
             };

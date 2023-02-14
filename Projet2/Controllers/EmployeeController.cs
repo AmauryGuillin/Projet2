@@ -10,15 +10,29 @@ using System.Linq;
 
 namespace Projet2.Controllers
 {
+    /// <summary>
+    /// Controller for employees.
+    /// </summary>
     public class EmployeeController : Controller
     {
-        private Dal dal;
-        private IWebHostEnvironment _webEnv;
+        private Dal dal;//An instance of the "Dal" class
+
+        private IWebHostEnvironment _webEnv;//An instance of the "IWebHostEnvironment" interface
+
+        /// <summary>
+        /// Initializes a new instance of the EmployeeController class.
+        /// </summary>
+        /// <param name="environment">The application's WebHost environment.</param>
         public EmployeeController(IWebHostEnvironment environment)
         {
             _webEnv = environment;
             this.dal = new Dal();
         }
+
+        /// <summary>
+        /// Displays the profile of the currently logged in employee.
+        /// </summary>
+        /// <returns>The employee profile view</returns>
         public IActionResult ProfileViewEmployee()
         {
             EmployeeViewModel evm = new EmployeeViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
@@ -54,6 +68,10 @@ namespace Projet2.Controllers
 
         }
 
+        /// <summary>
+        /// Displays the profile of the logged-in employee with his account settings.
+        /// </summary>
+        /// <returns>View containing logged-in employee profile information</returns>
         public IActionResult ProfileViewParamsEmployee()
         {
 
@@ -73,7 +91,11 @@ namespace Projet2.Controllers
             return RedirectToAction("Login", "Login");
         }
 
-
+        /// <summary>
+        /// Action to modify an employee's profile information
+        /// </summary>
+        /// <param name="evm">The view template of the employee whose information needs to be changed</param>
+        /// <returns>The employee profile view</returns>
         [HttpPost]
         public IActionResult ProfileViewParamsEmployee(EmployeeViewModel evm)
         {
@@ -123,19 +145,15 @@ namespace Projet2.Controllers
         }
 
 
-
-
-
-
-
-
+        /// <summary>
+        /// Logs the user out by deleting the authentication cookies and redirects him to the login page.
+        /// </summary> 
+        /// <returns>Redirect to login page</returns>
         public ActionResult Deconnexion()
         {
             HttpContext.SignOutAsync();
             return Redirect("/");
         }
 
-
-        /////////////////////END
     }
 }
