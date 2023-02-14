@@ -13,15 +13,26 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authentication;
 namespace Projet2.Controllers
 {
+    /// <summary>
+    /// Controller for Messagerie.
+    /// </summary>
     public class MessagerieController : Controller
     {
-        private Dal dal;
-        private IWebHostEnvironment _webEnv;
+        private Dal dal;//An instance of the "Dal" class
+
+        private IWebHostEnvironment _webEnv;//An instance of the "IWebHostEnvironment" interface
+
+        /// <summary>
+        /// Initializes a new instance of the MessagerieController class.
+        /// </summary>
+        /// <param name="environment">The application's WebHost environment.</param>
         public MessagerieController(IWebHostEnvironment environment)
         {
             _webEnv = environment;
             this.dal = new Dal();
         }
+
+
         public IActionResult MessageBoardView()
         {
             MessagerieViewModel mvm = new MessagerieViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
@@ -192,11 +203,14 @@ namespace Projet2.Controllers
         //    return new SelectList(selectedAccounts,selectedAccount);
         //}
 
+        /// <summary>
+        /// Logs the user out by deleting the authentication cookies and redirects him to the login page.
+        /// </summary> 
+        /// <returns>Redirect to login page</returns>
         public ActionResult Deconnexion()
         {
             HttpContext.SignOutAsync();
             return RedirectToAction("LOgin", "Login");
         }
-        ///////////////////////////END//////////
     }
 }

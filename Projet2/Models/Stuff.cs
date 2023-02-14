@@ -79,9 +79,6 @@ namespace Projet2.Models
         /// </summary>
         public virtual Account AccountBorrower { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
         public bool Authentificate { get; set; }
 
 
