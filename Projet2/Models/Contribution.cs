@@ -3,6 +3,10 @@ using System.Globalization;
 
 namespace Projet2.Models
 {
+    /// <summary>
+    /// Enumeration that represents the different payment options.
+    /// </summary>
+    /// </summary>
     public enum ContributionType
     {
         [Display(Name = "Annuel")]
@@ -13,6 +17,9 @@ namespace Projet2.Models
         Mensuel
     }
 
+    /// <summary>
+    /// Enumeration that represents the different picking possibilities for the date.
+    /// </summary>
     public enum PrelevementDate
     {
         [Display(Name = "5 du mois")]
@@ -23,10 +30,18 @@ namespace Projet2.Models
         VingtCingDuMois
     }
 
+    /// <summary>
+    /// This class represents a contribution.
+    /// Membership fee is required to become a member.
+    /// </summary>
     public class Contribution
     {
+        /// <summary>
+        /// Gets or sets the contribution ID required by the database.
+        /// </summary>
         public int Id { get; set; }
         
+
         //[Required]
         public bool PaymentStatus { get; set; }
         //public double TotalCount { get; set; }
