@@ -102,6 +102,14 @@ namespace Projet2.Controllers
                 {
                     return RedirectToAction("ProfileViewBenevole", "Inscription");
                 }
+                else if (model.Account.role == Role.Salarie)
+                {
+                    return RedirectToAction("ProfileViewEmployee", "Employee");
+                }
+                else if (model.Account.role == Role.Admin)
+                {
+                    return RedirectToAction("ProfileViewAdmin", "Admin");
+                }
             }
             return RedirectToAction("Login", "Login");
         }

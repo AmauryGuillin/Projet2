@@ -36,13 +36,13 @@
             >
           </div>
             @Html.TextBoxFor(m => m.CreatedEmployee.Username)
-            @Html.ValidationMessageFor(m => m.Account.Username)
+                @Html.ValidationMessageFor(m =>m.CreatedEmployee.Username)
 
         <div class="password">
             <label><b>Mot de passe <sup>*</sup></b></label>
         </div>
             @Html.PasswordFor(m => m.CreatedEmployee.Password)
-            @Html.ValidationMessageFor(m => m.Account.Password)
+                @Html.ValidationMessageFor(m => m.CreatedEmployee.Password)
 
             <div class="firstname">
             <label

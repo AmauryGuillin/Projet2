@@ -134,17 +134,27 @@ namespace Projet2.Controllers
         [HttpPost]
         public IActionResult EditPublication(PublicationViewModel model, int id)
         {
-            string uploads = Path.Combine(_webEnv.WebRootPath, "images");
-            string filePath = Path.Combine(uploads, model.Publication.PubliImage.FileName);
-            using (Stream fileStream = new FileStream(filePath, FileMode.Create))
-            {
-                model.Publication.PubliImage.CopyTo(fileStream);
-            }
+            string imagepath;
+            string accountId = (HttpContext.User.Identity.Name);
             if (HttpContext.User.Identity.IsAuthenticated)
             {
-                string accountId = (HttpContext.User.Identity.Name);
-                model.Account = dal.GetAccount(accountId);
-                dal.EditPublication(id, model.Publication.Name, model.Publication.PublicationType,model.Publication.Content,model.Publication.Date, "/images/" + model.Publication.PubliImage.FileName);
+            model.Account = dal.GetAccount(accountId);
+            Publication publication = dal.GetOnePublication(id);
+             
+            string uploads = Path.Combine(_webEnv.WebRootPath, "images");
+
+            if (model.Publication.PubliImage != null)
+            {
+                string filePath = Path.Combine(uploads, model.Publication.PubliImage.FileName);
+                using (Stream fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    model.Publication.PubliImage.CopyTo(fileStream);
+                }
+                imagepath = "/images/" + model.Publication.PubliImage.FileName;
+            }
+            else { imagepath = publication.ImagePath; }
+            
+                dal.EditPublication(id, model.Publication.Name, model.Publication.PublicationType,model.Publication.Content,model.Publication.Date,imagepath);
                 return RedirectToAction("PublicationWall");
             }
             return RedirectToAction("Login", "Login");

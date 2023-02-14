@@ -45,7 +45,7 @@
 
         @if (Model.Account != null) {
                 <td> 
-                 @Html.ActionLink("S'inscrire", "Book", "Activities", new { id = Activity.Id });
+                 @Html.ActionLink("S'inscrire", "Book", "Activities", new { id = Activity.Id })
                 </td>
 
                        
@@ -54,13 +54,13 @@
                                     <td>
                                         @Html.ActionLink("Modifier","EditActivity","Activities",new {id= Activity.Id})
                             </td>
-                                ;}
+                                }
                          
                
                 @if (Model.Account.role == Role.Admin || Model.Account.role == Role.Salarie)
                                 {
                                     <td>
-                     @Html.ActionLink("Créer une activité","CreateActivity","Activities",new {id= Activity.Id})
+                     @Html.ActionLink("Supprimer l'activité","DeleteActivity","Activities",new {id= Activity.Id})
                      </td>
             ;}
                  
