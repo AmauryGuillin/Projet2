@@ -13,11 +13,11 @@ namespace Projet2.Models
 {
     public class BddContext : DbContext
     {
-        public DbSet<Account> Account { get; set; } //ajout d'un 's' à la fin
+        public DbSet<Account> Account { get; set; } 
         public DbSet<Activity> Activities { get; set; }   
-        public DbSet<Adhesion> Adhesions { get; set; }// ajout d'un 's' à la fin
-        public DbSet<Adherent> Adherents { get; set; } //ajout d'un 's' à la fin
-        public DbSet<Benevole> Benevoles { get; set; } //ajout d'un 's' à la fin
+        public DbSet<Adhesion> Adhesions { get; set; }
+        public DbSet<Adherent> Adherents { get; set; } 
+        public DbSet<Benevole> Benevoles { get; set; } 
         public DbSet<MessagerieA> Messageries { get; set; }
         public DbSet<Contact> Contact { get; set; }
         public DbSet<Contribution> Contributions { get; set; }
