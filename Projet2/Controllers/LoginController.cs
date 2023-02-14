@@ -155,6 +155,66 @@ namespace Projet2.Controllers
             return View(viewModel);
         }
 
+        public IActionResult About()
+        {
+            LoginViewModel viewModel = new LoginViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
+            if (HttpContext.User.Identity.IsAuthenticated == true)
+            {
+                //var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+                string accountId = (HttpContext.User.Identity.Name);
+                viewModel.Account = dal.GetAccount(accountId);
+
+                return View(viewModel);
+            }
+            return View(viewModel);
+        }
+
+        public IActionResult Materiel()
+        {
+            LoginViewModel viewModel = new LoginViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
+            if (HttpContext.User.Identity.IsAuthenticated == true)
+            {
+                //var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+                string accountId = (HttpContext.User.Identity.Name);
+                viewModel.Account = dal.GetAccount(accountId);
+
+                return View(viewModel);
+            }
+            return View(viewModel);
+        }
+
+        public IActionResult Coaching()
+        {
+            LoginViewModel viewModel = new LoginViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
+            if (HttpContext.User.Identity.IsAuthenticated == true)
+            {
+                //var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+                string accountId = (HttpContext.User.Identity.Name);
+                viewModel.Account = dal.GetAccount(accountId);
+
+                return View(viewModel);
+            }
+            return View(viewModel);
+        }
+
+        public IActionResult Contact()
+        {
+            LoginViewModel viewModel = new LoginViewModel { Authentificate = HttpContext.User.Identity.IsAuthenticated };
+            if (HttpContext.User.Identity.IsAuthenticated == true)
+            {
+                //var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+                string accountId = (HttpContext.User.Identity.Name);
+                viewModel.Account = dal.GetAccount(accountId);
+
+                return View(viewModel);
+            }
+            return View(viewModel);
+        }
+
         public ActionResult Deconnexion()
         {
             HttpContext.SignOutAsync();
