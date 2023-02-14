@@ -28,47 +28,63 @@ namespace Projet2.Controllers
 
         public IActionResult CreateEmployee()
         {
+            AdminViewModel model = new AdminViewModel() { Authentificate = HttpContext.User.Identity.IsAuthenticated };
+            Account accountUser = dal.GetAccount(HttpContext.User.Identity.Name);
+            model.Account = accountUser;
+            if (accountUser != null && model.Account.role == Role.Admin)
+            {
+                Account newEmployee = new Account();
+                newEmployee = model.CreatedEmployee;
+                InfoPerso empInfos= new InfoPerso();
+                empInfos = model.Infos;
+                Contact contact= new Contact();
+                contact = model.Contact;
+                Employee CreatedEmployee= new Employee();
+                CreatedEmployee = model.Employee;
 
-            AdminViewModel model = new AdminViewModel();
+                return View(model);
+            }
 
-            return View(model);
+           return  RedirectToAction("Login", "Login");
         }
 
         [HttpPost]
         public IActionResult CreateEmployee(AdminViewModel model)
         {
+            Account newEmployee= new Account();
+            newEmployee = model.CreatedEmployee;
 
             model.Contact =
                  dal.AddContact(
-                     model.Contact.EmailAdress,
-                     model.Contact.TelephoneNumber
+                     model.CreatedEmployee.Contact.EmailAdress,
+                     model.CreatedEmployee.Contact.TelephoneNumber
                      );
             model.Infos =
                  dal.AddInfoPerso(
-                     model.Infos.FirstName,
-                     model.Infos.LastName,
-                     model.Infos.Birthday
+                     model.CreatedEmployee.infoPerso.FirstName,
+                     model.CreatedEmployee.infoPerso.LastName,
+                     model.CreatedEmployee.infoPerso.Birthday
                      );
 
             model.Profile =
                 dal.CreateProfileEmployee(
-                    model.Profile.Bio,
-                    model.Profile.Games
+                    "",
+                    ""
                     );
            model.Messagerie =
               dal.AddMessagerie();
             model.Account =
             dal.AddAccount(
-                 model.Account.Username,
-                 model.Account.Password,
-                 model.Contact.Id,
-                 model.Infos.Id,
-                 model.Profile.Id,
-                 model.Account.role,
-                 model.Messagerie.Id
+                 model.CreatedEmployee.Username,
+                 model.CreatedEmployee.Password,
+                 model.CreatedEmployee.Contact.Id,
+                 model.CreatedEmployee.infoPerso.Id,
+                 model.CreatedEmployee.Profile.Id,
+                 Role.Salarie,
+                 model.CreatedEmployee.Messagerie.Id
                  );
 
-            model.Employee = dal.CreateEmployee(model.Account.Id, model.Employee.JobName, model.Employee.SerialNumber);
+            model.Employee = dal.CreateEmployee(model.CreatedEmployee.Id, model.Employee.JobName, model.Employee.SerialNumber);
 
             var userClaims = new List<Claim>()
                 {
