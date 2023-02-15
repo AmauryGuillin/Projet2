@@ -63,25 +63,3 @@
 @section ExtraCss{
     <link rel="stylesheet" href="~/css/ConsultationBookStuff.css" />
                 }
-
-
-@*@using (Html.BeginForm())
-{
-    <h2>Consultation Réservation</h2>
-
-
-    @Html.HiddenFor(m=>m.Stuff.Id)
-    @Html.HiddenFor(m=>m.Stuff.AccountBorrowerId)
-
-        <p>Nom : @Model.Stuff.Name</p>
-        <p>Description : @Model.Stuff.Description</p>
-        <p>Type : @Model.Stuff.Type</p>
-        <p>Etat : @Model.Stuff.State</p>
-        <p>Reservation : @Model.Stuff.Reservation</p>
-        <p>Emprunteur : @Model.Account.Username</p>
-        <p>Argument : @Model.ReservationStuff.ReservationArgument</p>
-
-        <input type="submit" value="Annuler la réservation" />
-
-
-}*@

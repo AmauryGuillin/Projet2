@@ -38,12 +38,13 @@ form h1 {
     grid-area: image;
     justify-self: center;
     margin-bottom: 30px;
-    align-self:center
+    align-self:center;
+    width:100%;
 }
 
 .image img {
-    width: 200px;
-    height: 200px;
+    width: 95%;
+    height:95%;
     border-radius: 20px;
 }
 
@@ -60,6 +61,8 @@ form h1 {
     border-radius: 20px 30px 30px 20px;
     /* background: rgba(0, 0, 0, 0.158); */
     border-right: none;
+    width:85%;
+    word-break:break-word;
 }
 
 .attributs .name {
@@ -94,7 +97,7 @@ form h1 {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     margin-bottom: 30px;
-    min-width: 43rem;
+    width: 100%;
     display: flex;
     align-items: center;
 }

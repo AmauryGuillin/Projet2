@@ -64,7 +64,7 @@ textarea {
     align-content: end:
 }
 
-input[type=submit] {
+.button-send input[type=submit] {
     height: 2rem;
-    width:7rem;
+    width: 7rem;
 }
