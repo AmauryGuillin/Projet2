@@ -101,10 +101,12 @@ namespace Projet2.Models
             return null;
         }
 
+
         /// <summary>
         /// This method returns a list that contains all accounts
         /// </summary>
         /// <returns>return database account list</returns>
+
         public List<Account> GetAccounts()
         {
             return _bddContext.Account.ToList();
@@ -1197,10 +1199,19 @@ namespace Projet2.Models
             _bddContext.SaveChanges();
         }
 
+
+        public void RemoveMessages (List<Message> messages,int accountId)
+        {
+            messages = _bddContext.Messages.Where(r => r.SenderId == accountId).ToList();
+            _bddContext.Messages.RemoveRange(messages);
+            _bddContext.SaveChanges();
+        }
+
         /// <summary>
         /// Deletes an existing Messagerie in the database.
         /// </summary>
         /// <param name="messagerie">messagerie to delete.</param>
+
         public void RemoveMessagerie(MessagerieA messagerie)
         {
             _bddContext.Messageries.Remove(messagerie);
